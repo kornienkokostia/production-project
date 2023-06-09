@@ -1,0 +1,71 @@
+.Spinner {
+  width: 35px;
+  height: 35px;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.1s linear;
+  position: relative;
+  display: flex;
+}
+.Spinner.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.4s linear;
+}
+.Spinner .SpinnerBlade {
+  position: absolute;
+  left: 15px;
+  right: 0;
+  top: 12px;
+  bottom: 0;
+  width: 4px;
+  height: 12px;
+  background-color: var(--spinner-bg);
+  border-radius: 2.5px;
+  animation: SpinnerBlade 1s linear infinite;
+  will-change: opacity;
+}
+.Spinner .SpinnerBlade:nth-child(1) {
+  transform: rotate(45deg) translateY(-11.5px);
+  animation-delay: -1.625s;
+}
+.Spinner .SpinnerBlade:nth-child(2) {
+  transform: rotate(90deg) translateY(-11.5px);
+  animation-delay: -1.5s;
+}
+.Spinner .SpinnerBlade:nth-child(3) {
+  transform: rotate(135deg) translateY(-11.5px);
+  animation-delay: -1.375s;
+}
+.Spinner .SpinnerBlade:nth-child(4) {
+  transform: rotate(180deg) translateY(-11.5px);
+  animation-delay: -1.25s;
+}
+.Spinner .SpinnerBlade:nth-child(5) {
+  transform: rotate(225deg) translateY(-11.5px);
+  animation-delay: -1.125s;
+}
+.Spinner .SpinnerBlade:nth-child(6) {
+  transform: rotate(270deg) translateY(-11.5px);
+  animation-delay: -1s;
+}
+.Spinner .SpinnerBlade:nth-child(7) {
+  transform: rotate(315deg) translateY(-11.5px);
+  animation-delay: -0.875s;
+}
+.Spinner .SpinnerBlade:nth-child(8) {
+  transform: rotate(360deg) translateY(-11.5px);
+  animation-delay: -0.75s;
+}
+
+@keyframes SpinnerBlade {
+  0% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
