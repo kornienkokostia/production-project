@@ -3,7 +3,7 @@
   width: var(--sidebar-with);
   background-color: var(--inverted-bg-color);
   position: relative;
-  transition: width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: width 0.25s;
 }
 
 .collapsed {
@@ -11,6 +11,10 @@
   & .switchers {
     flex-direction: column;
     align-items: center;
+  }
+  & .link {
+    opacity: 0;
+    width: 0px;
   }
 }
 
@@ -21,4 +25,37 @@
   justify-content: center;
   width: 100%;
   gap: 15px;
+}
+
+.collapseBtn {
+  position: absolute;
+  bottom: 32px;
+  right: -32px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  column-gap: 8px;
+  cursor: pointer;
+}
+
+.link {
+  opacity: 1;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.icon {
+  min-width: 30px;
+  fill: var(--inverted-primary-color);
 }

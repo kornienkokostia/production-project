@@ -1,8 +1,10 @@
 {
   "Test": "Тест",
   "Language": "Русскый",
-  "Main page": "Главная страница",
+  "Main page": "Главная",
+  "About page": "O сайте",
   "Page not found": "Станица не найдена",
   "Something went wrong": "Что то пошло не так...",
-  "Reload the page": "Перезагрузить страницу"
+  "Reload the page": "Перезагрузить страницу",
+  "Short lang": "Рус"
 }
