@@ -1,10 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Button.module.scss';
 import { ButtonHTMLAttributes, FC } from 'react';
+import cls from './Button.module.scss';
 
 export enum ButtonTheme {
   CLEAR = 'clear',
-  OUTLINE = 'outline',
+  APPLE = 'apple',
   BACKGROUND = 'background',
   BACKGROUND_INVERTED = 'backgroundInverted',
 }
@@ -22,7 +22,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
 }
 
-export const Button: FC<ButtonProps> = props => {
+export const Button: FC<ButtonProps> = (props) => {
   const {
     className,
     children,

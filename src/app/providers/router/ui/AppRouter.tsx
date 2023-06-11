@@ -6,11 +6,11 @@ import { Loader } from 'shared/ui/Loader/Loader';
 export function AppRouter() {
   return (
     <Suspense
-      fallback={
+      fallback={(
         <div className="page-spinner-wrapper">
           <Loader />
         </div>
-      }
+      )}
     >
       <Routes>
         {Object.values(routeConfig).map(({ element, path }) => (
