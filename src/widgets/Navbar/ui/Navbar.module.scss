@@ -1,21 +1,53 @@
 .Navbar {
   width: 100%;
   height: var(--nav-height);
-  background-color: var(--inverted-bg-color);
+  background-color: var(--secondary-bg-color);
   display: flex;
   align-items: center;
-  padding: 10px 20px;
+  justify-content: flex-end;
+  padding: 0px 10px 0 20px;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.links {
-  margin-left: auto;
-}
-
-.mainLink {
-  margin-right: 15px;
+.NavbarRight {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
 }
 
 .SingInIcon {
   margin-right: 6px;
-  fill: var(--primary-color);
+  fill: #f5f5f7;
+}
+
+.NavbarItem {
+  position: relative;
+  height: 42px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover::before {
+    content: '';
+    position: absolute;
+    display: block;
+    height: 36px;
+    width: 39px;
+    background-color: var(--navbar-selection-bg-color);
+    border-radius: 8px;
+  }
+}
+.settingsOpened {
+  &:hover {
+    cursor: default;
+    &::before {
+      visibility: hidden;
+    }
+  }
+}
+.ItemIcon {
+  fill: var(--icon-main-color);
+}
+.settings-header {
+  padding: 10px;
 }

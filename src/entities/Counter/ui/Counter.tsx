@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { counterActions } from '../model/slice/counterSlice';
-import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { getCounterValue } from '../selectors/getCounterValue/getCounterValue';
 
 export const Counter = () => {

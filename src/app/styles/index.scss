@@ -2,18 +2,56 @@
 @import 'variables/global';
 @import 'themes/normal';
 @import 'themes/dark';
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
-@import url('https://fonts.cdnfonts.com/css/sf-ui-text-2');
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./../../shared/assets/fonts/SF-Pro-Display-Thin.ttf');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./../../shared/assets/fonts/SF-Pro-Display-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./../../shared/assets/fonts/SF-Pro-Display-Regular.ttf');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./../../shared/assets/fonts/SF-Pro-Display-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./../../shared/assets/fonts/SF-Pro-Display-Semibold.ttf');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('./../../shared/assets/fonts/SF-Pro-Display-Bold.ttf');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'SF UI Text';
+  src: url('./../../shared/assets/fonts/SF-UI-Text-Regular.ttf');
+  font-weight: 400;
+}
 
 body {
   font: var(--font-m);
-  color: var(--primary-color);
 }
 
 .app {
   background: var(--bg-color);
+  color: var(--main-text-color);
   min-height: 100vh;
 }
+
+// * {
+//   transition: background-color 0.3s linear;
+// }
 
 .content-page {
   display: flex;
@@ -28,4 +66,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+h1,
+h2 {
+  all: unset;
 }

@@ -1,0 +1,23 @@
+.form {
+  position: relative;
+}
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.SingInFromBtn {
+  position: absolute;
+  bottom: 15px;
+  right: 13px;
+  z-index: 10;
+}
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.btnIcon {
+  fill: var(--modal-icon-fill);
+}

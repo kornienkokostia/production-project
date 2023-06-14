@@ -1,6 +1,8 @@
 .Button {
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  color: var(--inverted-primary-color);
+  color: var(--main-text-color);
 }
 
 .clear {
@@ -12,39 +14,12 @@
 }
 
 .apple {
-  padding: 2px 12px;
-  background: var(--bg-color);
-  color: var(--primary-color);
+  padding: 2px 15px;
+  background: var(--btn-bg);
+  color: #f5f5f7;
   border: none;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 15px;
-}
-
-.background {
-  background: var(--bg-color);
-  color: var(--primary-color);
-  border: none;
-}
-
-.backgroundInverted {
-  background: var(--inverted-bg-color);
-  color: var(--inverted-primary-color);
-  border: none;
-}
-
-.square.size_m {
-  width: var(--font-line-m);
-  height: var(--font-line-m);
-  font: var(--font-m);
-}
-.square.size_l {
-  width: var(--font-line-l);
-  height: var(--font-line-l);
-  font: var(--font-l);
-}
-.square.size_xl {
-  width: var(--font-line-xl);
-  height: var(--font-line-xl);
-  font: var(--font-xl);
+  font-size: 13px;
+  letter-spacing: 0.07em;
 }

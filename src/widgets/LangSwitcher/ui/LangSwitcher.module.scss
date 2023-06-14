@@ -1,0 +1,18 @@
+.LangSwitcher {
+  border-radius: 6px;
+  border: none;
+  box-shadow: 0 0 0 1px var(--border-color);
+  outline: none;
+  padding: 2px;
+  width: 100px;
+  background-color: var(--settings-dark-grey);
+  color: var(--main-text-color);
+  cursor: pointer;
+  &:focus {
+    box-shadow: 0 0 0 2px var(--primary-color);
+  }
+}
+.option {
+  background: var(--secondary-bg-color);
+  color: var(--main-text-color);
+}

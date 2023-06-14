@@ -1,5 +1,6 @@
 :root {
   --font-family-main: 'SF Pro Display';
+  --font-family-secondary: 'SF UI Text';
   --font-size-m: 16px;
   --font-line-m: 24px;
   --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
@@ -11,13 +12,14 @@
   --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
   // Sizes
-  --nav-height: 54px;
-  --sidebar-with: 300px;
-  --sidebar-width-collapsed: 80px;
+  --nav-height: 44px;
+  --sidebar-with: 250px;
+  --sidebar-width-collapsed: 76px;
 
   // Indexes
   --modal-z-index: 10;
 
   // Colors
-  --overlay-color: #000000d9;
+  --overlay-color: rgba(0, 0, 0, 0.45);
+  --settings-dark-grey: rgba(170, 170, 174, 0.15);
 }

@@ -8,6 +8,7 @@
   display: flex;
   opacity: 0;
   pointer-events: none;
+  color: var(--main-text-color);
 }
 
 .overlay {
@@ -20,12 +21,17 @@
 }
 
 .content {
+  position: relative;
   padding: 20px;
-  border-radius: 20px;
-  background-color: var(--bg-color);
+  border-radius: 10px;
+  background-color: var(--modal-bg);
   transform: scale(0.5);
-  transition: transform 0.3s;
-  max-width: 60%;
+  transition: transform 0.3s, opacity 0.3s;
+  min-width: 800px;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .opened {
@@ -39,6 +45,40 @@
 
 .isClosing {
   .content {
-    transform: scale(0);
+    transform: scale(0.7);
+    opacity: 0;
+  }
+}
+
+.closeBtn {
+  width: 36px;
+  height: 36px;
+  background-color: var(--close-modal-btn-bg);
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover .closeBtnIcon {
+    fill: var(--modal-icon-fill-hover);
+  }
+}
+.closeBtnIcon {
+  width: 14px;
+  height: 14px;
+  fill: var(--modal-icon-fill);
+  transition: fill 0.1s linear 0s;
+}
+
+@media screen and (max-height: 520px) {
+  .overlay {
+    padding-top: 10px;
+    align-items: flex-start;
+  }
+  .content {
+    min-width: 800px;
+    min-height: calc(100vh - 20px);
   }
 }
