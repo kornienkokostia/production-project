@@ -17,6 +17,7 @@ interface PassedProps extends HTMLInputProps {
   value?: string;
   onChange?: (value: string) => void;
   theme?: InputTheme;
+  hidden?: boolean;
 }
 
 export const TextInput = memo((props: PassedProps) => {
@@ -26,6 +27,7 @@ export const TextInput = memo((props: PassedProps) => {
     value,
     onChange,
     theme,
+    hidden,
     ...otherProps
   } = props;
 
@@ -42,7 +44,7 @@ export const TextInput = memo((props: PassedProps) => {
   return (
     <div className={classNames('input-field', {}, [theme])}>
       <input
-        className={`input-field-input`}
+        className={classNames('input-field-input', { hidden: hidden }, [])}
         value={value}
         type={type}
         onFocus={handleFocus}
@@ -51,8 +53,13 @@ export const TextInput = memo((props: PassedProps) => {
           setIsFocused(true);
           onChangeHandler;
         }}
+        {...otherProps}
       />
-      <span className={`input-field-title ${isFocused ? 'active' : ''} `}>
+      <span
+        className={classNames('input-field-title', { hiddenTitle: hidden }, [
+          isFocused ? 'active' : undefined,
+        ])}
+      >
         {fieldTitle}
       </span>
 

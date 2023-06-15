@@ -25,7 +25,7 @@ export const Modal = (props: ModalProps) => {
       timeRef.current = setTimeout(() => {
         setIsClosing(false);
         onClose();
-      }, 300);
+      }, 200);
     }
   }, [onClose]);
 

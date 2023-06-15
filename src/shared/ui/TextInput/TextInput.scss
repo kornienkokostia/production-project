@@ -3,6 +3,8 @@
   max-width: 400px;
   min-width: 328px;
   width: 100%;
+  height: 55px;
+  display: flex;
   &-input {
     position: relative;
     font-size: 17px;
@@ -19,6 +21,8 @@
     padding: 18px 16px 0px;
     letter-spacing: -0.022em;
     text-align: left;
+    transition: height 0.2s linear, padding 0.2s linear, opacity 0.2s linear;
+    // transition: 0.3s;
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       appearance: none;
@@ -50,8 +54,7 @@
     font-size: 17px;
     user-select: none;
     color: #86868b;
-    transition: 0.125s ease-in;
-    letter-spacing: 0.022em;
+    transition: 0.125s ease-in, opacity 0.2s linear;
     pointer-events: none;
     font-family: var(--font-family-secondary);
     z-index: 3;
@@ -84,7 +87,15 @@
     }
   }
 }
+.hidden {
+  height: 0px;
+  padding: 0;
 
+  opacity: 0;
+}
+.hiddenTitle {
+  opacity: 0;
+}
 .without-bottom-corners {
   & .input-field-input {
     border-bottom-left-radius: 0px;
@@ -95,6 +106,6 @@
   & .input-field-input {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    margin-top: -1px;
+    // margin-top: -1px;
   }
 }

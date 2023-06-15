@@ -21,6 +21,9 @@ export const LangSwitcher = ({ className }: LangSwitcherProps) => {
       <option className={cls.option} value={'ru'}>
         Русский
       </option>
+      <option className={cls.option} value={'uk'}>
+        Українська
+      </option>
     </select>
   );
 };

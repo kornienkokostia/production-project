@@ -26,7 +26,7 @@
   border-radius: 10px;
   background-color: var(--modal-bg);
   transform: scale(0.5);
-  transition: transform 0.3s, opacity 0.3s;
+  transition: transform 0.2s, opacity 0.2s;
   min-width: 800px;
   min-height: 500px;
   display: flex;
@@ -62,7 +62,7 @@
   align-items: center;
   justify-content: center;
   &:hover .closeBtnIcon {
-    fill: var(--modal-icon-fill-hover);
+    fill: var(--close-modal-icon-fill-hover);
   }
 }
 .closeBtnIcon {

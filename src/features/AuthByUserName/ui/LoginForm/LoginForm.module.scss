@@ -6,12 +6,25 @@
   flex-direction: column;
   align-items: center;
 }
-
-.SingInFromBtn {
-  position: absolute;
-  bottom: 15px;
+.SingInBtn {
   right: 13px;
   z-index: 10;
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s linear;
+}
+.UserNameBtn {
+  position: absolute;
+  top: 15px;
+}
+.PasswordBtn {
+  position: absolute;
+  bottom: 15px;
+}
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 .title {
   font-size: 24px;

@@ -7,8 +7,8 @@
   --modal-bg: #ffffff;
   --close-modal-btn-bg: rgb(232, 232, 237);
   --icon-main-color: #6e6e73;
-  --modal-icon-fill: #6e6e73;
-  --modal-icon-fill-hover: #323232;
+  --modal-icon-fill: #84848a;
+  --close-modal-icon-fill-hover: #323232;
   --primary-color: #0071eb;
   --btn-bg: #0071eb;
   --input-box-shadow: rgb(0 125 250 / 60%);
@@ -21,4 +21,6 @@
   --submenu-bg: #ffffff;
   --main-text-color: #000000;
   --spinner-bg: #565656;
+
+  color-scheme: light;
 }
