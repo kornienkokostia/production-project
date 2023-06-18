@@ -12,7 +12,6 @@
 .NavbarRight {
   display: flex;
   align-items: center;
-  column-gap: 10px;
 }
 
 .SingInIcon {
@@ -37,17 +36,13 @@
     border-radius: 8px;
   }
 }
-.settingsOpened {
-  &:hover {
-    cursor: default;
-    &::before {
-      visibility: hidden;
-    }
-  }
-}
+
 .ItemIcon {
   fill: var(--icon-main-color);
 }
 .settings-header {
   padding: 10px;
+}
+.NavbarSignin {
+  margin-right: 10px;
 }

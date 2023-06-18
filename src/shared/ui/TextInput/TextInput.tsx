@@ -1,6 +1,9 @@
 import React, { InputHTMLAttributes, memo, useState } from 'react';
 import './TextInput.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useSelector } from 'react-redux';
+import { getLoginState } from 'features/AuthByUserName/model/selectors/getLoginState';
+import { useTranslation } from 'react-i18next';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -14,27 +17,31 @@ export enum InputTheme {
 
 interface PassedProps extends HTMLInputProps {
   fieldTitle: string;
+  isFocused: boolean;
+  setIsFocused: (val: boolean) => void;
   value?: string;
   onChange?: (value: string) => void;
   theme?: InputTheme;
   hidden?: boolean;
+  paddingRight?: boolean;
 }
 
 export const TextInput = memo((props: PassedProps) => {
   const {
     fieldTitle,
+    isFocused,
+    setIsFocused,
     type = 'text',
     value,
     onChange,
     theme,
     hidden,
+    paddingRight,
     ...otherProps
   } = props;
 
-  const [isFocused, setIsFocused] = useState(false);
-
   const handleFocus = (e: React.FocusEvent<HTMLInputElement, Element>) => {
-    e.currentTarget.value.length === 0 ? setIsFocused(prev => !prev) : false;
+    e.currentTarget.value.length === 0 ? setIsFocused(!isFocused) : false;
   };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,14 +51,17 @@ export const TextInput = memo((props: PassedProps) => {
   return (
     <div className={classNames('input-field', {}, [theme])}>
       <input
-        className={classNames('input-field-input', { hidden: hidden }, [])}
+        className={classNames(
+          'input-field-input',
+          { hidden, paddingRight },
+          [],
+        )}
         value={value}
         type={type}
         onFocus={handleFocus}
         onBlur={handleFocus}
-        onInput={() => {
-          setIsFocused(true);
-          onChangeHandler;
+        onChange={e => {
+          onChangeHandler(e);
         }}
         {...otherProps}
       />

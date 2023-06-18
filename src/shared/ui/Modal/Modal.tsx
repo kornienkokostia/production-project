@@ -1,10 +1,12 @@
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ReactNode, useCallback, useEffect, useRef, useState,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useTheme } from 'app/providers/ThemeProvider';
+import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
-import { useTheme } from 'app/providers/ThemeProvider';
 import { Button, ButtonTheme } from '../Button/Button';
-import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
 
 interface ModalProps {
   className?: string;
@@ -14,7 +16,9 @@ interface ModalProps {
 }
 
 export const Modal = (props: ModalProps) => {
-  const { className, children, isOpen, onClose } = props;
+  const {
+    className, children, isOpen, onClose,
+  } = props;
   const [isClosing, setIsClosing] = useState(false);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
   const { theme } = useTheme();

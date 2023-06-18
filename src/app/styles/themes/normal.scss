@@ -7,11 +7,12 @@
   --modal-bg: #ffffff;
   --close-modal-btn-bg: rgb(232, 232, 237);
   --icon-main-color: #6e6e73;
-  --modal-icon-fill: #84848a;
+  --modal-icon-fill-btn: #96969f;
+  --modal-icon-fill-btn-disabled: #96969f80;
+  --close-modal-icon-fill: #96969f;
   --close-modal-icon-fill-hover: #323232;
   --primary-color: #0071eb;
   --btn-bg: #0071eb;
-  --input-box-shadow: rgb(0 125 250 / 60%);
   --input-bg: #ffffff;
   --input-border: #d2d2d7;
   --input-title-focused: #6e6e73;
@@ -20,7 +21,8 @@
   --submenu-shadow: rgba(0, 0, 0, 0.15);
   --submenu-bg: #ffffff;
   --main-text-color: #000000;
-  --spinner-bg: #565656;
+  --spinner-bg: #343232;
+  --spinner-bg-faded: rgba(52, 50, 50, 0.25);
 
   color-scheme: light;
 }

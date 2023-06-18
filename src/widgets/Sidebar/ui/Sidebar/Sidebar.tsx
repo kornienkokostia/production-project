@@ -8,17 +8,21 @@ import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import AboutIcon from 'shared/assets/icons/about.svg';
 import HomeIcon from 'shared/assets/icons/home.svg';
 import { useTranslation } from 'react-i18next';
-import cls from './Sidebar.module.scss';
 import ToggleIcon from 'shared/assets/icons/nav-bar-toggle-btn.svg';
+import cls from './Sidebar.module.scss';
+import { useLocation } from 'react-router-dom';
 
 interface SidebarProps {
   className?: string;
 }
 
 export const Sidebar = ({ className }: SidebarProps) => {
+  const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
   const [currentSelected, setCurrentSelected] = useState<AppRoutes>(
-    AppRoutes.MAIN,
+    Object.keys(RoutePath).find(
+      key => RoutePath[key as keyof typeof RoutePath] === location.pathname,
+    ) as keyof typeof RoutePath,
   );
   const { t } = useTranslation();
 

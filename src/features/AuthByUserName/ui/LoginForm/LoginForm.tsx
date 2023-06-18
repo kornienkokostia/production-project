@@ -1,32 +1,124 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './LoginForm.module.scss';
 import { useTranslation } from 'react-i18next';
 import { InputTheme, TextInput } from 'shared/ui/TextInput/TextInput';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import SingInFormBtnIcon from 'shared/assets/icons/singin-form-btn.svg';
-import { useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getLoginState } from 'features/AuthByUserName/model/selectors/getLoginState';
+import { loginActions } from '../../model/slice/loginSlice';
+import cls from './LoginForm.module.scss';
+import { loginByUsername } from 'features/AuthByUserName/model/services/LoginByUsername/loginByUsername';
+import { Loader, LoaderTheme } from 'shared/ui/Loader/Loader';
 
 interface LoginFormProps {
   className?: string;
 }
 
-export const LoginForm = ({ className }: LoginFormProps) => {
+export const LoginForm = memo(({ className }: LoginFormProps) => {
   const { t } = useTranslation();
   const [hideSingInBtn, setHideSingInBtn] = useState(true);
-  const [hideUrennameBtn, setHideUrennameBtn] = useState(false);
-  const [isUsername, setIsUsername] = useState(false);
+  const [hideUsernameBtn, setHideUsernameBtn] = useState(false);
+  const [passwordFieldVisible, setPasswordFieldVisible] = useState(false);
+  const dispatch = useDispatch();
+  const {
+    username,
+    usernameFocused,
+    password,
+    passwordFocused,
+    error,
+    isLoading,
+  } = useSelector(getLoginState);
+  const [showErrorMsg, setShowErrorMsg] = useState(false);
 
   const showPasswordField = () => {
-    setIsUsername(true);
+    setPasswordFieldVisible(true);
     setHideSingInBtn(false);
-    setHideUrennameBtn(true);
+    setHideUsernameBtn(true);
+    setTimeout(() => {
+      const el = document.querySelectorAll(
+        '.input-field-input',
+      )[1] as HTMLInputElement;
+      el.focus();
+    }, 200);
   };
 
   const hidePasswordField = () => {
-    setIsUsername(false);
+    setPasswordFieldVisible(false);
     setHideSingInBtn(true);
-    setHideUrennameBtn(false);
+    setHideUsernameBtn(false);
   };
+
+  const onChangeUsername = useCallback(
+    (value: string) => {
+      dispatch(loginActions.setUsername(value));
+      setShowErrorMsg(false);
+      if (!error) {
+        hidePasswordField();
+        dispatch(loginActions.setPassword(''));
+        dispatch(loginActions.setPasswordFocused(false));
+      }
+    },
+    [dispatch, error],
+  );
+
+  const onChangePassword = useCallback(
+    (value: string) => {
+      dispatch(loginActions.setPassword(value));
+      setShowErrorMsg(false);
+    },
+    [dispatch],
+  );
+
+  const changeUsernameFocused = useCallback(
+    (value: boolean) => {
+      dispatch(loginActions.setUsernameFocused(value));
+    },
+    [dispatch],
+  );
+
+  const changePasswordFocused = useCallback(
+    (value: boolean) => {
+      dispatch(loginActions.setPasswordFocused(value));
+    },
+    [dispatch],
+  );
+  const onSigninBtnClick = useCallback(() => {
+    dispatch(loginByUsername({ username, password }));
+  }, [dispatch, username, password]);
+
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Enter') {
+        if (username && !password) {
+          showPasswordField();
+        }
+        if (username && password) {
+          onSigninBtnClick();
+        }
+      }
+    },
+    [showPasswordField],
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [onKeyDown]);
+
+  useEffect(() => {
+    if (error) {
+      dispatch(loginActions.setPassword(''));
+      dispatch(loginActions.setPasswordFocused(false));
+      document
+        .querySelectorAll<HTMLInputElement>('.input-field-input')[0]
+        .focus();
+      setShowErrorMsg(true);
+    }
+  }, [error, dispatch]);
 
   return (
     <div className={classNames(cls.LoginForm, {}, [className])}>
@@ -34,23 +126,35 @@ export const LoginForm = ({ className }: LoginFormProps) => {
       <div className={cls.form}>
         <TextInput
           fieldTitle={t('Username')}
-          theme={isUsername ? InputTheme.WITHOUT_BOTTOM_CORNERS : undefined}
-          onInput={hidePasswordField}
+          isFocused={usernameFocused}
+          setIsFocused={changeUsernameFocused}
+          theme={
+            passwordFieldVisible ? InputTheme.WITHOUT_BOTTOM_CORNERS : undefined
+          }
+          paddingRight={!passwordFieldVisible}
+          onChange={onChangeUsername}
+          value={username}
         />
         <Button
           theme={ButtonTheme.CLEAR}
           className={classNames(cls.SingInBtn, {}, [
             cls.UserNameBtn,
-            hideUrennameBtn ? cls.hidden : undefined,
+            hideUsernameBtn ? cls.hidden : undefined,
           ])}
           onClick={showPasswordField}
+          disabled={username.length === 0}
         >
           <SingInFormBtnIcon className={cls.btnIcon} />
         </Button>
         <TextInput
           fieldTitle={t('Password')}
+          isFocused={passwordFocused}
+          setIsFocused={changePasswordFocused}
           theme={InputTheme.WITHOUT_TOP_CORNERS}
-          hidden={!isUsername}
+          paddingRight={passwordFieldVisible}
+          hidden={!passwordFieldVisible}
+          onChange={onChangePassword}
+          value={password}
         />
         <Button
           theme={ButtonTheme.CLEAR}
@@ -58,10 +162,22 @@ export const LoginForm = ({ className }: LoginFormProps) => {
             cls.PasswordBtn,
             hideSingInBtn ? cls.hidden : undefined,
           ])}
+          disabled={password.length === 0 || isLoading}
+          onClick={onSigninBtnClick}
         >
-          <SingInFormBtnIcon className={cls.btnIcon} />
+          {isLoading ? (
+            <Loader theme={LoaderTheme.SMALL} />
+          ) : (
+            <SingInFormBtnIcon className={cls.btnIcon} />
+          )}
         </Button>
+        {showErrorMsg && (
+          <div className={cls.ErrorPopup}>
+            <div className={cls.Triangle}></div>
+            <span>{t('UsernameSignInError')}</span>
+          </div>
+        )}
       </div>
     </div>
   );
-};
+});

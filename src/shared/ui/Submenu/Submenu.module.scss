@@ -1,26 +1,82 @@
-.overlay {
-  position: absolute;
+// .Submenu {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   z-index: -1;
+//   pointer-events: none;
+//   z-index: -1;
+// }
+
+// .overlay {
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .content {
+//   top: 47px;
+//   right: 11px;
+//   width: 269px;
+//   height: fit-content;
+//   position: absolute;
+//   border-radius: 16px;
+//   overflow: visible;
+//   background: var(--submenu-bg);
+//   box-shadow: 0 0 15px var(--submenu-shadow), 0 0 0 1px var(--submenu-border);
+//   pointer-events: auto;
+//   transform-origin: 249px 0px;
+//   transform: scale(0.5);
+//   opacity: 0;
+//   overflow: hidden;
+//   color: var(--main-text-color);
+//   user-select: none;
+// }
+
+// .opened {
+//   pointer-events: all;
+//   z-index: var(--modal-z-index);
+//   & .content {
+//     transform: scale(1);
+//     opacity: 1;
+//     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+//   }
+// }
+// .isClosing {
+//   & .content {
+//     opacity: 0;
+//     transition: opacity 0.25s;
+//   }
+// }
+
+.Submenu {
+  position: fixed;
   top: 0;
-  bottom: 0;
   left: 0;
   right: 0;
+  bottom: 0;
+  z-index: -1;
+  display: flex;
+  opacity: 0;
   pointer-events: none;
 }
 
+.overlay {
+  width: 100%;
+  width: 100%;
+}
+
 .content {
+  position: absolute;
   top: 47px;
   right: 11px;
   width: 269px;
   height: fit-content;
-  position: absolute;
-  border-radius: 16px;
-  overflow: visible;
   background: var(--submenu-bg);
+  border-radius: 16px;
   box-shadow: 0 0 15px var(--submenu-shadow), 0 0 0 1px var(--submenu-border);
-  pointer-events: auto;
   transform-origin: 249px 0px;
   transform: scale(0.5);
-  visibility: hidden;
   opacity: 0;
   overflow: hidden;
   color: var(--main-text-color);
@@ -28,13 +84,20 @@
 }
 
 .opened {
-  & .overlay {
-    pointer-events: all;
+  pointer-events: all;
+  opacity: 1;
+  z-index: var(--modal-z-index);
+  .content {
+    transform: scale(1);
   }
+}
+
+.opened {
+  pointer-events: all;
+  z-index: var(--modal-z-index);
   & .content {
     transform: scale(1);
     opacity: 1;
-    visibility: visible;
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 }
@@ -43,4 +106,10 @@
     opacity: 0;
     transition: opacity 0.25s;
   }
+}
+
+.closeBtn {
+  position: absolute;
+  visibility: hidden;
+  border: none;
 }

@@ -12,5 +12,6 @@
   "Settings": "Налаштування",
   "Sign in to your account": "Увійдіть в свій аккаунт",
   "Username": "Ім'я користувача",
-  "Password": "Пароль"
+  "Password": "Пароль",
+  "UsernameSignInError": "Ім'я користувача чи пароль були введені невірно."
 }

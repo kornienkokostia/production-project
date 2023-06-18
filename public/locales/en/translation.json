@@ -12,5 +12,6 @@
   "Settings": "Settings",
   "Sign in to your account": "Sign in to your account",
   "Username": "Username",
-  "Password": "Password"
+  "Password": "Password",
+  "UsernameSignInError": "Your username or password was incorrect."
 }

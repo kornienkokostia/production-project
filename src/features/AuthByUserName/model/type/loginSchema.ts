@@ -3,4 +3,6 @@ export interface LoginSchema {
   password: string
   isLoading: boolean
   error?: string
+  usernameFocused: boolean
+  passwordFocused: boolean
 }

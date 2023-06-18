@@ -1,7 +1,11 @@
+import {
+  ReactNode, useCallback, useEffect, useRef, useState,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
+import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
 import cls from './Submenu.module.scss';
 import { Portal } from '../Portal/Portal';
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { Button } from '../Button/Button';
 
 interface SubmenuProps {
   className?: string;
@@ -10,28 +14,39 @@ interface SubmenuProps {
   children: ReactNode;
 }
 
-export const Submenu = ({
-  className,
-  isOpen,
-  onClose,
-  children,
-}: SubmenuProps) => {
+export const Submenu = (props: SubmenuProps) => {
+  const {
+    className, children, isOpen, onClose,
+  } = props;
   const [isClosing, setIsClosing] = useState(false);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
 
-  const onOverlayClick = useCallback(() => {
+  const closeHandler = useCallback(() => {
     setIsClosing(true);
     timeRef.current = setTimeout(() => {
       setIsClosing(false);
       onClose();
     }, 250);
-  }, []);
+  }, [onClose]);
+
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeHandler();
+      }
+    },
+    [closeHandler],
+  );
 
   useEffect(() => {
+    if (isOpen) {
+      window.addEventListener('keydown', onKeyDown);
+    }
     return () => {
       clearTimeout(timeRef.current);
+      window.removeEventListener('keydown', onKeyDown);
     };
-  }, []);
+  }, [isOpen, onKeyDown]);
 
   const onContentClick = (e: React.MouseEvent) => e.stopPropagation();
 
@@ -43,8 +58,11 @@ export const Submenu = ({
   return (
     <Portal>
       <div className={classNames(cls.Submenu, mods, [className])}>
-        <div className={cls.overlay} onClick={onOverlayClick}>
+        <div className={cls.overlay} onClick={closeHandler}>
           <div className={cls.content} onClick={onContentClick}>
+            <Button className={cls.closeBtn}>
+              <CloseModalIcon className={cls.closeBtnIcon} />
+            </Button>
             {children}
           </div>
         </div>

@@ -1,8 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Settings.module.scss';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { useTranslation } from 'react-i18next';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
+import cls from './Settings.module.scss';
 
 interface SettingsProps {
   className?: string;
@@ -20,7 +20,7 @@ export const Settings = ({ className }: SettingsProps) => {
           <p>{t('Language')}</p>
           <LangSwitcher />
         </div>
-        <div className={cls.divider}></div>
+        <div className={cls.divider} />
         <div className={cls.item}>
           <p>{t('Appearance')}</p>
           <ThemeSwitcher />
