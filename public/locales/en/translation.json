@@ -13,5 +13,6 @@
   "Sign in to your account": "Sign in to your account",
   "Username": "Username",
   "Password": "Password",
-  "UsernameSignInError": "Your username or password was incorrect."
+  "UsernameSignInError": "Your username or password was incorrect.",
+  "Sign Out": "Sign Out"
 }

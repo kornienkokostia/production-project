@@ -1,23 +1,24 @@
-import {
-  ReactNode, useCallback, useEffect, useRef, useState,
-} from 'react';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
 import cls from './Submenu.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button } from '../Button/Button';
 
+export enum SubmenuTheme {
+  ACCOUNT = 'account',
+}
+
 interface SubmenuProps {
   className?: string;
   isOpen: boolean;
   onClose?: () => void;
   children: ReactNode;
+  theme?: SubmenuTheme;
 }
 
 export const Submenu = (props: SubmenuProps) => {
-  const {
-    className, children, isOpen, onClose,
-  } = props;
+  const { className, children, isOpen, onClose, theme } = props;
   const [isClosing, setIsClosing] = useState(false);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
 
@@ -57,7 +58,7 @@ export const Submenu = (props: SubmenuProps) => {
 
   return (
     <Portal>
-      <div className={classNames(cls.Submenu, mods, [className])}>
+      <div className={classNames(cls.Submenu, mods, [className, cls[theme]])}>
         <div className={cls.overlay} onClick={closeHandler}>
           <div className={cls.content} onClick={onContentClick}>
             <Button className={cls.closeBtn}>

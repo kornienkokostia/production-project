@@ -40,9 +40,12 @@
 .ItemIcon {
   fill: var(--icon-main-color);
 }
-.settings-header {
-  padding: 10px;
-}
+
 .NavbarSignin {
   margin-right: 10px;
+}
+.AccountBtn {
+  height: 26px;
+  width: 26px;
+  border-radius: 14px;
 }
