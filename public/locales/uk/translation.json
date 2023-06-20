@@ -14,5 +14,6 @@
   "Username": "Ім'я користувача",
   "Password": "Пароль",
   "UsernameSignInError": "Ім'я користувача чи пароль були введені невірно.",
-  "Sign Out": "Вийти"
+  "Sign Out": "Вийти",
+  "Account page": "Аккаунт"
 }

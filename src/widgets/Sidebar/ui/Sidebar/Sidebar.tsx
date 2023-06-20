@@ -1,14 +1,13 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useState } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
-import AboutIcon from 'shared/assets/icons/about.svg';
-import HomeIcon from 'shared/assets/icons/home.svg';
 import { useTranslation } from 'react-i18next';
 import ToggleIcon from 'shared/assets/icons/nav-bar-toggle-btn.svg';
 import { useLocation } from 'react-router-dom';
 import cls from './Sidebar.module.scss';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
+import { SidebarItemsList } from 'widgets/Sidebar/model/items';
 
 interface SidebarProps {
   className?: string;
@@ -40,27 +39,15 @@ export const Sidebar = ({ className }: SidebarProps) => {
         <ToggleIcon className={cls.icon} />
       </Button>
       <div className={cls.items}>
-        <AppLink
-          to={RoutePath.main}
-          className={classNames(cls.item, {}, [
-            currentSelected === AppRoutes.MAIN ? cls.selected : undefined,
-          ])}
-          onClick={() => setCurrentSelected(AppRoutes.MAIN)}
-        >
-          <HomeIcon className={cls.icon} />
-          <span className={cls.link}>{t('Main page')}</span>
-        </AppLink>
-
-        <AppLink
-          to={RoutePath.about}
-          className={classNames(cls.item, {}, [
-            currentSelected === AppRoutes.ABOUT ? cls.selected : undefined,
-          ])}
-          onClick={() => setCurrentSelected(AppRoutes.ABOUT)}
-        >
-          <AboutIcon className={cls.icon} />
-          <span className={cls.link}>{t('About page')}</span>
-        </AppLink>
+        {SidebarItemsList.map((el, i) => (
+          <SidebarItem
+            key={i}
+            item={el}
+            currentSelected={currentSelected}
+            setCurrentSelected={setCurrentSelected}
+            collapsed={collapsed}
+          />
+        ))}
       </div>
     </div>
   );

@@ -14,14 +14,6 @@ interface LoginModalProps {
 }
 
 export const LoginModal = ({ className, isOpen, onClose }: LoginModalProps) => {
-  const authData = useSelector(getUserAuthData);
-
-  useEffect(() => {
-    if (authData) {
-      onClose();
-    }
-  }, [authData, onClose]);
-
   return (
     <Modal
       className={classNames(cls.LoginModal, {}, [className])}
@@ -30,7 +22,7 @@ export const LoginModal = ({ className, isOpen, onClose }: LoginModalProps) => {
       lazy
     >
       <Suspense fallback={<Loader theme={LoaderTheme.BIG} />}>
-        <LoginFormAsync />
+        <LoginFormAsync onSuccess={onClose} />
       </Suspense>
     </Modal>
   );

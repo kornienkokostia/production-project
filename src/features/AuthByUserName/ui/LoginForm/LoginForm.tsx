@@ -4,7 +4,7 @@ import { InputTheme, TextInput } from 'shared/ui/TextInput/TextInput';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import SingInFormBtnIcon from 'shared/assets/icons/singin-form-btn.svg';
 import { memo, useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Loader, LoaderTheme } from 'shared/ui/Loader/Loader';
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
@@ -19,21 +19,23 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export interface LoginFormProps {
   className?: string;
+  onSuccess: () => void;
 }
 
 const initialReducers: ReducersList = {
   loginForm: loginReducer,
 };
 
-const LoginForm = memo(({ className }: LoginFormProps) => {
+const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const { t } = useTranslation();
   const [hideSingInBtn, setHideSingInBtn] = useState(true);
   const [hideUsernameBtn, setHideUsernameBtn] = useState(false);
   const [passwordFieldVisible, setPasswordFieldVisible] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [showErrorMsg, setShowErrorMsg] = useState(false);
   const username = useSelector(getLoginUsername);
   const password = useSelector(getLoginPassword);
@@ -48,7 +50,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     setHideUsernameBtn(true);
     setTimeout(() => {
       const el = document.querySelectorAll(
-        '.input-field-input',
+        `.${cls.LoginForm} .input-field-input`,
       )[1] as HTMLInputElement;
       el.focus();
     }, 200);
@@ -94,9 +96,12 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
     },
     [dispatch],
   );
-  const onSigninBtnClick = useCallback(() => {
-    dispatch(loginByUsername({ username, password }));
-  }, [dispatch, username, password]);
+  const onSigninBtnClick = useCallback(async () => {
+    const result = await dispatch(loginByUsername({ username, password }));
+    if (result.meta.requestStatus === 'fulfilled') {
+      onSuccess();
+    }
+  }, [dispatch, username, password, onSuccess]);
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -125,7 +130,9 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
       dispatch(loginActions.setPassword(''));
       dispatch(loginActions.setPasswordFocused(false));
       document
-        .querySelectorAll<HTMLInputElement>('.input-field-input')[0]
+        .querySelectorAll<HTMLInputElement>(
+          `.${cls.LoginForm} .input-field-input`,
+        )[0]
         .focus();
       setShowErrorMsg(true);
     }
@@ -169,6 +176,7 @@ const LoginForm = memo(({ className }: LoginFormProps) => {
             hidden={!passwordFieldVisible}
             onChange={onChangePassword}
             value={password}
+            type="password"
           />
           <Button
             theme={ButtonTheme.CLEAR}

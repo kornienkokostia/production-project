@@ -14,5 +14,6 @@
   "Username": "Username",
   "Password": "Password",
   "UsernameSignInError": "Your username or password was incorrect.",
-  "Sign Out": "Sign Out"
+  "Sign Out": "Sign Out",
+  "Account page": "Account"
 }

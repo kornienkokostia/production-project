@@ -25,5 +25,16 @@
       "password": "123"
     }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "profile": {
+      "first": "Gerald",
+      "lastname": "Gillium",
+      "age": 34,
+      "currency": "USD",
+      "country": "United States",
+      "city": "California",
+      "username": "admin",
+      "avatar": "https://lastfm.freetls.fastly.net/i/u/ar0/87da4c5ba4fb07d6876b53ac496d7ebf.jpg"
+    }
+  }
 }

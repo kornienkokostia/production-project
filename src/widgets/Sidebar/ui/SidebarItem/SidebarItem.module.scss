@@ -1,0 +1,32 @@
+.item {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding: 3px;
+  margin-bottom: 1px;
+  column-gap: 7px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  &.selected {
+    background-color: var(--selection-bg-color);
+  }
+}
+
+.link {
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 0.2s, opacity 0.2s;
+  white-space: nowrap;
+}
+
+.icon {
+  min-width: 24px;
+  margin-left: 2px;
+  fill: var(--primary-color);
+}
+
+.collapsed {
+  opacity: 0;
+  visibility: hidden;
+}
