@@ -7,11 +7,9 @@ interface TextProps {
   text?: string;
 }
 
-export const Text = ({ className, title, text }: TextProps) => {
-  return (
-    <div className={classNames(cls.Text, {}, [className])}>
-      {title && <p className={cls.title}></p>}
-      {text && <p className={cls.text}></p>}
-    </div>
-  );
-};
+export const Text = ({ className, title, text }: TextProps) => (
+  <div className={classNames(cls.Text, {}, [className])}>
+    {title && <p className={cls.title} />}
+    {text && <p className={cls.text} />}
+  </div>
+);

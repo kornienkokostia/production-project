@@ -1,7 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useState } from 'react';
-import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
-import { LangSwitcher } from 'widgets/LangSwitcher';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
@@ -9,8 +7,8 @@ import AboutIcon from 'shared/assets/icons/about.svg';
 import HomeIcon from 'shared/assets/icons/home.svg';
 import { useTranslation } from 'react-i18next';
 import ToggleIcon from 'shared/assets/icons/nav-bar-toggle-btn.svg';
-import cls from './Sidebar.module.scss';
 import { useLocation } from 'react-router-dom';
+import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
   className?: string;

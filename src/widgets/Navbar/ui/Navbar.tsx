@@ -6,12 +6,12 @@ import SingInIcon from 'shared/assets/icons/singin-btn.svg';
 import { LoginModal } from 'features/AuthByUserName';
 import SettingsIcon from 'shared/assets/icons/settings.svg';
 import { Submenu, SubmenuTheme } from 'shared/ui/Submenu/Submenu';
-import cls from './Navbar.module.scss';
 import { getUserAuthData } from 'entities/User';
 import { useSelector } from 'react-redux';
 import AccountPlaceholderIcon from 'shared/assets/icons/account-pic-placeholder.svg';
 import { Settings } from 'widgets/Settings';
 import { AccountPopup } from 'widgets/AccountPopup';
+import cls from './Navbar.module.scss';
 
 interface NavbarProps {
   className?: string;
@@ -72,7 +72,7 @@ export const Navbar = ({ className }: NavbarProps) => {
           <SettingsIcon className={cls.ItemIcon} />
         </Button>
       </div>
-      {!authData && <LoginModal isOpen={isAuthOpen} onClose={onCloseModal} />}
+      {isAuthOpen && <LoginModal isOpen={isAuthOpen} onClose={onCloseModal} />}
       <Submenu isOpen={isSettingsOpen} onClose={onToggleSettings}>
         <Settings />
       </Submenu>

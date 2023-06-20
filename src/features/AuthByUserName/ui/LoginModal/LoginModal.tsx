@@ -1,11 +1,11 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Modal } from 'shared/ui/Modal/Modal';
-import cls from './LoginModal.module.scss';
-import { LoginForm } from '../LoginForm/LoginForm';
 import { useSelector } from 'react-redux';
-
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { getUserAuthData } from 'entities/User';
+import { Loader, LoaderTheme } from 'shared/ui/Loader/Loader';
+import { LoginFormAsync } from '../LoginForm/LoginForm.async';
+import cls from './LoginModal.module.scss';
 
 interface LoginModalProps {
   className?: string;
@@ -20,15 +20,18 @@ export const LoginModal = ({ className, isOpen, onClose }: LoginModalProps) => {
     if (authData) {
       onClose();
     }
-  }, [authData]);
+  }, [authData, onClose]);
 
   return (
     <Modal
       className={classNames(cls.LoginModal, {}, [className])}
       isOpen={isOpen}
       onClose={onClose}
+      lazy
     >
-      <LoginForm />
+      <Suspense fallback={<Loader theme={LoaderTheme.BIG} />}>
+        <LoginFormAsync />
+      </Suspense>
     </Modal>
   );
 };

@@ -1,11 +1,11 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './AccountPopup.module.scss';
 import { useTranslation } from 'react-i18next';
 import AccountPopupSignOutIcon from 'shared/assets/icons/account-popup-sign-out.svg';
 import { useDispatch } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useCallback } from 'react';
 import { userActions } from 'entities/User';
+import cls from './AccountPopup.module.scss';
 
 interface AccountPopupProps {
   className?: string;
@@ -24,7 +24,7 @@ export const AccountPopup = ({
   const onSignOut = useCallback(() => {
     dispatch(userActions.signOut());
     onSignOutClosePopup();
-  }, []);
+  }, [dispatch, onSignOutClosePopup]);
 
   return (
     <div className={classNames(cls.AccountPopup, {}, [className])}>

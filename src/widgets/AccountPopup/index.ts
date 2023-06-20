@@ -1,1 +1,1 @@
-export { AccountPopup } from "./ui/AccountPopup";
+export { AccountPopup } from './ui/AccountPopup';

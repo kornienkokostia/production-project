@@ -1,4 +1,6 @@
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ReactNode, useCallback, useEffect, useRef, useState,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
 import cls from './Submenu.module.scss';
@@ -18,7 +20,9 @@ interface SubmenuProps {
 }
 
 export const Submenu = (props: SubmenuProps) => {
-  const { className, children, isOpen, onClose, theme } = props;
+  const {
+    className, children, isOpen, onClose, theme,
+  } = props;
   const [isClosing, setIsClosing] = useState(false);
   const timeRef = useRef<ReturnType<typeof setTimeout>>();
 

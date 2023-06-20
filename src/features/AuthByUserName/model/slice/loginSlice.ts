@@ -8,7 +8,7 @@ const initialState: LoginSchema = {
   isLoading: false,
   usernameFocused: false,
   passwordFocused: false,
-  error: undefined
+  error: undefined,
 };
 
 export const loginSlice = createSlice({
@@ -33,17 +33,16 @@ export const loginSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(loginByUsername.pending, (state, action) => {
-      state.error = undefined
-      state.isLoading = true
+      state.error = undefined;
+      state.isLoading = true;
     }),
-      builder.addCase(loginByUsername.fulfilled, (state, action) => {
-        state.isLoading = false
-
-      }),
-      builder.addCase(loginByUsername.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.payload
-      })
+    builder.addCase(loginByUsername.fulfilled, (state, action) => {
+      state.isLoading = false;
+    }),
+    builder.addCase(loginByUsername.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 

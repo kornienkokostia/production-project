@@ -1,9 +1,6 @@
 import React, { InputHTMLAttributes, memo, useState } from 'react';
 import './TextInput.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useSelector } from 'react-redux';
-import { getLoginState } from 'features/AuthByUserName/model/selectors/getLoginState';
-import { useTranslation } from 'react-i18next';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,

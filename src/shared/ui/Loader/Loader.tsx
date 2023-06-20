@@ -12,17 +12,17 @@ interface ButtonProps {
 
 export const Loader = ({ theme }: ButtonProps) => (
   <div className={classNames(cls.spinner, {}, ['center', cls[theme]])}>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
-    <div className={cls.spinnerBlade}></div>
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
+    <div className={cls.spinnerBlade} />
   </div>
 );
