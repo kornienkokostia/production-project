@@ -1,6 +1,7 @@
 import {
   AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
+import { AccountSchema } from 'entities/Account';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUserName';
 
@@ -9,6 +10,7 @@ export interface StateSchema {
 
   // Async redusers
   loginForm?: LoginSchema
+  account?: AccountSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
