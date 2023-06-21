@@ -1,7 +1,7 @@
-import { Country, Currancy } from "shared/const/common";
+import { Country, Currancy } from 'shared/const/common';
 
 export interface Account {
-  first: string,
+  firstname: string,
   lastname: string
   age: number,
   currency: Currancy,

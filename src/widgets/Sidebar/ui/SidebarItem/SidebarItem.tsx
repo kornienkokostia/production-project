@@ -1,10 +1,10 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './SidebarItem.module.scss';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
 import { SidebarItemType } from 'widgets/Sidebar/model/items';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
 import { Dispatch, SetStateAction, memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import cls from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
   item: SidebarItemType;
@@ -20,7 +20,9 @@ export const SidebarItem = memo(
     setCurrentSelected,
     collapsed,
   }: SidebarItemProps) => {
-    const { route, path, Icon, text } = item;
+    const {
+      route, path, Icon, text,
+    } = item;
     const { t } = useTranslation();
 
     return (

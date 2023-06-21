@@ -6,11 +6,11 @@ export enum LoaderTheme {
   SMALL = 'small',
 }
 
-interface ButtonProps {
+interface LoaderProps {
   theme?: LoaderTheme;
 }
 
-export const Loader = ({ theme }: ButtonProps) => (
+export const Loader = ({ theme = LoaderTheme.BIG }: LoaderProps) => (
   <div className={classNames(cls.spinner, {}, ['center', cls[theme]])}>
     <div className={cls.spinnerBlade} />
     <div className={cls.spinnerBlade} />

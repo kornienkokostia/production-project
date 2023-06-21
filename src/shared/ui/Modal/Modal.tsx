@@ -1,7 +1,5 @@
-import {
-  ReactNode, useCallback, useEffect, useRef, useState,
-} from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/ThemeProvider';
 import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
 import cls from './Modal.module.scss';
@@ -12,14 +10,12 @@ interface ModalProps {
   className?: string;
   children?: ReactNode;
   isOpen?: boolean;
-  onClose?: () => void;
+  onClose: () => void;
   lazy?: boolean;
 }
 
 export const Modal = (props: ModalProps) => {
-  const {
-    className, children, isOpen, onClose, lazy,
-  } = props;
+  const { className, children, isOpen, onClose, lazy } = props;
   // const [isClosing, setIsClosing] = useState(false);
   // const timeRef = useRef<ReturnType<typeof setTimeout>>();
   const { theme } = useTheme();
@@ -63,7 +59,7 @@ export const Modal = (props: ModalProps) => {
 
   const onContentClick = (e: React.MouseEvent) => e.stopPropagation();
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls.opened]: isOpen,
     // [cls.isClosing]: isClosing,
   };

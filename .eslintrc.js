@@ -54,7 +54,7 @@ module.exports = {
     "max-len": [
       "error",
       {
-        "code": 90,
+        "code": 100,
         "tabWidth": 2,
         "ignoreComments": true, //"comments": 80
         "ignoreUrls": true,
@@ -62,10 +62,13 @@ module.exports = {
         "ignoreTemplateLiterals": true
       }
     ],
-    'operator-linebreak': 'off'
+    'operator-linebreak': 'off',
+    'no-param-reassign': 'off',
+    'arrow-parens': 'off'
   },
   globals: {
     __IS_DEV__: true,
+    __API__: true,
   },
 
 };

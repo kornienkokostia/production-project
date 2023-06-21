@@ -1,3 +1,3 @@
-import { AccountPageAsync } from "./ui/AccountPage.async";
+import { AccountPageAsync } from './ui/AccountPage.async';
 
-export { AccountPageAsync as AccountPage }
+export { AccountPageAsync as AccountPage };

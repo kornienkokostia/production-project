@@ -6,6 +6,11 @@ import SingInFormBtnIcon from 'shared/assets/icons/singin-form-btn.svg';
 import { memo, useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Loader, LoaderTheme } from 'shared/ui/Loader/Loader';
+import {
+  DynamicModuleLoader,
+  ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByUsername } from '../../model/services/LoginByUsername/loginByUsername';
@@ -15,11 +20,6 @@ import { getLoginError } from '../../model/selectors/getLoginError/getLoginError
 import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading';
 import { getUsernameFocused } from '../../model/selectors/getUsernameFocused/getUsernameFocused';
 import { getPasswordFocused } from '../../model/selectors/getPasswordFocused/getPasswordFocused';
-import {
-  DynamicModuleLoader,
-  ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
 export interface LoginFormProps {
   className?: string;
@@ -44,7 +44,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const usernameFocused = useSelector(getUsernameFocused);
   const passwordFocused = useSelector(getPasswordFocused);
 
-  const showPasswordField = () => {
+  const showPasswordField = useCallback(() => {
     setPasswordFieldVisible(true);
     setHideSingInBtn(false);
     setHideUsernameBtn(true);
@@ -54,7 +54,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
       )[1] as HTMLInputElement;
       el.focus();
     }, 200);
-  };
+  }, []);
 
   const hidePasswordField = () => {
     setPasswordFieldVisible(false);
@@ -139,7 +139,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   }, [error, dispatch]);
 
   return (
-    <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={true}>
+    <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div className={classNames(cls.LoginForm, {}, [className])}>
         <h2 className={cls.title}>{t('Sign in to your account')}</h2>
         <div className={cls.form}>

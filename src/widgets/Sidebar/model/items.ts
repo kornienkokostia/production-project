@@ -1,5 +1,5 @@
-import React from "react";
-import { AppRoutes, RoutePath } from "shared/config/routeConfig/routeConfig";
+import React from 'react';
+import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import HomeIcon from 'shared/assets/icons/home.svg';
 import AboutIcon from 'shared/assets/icons/about.svg';
 import AccountIcon from 'shared/assets/icons/account.svg';
@@ -29,5 +29,5 @@ export const SidebarItemsList: SidebarItemType[] = [
     route: AppRoutes.ACCOUNT,
     Icon: AccountIcon,
     text: 'Account page',
-  }
-]
+  },
+];
