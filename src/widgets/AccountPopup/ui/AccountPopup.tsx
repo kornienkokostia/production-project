@@ -6,6 +6,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useCallback } from 'react';
 import { userActions } from 'entities/User';
 import cls from './AccountPopup.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface AccountPopupProps {
   className?: string;
@@ -21,9 +22,12 @@ export const AccountPopup = ({
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
   const onSignOut = useCallback(() => {
     dispatch(userActions.signOut());
     onSignOutClosePopup();
+    navigate('/');
   }, [dispatch, onSignOutClosePopup]);
 
   return (

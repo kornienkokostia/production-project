@@ -1,6 +1,15 @@
 {
-  "account": {
-    "Account": "Account",
-    "First name": "First name"
-  }
+  "Account": "Account",
+  "Account is not found": "Account is not found",
+  "Edit": "Edit",
+  "Cancel": "Cancel",
+  "Save": "Save",
+  "First name": "First name",
+  "Last name": "Last name",
+  "Age": "Age",
+  "City": "City",
+  "Username": "Username",
+  "Photo": "Photo",
+  "Currency": "Currency",
+  "Country": "Country"
 }

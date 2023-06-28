@@ -14,7 +14,15 @@ export const LangSwitcher = ({ className }: LangSwitcherProps) => {
   };
 
   return (
-    <select className={cls.LangSwitcher} onChange={onSwitcherChange}>
+    <select
+      className={cls.LangSwitcher}
+      onChange={onSwitcherChange}
+      value={
+        localStorage.getItem('i18nextLng')
+          ? (localStorage.getItem('i18nextLng') as string)
+          : 'en'
+      }
+    >
       <option className={cls.option} value="en">
         English
       </option>

@@ -1,30 +1,40 @@
 import {
-  ReactNode, useCallback, useEffect, useRef, useState,
+  MutableRefObject,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
 import cls from './Submenu.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button } from '../Button/Button';
 
 export enum SubmenuTheme {
+  SETTINGS = 'settings',
   ACCOUNT = 'account',
 }
 
 interface SubmenuProps {
   className?: string;
   isOpen: boolean;
-  onClose?: () => void;
+  onClose: () => void;
   children: ReactNode;
   theme?: SubmenuTheme;
 }
 
 export const Submenu = (props: SubmenuProps) => {
   const {
-    className, children, isOpen, onClose, theme,
+    className,
+    children,
+    isOpen,
+    onClose,
+    theme = SubmenuTheme.SETTINGS,
   } = props;
   const [isClosing, setIsClosing] = useState(false);
-  const timeRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   const closeHandler = useCallback(() => {
     setIsClosing(true);
@@ -55,7 +65,7 @@ export const Submenu = (props: SubmenuProps) => {
 
   const onContentClick = (e: React.MouseEvent) => e.stopPropagation();
 
-  const mods: Record<string, boolean> = {
+  const mods: Mods = {
     [cls.opened]: isOpen,
     [cls.isClosing]: isClosing,
   };

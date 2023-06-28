@@ -1,4 +1,6 @@
-import { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  ReactNode, useCallback, useEffect, useRef, useState,
+} from 'react';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/ThemeProvider';
 import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
@@ -15,7 +17,9 @@ interface ModalProps {
 }
 
 export const Modal = (props: ModalProps) => {
-  const { className, children, isOpen, onClose, lazy } = props;
+  const {
+    className, children, isOpen, onClose, lazy,
+  } = props;
   // const [isClosing, setIsClosing] = useState(false);
   // const timeRef = useRef<ReturnType<typeof setTimeout>>();
   const { theme } = useTheme();

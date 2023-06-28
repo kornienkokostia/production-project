@@ -2,11 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig, ThunkExtraArg } from 'app/providers/StoreProvider';
 import { Account } from '../../types/account';
 
-// interface loginByUsernameProps {
-//   username: string
-//   password: string
-// }
-
 export const fetchAccountData = createAsyncThunk<Account, void, ThunkConfig<string>>(
   'account/fetchAccountData',
   async (_, { extra, rejectWithValue }) => {

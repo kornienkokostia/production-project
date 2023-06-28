@@ -1,12 +1,11 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import {
-  ButtonHTMLAttributes, FC, ReactNode, memo,
-} from 'react';
+import { ButtonHTMLAttributes, FC, ReactNode, memo } from 'react';
 import cls from './Button.module.scss';
 
 export enum ButtonTheme {
   CLEAR = 'clear',
   APPLE = 'apple',
+  APPLE_SECONDARY = 'apple-secondary',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

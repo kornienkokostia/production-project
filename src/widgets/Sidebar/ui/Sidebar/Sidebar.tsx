@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { useTranslation } from 'react-i18next';
@@ -11,26 +11,28 @@ import { SidebarItem } from '../SidebarItem/SidebarItem';
 
 interface SidebarProps {
   className?: string;
+  onToggle: () => void;
 }
 
-export const Sidebar = memo(({ className }: SidebarProps) => {
+export const Sidebar = memo(({ className, onToggle }: SidebarProps) => {
   const location = useLocation();
-  const [collapsed, setCollapsed] = useState(false);
+
   const [currentSelected, setCurrentSelected] = useState<AppRoutes>(
     Object.keys(RoutePath).find(
       key => RoutePath[key as keyof typeof RoutePath] === location.pathname,
     ) as keyof typeof RoutePath,
   );
-  const { t } = useTranslation();
 
-  const onToggle = () => setCollapsed(prev => !prev);
+  useEffect(() => {
+    setCurrentSelected(
+      Object.keys(RoutePath).find(
+        key => RoutePath[key as keyof typeof RoutePath] === location.pathname,
+      ) as keyof typeof RoutePath,
+    );
+  }, [location]);
 
   return (
-    <div
-      className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
-        className,
-      ])}
-    >
+    <div className={classNames(cls.Sidebar, {}, [className])}>
       <Button
         onClick={onToggle}
         theme={ButtonTheme.CLEAR}
@@ -45,7 +47,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
             item={el}
             currentSelected={currentSelected}
             setCurrentSelected={setCurrentSelected}
-            collapsed={collapsed}
           />
         ))}
       </div>

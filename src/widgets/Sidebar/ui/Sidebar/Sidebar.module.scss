@@ -2,27 +2,25 @@
   height: calc(100vh - var(--nav-height));
   width: var(--sidebar-with);
   background-color: var(--secondary-bg-color);
-  position: relative;
-  transition: width 0.25s;
-  border-right: 1px solid var(--border-color);
+  position: absolute;
   font-family: var(--font-family-secondary);
 }
 
-.collapsed {
-  width: var(--sidebar-width-collapsed);
-}
-
 .collapseBtn {
-  margin-left: 20px;
+  position: absolute;
+  margin-right: 8px;
+  margin-left: 10px;
+  padding-left: 4px;
+  padding-right: 4px;
   margin-top: 17px;
+  z-index: 2;
 }
 
 .items {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
-  margin-top: 15px;
-  margin-right: 20px;
+  margin-top: 48px;
+  padding: 5px 14px 0px;
 }
 
 .icon {

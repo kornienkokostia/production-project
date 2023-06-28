@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Navbar } from 'widgets/Navbar';
@@ -10,6 +10,8 @@ import { AppRouter } from './providers/router';
 function App() {
   const { theme } = useTheme();
   const dispatch = useDispatch();
+  const [collapsed, setCollapsed] = useState(false);
+  const onToggle = () => setCollapsed(prev => !prev);
 
   useEffect(() => {
     dispatch(userActions.initAuthData());
@@ -19,8 +21,10 @@ function App() {
     <div className={classNames('app', {}, [theme])}>
       <Suspense fallback="">
         <Navbar />
-        <div className="content-page">
-          <Sidebar />
+        <div
+          className={classNames('content-page', {}, [collapsed ? 'full' : ''])}
+        >
+          <Sidebar onToggle={onToggle} />
           <AppRouter />
         </div>
       </Suspense>

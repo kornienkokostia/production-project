@@ -1,6 +1,15 @@
 {
-  "account": {
-    "Account": "Аккаунт",
-    "First name": "Имя"
-  }
+  "Account": "Аккаунт",
+  "Account is not found": "Аккаунт не найден",
+  "Edit": "Изменить",
+  "Cancel": "Отменить",
+  "Save": "Сохранить",
+  "First name": "Имя",
+  "Last name": "Фамилия",
+  "Age": "Возраст",
+  "City": "Город",
+  "Username": "Имя пользователя",
+  "Photo": "Фото",
+  "Currency": "Валюта",
+  "Country": "Страна"
 }

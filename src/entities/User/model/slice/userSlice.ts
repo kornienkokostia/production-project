@@ -4,6 +4,8 @@ import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
+  // authData: localStorage.getItem(USER_LOCALSTORAGE_KEY) ?
+  //   JSON.parse(localStorage.getItem(USER_LOCALSTORAGE_KEY)!) : undefined
 };
 
 export const userSlice = createSlice({

@@ -14,9 +14,6 @@
 }
 
 .link {
-  opacity: 1;
-  visibility: visible;
-  transition: visibility 0.2s, opacity 0.2s;
   white-space: nowrap;
 }
 
@@ -24,9 +21,4 @@
   min-width: 24px;
   margin-left: 2px;
   fill: var(--primary-color);
-}
-
-.collapsed {
-  opacity: 0;
-  visibility: hidden;
 }

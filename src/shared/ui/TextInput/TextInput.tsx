@@ -4,7 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
-  'value' | 'onChange'
+  'value' | 'onChange' | 'readonly'
 >;
 
 export enum InputTheme {
@@ -16,11 +16,12 @@ interface PassedProps extends HTMLInputProps {
   fieldTitle: string;
   isFocused: boolean;
   setIsFocused: (val: boolean) => void;
-  value?: string;
+  value?: string | number;
   onChange?: (value: string) => void;
   theme?: InputTheme;
   hidden?: boolean;
   paddingRight?: boolean;
+  readonly?: boolean;
 }
 
 export const TextInput = memo((props: PassedProps) => {
@@ -34,6 +35,7 @@ export const TextInput = memo((props: PassedProps) => {
     theme,
     hidden,
     paddingRight,
+    readonly,
     ...otherProps
   } = props;
 
@@ -48,11 +50,9 @@ export const TextInput = memo((props: PassedProps) => {
   return (
     <div className={classNames('input-field', {}, [theme])}>
       <input
-        className={classNames(
-          'input-field-input',
-          { hidden, paddingRight },
-          [],
-        )}
+        className={classNames('input-field-input', { hidden, paddingRight }, [
+          // readonly ? 'readonly' : '',
+        ])}
         value={value}
         type={type}
         onFocus={handleFocus}
@@ -60,6 +60,7 @@ export const TextInput = memo((props: PassedProps) => {
         onChange={e => {
           onChangeHandler(e);
         }}
+        readOnly={readonly}
         {...otherProps}
       />
       <span

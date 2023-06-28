@@ -44,6 +44,13 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const usernameFocused = useSelector(getUsernameFocused);
   const passwordFocused = useSelector(getPasswordFocused);
 
+  useEffect(() => {
+    const el = document.querySelectorAll(
+      `.${cls.LoginForm} .input-field-input`,
+    )[0] as HTMLInputElement;
+    el.focus();
+  }, []);
+
   const showPasswordField = useCallback(() => {
     setPasswordFieldVisible(true);
     setHideSingInBtn(false);
@@ -56,11 +63,11 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     }, 200);
   }, []);
 
-  const hidePasswordField = () => {
+  const hidePasswordField = useCallback(() => {
     setPasswordFieldVisible(false);
     setHideSingInBtn(true);
     setHideUsernameBtn(false);
-  };
+  }, []);
 
   const onChangeUsername = useCallback(
     (value: string) => {

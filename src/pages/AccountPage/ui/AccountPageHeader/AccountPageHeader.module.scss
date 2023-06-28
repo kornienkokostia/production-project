@@ -1,0 +1,32 @@
+.AccountPageHeader {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.title {
+  width: fit-content;
+  font-size: 20px;
+  font-weight: 500;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  border-radius: 8px;
+  font-weight: 400;
+  font-size: 15px;
+  padding: 2px 15px;
+}
+
+.btns {
+  display: flex;
+  column-gap: 17px;
+  height: fit-content;
+}

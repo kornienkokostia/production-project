@@ -9,6 +9,7 @@ export interface SidebarItemType {
   route: AppRoutes;
   text: string;
   Icon: React.VFC<React.SVGProps<SVGElement>>
+  authOnly?: boolean
 }
 
 export const SidebarItemsList: SidebarItemType[] = [
@@ -29,5 +30,6 @@ export const SidebarItemsList: SidebarItemType[] = [
     route: AppRoutes.ACCOUNT,
     Icon: AccountIcon,
     text: 'Account page',
+    authOnly: true
   },
 ];

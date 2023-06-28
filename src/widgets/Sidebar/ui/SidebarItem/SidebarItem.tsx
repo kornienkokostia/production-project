@@ -5,25 +5,24 @@ import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
 import { Dispatch, SetStateAction, memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import cls from './SidebarItem.module.scss';
+import { useSelector } from 'react-redux';
+import { getUserAuthData } from 'entities/User';
 
 interface SidebarItemProps {
   item: SidebarItemType;
   currentSelected: AppRoutes;
   setCurrentSelected: Dispatch<SetStateAction<AppRoutes>>;
-  collapsed: boolean;
 }
 
 export const SidebarItem = memo(
-  ({
-    item,
-    currentSelected,
-    setCurrentSelected,
-    collapsed,
-  }: SidebarItemProps) => {
-    const {
-      route, path, Icon, text,
-    } = item;
+  ({ item, currentSelected, setCurrentSelected }: SidebarItemProps) => {
+    const { route, path, Icon, text } = item;
     const { t } = useTranslation();
+    const isAuth = useSelector(getUserAuthData);
+
+    if (item.authOnly && !isAuth) {
+      return null;
+    }
 
     return (
       <AppLink
@@ -34,11 +33,7 @@ export const SidebarItem = memo(
         onClick={() => setCurrentSelected(route)}
       >
         <Icon className={cls.icon} />
-        <span
-          className={classNames(cls.link, { [cls.collapsed]: collapsed }, [])}
-        >
-          {t(text)}
-        </span>
+        <span className={classNames(cls.link, {}, [])}>{t(text)}</span>
       </AppLink>
     );
   },

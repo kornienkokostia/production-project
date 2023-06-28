@@ -32,10 +32,10 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   }, []);
 
   const onToggleSettings = useCallback(() => {
-    setSettingsOpen((prev) => !prev);
+    setSettingsOpen(prev => !prev);
   }, []);
   const onToggleAccountPopup = useCallback(() => {
-    setAccountPopupOpen((prev) => !prev);
+    setAccountPopupOpen(prev => !prev);
   }, []);
   const onCloseAccountPopup = useCallback(() => {
     setAccountPopupOpen(false);
@@ -43,6 +43,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
   return (
     <div className={classNames(cls.Navbar, {}, [className])}>
+      <div className={cls.NavbarLeft}>Apple <span>News</span></div>
       <div className={cls.NavbarRight}>
         {authData ? (
           <Button

@@ -1,0 +1,8 @@
+.AccountPhoto {
+  fill: var(--icon-main-color);
+  border-radius: 50%;
+  object-fit: cover;
+  & path {
+    scale: 5.77;
+  }
+}

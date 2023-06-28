@@ -9,5 +9,5 @@ interface PortalProps {
 
 export const Portal = ({
   children,
-  element = document.querySelector('.app'),
+  element = document.querySelector('.app') as HTMLElement,
 }: PortalProps) => createPortal(children, element);
