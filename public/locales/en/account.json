@@ -11,5 +11,10 @@
   "Username": "Username",
   "Photo": "Photo",
   "Currency": "Currency",
-  "Country": "Country"
+  "Country": "Country",
+  "Enter a first name": "Enter a first name",
+  "Enter a last name": "Enter a last name",
+  "Enter an age": "Enter an age",
+  "Enter a city": "Enter a city",
+  "Enter a username": "Enter a username"
 }

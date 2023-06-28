@@ -14,10 +14,12 @@
   --primary-color: #0071eb;
   --btn-bg: #0071eb;
   --secondary-btn-bg: #808086;
-  --input-bg: #f8f8fc;
-  --input-bg-readonly: transparent;
+  --input-bg: transparent;
+  --input-bg-readonly: #f8f8fc;
   --input-border: #d2d2d7;
   --input-title-focused: #6e6e73;
+  --input-error-bg: #fff2f4;
+  --modal-input-bg: transparent;
   --border-color: #e2e2e2;
   --submenu-border: rgba(0, 0, 0, 0.1);
   --submenu-shadow: rgba(0, 0, 0, 0.15);
@@ -25,7 +27,7 @@
   --main-text-color: #000000;
   --spinner-bg: #343232;
   --spinner-bg-faded: rgba(52, 50, 50, 0.25);
-  --main-red: #eb0c00;
+  --main-red: #e30000;
 
   color-scheme: light;
 }

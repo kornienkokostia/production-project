@@ -3,6 +3,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
+  AccountErrors,
   accountActions,
   getAccountReadonly,
   updateAccountData,
@@ -13,9 +14,13 @@ import cls from './AccountPageHeader.module.scss';
 
 interface AccountPageHeaderProps {
   className?: string;
+  formErrors?: AccountErrors;
 }
 
-export const AccountPageHeader = ({ className }: AccountPageHeaderProps) => {
+export const AccountPageHeader = ({
+  className,
+  formErrors,
+}: AccountPageHeaderProps) => {
   const { t } = useTranslation('account');
   const readonly = useSelector(getAccountReadonly);
   const dispatch = useAppDispatch();
@@ -26,12 +31,14 @@ export const AccountPageHeader = ({ className }: AccountPageHeaderProps) => {
 
   const onCancelEdit = useCallback(() => {
     dispatch(accountActions.cancelEdit());
-  }, [dispatch]);
+  }, [dispatch, formErrors]);
 
   const onSave = useCallback(() => {
-    dispatch(updateAccountData());
-    dispatch(accountActions.setReadOnly(true));
-  }, [dispatch]);
+    if (formErrors && Object.values(formErrors).filter(el => el).length === 0) {
+      dispatch(updateAccountData());
+      dispatch(accountActions.setReadOnly(true));
+    }
+  }, [dispatch, formErrors]);
 
   return (
     <div className={classNames(cls.AccountPageHeader, {}, [className])}>

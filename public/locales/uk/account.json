@@ -11,5 +11,10 @@
   "Username": "Ім'я користувача",
   "Photo": "Фото",
   "Currency": "Валюта",
-  "Country": "Країна"
+  "Country": "Країна",
+  "Enter a first name": "Введіть ім'я",
+  "Enter a last name": "Введіть прізвище",
+  "Enter an age": "Введіть вік",
+  "Enter a city": "Введіть місто",
+  "Enter a username": "Введіть ім'я користувача"
 }

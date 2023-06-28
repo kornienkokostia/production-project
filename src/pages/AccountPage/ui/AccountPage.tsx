@@ -1,5 +1,6 @@
 import {
   AccountCard,
+  AccountErrors,
   accountActions,
   accountReducer,
   fetchAccountData,
@@ -8,8 +9,9 @@ import {
   getAccountForm,
   getAccountIsLoading,
   getAccountReadonly,
+  validateAccountData,
 } from 'entities/Account';
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
@@ -40,6 +42,14 @@ const AccountPage = ({ className }: AccountPageProps) => {
   const isLoading = useSelector(getAccountIsLoading);
   const error = useSelector(getAccountError);
   const readonly = useSelector(getAccountReadonly);
+  const [accountErrors, setAccountErrors] = useState<AccountErrors>();
+
+  useEffect(() => {
+    if (formData) {
+      const fromErrors = validateAccountData(formData);
+      setAccountErrors(fromErrors);
+    }
+  }, [formData]);
 
   const onChangeFirstName = useCallback(
     (val?: string) => {
@@ -101,7 +111,7 @@ const AccountPage = ({ className }: AccountPageProps) => {
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div className={classNames(cls.AccountPage, {}, [className])}>
-        <AccountPageHeader />
+        <AccountPageHeader formErrors={accountErrors} />
         <AccountCard
           data={formData}
           isLoading={isLoading}
@@ -115,6 +125,7 @@ const AccountPage = ({ className }: AccountPageProps) => {
           onChangeCurrency={onChangeCurrency}
           onChangeCountry={onChangeCountry}
           readonly={readonly}
+          formErrors={accountErrors}
         />
       </div>
     </DynamicModuleLoader>

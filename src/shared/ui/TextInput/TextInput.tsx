@@ -1,6 +1,7 @@
-import React, { InputHTMLAttributes, memo, useState } from 'react';
+import React, { InputHTMLAttributes, memo, useEffect, useState } from 'react';
 import './TextInput.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
+import ErrorIcon from 'shared/assets/icons/error.svg';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -22,6 +23,8 @@ interface PassedProps extends HTMLInputProps {
   hidden?: boolean;
   paddingRight?: boolean;
   readonly?: boolean;
+  error?: boolean;
+  errorMesssage?: string;
 }
 
 export const TextInput = memo((props: PassedProps) => {
@@ -36,6 +39,8 @@ export const TextInput = memo((props: PassedProps) => {
     hidden,
     paddingRight,
     readonly,
+    error,
+    errorMesssage,
     ...otherProps
   } = props;
 
@@ -47,16 +52,31 @@ export const TextInput = memo((props: PassedProps) => {
     onChange?.(e.target.value);
   };
 
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    if (!error) {
+      setIsError(false);
+    }
+  }, [error]);
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
+    handleFocus(e);
+    if (error) {
+      setIsError(true);
+    }
+  };
+
   return (
     <div className={classNames('input-field', {}, [theme])}>
       <input
         className={classNames('input-field-input', { hidden, paddingRight }, [
-          // readonly ? 'readonly' : '',
+          isError ? 'error' : undefined,
         ])}
         value={value}
         type={type}
         onFocus={handleFocus}
-        onBlur={handleFocus}
+        onBlur={handleBlur}
         onChange={e => {
           onChangeHandler(e);
         }}
@@ -66,23 +86,24 @@ export const TextInput = memo((props: PassedProps) => {
       <span
         className={classNames('input-field-title', { hiddenTitle: hidden }, [
           isFocused ? 'active' : undefined,
+          isError ? 'error' : undefined,
         ])}
       >
         {fieldTitle}
       </span>
 
-      {/* <div
-        className={`input-field-error ${errors !== undefined ? 'active' : ''}`}
+      <div
+        className={`input-field-error-wrapper ${
+          isError ? 'active' : undefined
+        }`}
       >
-        <img
-          className="input-field-error-img"
-          src="https://kornienkokostia.github.io/online-store/assets/images/icons/error.svg"
-          alt="error"
-        ></img>
-        <span className="input-field-error-msg">
-          {errors !== undefined ? errors.message : ''}
-        </span>
-      </div> */}
+        <div className="input-field-error">
+          <ErrorIcon className="input-field-error-img" />
+          <span className="input-field-error-msg">
+            {isError && errorMesssage}
+          </span>
+        </div>
+      </div>
     </div>
   );
 });

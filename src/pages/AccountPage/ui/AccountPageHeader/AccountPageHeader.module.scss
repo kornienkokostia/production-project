@@ -9,7 +9,7 @@
 
 .title {
   width: fit-content;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   position: absolute;
   left: 0;
@@ -19,7 +19,7 @@
 }
 
 .btn {
-  border-radius: 8px;
+  border-radius: 19px;
   font-weight: 400;
   font-size: 15px;
   padding: 2px 15px;
@@ -27,6 +27,6 @@
 
 .btns {
   display: flex;
-  column-gap: 17px;
+  column-gap: 14px;
   height: fit-content;
 }

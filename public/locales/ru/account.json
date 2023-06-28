@@ -11,5 +11,10 @@
   "Username": "Имя пользователя",
   "Photo": "Фото",
   "Currency": "Валюта",
-  "Country": "Страна"
+  "Country": "Страна",
+  "Enter a first name": "Введите имя",
+  "Enter a last name": "Введите фамилию",
+  "Enter an age": "Введите возраст",
+  "Enter a city": "Введите город",
+  "Enter a username": "Введите имя пользователя"
 }

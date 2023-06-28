@@ -4,11 +4,12 @@ import { TextInput } from 'shared/ui/TextInput/TextInput';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { useEffect, useState } from 'react';
 import cls from './AccountCard.module.scss';
-import { Account } from '../../model/types/account';
+import { Account, AccountErrors } from '../../model/types/account';
 import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
 import { Currancy, CurrencySelect } from 'entities/Currency';
 import { Country } from 'entities/Country/model/types/country';
 import { CountrySelect } from 'entities/Country';
+import { validateAccountData } from 'entities/Account/model/services/validateAccountData/validateAccountData';
 
 interface AccountCardProps {
   className?: string;
@@ -24,6 +25,7 @@ interface AccountCardProps {
   onChangeUsername: (val?: string) => void;
   onChangeCurrency: (val?: Currancy) => void;
   onChangeCountry: (val?: Country) => void;
+  formErrors?: AccountErrors;
 }
 
 export const AccountCard = (props: AccountCardProps) => {
@@ -42,35 +44,28 @@ export const AccountCard = (props: AccountCardProps) => {
     onChangeUsername,
     onChangeCurrency,
     onChangeCountry,
+    formErrors,
   } = props;
 
-  const [isFirstNameFocused, setIsFirstNameFocused] = useState(false);
-  const [isLastNameFocused, setIsLastNameFocused] = useState(false);
-  const [isAgeFocused, setIsAgeFocused] = useState(false);
-  const [isCityFocused, setIsCityFocused] = useState(false);
+  const [isFirstNameFocused, setIsFirstNameFocused] = useState(true);
+  const [isLastNameFocused, setIsLastNameFocused] = useState(true);
+  const [isAgeFocused, setIsAgeFocused] = useState(true);
+  const [isCityFocused, setIsCityFocused] = useState(true);
   const [isPhotoFocused, setIsPhotoFocused] = useState(false);
-  const [isUsernameFocused, setIsUsernameFocused] = useState(false);
+  const [isUsernameFocused, setIsUsernameFocused] = useState(true);
 
   useEffect(() => {
-    if (data?.firstname) {
-      setIsFirstNameFocused(true);
-    }
-    if (data?.lastname) {
-      setIsLastNameFocused(true);
-    }
-    if (data?.age) {
-      setIsAgeFocused(true);
-    }
-    if (data?.city) {
-      setIsCityFocused(true);
-    }
     if (data?.avatar) {
       setIsPhotoFocused(true);
     }
-    if (data?.username) {
+    if (readonly) {
+      setIsFirstNameFocused(true);
+      setIsLastNameFocused(true);
+      setIsAgeFocused(true);
+      setIsCityFocused(true);
       setIsUsernameFocused(true);
     }
-  }, [data]);
+  }, [data, readonly]);
 
   if (isLoading || isLoading === undefined) {
     return (
@@ -95,11 +90,7 @@ export const AccountCard = (props: AccountCardProps) => {
   return (
     <div className={classNames(cls.AccountCard, {}, [className])}>
       <div className={cls.data}>
-        <AccountPhoto
-          src={data?.avatar}
-          alt="Photo"
-          className={cls.AccountPhoto}
-        />
+        <AccountPhoto src={data?.avatar} className={cls.AccountPhoto} />
         <TextInput
           fieldTitle={t('First name')}
           isFocused={isFirstNameFocused}
@@ -107,6 +98,8 @@ export const AccountCard = (props: AccountCardProps) => {
           onChange={onChangeFirstName}
           value={data?.firstname}
           readonly={readonly}
+          error={formErrors?.firstname}
+          errorMesssage={t('Enter a first name')}
         />
         <TextInput
           fieldTitle={t('Last name')}
@@ -115,6 +108,8 @@ export const AccountCard = (props: AccountCardProps) => {
           onChange={onChangeLastName}
           value={data?.lastname}
           readonly={readonly}
+          error={formErrors?.lastname}
+          errorMesssage={t('Enter a last name')}
         />
         <TextInput
           fieldTitle={t('Age')}
@@ -123,6 +118,8 @@ export const AccountCard = (props: AccountCardProps) => {
           onChange={onChangeAge}
           value={data?.age}
           readonly={readonly}
+          error={formErrors?.age}
+          errorMesssage={t('Enter an age')}
         />
         <TextInput
           fieldTitle={t('City')}
@@ -131,6 +128,8 @@ export const AccountCard = (props: AccountCardProps) => {
           onChange={onChangeCity}
           value={data?.city}
           readonly={readonly}
+          error={formErrors?.city}
+          errorMesssage={t('Enter a city')}
         />
         <TextInput
           fieldTitle={t('Photo')}
@@ -147,6 +146,8 @@ export const AccountCard = (props: AccountCardProps) => {
           onChange={onChangeUsername}
           value={data?.username}
           readonly={readonly}
+          error={formErrors?.username}
+          errorMesssage={t('Enter a username')}
         />
         <CurrencySelect
           value={data?.currency}
