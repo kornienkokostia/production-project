@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
-import { Country } from '../../model/types/country';
 import { memo, useCallback } from 'react';
+import { Country } from '../../model/types/country';
 
 interface CountrySelectProps {
   value?: Country;
@@ -17,9 +17,12 @@ export const CountrySelect = memo(
   ({ value, onChange, readonly }: CountrySelectProps) => {
     const { t } = useTranslation('account');
 
-    const onChangeHandler = useCallback((val: string) => {
-      onChange?.(val as Country);
-    }, []);
+    const onChangeHandler = useCallback(
+      (val: string) => {
+        onChange?.(val as Country);
+      },
+      [onChange],
+    );
 
     return (
       <Dropdown

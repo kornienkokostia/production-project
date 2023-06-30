@@ -1,30 +1,36 @@
 import { AboutPage } from 'pages/AboutPage';
 import { AccountPage } from 'pages/AccountPage';
+import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
+import { ArticlesPage } from 'pages/ArticlesPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { RouteProps } from 'react-router-dom';
 
-type AppRouteProps = RouteProps & {
+export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
 };
 
 export enum AppRoutes {
-  MAIN = 'main',
+  HOME = 'home',
   ABOUT = 'about',
   ACCOUNT = 'account',
+  ARTICLES = 'articles',
+  ARTICLE_DETAILS = 'article_details',
   NOT_FOUND = 'not_found',
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-  [AppRoutes.MAIN]: '/',
+  [AppRoutes.HOME]: '/',
   [AppRoutes.ABOUT]: '/about',
   [AppRoutes.ACCOUNT]: '/account',
+  [AppRoutes.ARTICLES]: '/articles',
+  [AppRoutes.ARTICLE_DETAILS]: '/articles/',
   [AppRoutes.NOT_FOUND]: '*',
 };
 
 export const routeConfig: Record<AppRoutes, AppRouteProps> = {
-  [AppRoutes.MAIN]: {
-    path: RoutePath.main,
+  [AppRoutes.HOME]: {
+    path: RoutePath.home,
     element: <MainPage />,
   },
   [AppRoutes.ABOUT]: {
@@ -34,6 +40,16 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
   [AppRoutes.ACCOUNT]: {
     path: RoutePath.account,
     element: <AccountPage />,
+    authOnly: true,
+  },
+  [AppRoutes.ARTICLES]: {
+    path: RoutePath.articles,
+    element: <ArticlesPage />,
+    authOnly: true,
+  },
+  [AppRoutes.ARTICLE_DETAILS]: {
+    path: `${RoutePath.article_details}:id`,
+    element: <ArticleDetailsPage />,
     authOnly: true,
   },
   [AppRoutes.NOT_FOUND]: {

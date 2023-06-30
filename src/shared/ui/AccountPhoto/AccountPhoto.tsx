@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './AccountPhoto.module.scss';
 import AccountPlaceholderIcon from 'shared/assets/icons/account-pic-placeholder.svg';
 import { memo, useEffect, useState } from 'react';
+import cls from './AccountPhoto.module.scss';
 
 interface AccountPhotoProps {
   className?: string;
@@ -35,7 +35,7 @@ export const AccountPhoto = memo(
         src={src}
         className={classNames(cls.AccountPhoto, {}, [className])}
         alt={alt}
-      ></img>
+      />
     );
   },
 );

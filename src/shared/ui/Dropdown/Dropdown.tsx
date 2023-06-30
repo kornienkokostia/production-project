@@ -17,15 +17,15 @@ interface DropdownProps {
 }
 
 export const Dropdown = memo((props: DropdownProps) => {
-  const { fieldTitle, options, value, onChange, readonly } = props;
+  const {
+    fieldTitle, options, value, onChange, readonly,
+  } = props;
 
-  const optionList = useMemo(() => {
-    return options?.map(el => (
-      <option value={el.value} key={el.value}>
-        {el.content}
-      </option>
-    ));
-  }, [options]);
+  const optionList = useMemo(() => options?.map(el => (
+    <option value={el.value} key={el.value}>
+      {el.content}
+    </option>
+  )), [options]);
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     onChange?.(e.target.value);

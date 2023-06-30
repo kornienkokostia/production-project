@@ -65,7 +65,8 @@ module.exports = {
     'operator-linebreak': 'off',
     'no-param-reassign': 'off',
     'arrow-parens': 'off',
-    'max-len': 'off'
+    'max-len': 'off',
+    'no-unused-expressions': 'off'
   },
   globals: {
     __IS_DEV__: true,

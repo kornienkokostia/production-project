@@ -8,12 +8,15 @@
 
 .collapseBtn {
   position: absolute;
-  margin-right: 8px;
+  padding: 8px 4px;
   margin-left: 10px;
-  padding-left: 4px;
-  padding-right: 4px;
-  margin-top: 17px;
+  margin-right: 8px;
+  margin-top: 7px;
   z-index: 2;
+  transition: filter 0.1s;
+  &:active {
+    filter: brightness(0.7);
+  }
 }
 
 .items {

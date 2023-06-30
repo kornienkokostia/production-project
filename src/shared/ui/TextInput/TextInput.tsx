@@ -1,4 +1,6 @@
-import React, { InputHTMLAttributes, memo, useEffect, useState } from 'react';
+import React, {
+  InputHTMLAttributes, memo, useEffect, useState,
+} from 'react';
 import './TextInput.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import ErrorIcon from 'shared/assets/icons/error.svg';

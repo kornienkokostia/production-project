@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
-import { Currancy } from '../../model/types/currency';
 import { memo, useCallback } from 'react';
+import { Currancy } from '../../model/types/currency';
 
 interface CurrencySelectProps {
   value?: Currancy;
@@ -19,9 +19,12 @@ export const CurrencySelect = memo(
   ({ value, onChange, readonly }: CurrencySelectProps) => {
     const { t } = useTranslation('account');
 
-    const onChangeHandler = useCallback((val: string) => {
-      onChange?.(val as Currancy);
-    }, []);
+    const onChangeHandler = useCallback(
+      (val: string) => {
+        onChange?.(val as Currancy);
+      },
+      [onChange],
+    );
 
     return (
       <Dropdown

@@ -3,15 +3,16 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInited, userActions } from 'entities/User';
+import { getNavbarCollapsed } from 'entities/AppState';
 import { AppRouter } from './providers/router';
 
 function App() {
   const { theme } = useTheme();
   const dispatch = useDispatch();
-  const [collapsed, setCollapsed] = useState(false);
-  const onToggle = () => setCollapsed(prev => !prev);
+  const inited = useSelector(getUserInited);
+  const navbarCollapsed = useSelector(getNavbarCollapsed);
 
   useEffect(() => {
     dispatch(userActions.initAuthData());
@@ -22,10 +23,12 @@ function App() {
       <Suspense fallback="">
         <Navbar />
         <div
-          className={classNames('content-page', {}, [collapsed ? 'full' : ''])}
+          className={classNames('content-page', {}, [
+            navbarCollapsed ? 'full' : '',
+          ])}
         >
-          <Sidebar onToggle={onToggle} />
-          <AppRouter />
+          <Sidebar />
+          {inited && <AppRouter />}
         </div>
       </Suspense>
     </div>

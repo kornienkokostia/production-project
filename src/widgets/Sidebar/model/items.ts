@@ -3,6 +3,7 @@ import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import HomeIcon from 'shared/assets/icons/home.svg';
 import AboutIcon from 'shared/assets/icons/about.svg';
 import AccountIcon from 'shared/assets/icons/account.svg';
+import ArticlesIcon from 'shared/assets/icons/articles.svg';
 
 export interface SidebarItemType {
   path: string;
@@ -14,10 +15,10 @@ export interface SidebarItemType {
 
 export const SidebarItemsList: SidebarItemType[] = [
   {
-    path: RoutePath.main,
-    route: AppRoutes.MAIN,
+    path: RoutePath.home,
+    route: AppRoutes.HOME,
     Icon: HomeIcon,
-    text: 'Main page',
+    text: 'Home page',
   },
   {
     path: RoutePath.about,
@@ -30,6 +31,13 @@ export const SidebarItemsList: SidebarItemType[] = [
     route: AppRoutes.ACCOUNT,
     Icon: AccountIcon,
     text: 'Account page',
-    authOnly: true
+    authOnly: true,
+  },
+  {
+    path: RoutePath.articles,
+    route: AppRoutes.ARTICLES,
+    Icon: ArticlesIcon,
+    text: 'Articles page',
+    authOnly: true,
   },
 ];

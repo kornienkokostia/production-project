@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { TextInput } from 'shared/ui/TextInput/TextInput';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { useEffect, useState } from 'react';
-import cls from './AccountCard.module.scss';
-import { Account, AccountErrors } from '../../model/types/account';
 import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
 import { Currancy, CurrencySelect } from 'entities/Currency';
 import { Country } from 'entities/Country/model/types/country';
 import { CountrySelect } from 'entities/Country';
 import { validateAccountData } from 'entities/Account/model/services/validateAccountData/validateAccountData';
+import { Account, AccountErrors } from '../../model/types/account';
+import cls from './AccountCard.module.scss';
 
 interface AccountCardProps {
   className?: string;
@@ -79,9 +79,7 @@ export const AccountCard = (props: AccountCardProps) => {
 
   if (error) {
     return (
-      <div
-        className={classNames(cls.AccountCard, {}, [className, cls.loading])}
-      >
+      <div className={classNames(cls.AccountCard, {}, [className, cls.error])}>
         <h2>{t('Account is not found')}</h2>
       </div>
     );

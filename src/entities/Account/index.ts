@@ -1,5 +1,5 @@
 export {
-  Account, AccountSchema, AccountErrors
+  Account, AccountSchema, AccountErrors,
 } from './model/types/account';
 
 export {
@@ -24,4 +24,4 @@ export { getAccountIsLoading } from './model/selectors/getAccountIsLoading/getAc
 export { getAccountReadonly } from './model/selectors/getAccountReadonly/getAccountReadonly';
 export { getAccountForm } from './model/selectors/getAccountForm/getAccountForm';
 
-export { validateAccountData } from './model/services/validateAccountData/validateAccountData'
+export { validateAccountData } from './model/services/validateAccountData/validateAccountData';

@@ -1,6 +1,6 @@
 {
   "Language": "Язык",
-  "Main page": "Главная",
+  "Home page": "Главная",
   "About page": "O сайте",
   "Page not found": "Станица не найдена",
   "Something went wrong": "Что то пошло не так...",
@@ -15,5 +15,6 @@
   "Password": "Пароль",
   "UsernameSignInError": "Имя пользователя или пароль были введены неправильно.",
   "Sign Out": "Выйти",
-  "Account page": "Аккаунт"
+  "Account page": "Аккаунт",
+  "Articles page": "Статьи"
 }

@@ -3,7 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { InputTheme, TextInput } from 'shared/ui/TextInput/TextInput';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import SingInFormBtnIcon from 'shared/assets/icons/singin-form-btn.svg';
-import { memo, useCallback, useEffect, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useState,
+} from 'react';
 import { useSelector } from 'react-redux';
 import { Loader, LoaderTheme } from 'shared/ui/Loader/Loader';
 import {
@@ -79,7 +81,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
         dispatch(loginActions.setPasswordFocused(false));
       }
     },
-    [dispatch, error],
+    [dispatch, error, hidePasswordField],
   );
 
   const onChangePassword = useCallback(

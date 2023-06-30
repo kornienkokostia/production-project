@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import {
   AccountErrors,
   accountActions,
+  getAccountIsLoading,
   getAccountReadonly,
   updateAccountData,
 } from 'entities/Account';
@@ -24,6 +25,7 @@ export const AccountPageHeader = ({
   const { t } = useTranslation('account');
   const readonly = useSelector(getAccountReadonly);
   const dispatch = useAppDispatch();
+  const isLoading = useSelector(getAccountIsLoading);
 
   const onEdit = useCallback(() => {
     dispatch(accountActions.setReadOnly(false));
@@ -31,7 +33,7 @@ export const AccountPageHeader = ({
 
   const onCancelEdit = useCallback(() => {
     dispatch(accountActions.cancelEdit());
-  }, [dispatch, formErrors]);
+  }, [dispatch]);
 
   const onSave = useCallback(() => {
     if (formErrors && Object.values(formErrors).filter(el => el).length === 0) {
@@ -43,34 +45,37 @@ export const AccountPageHeader = ({
   return (
     <div className={classNames(cls.AccountPageHeader, {}, [className])}>
       <h2 className={cls.title}>{t('Account')}</h2>
-      <div className={cls.btns}>
-        {readonly ? (
-          <Button
-            theme={ButtonTheme.APPLE}
-            className={cls.btn}
-            onClick={onEdit}
-          >
-            {t('Edit')}
-          </Button>
-        ) : (
-          <>
+      {!isLoading && (
+        <div className={cls.btns}>
+          {readonly ? (
             <Button
-              theme={ButtonTheme.APPLE_SECONDARY}
+              theme={ButtonTheme.CLEAR}
               className={cls.btn}
-              onClick={onCancelEdit}
+              onClick={onEdit}
             >
-              {t('Cancel')}
+              {t('Edit')}
             </Button>
-            <Button
-              theme={ButtonTheme.APPLE}
-              className={cls.btn}
-              onClick={onSave}
-            >
-              {t('Save')}
-            </Button>
-          </>
-        )}
-      </div>
+          ) : (
+            <>
+              <Button
+                theme={ButtonTheme.CLEAR}
+                className={cls.btn}
+                onClick={onCancelEdit}
+              >
+                {t('Cancel')}
+              </Button>
+              <div className={cls.separator} />
+              <Button
+                theme={ButtonTheme.CLEAR}
+                className={cls.btn}
+                onClick={onSave}
+              >
+                {t('Save')}
+              </Button>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 };

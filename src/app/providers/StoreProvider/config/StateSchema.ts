@@ -1,18 +1,22 @@
 import {
-  AnyAction, CombinedState, Dispatch, EnhancedStore, Reducer, ReducersMapObject,
+  AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject,
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { AccountSchema } from 'entities/Account';
+import { AppStateSchema } from 'entities/AppState';
+import { ArticleDetailsSchema } from 'entities/Article';
 import { UserSchema } from 'entities/User';
 import { LoginSchema } from 'features/AuthByUserName';
 import { NavigateOptions, To } from 'react-router-dom';
 
 export interface StateSchema {
+  appState: AppStateSchema
   user: UserSchema;
 
   // Async redusers
   loginForm?: LoginSchema
   account?: AccountSchema
+  articleDetails?: ArticleDetailsSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

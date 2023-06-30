@@ -1,0 +1,10 @@
+.ArticleTextBlockComponent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+}

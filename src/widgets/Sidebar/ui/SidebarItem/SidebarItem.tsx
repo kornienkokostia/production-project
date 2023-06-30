@@ -4,9 +4,9 @@ import { SidebarItemType } from 'widgets/Sidebar/model/items';
 import { AppRoutes } from 'shared/config/routeConfig/routeConfig';
 import { Dispatch, SetStateAction, memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import cls from './SidebarItem.module.scss';
 import { useSelector } from 'react-redux';
 import { getUserAuthData } from 'entities/User';
+import cls from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
   item: SidebarItemType;
@@ -16,7 +16,9 @@ interface SidebarItemProps {
 
 export const SidebarItem = memo(
   ({ item, currentSelected, setCurrentSelected }: SidebarItemProps) => {
-    const { route, path, Icon, text } = item;
+    const {
+      route, path, Icon, text,
+    } = item;
     const { t } = useTranslation();
     const isAuth = useSelector(getUserAuthData);
 

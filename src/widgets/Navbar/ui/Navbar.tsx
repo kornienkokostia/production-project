@@ -43,7 +43,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
   return (
     <div className={classNames(cls.Navbar, {}, [className])}>
-      <div className={cls.NavbarLeft}>Apple <span>News</span></div>
+      <div className={cls.NavbarLeft}>iBlog</div>
       <div className={cls.NavbarRight}>
         {authData ? (
           <Button

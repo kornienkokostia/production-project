@@ -6,7 +6,7 @@ import { getAccountForm } from '../../selectors/getAccountForm/getAccountForm';
 export const updateAccountData = createAsyncThunk<Account, void, ThunkConfig<string>>(
   'account/updateAccountData',
   async (_, { extra, rejectWithValue, getState }) => {
-    const formData = getAccountForm(getState())
+    const formData = getAccountForm(getState());
 
     try {
       const response = await extra.api.put<Account>('/account', formData);

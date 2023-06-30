@@ -1,6 +1,6 @@
 {
   "Language": "Language",
-  "Main page": "Main",
+  "Home page": "Home",
   "About page": "About",
   "Page not found": "Page not found",
   "Something went wrong": "Something went wrong...",
@@ -15,5 +15,6 @@
   "Password": "Password",
   "UsernameSignInError": "Your username or password was incorrect.",
   "Sign Out": "Sign Out",
-  "Account page": "Account"
+  "Account page": "Account",
+  "Articles page": "Articles"
 }

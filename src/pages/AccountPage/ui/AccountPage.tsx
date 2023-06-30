@@ -19,10 +19,10 @@ import {
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import cls from './AccountPage.module.scss';
-import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
 import { Currancy } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import cls from './AccountPage.module.scss';
+import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
 
 const initialReducers: ReducersList = {
   account: accountReducer,
@@ -67,7 +67,7 @@ const AccountPage = ({ className }: AccountPageProps) => {
 
   const onChangeAge = useCallback(
     (val?: string) => {
-      const newValue = val!.replace(new RegExp(/[^\d\+]/, 'ig'), '');
+      const newValue = val!.replace(/[^\d]/, '');
       dispatch(accountActions.updateAccount({ age: Number(newValue || 0) }));
     },
     [dispatch],

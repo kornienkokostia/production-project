@@ -1,7 +1,9 @@
-import { Account, AccountErrors } from "../../types/account";
+import { Account, AccountErrors } from '../../types/account';
 
 export const validateAccountData = (account: Account) => {
-  const { firstname, lastname, age, city, username } = account
+  const {
+    firstname, lastname, age, city, username,
+  } = account;
 
   const errors: AccountErrors = {
     firstname: false,
@@ -9,13 +11,13 @@ export const validateAccountData = (account: Account) => {
     age: false,
     city: false,
     username: false,
-  }
+  };
 
-  firstname?.length === 0 ? errors.firstname = true : false
-  lastname?.length === 0 ? errors.lastname = true : false
-  age! === 0 ? errors.age = true : false
-  city?.length === 0 ? errors.city = true : false
-  username?.length === 0 ? errors.username = true : false
+  firstname?.length === 0 ? errors.firstname = true : false;
+  lastname?.length === 0 ? errors.lastname = true : false;
+  age! === 0 ? errors.age = true : false;
+  city?.length === 0 ? errors.city = true : false;
+  username?.length === 0 ? errors.username = true : false;
 
-  return errors
-}
+  return errors;
+};

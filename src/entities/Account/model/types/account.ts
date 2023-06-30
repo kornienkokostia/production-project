@@ -1,5 +1,5 @@
-import { Country } from "entities/Country/model/types/country";
-import { Currancy } from "entities/Currency/model/types/currency";
+import { Country } from 'entities/Country/model/types/country';
+import { Currancy } from 'entities/Currency/model/types/currency';
 
 export interface Account {
   firstname?: string,
