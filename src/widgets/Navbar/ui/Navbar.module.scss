@@ -45,6 +45,7 @@
 
 .ItemIcon {
   fill: var(--icon-main-color);
+  z-index: 2;
 }
 
 .NavbarSignin {
@@ -54,4 +55,6 @@
   height: 26px;
   width: 26px;
   border-radius: 13px;
+  display: flex;
+  z-index: 2;
 }

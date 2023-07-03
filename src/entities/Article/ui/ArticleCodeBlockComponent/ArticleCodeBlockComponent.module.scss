@@ -1,0 +1,14 @@
+.ArticleCodeBlockWrapper {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ArticleCodeBlockComponent {
+  overflow: auto;
+  width: 100%;
+  background-color: var(--secondary-bg-color);
+  border-radius: 15px;
+  border: 1px solid var(--border-color);
+  display: flex;
+}

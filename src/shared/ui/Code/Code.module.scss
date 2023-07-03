@@ -1,13 +1,12 @@
 .CodeWrapper {
-  width: 100%;
   padding: 8px 14px;
-  background-color: var(--secondary-bg-color);
-  border-radius: 15px;
-  border: 1px solid var(--border-color);
+  width: fit-content;
+  display: flex;
 }
 .Code {
   display: flex;
   width: 100%;
   font-family: 'SF Mono';
   font-size: 15px;
+  line-height: 25px;
 }

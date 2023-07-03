@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import {
   AccountErrors,
   accountActions,
+  getAccountData,
   getAccountIsLoading,
   getAccountReadonly,
   updateAccountData,
@@ -12,20 +13,26 @@ import {
 import { useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import cls from './AccountPageHeader.module.scss';
+import { getUserAuthData } from 'entities/User';
 
 interface AccountPageHeaderProps {
   className?: string;
   formErrors?: AccountErrors;
+  id?: string;
 }
 
 export const AccountPageHeader = ({
   className,
   formErrors,
+  id,
 }: AccountPageHeaderProps) => {
   const { t } = useTranslation('account');
   const readonly = useSelector(getAccountReadonly);
   const dispatch = useAppDispatch();
   const isLoading = useSelector(getAccountIsLoading);
+  const authData = useSelector(getUserAuthData);
+  const accountData = useSelector(getAccountData);
+  const canEdit = authData?.id === accountData?.id;
 
   const onEdit = useCallback(() => {
     dispatch(accountActions.setReadOnly(false));
@@ -37,15 +44,15 @@ export const AccountPageHeader = ({
 
   const onSave = useCallback(() => {
     if (formErrors && Object.values(formErrors).filter(el => el).length === 0) {
-      dispatch(updateAccountData());
+      dispatch(updateAccountData(id as string));
       dispatch(accountActions.setReadOnly(true));
     }
-  }, [dispatch, formErrors]);
+  }, [dispatch, formErrors, id]);
 
   return (
     <div className={classNames(cls.AccountPageHeader, {}, [className])}>
       <h2 className={cls.title}>{t('Account')}</h2>
-      {!isLoading && (
+      {!isLoading && readonly !== undefined && canEdit && (
         <div className={cls.btns}>
           {readonly ? (
             <Button

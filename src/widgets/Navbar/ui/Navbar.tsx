@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import AccountPlaceholderIcon from 'shared/assets/icons/account-pic-placeholder.svg';
 import { Settings } from 'widgets/Settings';
 import { AccountPopup } from 'widgets/AccountPopup';
+import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -52,7 +53,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             onClick={onToggleAccountPopup}
           >
             <div className={cls.AccountBtn}>
-              <AccountPlaceholderIcon className={cls.ItemIcon} />
+              <AccountPhoto src={authData.avatar} />
             </div>
           </Button>
         ) : (

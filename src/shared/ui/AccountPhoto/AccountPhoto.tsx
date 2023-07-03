@@ -16,13 +16,23 @@ export const AccountPhoto = memo(
     const [isValid, setIsValid] = useState(false);
 
     useEffect(() => {
-      fetch(new URL(src || '')).then(res => {
-        setIsValid(res.status === 200);
+      if (src) {
+        const img = document.createElement('img');
+        img.src = src;
+        img.onload = () => {
+          setIsValid(true);
+          setLoading(false);
+        };
+        img.onerror = () => {
+          setIsValid(false);
+          setLoading(false);
+        };
+      } else {
         setLoading(false);
-      });
+      }
     }, [src]);
 
-    if (!loading && !isValid) {
+    if (!src || (!loading && !isValid)) {
       return (
         <AccountPlaceholderIcon
           className={classNames(cls.AccountPhoto, {}, [className])}

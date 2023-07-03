@@ -21,6 +21,7 @@ import {
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Currancy } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { useParams } from 'react-router-dom';
 import cls from './AccountPage.module.scss';
 import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
 
@@ -34,9 +35,12 @@ interface AccountPageProps {
 
 const AccountPage = ({ className }: AccountPageProps) => {
   const dispatch = useAppDispatch();
+  const { id } = useParams<{ id: string }>();
   useEffect(() => {
-    dispatch(fetchAccountData());
-  }, [dispatch]);
+    if (id) {
+      dispatch(fetchAccountData(id));
+    }
+  }, [dispatch, id]);
 
   const formData = useSelector(getAccountForm);
   const isLoading = useSelector(getAccountIsLoading);
@@ -111,7 +115,7 @@ const AccountPage = ({ className }: AccountPageProps) => {
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div className={classNames(cls.AccountPage, {}, [className])}>
-        <AccountPageHeader formErrors={accountErrors} />
+        <AccountPageHeader formErrors={accountErrors} id={id} />
         <AccountCard
           data={formData}
           isLoading={isLoading}

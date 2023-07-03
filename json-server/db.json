@@ -101,31 +101,131 @@
       "id": "3",
       "text": "some comment 3",
       "articleId": "1",
-      "userId": "1"
+      "userId": "2"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "awesome",
+      "id": "G00zgaM"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Really good article",
+      "id": "4yvj3Qj"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "sdcsdc",
+      "id": "tbCNwrt"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Awesome stuff",
+      "id": "5MJfBj3"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Furious",
+      "id": "AfcQHFB"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Awesome",
+      "id": "ArL7xE_"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "awesom",
+      "id": "lFKxxmN"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Some awesome \nstufff",
+      "id": "mLIZLOY"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "pretty awesome\nfr fr",
+      "id": "QWfVDSX"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "jnjnjnnnj",
+      "id": "XjmYD0K"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Something here\nStrange",
+      "id": "2pbF1Bj"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "asdasd",
+      "id": "QkqQmfX"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "G-eazy Top",
+      "id": "cdggmfy"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "gvgvhgvhvgvhgvhvhgvvghvh\nbibihuhhihihihuuhihhuuuuuuuuuuuuuuu\nbjbhbbhjbhbjhbjhbjbjhb",
+      "id": "w3NoVPb"
     }
   ],
   "users": [
     {
       "id": "1",
-      "username": "admin",
+      "username": "g-eazy",
       "password": "123",
-      "role": "ADMIN"
+      "role": "ADMIN",
+      "avatar": "https://lastfm.freetls.fastly.net/i/u/ar0/87da4c5ba4fb07d6876b53ac496d7ebf.jpg"
     },
     {
       "id": "2",
-      "username": "user",
+      "username": "cap",
       "password": "123",
-      "role": "USER"
+      "role": "USER",
+      "avatar": "https://images.news18.com/ibnlive/uploads/2022/07/chris-evans-16574444474x3.jpg"
     }
   ],
-  "account": {
-    "firstname": "Gerald",
-    "lastname": "Gillium",
-    "age": 34,
-    "currency": "USD",
-    "country": "United States of America",
-    "city": "California",
-    "username": "admin",
-    "avatar": "https://lastfm.freetls.fastly.net/i/u/ar0/87da4c5ba4fb07d6876b53ac496d7ebf.jpg"
-  }
+  "account": [
+    {
+      "id": "1",
+      "firstname": "Gerald",
+      "lastname": "Gillium",
+      "age": 34,
+      "currency": "USD",
+      "country": "United States of America",
+      "city": "California",
+      "username": "g-eazy",
+      "avatar": "https://lastfm.freetls.fastly.net/i/u/ar0/87da4c5ba4fb07d6876b53ac496d7ebf.jpg"
+    },
+    {
+      "id": "2",
+      "firstname": "Captain",
+      "lastname": "America",
+      "age": 93,
+      "currency": "USD",
+      "country": "United States of America",
+      "city": "New York",
+      "username": "cap",
+      "avatar": "https://images.news18.com/ibnlive/uploads/2022/07/chris-evans-16574444474x3.jpg"
+    }
+  ]
 }

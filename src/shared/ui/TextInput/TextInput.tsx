@@ -1,6 +1,4 @@
-import React, {
-  InputHTMLAttributes, memo, useEffect, useState,
-} from 'react';
+import React, { InputHTMLAttributes, memo, useEffect, useState } from 'react';
 import './TextInput.scss';
 import { classNames } from 'shared/lib/classNames/classNames';
 import ErrorIcon from 'shared/assets/icons/error.svg';
@@ -94,18 +92,14 @@ export const TextInput = memo((props: PassedProps) => {
         {fieldTitle}
       </span>
 
-      <div
-        className={`input-field-error-wrapper ${
-          isError ? 'active' : undefined
-        }`}
-      >
-        <div className="input-field-error">
-          <ErrorIcon className="input-field-error-img" />
-          <span className="input-field-error-msg">
-            {isError && errorMesssage}
-          </span>
+      {isError && (
+        <div className="input-field-error-wrapper">
+          <div className="input-field-error">
+            <ErrorIcon className="input-field-error-img" />
+            <span className="input-field-error-msg">{errorMesssage}</span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 });

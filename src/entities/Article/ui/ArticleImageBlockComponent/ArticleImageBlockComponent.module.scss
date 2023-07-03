@@ -1,4 +1,12 @@
+.ArticleImageBlockComponent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .img {
   width: 100%;
   border-radius: 15px;
+}
+.imgTitle {
+  margin-top: 5px;
 }

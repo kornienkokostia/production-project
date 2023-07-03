@@ -1,0 +1,28 @@
+.CommentCard {
+  width: 100%;
+  padding: 14px;
+  background-color: var(--secondary-bg-color);
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+}
+
+.accountPic {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  & path {
+    scale: 1.346;
+  }
+}
+.header {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
+  font-weight: 600;
+  width: fit-content;
+  position: relative;
+}
+
+.content {
+  margin-top: 14px;
+}

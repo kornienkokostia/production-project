@@ -5,6 +5,7 @@
     appearance: none;
     border-color: var(--input-border);
     background-color: var(--input-bg);
+    padding-right: 43px;
     &:focus {
       border-color: #0071eb;
       box-shadow: 0 0 0 4px rgb(0 125 250 / 60%);
