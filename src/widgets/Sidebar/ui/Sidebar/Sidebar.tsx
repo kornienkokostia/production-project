@@ -20,6 +20,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const dispatch = useAppDispatch();
   const navbarCollapsed = useSelector(getNavbarCollapsed);
   const sidebarItemsList = useSelector(getSidebarItems);
+  console.log();
 
   const [currentSelected, setCurrentSelected] = useState<AppRoutes>(
     Object.keys(RoutePath).find(
