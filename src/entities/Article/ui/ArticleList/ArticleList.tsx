@@ -2,6 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './ArticleList.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
+import { Loader } from 'shared/ui/Loader/Loader';
 
 interface ArticleListProps {
   className?: string;
@@ -16,6 +17,14 @@ export const ArticleList = (props: ArticleListProps) => {
   const renderArticle = (article: Article) => (
     <ArticleListItem article={article} view={view} key={article.id} />
   );
+
+  if (isLoading) {
+    return (
+      <div className={cls.loading}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className={classNames(cls.ArticleListWrapper, {}, [className])}>

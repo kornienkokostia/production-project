@@ -1,6 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Loader } from 'shared/ui/Loader/Loader';
 import { AddCommentForm } from 'features/addCommentForm';
 import cls from './CommentList.module.scss';
 import { Comment } from '../../model/types/comment';
@@ -9,7 +8,6 @@ import { CommentCard } from '../CommentCard/CommentCard';
 interface CommentListProps {
   className?: string;
   comments?: Comment[];
-  isLoading?: boolean;
   onSendComment: (text: string) => void;
 }
 

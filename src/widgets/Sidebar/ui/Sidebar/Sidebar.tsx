@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo, useEffect, useState } from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import ToggleIcon from 'shared/assets/icons/nav-bar-toggle-btn.svg';
@@ -20,7 +20,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const dispatch = useAppDispatch();
   const navbarCollapsed = useSelector(getNavbarCollapsed);
   const sidebarItemsList = useSelector(getSidebarItems);
-  console.log();
 
   const [currentSelected, setCurrentSelected] = useState<AppRoutes>(
     Object.keys(RoutePath).find(
@@ -36,12 +35,14 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
     );
   }, [location]);
 
+  const onNavbarCollapsedClick = useCallback(() => {
+    dispatch(appStateActions.setNavbarCollapsed(!navbarCollapsed));
+  }, [dispatch, navbarCollapsed]);
+
   return (
     <div className={classNames(cls.Sidebar, {}, [className])}>
       <Button
-        onClick={() =>
-          dispatch(appStateActions.setNavbarCollapsed(!navbarCollapsed))
-        }
+        onClick={onNavbarCollapsedClick}
         theme={ButtonTheme.CLEAR}
         className={cls.collapseBtn}
       >

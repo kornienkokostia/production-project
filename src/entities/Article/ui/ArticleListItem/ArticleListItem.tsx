@@ -1,20 +1,20 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './ArticleListItem.module.scss';
-import {
-  Article,
-  ArticleBlockType,
-  ArticleTextBlock,
-  ArticleView,
-} from '../../model/types/article';
 import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
 import { useTranslation } from 'react-i18next';
-import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import ArrowLinkIcon from 'shared/assets/icons/arrow-link.svg';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import {
+  Article,
+  ArticleBlockType,
+  ArticleTextBlock,
+  ArticleView,
+} from '../../model/types/article';
+import cls from './ArticleListItem.module.scss';
 
 interface ArticleListItemProps {
   className?: string;

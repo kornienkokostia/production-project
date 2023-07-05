@@ -12,8 +12,8 @@ import {
 } from 'entities/Account';
 import { useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import cls from './AccountPageHeader.module.scss';
 import { getUserAuthData } from 'entities/User';
+import cls from './AccountPageHeader.module.scss';
 
 interface AccountPageHeaderProps {
   className?: string;

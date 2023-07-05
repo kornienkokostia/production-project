@@ -31,7 +31,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
   const { t } = useTranslation('article-details');
   const { id } = useParams<{ id: string }>();
   const comments = useSelector(getArticleComments.selectAll);
-  const isCommentsLoading = useSelector(getArticleCommentsIsLoading);
   const dispatch = useAppDispatch();
 
   const onSendComment = useCallback(
@@ -59,7 +58,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
         <ArticleDetails
           id={id}
           comments={comments}
-          isCommentsLoading={isCommentsLoading}
           onSendComment={onSendComment}
         />
       </div>

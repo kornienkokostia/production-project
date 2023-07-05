@@ -29,7 +29,7 @@
   &:disabled {
     cursor: default;
     .btnIcon {
-      fill: var(--primary-color-disabled);
+      fill: rgba(153, 153, 153, 0.5);
     }
   }
 }

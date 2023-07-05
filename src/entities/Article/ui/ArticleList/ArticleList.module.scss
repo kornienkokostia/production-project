@@ -5,7 +5,13 @@
   margin: 30px 80px;
   height: fit-content;
 }
-
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .ArticleList {
   display: grid;
   width: 100%;

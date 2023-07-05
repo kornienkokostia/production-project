@@ -8,6 +8,7 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useTranslation } from 'react-i18next';
 import {
   getAddCommentFormError,
   getAddCommentFormText,
@@ -17,7 +18,6 @@ import {
   addCommentFormReducer,
 } from '../../model/slice/addCommentFormSlice';
 import cls from './AddCommentForm.module.scss';
-import { useTranslation } from 'react-i18next';
 
 interface addCommentFormProps {
   className?: string;

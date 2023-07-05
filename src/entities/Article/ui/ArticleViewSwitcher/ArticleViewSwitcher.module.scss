@@ -1,0 +1,27 @@
+.ArticleViewSwitcher {
+  display: flex;
+}
+
+.viewBtn {
+  padding: 8px 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.viewBtnIcon {
+  fill: var(--primary-color);
+}
+.selected {
+  & .viewBtnIcon {
+    fill: var(--primary-color-disabled);
+  }
+}
+// .selected::before {
+//   content: '';
+//   position: absolute;
+//   display: block;
+//   height: 36px;
+//   width: 100%;
+//   background-color: rgba(0, 0, 0, 0.04);
+//   border-radius: 8px;
+// }

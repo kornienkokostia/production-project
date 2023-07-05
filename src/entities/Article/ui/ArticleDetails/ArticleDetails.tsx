@@ -10,6 +10,10 @@ import { Loader } from 'shared/ui/Loader/Loader';
 import { useTranslation } from 'react-i18next';
 import { getNavbarCollapsed } from 'entities/AppState';
 import { Comment, CommentList } from 'entities/Comment';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import ArrowBackIcon from 'shared/assets/icons/arrow-back.svg';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import {
   getArticleDetailsData,
   getArticleDetailsError,
@@ -22,16 +26,11 @@ import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import ArrowLinkIcon from 'shared/assets/icons/arrow-link.svg';
-import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 interface ArticleDetailsProps {
   className?: string;
   id: string;
   comments?: Comment[];
-  isCommentsLoading?: boolean;
   onSendComment: (text: string) => void;
 }
 
@@ -40,13 +39,7 @@ const reducers: ReducersList = {
 };
 
 export const ArticleDetails = memo(
-  ({
-    className,
-    id,
-    comments,
-    isCommentsLoading,
-    onSendComment,
-  }: ArticleDetailsProps) => {
+  ({ className, id, comments, onSendComment }: ArticleDetailsProps) => {
     const { t } = useTranslation('article-details');
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getArticleDetailsIsLoading);
@@ -104,7 +97,7 @@ export const ArticleDetails = memo(
     }
 
     return (
-      <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+      <DynamicModuleLoader reducers={reducers}>
         <div
           className={classNames(
             cls.ArticleHeader,
@@ -117,7 +110,7 @@ export const ArticleDetails = memo(
             className={cls.backBtn}
             onClick={onBackToList}
           >
-            <ArrowLinkIcon className={cls.btnIcon} />
+            <ArrowBackIcon className={cls.btnIcon} />
             <span>{t('Articles')}</span>
           </Button>
           {article && (
@@ -131,11 +124,7 @@ export const ArticleDetails = memo(
         <div className={classNames(cls.ArticleDetails, {}, [className])}>
           {content}
           {article && (
-            <CommentList
-              comments={comments}
-              isLoading={isCommentsLoading}
-              onSendComment={onSendComment}
-            />
+            <CommentList comments={comments} onSendComment={onSendComment} />
           )}
         </div>
       </DynamicModuleLoader>
