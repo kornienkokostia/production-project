@@ -4,7 +4,8 @@ import { FC, ReactNode, memo } from 'react';
 import cls from './AppLink.module.scss';
 
 export enum AppLinkTheme {
-  PRIMARY = 'primary',
+  NO_STYLE = 'no-style',
+  APPLE_LINK = 'apple-link',
 }
 
 interface AppLinkProps extends LinkProps {
@@ -18,7 +19,7 @@ export const AppLink = memo((props: AppLinkProps) => {
     to,
     children,
     className,
-    theme = AppLinkTheme.PRIMARY,
+    theme = AppLinkTheme.NO_STYLE,
     ...otherProps
   } = props;
 

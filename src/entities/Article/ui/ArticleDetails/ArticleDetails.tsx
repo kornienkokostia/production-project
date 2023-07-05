@@ -22,6 +22,10 @@ import { ArticleBlock, ArticleBlockType } from '../../model/types/article';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import ArrowLinkIcon from 'shared/assets/icons/arrow-link.svg';
+import { useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 interface ArticleDetailsProps {
   className?: string;
@@ -49,6 +53,7 @@ export const ArticleDetails = memo(
     const article = useSelector(getArticleDetailsData);
     const error = useSelector(getArticleDetailsError);
     const navbarCollapsed = useSelector(getNavbarCollapsed);
+    const navigate = useNavigate();
 
     const renderBlock = useCallback((block: ArticleBlock) => {
       switch (block.type) {
@@ -66,6 +71,10 @@ export const ArticleDetails = memo(
     useEffect(() => {
       dispatch(fetchArticleById(id));
     }, [dispatch, id]);
+
+    const onBackToList = useCallback(() => {
+      navigate(RoutePath.articles);
+    }, [navigate]);
 
     let content: JSX.Element;
 
@@ -103,12 +112,19 @@ export const ArticleDetails = memo(
             [],
           )}
         >
+          <Button
+            theme={ButtonTheme.APPLE_CLEAR}
+            className={cls.backBtn}
+            onClick={onBackToList}
+          >
+            <ArrowLinkIcon className={cls.btnIcon} />
+            <span>{t('Articles')}</span>
+          </Button>
           {article && (
             <>
-              <div>
-                <p>{article?.createdAt}</p>
-              </div>
-              <p className={cls.views}>{`${article?.views} views`}</p>
+              <p className={cls.date}>{article?.createdAt}</p>
+
+              <p className={cls.views}>{`${article?.views} ${t('views')}`}</p>
             </>
           )}
         </div>

@@ -2,8 +2,9 @@
   width: 100%;
   padding: 14px;
   background-color: var(--secondary-bg-color);
+  // background-color: var(--main-content-bg);
   border-radius: 14px;
-  border: 1px solid var(--border-color);
+  // border: 1px solid var(--border-color);
 }
 
 .accountPic {
@@ -22,7 +23,9 @@
   width: fit-content;
   position: relative;
 }
-
+.headerItemLink {
+  display: flex;
+}
 .content {
   margin-top: 14px;
 }

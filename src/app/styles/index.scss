@@ -64,7 +64,7 @@ body {
   display: flex;
   position: relative;
   &.full .page-wrapper {
-    margin-left: 0px;
+    left: 0px;
     border-left: 1px solid var(--bg-color);
   }
 }
@@ -74,11 +74,12 @@ body {
   justify-content: center;
   flex-grow: 1;
   height: calc(100vh - 44px);
-  margin-left: var(--sidebar-with);
+  left: var(--sidebar-with);
   border-left: 1px solid var(--border-color);
-  transition: margin-left 0.25s;
+  transition: left 0.25s;
   background: var(--bg-color);
-  z-index: 1;
+  position: absolute;
+  right: 0;
 }
 
 h1,

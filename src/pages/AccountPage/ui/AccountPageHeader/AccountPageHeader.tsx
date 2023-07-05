@@ -56,7 +56,7 @@ export const AccountPageHeader = ({
         <div className={cls.btns}>
           {readonly ? (
             <Button
-              theme={ButtonTheme.CLEAR}
+              theme={ButtonTheme.APPLE_CLEAR}
               className={cls.btn}
               onClick={onEdit}
             >
@@ -65,7 +65,7 @@ export const AccountPageHeader = ({
           ) : (
             <>
               <Button
-                theme={ButtonTheme.CLEAR}
+                theme={ButtonTheme.APPLE_CLEAR}
                 className={cls.btn}
                 onClick={onCancelEdit}
               >
@@ -73,7 +73,7 @@ export const AccountPageHeader = ({
               </Button>
               <div className={cls.separator} />
               <Button
-                theme={ButtonTheme.CLEAR}
+                theme={ButtonTheme.APPLE_CLEAR}
                 className={cls.btn}
                 onClick={onSave}
               >

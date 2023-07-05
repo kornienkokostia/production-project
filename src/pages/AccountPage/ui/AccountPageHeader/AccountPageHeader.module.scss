@@ -21,21 +21,10 @@
 }
 .btns {
   display: flex;
-  // column-gap: 14px;
   height: fit-content;
   align-items: center;
 }
-.btn {
-  font-weight: 400;
-  font-size: 17px;
-  padding: 8px 12px;
-  letter-spacing: 0.022em;
-  color: var(--primary-color);
-  transition: filter 0.1s;
-  &:active {
-    filter: var(--on-elem-active-filter);
-  }
-}
+
 .separator {
   border-left: 1px solid var(--border-color);
   height: 22px;

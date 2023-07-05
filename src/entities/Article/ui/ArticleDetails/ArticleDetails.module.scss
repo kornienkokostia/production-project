@@ -11,13 +11,25 @@
   display: flex;
   // justify-content: flex-end;
   align-items: center;
-  padding: 12px 14px;
+  padding: 0px 14px 0px 4px;
+  min-height: 50px;
   border-bottom: 1px solid var(--border-color);
   box-sizing: content-box;
-  min-height: 28px;
+
   position: relative;
   font-size: 17px;
   transition: padding 0.25s;
+}
+.backBtn {
+  padding: 8px 4px 8px 12px;
+}
+.btnIcon {
+  fill: var(--primary-color);
+  margin-right: 7px;
+  transform: rotate(180deg);
+}
+.date {
+  margin-left: 11px;
 }
 
 .navbarCollapsed {

@@ -15,13 +15,13 @@ export const CommentCard = ({ className, commnet }: CommentCardProps) => (
     <div className={cls.header}>
       <AppLink
         to={`${RoutePath.account}${commnet.user.id}`}
-        className={cls.headerItemPic}
+        className={cls.headerItemLink}
       >
         <AccountPhoto src={commnet.user.avatar} className={cls.accountPic} />
       </AppLink>
       <AppLink
         to={`${RoutePath.account}${commnet.user.id}`}
-        className={cls.headerItemName}
+        className={cls.headerItemLink}
       >
         <p>{commnet.user.username}</p>
       </AppLink>

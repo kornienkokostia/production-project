@@ -7,6 +7,7 @@
   "Appearance": "Appearance",
   "Article is not found": "Article is not found",
   "Article not found": "Article not found",
+  "Articles": "Articles",
   "Cancel": "Cancel",
   "City": "City",
   "Comments": "Comments",
@@ -28,6 +29,7 @@
   "Page not found": "Page not found",
   "Password": "Password",
   "Photo": "Photo",
+  "Read more": "Read more",
   "Reload the page": "Reload the page",
   "Save": "Save",
   "Settings": "Settings",
@@ -36,5 +38,6 @@
   "Sign in to your account": "Sign in to your account",
   "Something went wrong": "Something went wrong",
   "Username": "Username",
-  "UsernameSignInError": "UsernameSignInError"
+  "UsernameSignInError": "UsernameSignInError",
+  "views": "views"
 }
