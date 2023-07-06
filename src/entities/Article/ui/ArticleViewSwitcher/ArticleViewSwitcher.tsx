@@ -13,11 +13,11 @@ interface ArticleViewSwitcherProps {
 
 const viewTypes = [
   {
-    view: ArticleView.BIG,
+    view: ArticleView.SMALL,
     Icon: GridIcon,
   },
   {
-    view: ArticleView.SMALL,
+    view: ArticleView.BIG,
     Icon: ListIcon,
   },
 ];

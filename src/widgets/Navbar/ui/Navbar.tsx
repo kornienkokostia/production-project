@@ -43,7 +43,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   }, []);
 
   return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
+    <header className={classNames(cls.Navbar, {}, [className])}>
       <div className={cls.NavbarLeft}>iBlog</div>
       <div className={cls.NavbarRight}>
         {authData ? (
@@ -90,6 +90,6 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           />
         </Submenu>
       )}
-    </div>
+    </header>
   );
 });

@@ -40,7 +40,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   }, [dispatch, navbarCollapsed]);
 
   return (
-    <div className={classNames(cls.Sidebar, {}, [className])}>
+    <nav className={classNames(cls.Sidebar, {}, [className])}>
       <Button
         onClick={onNavbarCollapsedClick}
         theme={ButtonTheme.CLEAR}
@@ -58,6 +58,6 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
           />
         ))}
       </div>
-    </div>
+    </nav>
   );
 });

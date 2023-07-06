@@ -1,6 +1,7 @@
 .ArticleListWrapper {
   display: flex;
-  width: 100%;
+  flex-direction: column;
+  width: calc(100% - 160px);
   max-width: 980px;
   margin: 30px 80px;
   height: fit-content;
@@ -11,7 +12,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
 }
+
 .ArticleList {
   display: grid;
   width: 100%;
@@ -23,6 +26,7 @@
 }
 
 .SMALL {
+  grid-template-columns: 1fr;
   grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 20px;
 }

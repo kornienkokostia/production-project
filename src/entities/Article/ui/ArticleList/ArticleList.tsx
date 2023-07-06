@@ -18,7 +18,7 @@ export const ArticleList = (props: ArticleListProps) => {
     <ArticleListItem article={article} view={view} key={article.id} />
   );
 
-  if (isLoading) {
+  if (isLoading && !articles.length) {
     return (
       <div className={cls.loading}>
         <Loader />
@@ -31,6 +31,11 @@ export const ArticleList = (props: ArticleListProps) => {
       <div className={classNames(cls.ArticleList, {}, [cls[view]])}>
         {articles.length > 0 ? articles.map(renderArticle) : null}
       </div>
+      {isLoading && articles.length && (
+        <div className={cls.loading}>
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

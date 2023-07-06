@@ -24,6 +24,7 @@ import { Country } from 'entities/Country';
 import { useParams } from 'react-router-dom';
 import cls from './AccountPage.module.scss';
 import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
+import { Page } from 'shared/ui/Page/Page';
 
 const initialReducers: ReducersList = {
   account: accountReducer,
@@ -114,7 +115,7 @@ const AccountPage = ({ className }: AccountPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-      <div className={classNames(cls.AccountPage, {}, [className])}>
+      <Page className={classNames(cls.AccountPage, {}, [className])}>
         <AccountPageHeader formErrors={accountErrors} id={id} />
         <AccountCard
           data={formData}
@@ -131,7 +132,7 @@ const AccountPage = ({ className }: AccountPageProps) => {
           readonly={readonly}
           formErrors={accountErrors}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };
