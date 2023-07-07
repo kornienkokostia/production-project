@@ -8,8 +8,10 @@ interface StoreProviderProps {
 }
 
 export const StoreProvider = ({ children }: StoreProviderProps) => {
-  const navigate = useNavigate();
-  const store = createReduxStore(navigate);
+  // const navigate = useNavigate();
+  const store = createReduxStore();
+
+  console.log('render');
 
   return <Provider store={store}>{children}</Provider>;
 };

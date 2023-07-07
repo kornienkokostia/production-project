@@ -17,19 +17,16 @@ import {
   ReducersList,
 } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import { useSelector } from 'react-redux';
 import {
   getArticlesPageError,
-  getArticlesPageHasMore,
   getArticlesPageIsLoading,
-  getArticlesPageLimit,
-  getArticlesPageNum,
   getArticlesPageView,
 } from '../../model/selectors/articlesPageSelectors';
 import { getNavbarCollapsed } from 'entities/AppState';
 import { Page } from 'shared/ui/Page/Page';
-import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
 interface ArticlesPageProps {
   className?: string;
@@ -48,17 +45,11 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const navbarCollapsed = useSelector(getNavbarCollapsed);
 
   const onLoadNextPart = useCallback(() => {
-    console.log('e');
     dispatch(fetchNextArticlesPage());
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(articlesPageActions.initState());
-    dispatch(
-      fetchArticlesList({
-        page: 1,
-      }),
-    );
+    dispatch(initArticlesPage());
   }, [dispatch]);
 
   const onChnageView = useCallback(
@@ -69,7 +60,7 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
   );
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <div className={classNames(cls.ArticlesPageWrapper, {}, [className])}>
         <div
           className={classNames(

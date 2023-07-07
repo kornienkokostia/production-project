@@ -33,7 +33,7 @@ export const ArticleViewSwitcher = ({
 
   return (
     <div className={classNames(cls.ArticleViewSwitcher, {}, [className])}>
-      {viewTypes.map((el, i) => (
+      {viewTypes.map(el => (
         <Button
           theme={ButtonTheme.CLEAR}
           onClick={onClick(el.view)}
@@ -42,7 +42,7 @@ export const ArticleViewSwitcher = ({
             { [cls.selected]: el.view !== view },
             [],
           )}
-          key={i}
+          key={el.view}
         >
           <el.Icon className={cls.viewBtnIcon}></el.Icon>
         </Button>
