@@ -1,9 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './ArticleViewSwitcher.module.scss';
-import { ArticleView } from '../../model/types/article';
 import ListIcon from 'shared/assets/icons/view-list.svg';
 import GridIcon from 'shared/assets/icons/view-grid.svg';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { ArticleView } from '../../model/types/article';
+import cls from './ArticleViewSwitcher.module.scss';
 
 interface ArticleViewSwitcherProps {
   className?: string;
@@ -44,7 +44,7 @@ export const ArticleViewSwitcher = ({
           )}
           key={el.view}
         >
-          <el.Icon className={cls.viewBtnIcon}></el.Icon>
+          <el.Icon className={cls.viewBtnIcon} />
         </Button>
       ))}
     </div>

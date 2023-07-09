@@ -4,14 +4,15 @@ import { ReducersMapObject } from 'redux';
 import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { appStateReducer } from 'entities/AppState';
+import { uiReducer } from 'features/UI';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
-export const createReduxStore = (
-) => {
+export const createReduxStore = () => {
   const rootReducers: ReducersMapObject<StateSchema> = {
     appState: appStateReducer,
     user: userReducer,
+    ui: uiReducer,
   };
 
   const reducerManager = createReducerManager(rootReducers);

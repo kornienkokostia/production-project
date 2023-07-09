@@ -12,13 +12,13 @@ import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { addCommentToArticle } from 'pages/ArticleDetailsPage/model/services/addCommentToArticle/addCommentToArticle';
+import { Page } from 'widgets/Page/Page';
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import {
   articleDetailsCommentsReducer,
   getArticleComments,
 } from '../../model/slice/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
-import { Page } from 'shared/ui/Page/Page';
 
 interface ArticleDetailesPageProps {
   className?: string;
@@ -55,13 +55,13 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <Page className={classNames(cls.ArticleDetailesPage, {}, [className])}>
+      <div className={classNames(cls.ArticleDetailesPage, {}, [className])}>
         <ArticleDetails
           id={id}
           comments={comments}
           onSendComment={onSendComment}
         />
-      </Page>
+      </div>
     </DynamicModuleLoader>
   );
 };

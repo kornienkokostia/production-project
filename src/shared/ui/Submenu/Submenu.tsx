@@ -8,13 +8,17 @@ import {
 } from 'react';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
+import TriangleIcon from 'shared/assets/icons/select-top-triangle.svg';
 import cls from './Submenu.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button } from '../Button/Button';
+import { useTranslation } from 'react-i18next';
 
 export enum SubmenuTheme {
   SETTINGS = 'settings',
   ACCOUNT = 'account',
+  SORTBY = 'sort-by',
+  CATEGORY = 'category',
 }
 
 interface SubmenuProps {
@@ -23,6 +27,9 @@ interface SubmenuProps {
   onClose: () => void;
   children: ReactNode;
   theme?: SubmenuTheme;
+  showTriangle?: boolean;
+  passedIsClosing?: boolean;
+  sidebarPadding?: boolean;
 }
 
 export const Submenu = (props: SubmenuProps) => {
@@ -32,16 +39,20 @@ export const Submenu = (props: SubmenuProps) => {
     isOpen,
     onClose,
     theme = SubmenuTheme.SETTINGS,
+    showTriangle = false,
+    passedIsClosing,
+    sidebarPadding,
   } = props;
   const [isClosing, setIsClosing] = useState(false);
   const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
+  const { i18n } = useTranslation();
 
   const closeHandler = useCallback(() => {
     setIsClosing(true);
     timeRef.current = setTimeout(() => {
       setIsClosing(false);
       onClose();
-    }, 250);
+    }, 200);
   }, [onClose]);
 
   const onKeyDown = useCallback(
@@ -67,17 +78,30 @@ export const Submenu = (props: SubmenuProps) => {
 
   const mods: Mods = {
     [cls.opened]: isOpen,
-    [cls.isClosing]: isClosing,
+    [cls.isClosing]: passedIsClosing ? passedIsClosing : isClosing,
+    [cls.sidebarPadding]: sidebarPadding,
   };
 
   return (
     <Portal>
       <div className={classNames(cls.Submenu, mods, [className, cls[theme]])}>
         <div className={cls.overlay} onClick={closeHandler}>
-          <div className={cls.content} onClick={onContentClick}>
+          <div
+            className={classNames(
+              cls.content,
+              { [cls.showTriangle]: showTriangle },
+              [],
+            )}
+            onClick={onContentClick}
+          >
             <Button className={cls.closeBtn}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>
+            {showTriangle && (
+              <TriangleIcon
+                className={classNames(cls.triangle, {}, [cls[i18n.language]])}
+              />
+            )}
             {children}
           </div>
         </div>

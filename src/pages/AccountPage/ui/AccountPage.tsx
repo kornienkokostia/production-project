@@ -22,9 +22,9 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Currancy } from 'entities/Currency';
 import { Country } from 'entities/Country';
 import { useParams } from 'react-router-dom';
+import { Page } from 'widgets/Page/Page';
 import cls from './AccountPage.module.scss';
 import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
-import { Page } from 'shared/ui/Page/Page';
 
 const initialReducers: ReducersList = {
   account: accountReducer,

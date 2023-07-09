@@ -14,6 +14,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import ArrowBackIcon from 'shared/assets/icons/arrow-back.svg';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Page } from 'widgets/Page/Page';
 import {
   getArticleDetailsData,
   getArticleDetailsError,
@@ -39,7 +40,9 @@ const reducers: ReducersList = {
 };
 
 export const ArticleDetails = memo(
-  ({ className, id, comments, onSendComment }: ArticleDetailsProps) => {
+  ({
+    className, id, comments, onSendComment,
+  }: ArticleDetailsProps) => {
     const { t } = useTranslation('article-details');
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getArticleDetailsIsLoading);
@@ -121,12 +124,12 @@ export const ArticleDetails = memo(
             </>
           )}
         </div>
-        <div className={classNames(cls.ArticleDetails, {}, [className])}>
+        <Page className={classNames(cls.ArticleDetails, {}, [className])}>
           {content}
-          {article && (
+          {article && !isLoading && (
             <CommentList comments={comments} onSendComment={onSendComment} />
           )}
-        </div>
+        </Page>
       </DynamicModuleLoader>
     );
   },

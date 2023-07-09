@@ -1,5 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo, useCallback, useEffect, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useState,
+} from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
 import ToggleIcon from 'shared/assets/icons/nav-bar-toggle-btn.svg';
