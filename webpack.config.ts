@@ -11,6 +11,10 @@ export default (env: BuildEnv) => {
     src: path.resolve(__dirname, 'src'),
     locales: path.resolve(__dirname, 'public', 'locales'),
     buildLocales: path.resolve(__dirname, 'build', 'locales'),
+    redirects: path.resolve(__dirname, './netlify.toml'),
+    buildRedirects: path.resolve(__dirname, 'build/netlify.toml'),
+    favIcon: path.resolve(__dirname, './favicon.svg'),
+    buildFavIcon: path.resolve(__dirname, 'build/favicon.svg')
   };
 
   const mode = env.mode || 'development';
