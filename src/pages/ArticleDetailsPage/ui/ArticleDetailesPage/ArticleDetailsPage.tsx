@@ -1,5 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { MutableRefObject, memo, useCallback, useEffect, useRef } from 'react';
+import {
+  MutableRefObject, memo, useCallback, useEffect, useRef,
+} from 'react';
 import { ArticleDetails, ArticleList, ArticleView } from 'entities/Article';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -13,14 +15,14 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { addCommentToArticle } from 'pages/ArticleDetailsPage/model/services/addCommentToArticle/addCommentToArticle';
 import { Page } from 'widgets/Page/Page';
+import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slice';
+import { getArticleDetailsIsLoading } from 'entities/Article/model/selectors/articleDetails';
 import { getArticleComments } from '../../model/slice/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
 import { getArticleRecommendations } from '../../model/slice/articleDetailsPageRecommendationsSlice.ts';
 import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsHeader/ArticleDetailsPageHeader';
 import { fetchArticlesRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
-import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slice';
-import { getArticleDetailsIsLoading } from 'entities/Article/model/selectors/articleDetails';
 
 interface ArticleDetailesPageProps {
   className?: string;

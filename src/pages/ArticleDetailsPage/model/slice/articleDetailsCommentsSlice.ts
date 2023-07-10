@@ -30,14 +30,14 @@ const articleDetailsCommentsSlice = createSlice({
       state.error = undefined;
       state.isLoading = true;
     }),
-      builder.addCase(fetchCommentsByArticleId.fulfilled, (state, action: PayloadAction<Comment[]>) => {
-        state.isLoading = false;
-        commentsAdapter.setAll(state, action.payload);
-      }),
-      builder.addCase(fetchCommentsByArticleId.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      });
+    builder.addCase(fetchCommentsByArticleId.fulfilled, (state, action: PayloadAction<Comment[]>) => {
+      state.isLoading = false;
+      commentsAdapter.setAll(state, action.payload);
+    }),
+    builder.addCase(fetchCommentsByArticleId.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 

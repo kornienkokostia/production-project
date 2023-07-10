@@ -57,12 +57,13 @@ export const Select = <T extends string, K extends string>(
     }, 200);
   }, [setIsOpen]);
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       clearTimeout(timeRef.current);
       clearTimeout(delayRef.current);
-    };
-  }, []);
+    },
+    [],
+  );
 
   const onToggleBtn = useCallback(() => {
     setIsOpen(prev => !prev);
@@ -81,7 +82,7 @@ export const Select = <T extends string, K extends string>(
 
       closeHandler();
     },
-    [value, onChangeOrder, onChange, order],
+    [value, onChangeOrder, onChange, order, closeHandler],
   );
 
   return (

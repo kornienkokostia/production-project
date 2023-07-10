@@ -66,7 +66,10 @@ module.exports = {
     'no-param-reassign': 'off',
     'arrow-parens': 'off',
     'max-len': 'off',
-    'no-unused-expressions': 'off'
+    'no-unused-expressions': 'off',
+    'no-sequences': 'off',
+    'react/no-unused-prop-types': 'off',
+    'react/prop-types': 'off'
   },
   globals: {
     __IS_DEV__: true,

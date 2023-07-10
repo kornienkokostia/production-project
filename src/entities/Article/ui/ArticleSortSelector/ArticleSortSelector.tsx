@@ -14,7 +14,9 @@ interface ArticleSortSelectorProps {
 
 export const ArticleSortSelector = (props: ArticleSortSelectorProps) => {
   const { t } = useTranslation('articles');
-  const { value, order, onChange, onChangeOrder } = props;
+  const {
+    value, order, onChange, onChangeOrder,
+  } = props;
 
   const sortFiledOptions = useMemo<SelectOption<ArticleSortField>[]>(
     () => [

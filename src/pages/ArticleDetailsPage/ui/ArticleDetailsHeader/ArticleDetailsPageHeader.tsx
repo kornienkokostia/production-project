@@ -1,5 +1,4 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './ArticleDetailsPageHeader.module.scss';
 import { useSelector } from 'react-redux';
 import { getNavbarCollapsed } from 'entities/AppState';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -16,6 +15,7 @@ import {
   locationState,
 } from 'shared/config/routeConfig/routeConfig';
 import { getCanEditArticle } from 'pages/ArticleDetailsPage/model/selectors/article';
+import cls from './ArticleDetailsPageHeader.module.scss';
 
 interface ArticleDetailsPageHeaderProps {
   className?: string;
@@ -38,7 +38,7 @@ export const ArticleDetailsPageHeader = ({
     } else {
       navigate(-1);
     }
-  }, [navigate]);
+  }, [navigate, location.state]);
 
   const onEditArticle = useCallback(() => {
     navigate(`${RoutePath.articles}/${article?.id}/edit`);

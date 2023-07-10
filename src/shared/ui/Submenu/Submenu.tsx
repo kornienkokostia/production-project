@@ -9,10 +9,10 @@ import {
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
 import TriangleIcon from 'shared/assets/icons/select-top-triangle.svg';
+import { useTranslation } from 'react-i18next';
 import cls from './Submenu.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button } from '../Button/Button';
-import { useTranslation } from 'react-i18next';
 
 export enum SubmenuTheme {
   SETTINGS = 'settings',
@@ -78,7 +78,7 @@ export const Submenu = (props: SubmenuProps) => {
 
   const mods: Mods = {
     [cls.opened]: isOpen,
-    [cls.isClosing]: passedIsClosing ? passedIsClosing : isClosing,
+    [cls.isClosing]: passedIsClosing || isClosing,
     [cls.sidebarPadding]: sidebarPadding,
   };
 

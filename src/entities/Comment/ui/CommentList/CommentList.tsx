@@ -1,11 +1,11 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { AddCommentForm } from 'features/addCommentForm';
+import { useSelector } from 'react-redux';
+import { getArticleDetailsData } from 'entities/Article/model/selectors/articleDetails';
 import cls from './CommentList.module.scss';
 import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';
-import { useSelector } from 'react-redux';
-import { getArticleDetailsData } from 'entities/Article/model/selectors/articleDetails';
 
 interface CommentListProps {
   className?: string;

@@ -10,7 +10,6 @@ import {
 } from 'entities/Article/model/types/article';
 import { useTranslation } from 'react-i18next';
 import { SortOrder } from 'shared/types';
-import cls from './ArticlesPageFilters.module.scss';
 import { useSelector } from 'react-redux';
 import { getNavbarCollapsed } from 'entities/AppState';
 import {
@@ -31,6 +30,7 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList';
 import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
 import { SubmenuTheme } from 'shared/ui/Submenu/Submenu';
+import cls from './ArticlesPageFilters.module.scss';
 
 interface ArticlesPageFiltersProps {
   className?: string;
@@ -57,8 +57,9 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
     (view: ArticleView) => {
       dispatch(articlesPageActions.setView(view));
       dispatch(articlesPageActions.setPage(1));
+      fetchData();
     },
-    [dispatch],
+    [dispatch, fetchData],
   );
 
   const onChangeSort = useCallback(
@@ -92,13 +93,16 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
     dispatch(articlesPageActions.setSearch(''));
     dispatch(articlesPageActions.setPage(1));
     fetchData();
-  }, [dispatch]);
+  }, [dispatch, fetchData]);
 
-  const onChangeCategory = useCallback((type: ArticleType) => {
-    dispatch(articlesPageActions.setType(type));
-    dispatch(articlesPageActions.setPage(1));
-    fetchData();
-  }, []);
+  const onChangeCategory = useCallback(
+    (type: ArticleType) => {
+      dispatch(articlesPageActions.setType(type));
+      dispatch(articlesPageActions.setPage(1));
+      fetchData();
+    },
+    [dispatch, fetchData],
+  );
 
   return (
     <>
