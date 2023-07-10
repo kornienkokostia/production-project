@@ -7,8 +7,6 @@ export interface BuildPaths {
     src: string;
     locales: string
     buildLocales: string
-    redirects: string
-    buildRedirects: string
     favIcon: string
     buildFavIcon: string
 }
