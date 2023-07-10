@@ -13,7 +13,7 @@ export default (env: BuildEnv) => {
     buildLocales: path.resolve(__dirname, 'build', 'locales'),
     redirects: path.resolve(__dirname, './netlify.toml'),
     buildRedirects: path.resolve(__dirname, 'build/netlify.toml'),
-    favIcon: path.resolve(__dirname, './favicon.svg'),
+    favIcon: path.resolve(__dirname, 'public/favicon.svg'),
     buildFavIcon: path.resolve(__dirname, 'build/favicon.svg')
   };
 
