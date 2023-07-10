@@ -25,7 +25,7 @@ export function buildPlugins({
     new CopyPlugin({
       patterns: [
         { from: paths.locales, to: paths.buildLocales },
-        { from: paths.redirects, to: paths.buildRedirects },
+        { from: paths.redirects, to: paths.buildRedirects, toType: 'file' },
         { from: paths.favIcon, to: paths.buildFavIcon },
       ],
     }),
