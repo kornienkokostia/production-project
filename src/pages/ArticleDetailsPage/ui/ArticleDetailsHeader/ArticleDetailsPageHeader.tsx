@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './ArticleDetailsHeader.module.scss';
+import cls from './ArticleDetailsPageHeader.module.scss';
 import { useSelector } from 'react-redux';
 import { getNavbarCollapsed } from 'entities/AppState';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,36 +10,46 @@ import { useTranslation } from 'react-i18next';
 import {
   getArticleDetailsData,
   getArticleDetailsIsLoading,
-} from 'entities/Article/model/selectors/articleDetails';
+} from 'entities/Article';
 import {
   RoutePath,
   locationState,
 } from 'shared/config/routeConfig/routeConfig';
+import { getCanEditArticle } from 'pages/ArticleDetailsPage/model/selectors/article';
 
-interface ArticleDetailsHeaderProps {
+interface ArticleDetailsPageHeaderProps {
   className?: string;
 }
 
-export const ArticleDetailsHeader = ({
+export const ArticleDetailsPageHeader = ({
   className,
-}: ArticleDetailsHeaderProps) => {
+}: ArticleDetailsPageHeaderProps) => {
   const navbarCollapsed = useSelector(getNavbarCollapsed);
   const navigate = useNavigate();
   const { t } = useTranslation('article-details');
   const article = useSelector(getArticleDetailsData);
   const isLoading = useSelector(getArticleDetailsIsLoading);
   const location = useLocation() as locationState;
+  const canEdit = useSelector(getCanEditArticle);
 
   const onBackToList = useCallback(() => {
-    navigate(-1);
+    if (!location.state) {
+      navigate(RoutePath.articles);
+    } else {
+      navigate(-1);
+    }
   }, [navigate]);
+
+  const onEditArticle = useCallback(() => {
+    navigate(`${RoutePath.articles}/${article?.id}/edit`);
+  }, [navigate, article?.id]);
 
   return (
     <div
       className={classNames(
         cls.ArticleHeader,
         { [cls.navbarCollapsed]: navbarCollapsed },
-        [],
+        [className],
       )}
     >
       <Button
@@ -48,7 +58,7 @@ export const ArticleDetailsHeader = ({
         onClick={onBackToList}
       >
         <ArrowBackIcon className={cls.btnIcon} />
-        {location.state.prevPath === RoutePath.articles ? (
+        {!location.state || location.state.prevPath === RoutePath.articles ? (
           <span>{t('Articles')}</span>
         ) : (
           <span>{t('Back')}</span>
@@ -58,6 +68,17 @@ export const ArticleDetailsHeader = ({
         <>
           <p className={cls.date}>{article?.createdAt}</p>
           <p className={cls.views}>{`${article?.views} ${t('views')}`}</p>
+          <div className={cls.editWrapper}>
+            {/* {canEdit && (
+              <Button
+                theme={ButtonTheme.APPLE_CLEAR}
+                className={cls.editBtn}
+                onClick={onEditArticle}
+              >
+                {t('Edit')}
+              </Button>
+            )} */}
+          </div>
         </>
       )}
     </div>

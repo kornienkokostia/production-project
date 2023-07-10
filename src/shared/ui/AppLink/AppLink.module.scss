@@ -10,6 +10,7 @@
   color: var(--primary-color);
   transition: filter 0.1s;
   display: flex;
+  align-items: center;
   &:active {
     filter: var(--on-elem-active-filter);
   }

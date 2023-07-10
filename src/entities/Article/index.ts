@@ -7,3 +7,4 @@ export { ArticleList } from './ui/ArticleList/ArticleList';
 export { ArticleViewSwitcher } from './ui/ArticleViewSwitcher/ArticleViewSwitcher';
 export { ArticleSortSelector } from './ui/ArticleSortSelector/ArticleSortSelector'
 export { ArticleCategorySelector } from './ui/ArticleCategorySelector/ArticleCategorySelector'
+export { getArticleDetailsData, getArticleDetailsIsLoading } from './model/selectors/articleDetails'

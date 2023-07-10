@@ -61,7 +61,7 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
           )}
           <div className={cls.footer}>
             <AppLink
-              theme={AppLinkTheme.NO_STYLE}
+              theme={AppLinkTheme.APPLE_LINK}
               to={RoutePath.article_details + article.id}
               state={{ prevPath: location.pathname }}
               className={cls.link}

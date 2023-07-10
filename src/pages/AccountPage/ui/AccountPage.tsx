@@ -115,7 +115,7 @@ const AccountPage = ({ className }: AccountPageProps) => {
 
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-      <Page className={classNames(cls.AccountPage, {}, [className])}>
+      <div className={classNames(cls.AccountPage, {}, [className])}>
         <AccountPageHeader formErrors={accountErrors} id={id} />
         <AccountCard
           data={formData}
@@ -132,7 +132,7 @@ const AccountPage = ({ className }: AccountPageProps) => {
           readonly={readonly}
           formErrors={accountErrors}
         />
-      </Page>
+      </div>
     </DynamicModuleLoader>
   );
 };

@@ -128,6 +128,9 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
             <ClearInputIcon className={cls.clearBtnIcon} />
           </Button>
         </div>
+        {/* <Button theme={ButtonTheme.APPLE_CLEAR} className={cls.createBtn}>
+          <span>{t('Create')}</span>
+        </Button> */}
       </div>
 
       <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>

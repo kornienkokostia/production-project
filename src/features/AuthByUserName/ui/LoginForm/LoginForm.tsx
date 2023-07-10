@@ -4,7 +4,12 @@ import { InputTheme, TextInput } from 'shared/ui/TextInput/TextInput';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import SingInFormBtnIcon from 'shared/assets/icons/singin-form-btn.svg';
 import {
-  memo, useCallback, useEffect, useState,
+  MutableRefObject,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import { useSelector } from 'react-redux';
 import { Loader, LoaderTheme } from 'shared/ui/Loader/Loader';
@@ -45,12 +50,11 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   const isLoading = useSelector(getLoginIsLoading);
   const usernameFocused = useSelector(getUsernameFocused);
   const passwordFocused = useSelector(getPasswordFocused);
+  const firstInputRef = useRef() as MutableRefObject<HTMLInputElement>;
+  const secondInputRef = useRef() as MutableRefObject<HTMLInputElement>;
 
   useEffect(() => {
-    const el = document.querySelectorAll(
-      `.${cls.LoginForm} .input-field-input`,
-    )[0] as HTMLInputElement;
-    el.focus();
+    firstInputRef.current.focus();
   }, []);
 
   const showPasswordField = useCallback(() => {
@@ -58,10 +62,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     setHideSingInBtn(false);
     setHideUsernameBtn(true);
     setTimeout(() => {
-      const el = document.querySelectorAll(
-        `.${cls.LoginForm} .input-field-input`,
-      )[1] as HTMLInputElement;
-      el.focus();
+      secondInputRef.current.focus();
     }, 200);
   }, []);
 
@@ -138,11 +139,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     if (error) {
       dispatch(loginActions.setPassword(''));
       dispatch(loginActions.setPasswordFocused(false));
-      document
-        .querySelectorAll<HTMLInputElement>(
-          `.${cls.LoginForm} .input-field-input`,
-        )[0]
-        .focus();
+      firstInputRef.current.focus();
       setShowErrorMsg(true);
     }
   }, [error, dispatch]);
@@ -164,6 +161,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             paddingRight={!passwordFieldVisible}
             onChange={onChangeUsername}
             value={username}
+            ref={firstInputRef}
           />
           <Button
             theme={ButtonTheme.CLEAR}
@@ -186,6 +184,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             onChange={onChangePassword}
             value={password}
             type="password"
+            ref={secondInputRef}
           />
           <Button
             theme={ButtonTheme.CLEAR}

@@ -1,6 +1,7 @@
 import { AboutPage } from 'pages/AboutPage';
 import { AccountPage } from 'pages/AccountPage';
 import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
+import { ArticleEditPage } from 'pages/ArticleEditPage';
 import { ArticlesPage } from 'pages/ArticlesPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
@@ -16,6 +17,10 @@ export enum AppRoutes {
   ACCOUNT = 'account',
   ARTICLES = 'articles',
   ARTICLE_DETAILS = 'article_details',
+  ARTICLE_CREATE = 'article_create',
+  ARTICLE_EDIT = 'article_edit',
+
+  // last
   NOT_FOUND = 'not_found',
 }
 
@@ -25,6 +30,8 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.ACCOUNT]: '/account/',
   [AppRoutes.ARTICLES]: '/articles',
   [AppRoutes.ARTICLE_DETAILS]: '/articles/',
+  [AppRoutes.ARTICLE_CREATE]: '/articles/new',
+  [AppRoutes.ARTICLE_EDIT]: '/articles/:id/edit',
   [AppRoutes.NOT_FOUND]: '*',
 };
 
@@ -52,6 +59,18 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     element: <ArticleDetailsPage />,
     authOnly: true,
   },
+  [AppRoutes.ARTICLE_CREATE]: {
+    path: RoutePath.article_create,
+    element: <ArticleEditPage />,
+    authOnly: true,
+  },
+  [AppRoutes.ARTICLE_EDIT]: {
+    path: RoutePath.article_edit,
+    element: <ArticleEditPage />,
+    authOnly: true,
+  },
+
+  //last
   [AppRoutes.NOT_FOUND]: {
     path: RoutePath.not_found,
     element: <NotFoundPage />,
@@ -60,6 +79,6 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
 
 export interface locationState extends Location {
   state: {
-    prevPath: string;
+    prevPath?: string;
   };
 }

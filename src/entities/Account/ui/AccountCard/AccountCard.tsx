@@ -86,7 +86,7 @@ export const AccountCard = (props: AccountCardProps) => {
   }
 
   return (
-    <div className={classNames(cls.AccountCard, {}, [className])}>
+    <section className={classNames(cls.AccountCard, {}, [className])}>
       <div className={cls.data}>
         <AccountPhoto src={data?.avatar} className={cls.AccountPhoto} />
         <TextInput
@@ -158,6 +158,6 @@ export const AccountCard = (props: AccountCardProps) => {
           readonly={readonly}
         />
       </div>
-    </div>
+    </section>
   );
 };

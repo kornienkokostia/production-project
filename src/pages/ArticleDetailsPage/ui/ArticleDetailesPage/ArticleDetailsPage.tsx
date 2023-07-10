@@ -13,17 +13,11 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { addCommentToArticle } from 'pages/ArticleDetailsPage/model/services/addCommentToArticle/addCommentToArticle';
 import { Page } from 'widgets/Page/Page';
-import {
-  articleDetailsCommentsReducer,
-  getArticleComments,
-} from '../../model/slice/articleDetailsCommentsSlice';
+import { getArticleComments } from '../../model/slice/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
-import {
-  articleDetailsPageRecommendationsReducer,
-  getArticleRecommendations,
-} from '../../model/slice/articleDetailsPageRecommendationsSlice.ts';
+import { getArticleRecommendations } from '../../model/slice/articleDetailsPageRecommendationsSlice.ts';
 import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
-import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHeader';
+import { ArticleDetailsPageHeader } from '../ArticleDetailsHeader/ArticleDetailsPageHeader';
 import { fetchArticlesRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
 import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slice';
 import { getArticleDetailsIsLoading } from 'entities/Article/model/selectors/articleDetails';
@@ -72,8 +66,8 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
   return (
     <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(cls.ArticleDetailesPage, {}, [className])}>
-        <ArticleDetailsHeader />
-        <div className={cls.ArticleDetailesWrapper} ref={wrapperRef}>
+        <ArticleDetailsPageHeader />
+        <section className={cls.ArticleDetailesWrapper} ref={wrapperRef}>
           <ArticleDetails id={id} />
           {!isLoading && (
             <>
@@ -89,7 +83,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
               <CommentList comments={comments} onSendComment={onSendComment} />
             </>
           )}
-        </div>
+        </section>
       </div>
     </DynamicModuleLoader>
   );
