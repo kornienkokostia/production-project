@@ -4,7 +4,7 @@ import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
 import { ArticlesPage } from 'pages/ArticlesPage';
 import { MainPage } from 'pages/MainPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
-import { RouteProps } from 'react-router-dom';
+import { Location, RouteProps } from 'react-router-dom';
 
 export type AppRouteProps = RouteProps & {
   authOnly?: boolean;
@@ -57,3 +57,9 @@ export const routeConfig: Record<AppRoutes, AppRouteProps> = {
     element: <NotFoundPage />,
   },
 };
+
+export interface locationState extends Location {
+  state: {
+    prevPath: string;
+  };
+}

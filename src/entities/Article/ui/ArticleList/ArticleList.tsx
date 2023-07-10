@@ -22,13 +22,13 @@ export const ArticleList = (props: ArticleListProps) => {
 
   if (isLoading && !articles.length) {
     return (
-      <div className={cls.loading}>
+      <div className={cls.loadingFull}>
         <Loader />
       </div>
     );
   }
 
-  if (!isLoading && !articles.length) {
+  if (!isLoading && !articles.length && isLoading !== undefined) {
     return (
       <div className={cls.noItems}>
         <span>{t('No articles were found')}</span>

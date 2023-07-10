@@ -6,7 +6,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import ArrowLinkIcon from 'shared/assets/icons/arrow-link.svg';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import {
   Article,
@@ -25,16 +25,12 @@ interface ArticleListItemProps {
 export const ArticleListItem = (props: ArticleListItemProps) => {
   const { className, article, view } = props;
   const { t } = useTranslation('article-details');
-  const navigate = useNavigate();
+  const location = useLocation();
 
   const types = <p className={cls.types}>{article.type.join(', ')}</p>;
   const views = (
     <p className={cls.views}>{`${String(article.views)} ${t('views')}`}</p>
   );
-
-  const onOpenArticle = useCallback(() => {
-    navigate(RoutePath.article_details + article.id);
-  }, [navigate, article.id]);
 
   if (view === ArticleView.BIG) {
     const textBlock = article.blocks.find(
@@ -64,14 +60,15 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
             />
           )}
           <div className={cls.footer}>
-            <Button
-              theme={ButtonTheme.APPLE_CLEAR}
+            <AppLink
+              theme={AppLinkTheme.NO_STYLE}
+              to={RoutePath.article_details + article.id}
+              state={{ prevPath: location.pathname }}
               className={cls.link}
-              onClick={onOpenArticle}
             >
               <span>{t('Read more')}</span>
               <ArrowLinkIcon className={cls.linkIcon} />
-            </Button>
+            </AppLink>
             {views}
           </div>
         </div>
@@ -83,10 +80,11 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
     <div
       className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
     >
-      <Button
+      <AppLink
         className={cls.card}
-        theme={ButtonTheme.CLEAR}
-        onClick={onOpenArticle}
+        theme={AppLinkTheme.NO_STYLE}
+        to={RoutePath.article_details + article.id}
+        state={{ prevPath: location.pathname }}
       >
         <div className={cls.imageWrapper}>
           <img src={article.img} className={cls.image} alt={article.title} />
@@ -98,7 +96,7 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
           {views}
           <p className={cls.date}>{`${article.createdAt}`}</p>
         </div>
-      </Button>
+      </AppLink>
     </div>
   );
 };

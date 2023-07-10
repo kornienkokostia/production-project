@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { memo, useCallback, useEffect } from 'react';
-import { ArticleDetails } from 'entities/Article';
+import { MutableRefObject, memo, useCallback, useEffect, useRef } from 'react';
+import { ArticleDetails, ArticleList, ArticleView } from 'entities/Article';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CommentList } from 'entities/Comment';
@@ -13,26 +13,40 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import { addCommentToArticle } from 'pages/ArticleDetailsPage/model/services/addCommentToArticle/addCommentToArticle';
 import { Page } from 'widgets/Page/Page';
-import { getArticleCommentsIsLoading } from '../../model/selectors/comments';
 import {
   articleDetailsCommentsReducer,
   getArticleComments,
 } from '../../model/slice/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsPage.module.scss';
+import {
+  articleDetailsPageRecommendationsReducer,
+  getArticleRecommendations,
+} from '../../model/slice/articleDetailsPageRecommendationsSlice.ts';
+import { getArticleRecommendationsIsLoading } from '../../model/selectors/recommendations';
+import { ArticleDetailsHeader } from '../ArticleDetailsHeader/ArticleDetailsHeader';
+import { fetchArticlesRecommendations } from '../../model/services/fetchArticleRecommendations/fetchArticleRecommendations';
+import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slice';
+import { getArticleDetailsIsLoading } from 'entities/Article/model/selectors/articleDetails';
 
 interface ArticleDetailesPageProps {
   className?: string;
 }
 
 const reducers: ReducersList = {
-  articleDetailsComments: articleDetailsCommentsReducer,
+  articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
   const { t } = useTranslation('article-details');
   const { id } = useParams<{ id: string }>();
   const comments = useSelector(getArticleComments.selectAll);
+  const recommendations = useSelector(getArticleRecommendations.selectAll);
+  const recommendationsLoading = useSelector(
+    getArticleRecommendationsIsLoading,
+  );
   const dispatch = useAppDispatch();
+  const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const isLoading = useSelector(getArticleDetailsIsLoading);
 
   const onSendComment = useCallback(
     (text: string) => {
@@ -42,7 +56,9 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
   );
 
   useEffect(() => {
+    wrapperRef.current.scrollTo(0, 0);
     dispatch(fetchCommentsByArticleId(id));
+    dispatch(fetchArticlesRecommendations());
   }, [dispatch, id]);
 
   if (!id) {
@@ -54,13 +70,26 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
   }
 
   return (
-    <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
+    <DynamicModuleLoader reducers={reducers}>
       <div className={classNames(cls.ArticleDetailesPage, {}, [className])}>
-        <ArticleDetails
-          id={id}
-          comments={comments}
-          onSendComment={onSendComment}
-        />
+        <ArticleDetailsHeader />
+        <div className={cls.ArticleDetailesWrapper} ref={wrapperRef}>
+          <ArticleDetails id={id} />
+          {!isLoading && (
+            <>
+              <div className={cls.ArticleRecommendations}>
+                <h1 className={cls.title}>{t('Recommendations')}</h1>
+                <ArticleList
+                  articles={recommendations}
+                  isLoading={recommendationsLoading}
+                  view={ArticleView.SMALL}
+                  className={cls.recommendations}
+                />
+              </div>
+              <CommentList comments={comments} onSendComment={onSendComment} />
+            </>
+          )}
+        </div>
       </div>
     </DynamicModuleLoader>
   );

@@ -4,6 +4,8 @@ import { AddCommentForm } from 'features/addCommentForm';
 import cls from './CommentList.module.scss';
 import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';
+import { useSelector } from 'react-redux';
+import { getArticleDetailsData } from 'entities/Article/model/selectors/articleDetails';
 
 interface CommentListProps {
   className?: string;
@@ -17,19 +19,24 @@ export const CommentList = ({
   onSendComment,
 }: CommentListProps) => {
   const { t } = useTranslation('article-details');
+  const article = useSelector(getArticleDetailsData);
 
   return (
     <div className={classNames(cls.CommentListWrapper, {}, [className])}>
-      <h1 className={cls.title}>{t('Comments')}</h1>
-      <AddCommentForm onSendComment={onSendComment} />
-      {comments && (
-        <div className={cls.CommentList}>
-          {comments?.length ? (
-            comments.map(el => <CommentCard commnet={el} key={el.id} />)
-          ) : (
-            <p>{t('No comments')}</p>
+      {article && (
+        <>
+          <h1 className={cls.title}>{t('Comments')}</h1>
+          <AddCommentForm onSendComment={onSendComment} />
+          {comments && (
+            <div className={cls.CommentList}>
+              {comments?.length ? (
+                comments.map(el => <CommentCard commnet={el} key={el.id} />)
+              ) : (
+                <p>{t('No comments')}</p>
+              )}
+            </div>
           )}
-        </div>
+        </>
       )}
     </div>
   );
