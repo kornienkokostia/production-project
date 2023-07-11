@@ -3,7 +3,6 @@ import {
   MutableRefObject,
   ReactNode,
   UIEvent,
-  useEffect,
   useLayoutEffect,
   useRef,
 } from 'react';
@@ -13,7 +12,6 @@ import { getUIScrollByPath, uiActions } from 'features/UI';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { useThrottle } from 'shared/lib/hooks/useThrottle/useThrottle';
 import cls from './Page.module.scss';
 
 interface PageProps {

@@ -1,4 +1,6 @@
-import React, { Suspense, memo, useCallback, useMemo } from 'react';
+import React, {
+  Suspense, memo, useCallback, useMemo,
+} from 'react';
 import { Route, Routes } from 'react-router-dom';
 import {
   AppRouteProps,
@@ -16,7 +18,8 @@ export const AppRouter = memo(() => {
           //   <Loader theme={LoaderTheme.BIG} />
           // </div>
           ''
-        }>
+        }
+      >
         <div className="page-wrapper">{route.element}</div>
       </Suspense>
     );

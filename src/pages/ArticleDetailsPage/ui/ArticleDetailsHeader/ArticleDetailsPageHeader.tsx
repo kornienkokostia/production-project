@@ -14,7 +14,7 @@ import {
   RoutePath,
   locationState,
 } from 'shared/config/routeConfig/routeConfig';
-import { getCanEditArticle } from 'pages/ArticleDetailsPage/model/selectors/article';
+import { getCanEditArticle } from '../../model/selectors/article';
 import cls from './ArticleDetailsPageHeader.module.scss';
 
 interface ArticleDetailsPageHeaderProps {

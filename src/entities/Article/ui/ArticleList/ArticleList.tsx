@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next';
 import cls from './ArticleList.module.scss';
 import { Article, ArticleView } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
-import { AutoSizer, List, WindowScroller } from 'react-virtualized';
 
 interface ArticleListProps {
   className?: string;
@@ -14,7 +13,9 @@ interface ArticleListProps {
 }
 
 export const ArticleList = (props: ArticleListProps) => {
-  const { className, articles, isLoading, view = ArticleView.SMALL } = props;
+  const {
+    className, articles, isLoading, view = ArticleView.SMALL,
+  } = props;
   const { t } = useTranslation('articles');
 
   const renderArticle = (article: Article) => (
@@ -38,22 +39,6 @@ export const ArticleList = (props: ArticleListProps) => {
   }
 
   return (
-    // <WindowScroller>
-    //   {props => (
-    //     <AutoSizer>
-    //       {({ width, height }) => (
-    //         <List
-    //           height={500}
-    //           rowCount={articles.length}
-    //           rowHeight={500}
-    //           rowRenderer={() => <div>row</div>}
-    //           width={width}
-    //         />
-    //       )}
-    //     </AutoSizer>
-    //   )}
-    // </WindowScroller>
-
     <div className={classNames(cls.ArticleListWrapper, {}, [className])}>
       <div className={classNames(cls.ArticleList, {}, [cls[view]])}>
         {articles.length > 0 ? articles.map(renderArticle) : null}

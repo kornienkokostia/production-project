@@ -18,18 +18,18 @@ import {
   ArticleViewSwitcher,
 } from 'entities/Article';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
+import { SubmenuTheme } from 'shared/ui/Submenu/Submenu';
 import {
   getArticlesPageOrder,
   getArticlesPageSearch,
   getArticlesPageSort,
   getArticlesPageType,
   getArticlesPageView,
-} from 'pages/ArticlesPage/model/selectors/articlesPageSelectors';
-import { articlesPageActions } from 'pages/ArticlesPage/model/slice/articlesPageSlice';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { fetchArticlesList } from 'pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList';
-import { useDebounce } from 'shared/lib/hooks/useDebounce/useDebounce';
-import { SubmenuTheme } from 'shared/ui/Submenu/Submenu';
+} from '../../model/selectors/articlesPageSelectors';
+import { articlesPageActions } from '../../model/slice/articlesPageSlice';
+import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import cls from './ArticlesPageFilters.module.scss';
 
 interface ArticlesPageFiltersProps {

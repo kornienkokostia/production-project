@@ -14,7 +14,7 @@ export default (env: BuildEnv) => {
     redirects: path.resolve(__dirname, '_redirects'),
     buildRedirects: path.resolve(__dirname, 'build/_redirects'),
     favIcon: path.resolve(__dirname, 'public/favicon.svg'),
-    buildFavIcon: path.resolve(__dirname, 'build/favicon.svg')
+    buildFavIcon: path.resolve(__dirname, 'build/favicon.svg'),
   };
 
   const mode = env.mode || 'development';
