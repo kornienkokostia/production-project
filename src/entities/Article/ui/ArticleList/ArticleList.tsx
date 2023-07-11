@@ -38,31 +38,31 @@ export const ArticleList = (props: ArticleListProps) => {
   }
 
   return (
-    <WindowScroller>
-      {props => (
-        <AutoSizer>
-          {({ width, height }) => (
-            <List
-              height={500}
-              rowCount={articles.length}
-              rowHeight={500}
-              rowRenderer={() => <div>row</div>}
-              width={width}
-            />
-          )}
-        </AutoSizer>
-      )}
-    </WindowScroller>
-
-    // <div className={classNames(cls.ArticleListWrapper, {}, [className])}>
-    //   <div className={classNames(cls.ArticleList, {}, [cls[view]])}>
-    //     {articles.length > 0 ? articles.map(renderArticle) : null}
-    //   </div>
-    //   {isLoading && articles.length && (
-    //     <div className={cls.loading}>
-    //       <Loader />
-    //     </div>
+    // <WindowScroller>
+    //   {props => (
+    //     <AutoSizer>
+    //       {({ width, height }) => (
+    //         <List
+    //           height={500}
+    //           rowCount={articles.length}
+    //           rowHeight={500}
+    //           rowRenderer={() => <div>row</div>}
+    //           width={width}
+    //         />
+    //       )}
+    //     </AutoSizer>
     //   )}
-    // </div>
+    // </WindowScroller>
+
+    <div className={classNames(cls.ArticleListWrapper, {}, [className])}>
+      <div className={classNames(cls.ArticleList, {}, [cls[view]])}>
+        {articles.length > 0 ? articles.map(renderArticle) : null}
+      </div>
+      {isLoading && articles.length && (
+        <div className={cls.loading}>
+          <Loader />
+        </div>
+      )}
+    </div>
   );
 };
