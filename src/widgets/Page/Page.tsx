@@ -26,7 +26,9 @@ export const Page = (props: PageProps) => {
   const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-  const scrollPosition = useSelector((state: StateSchema) => getUIScrollByPath(state, pathname));
+  const scrollPosition = useSelector((state: StateSchema) =>
+    getUIScrollByPath(state, pathname),
+  );
 
   useInfiniteScroll({
     triggerRef,
@@ -48,14 +50,13 @@ export const Page = (props: PageProps) => {
   };
 
   return (
-    <section
+    <div
       ref={wrapperRef}
       className={classNames(cls.Page, {}, [className])}
-      onScroll={onScroll}
-    >
+      onScroll={onScroll}>
       {children}
 
       {onScrollEnd && <div ref={triggerRef} className={cls.trigerRef} />}
-    </section>
+    </div>
   );
 };

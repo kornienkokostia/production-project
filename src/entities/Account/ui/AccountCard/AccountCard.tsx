@@ -51,12 +51,12 @@ export const AccountCard = (props: AccountCardProps) => {
   const [isLastNameFocused, setIsLastNameFocused] = useState(true);
   const [isAgeFocused, setIsAgeFocused] = useState(true);
   const [isCityFocused, setIsCityFocused] = useState(true);
-  const [isPhotoFocused, setIsPhotoFocused] = useState(false);
+  const [isPhotoFocused, setIsPhotoFocused] = useState(true);
   const [isUsernameFocused, setIsUsernameFocused] = useState(true);
 
   useEffect(() => {
-    if (data?.avatar) {
-      setIsPhotoFocused(true);
+    if (!data?.avatar) {
+      setIsPhotoFocused(false);
     }
     if (readonly) {
       setIsFirstNameFocused(true);
@@ -70,8 +70,7 @@ export const AccountCard = (props: AccountCardProps) => {
   if (isLoading || isLoading === undefined) {
     return (
       <div
-        className={classNames(cls.AccountCard, {}, [className, cls.loading])}
-      >
+        className={classNames(cls.AccountCard, {}, [className, cls.loading])}>
         <Loader />
       </div>
     );
@@ -86,7 +85,7 @@ export const AccountCard = (props: AccountCardProps) => {
   }
 
   return (
-    <section className={classNames(cls.AccountCard, {}, [className])}>
+    <div className={classNames(cls.AccountCard, {}, [className])}>
       <div className={cls.data}>
         <AccountPhoto src={data?.avatar} className={cls.AccountPhoto} />
         <TextInput
@@ -158,6 +157,6 @@ export const AccountCard = (props: AccountCardProps) => {
           readonly={readonly}
         />
       </div>
-    </section>
+    </div>
   );
 };

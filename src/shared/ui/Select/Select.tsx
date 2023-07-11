@@ -90,8 +90,7 @@ export const Select = <T extends string, K extends string>(
       <Button
         theme={ButtonTheme.APPLE_CLEAR}
         onClick={onToggleBtn}
-        className={cls.selectBtn}
-      >
+        className={cls.selectBtn}>
         <span>
           {`${title} ${options.find(el => el.value === value)?.content}`}
         </span>
@@ -103,8 +102,7 @@ export const Select = <T extends string, K extends string>(
         theme={submenuTheme}
         showTriangle
         passedIsClosing={isClosing}
-        sidebarPadding={sidebarPadding}
-      >
+        sidebarPadding={sidebarPadding}>
         <div className={cls.options}>
           {options.map(el => (
             <div
@@ -114,8 +112,7 @@ export const Select = <T extends string, K extends string>(
                 { [cls.selected]: el.value === value },
                 [],
               )}
-              onClick={() => onOptionClick(el.value)}
-            >
+              onClick={() => onOptionClick(el.value)}>
               {el.value === value && (
                 <SelectedOptionIcon className={cls.selectedIcon} />
               )}
