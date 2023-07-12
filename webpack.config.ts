@@ -17,12 +17,9 @@ export default (env: BuildEnv) => {
     buildFavIcon: path.resolve(__dirname, 'build/favicon.svg'),
   };
 
-  const devApi = 'http://localhost:8000';
-  const prodApi = 'https://iblog-server.vercel.app/';
-
   const mode = env.mode || 'development';
   const PORT = env.port || 3000;
-  const apiUrl = env.apiUrl || prodApi;
+  const apiUrl = env.apiUrl || mode === 'development' ? 'http://localhost:8000' : 'https://iblog-server.vercel.app/';
 
   const isDev = mode === 'development';
 
