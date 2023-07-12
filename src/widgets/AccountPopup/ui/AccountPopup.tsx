@@ -4,11 +4,13 @@ import AccountPopupSignOutIcon from 'shared/assets/icons/account-popup-sign-out.
 import AccountPopupManageAccountIcon from 'shared/assets/icons/account-popup-manage-account.svg';
 import { useDispatch } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { useCallback, useEffect, useState } from 'react';
+import {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { userActions } from 'entities/User';
-import cls from './AccountPopup.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import cls from './AccountPopup.module.scss';
 
 interface AccountPopupProps {
   className?: string;
@@ -39,10 +41,6 @@ export const AccountPopup = ({
   const [showSelected, setShowSelected] = useState<boolean>(false);
   const [canPressEnter, setCanPressEnter] = useState<boolean>(false);
 
-  useEffect(() => {
-    if (!popupOpen) setSelected('');
-  }, [popupOpen]);
-
   const onSignOut = useCallback(() => {
     dispatch(userActions.signOut());
     onClosePopup();
@@ -51,7 +49,29 @@ export const AccountPopup = ({
   const onManageAccount = useCallback(() => {
     navigate(`${RoutePath.account}${userId}`);
     onClosePopup();
-  }, [navigate, onClosePopup]);
+  }, [navigate, onClosePopup, userId]);
+
+  const accountPopupItems: AccountPopupItem[] = useMemo(
+    () => [
+      {
+        title: t('Manage Account'),
+        Icon: AccountPopupManageAccountIcon,
+        onClick: onManageAccount,
+        hasDivider: true,
+      },
+      {
+        title: t('Sign Out'),
+        Icon: AccountPopupSignOutIcon,
+        onClick: onSignOut,
+        hasDivider: false,
+      },
+    ],
+    [onManageAccount, onSignOut, t],
+  );
+
+  useEffect(() => {
+    if (!popupOpen) setSelected('');
+  }, [popupOpen]);
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -91,7 +111,15 @@ export const AccountPopup = ({
         }
       }
     },
-    [popupOpen, selected, showSelected],
+    [
+      popupOpen,
+      selected,
+      showSelected,
+      accountPopupItems,
+      canPressEnter,
+      onSignOut,
+      onManageAccount,
+    ],
   );
 
   useEffect(() => {
@@ -101,23 +129,6 @@ export const AccountPopup = ({
     };
   }, [onKeyDown]);
 
-  const Divider = () => <div className={cls.divider}></div>;
-
-  const accountPopupItems: AccountPopupItem[] = [
-    {
-      title: t('Manage Account'),
-      Icon: AccountPopupManageAccountIcon,
-      onClick: onManageAccount,
-      hasDivider: true,
-    },
-    {
-      title: t('Sign Out'),
-      Icon: AccountPopupSignOutIcon,
-      onClick: onSignOut,
-      hasDivider: false,
-    },
-  ];
-
   return (
     <div
       className={classNames(cls.AccountPopup, {}, [className])}
@@ -125,7 +136,8 @@ export const AccountPopup = ({
         setShowSelected(false);
       }}
       onMouseEnter={() => setCanPressEnter(true)}
-      onMouseLeave={() => setCanPressEnter(false)}>
+      onMouseLeave={() => setCanPressEnter(false)}
+    >
       <div className={cls.header}>
         <h2>{username}</h2>
       </div>
@@ -146,11 +158,12 @@ export const AccountPopup = ({
               onMouseEnter={() => {
                 setSelected(el.title);
               }}
-              onMouseMove={() => {}}>
+              onMouseMove={() => {}}
+            >
               <el.Icon className={cls.icon} />
               <p>{el.title}</p>
             </Button>
-            {el.hasDivider && <Divider />}
+            {el.hasDivider && <div className={cls.divider} />}
           </div>
         ))}
       </div>

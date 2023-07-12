@@ -69,6 +69,22 @@ export const Select = <T extends string, K extends string>(
     [],
   );
 
+  const onOptionClick = useCallback(
+    (val: string) => {
+      delayRef.current = setTimeout(() => {
+        if (val !== value) {
+          onChange(val as T);
+          onChangeOrder?.('asc' as K);
+        } else {
+          onChangeOrder?.(order === 'asc' ? ('desc' as K) : ('asc' as K));
+        }
+      }, 150);
+
+      closeHandler();
+    },
+    [value, onChangeOrder, onChange, order, closeHandler],
+  );
+
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       e.preventDefault();
@@ -98,7 +114,7 @@ export const Select = <T extends string, K extends string>(
         }
       }
     },
-    [isOpen, currentSelected, options, showHoverOnKeyPress],
+    [isOpen, currentSelected, options, showHoverOnKeyPress, onOptionClick],
   );
 
   useEffect(() => {
@@ -113,28 +129,13 @@ export const Select = <T extends string, K extends string>(
     setShowHoverOnKeyPress(false);
   }, [setShowHoverOnKeyPress]);
 
-  const onOptionClick = useCallback(
-    (val: string) => {
-      delayRef.current = setTimeout(() => {
-        if (val !== value) {
-          onChange(val as T);
-          onChangeOrder?.('asc' as K);
-        } else {
-          onChangeOrder?.(order === 'asc' ? ('desc' as K) : ('asc' as K));
-        }
-      }, 150);
-
-      closeHandler();
-    },
-    [value, onChangeOrder, onChange, order, closeHandler],
-  );
-
   return (
     <div className={classNames(cls.Select, {}, [className])}>
       <Button
         theme={ButtonTheme.APPLE_CLEAR}
         onClick={onToggleBtn}
-        className={cls.selectBtn}>
+        className={cls.selectBtn}
+      >
         <span>
           {`${title} ${options.find(el => el.value === value)?.content}`}
         </span>
@@ -146,7 +147,8 @@ export const Select = <T extends string, K extends string>(
         theme={submenuTheme}
         showTriangle
         passedIsClosing={isClosing}
-        sidebarPadding={sidebarPadding}>
+        sidebarPadding={sidebarPadding}
+      >
         <div className={cls.options}>
           {options.map(el => (
             <div
@@ -169,7 +171,8 @@ export const Select = <T extends string, K extends string>(
               onMouseMove={() => {
                 setBlockHover(false);
               }}
-              onMouseLeave={() => setShowHoverOnKeyPress(false)}>
+              onMouseLeave={() => setShowHoverOnKeyPress(false)}
+            >
               {el.value === value && (
                 <SelectedOptionIcon className={cls.selectedIcon} />
               )}

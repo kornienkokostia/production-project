@@ -70,7 +70,8 @@ export const AccountCard = (props: AccountCardProps) => {
   if (isLoading || isLoading === undefined) {
     return (
       <div
-        className={classNames(cls.AccountCard, {}, [className, cls.loading])}>
+        className={classNames(cls.AccountCard, {}, [className, cls.loading])}
+      >
         <Loader />
       </div>
     );

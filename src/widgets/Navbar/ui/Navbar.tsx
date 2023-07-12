@@ -62,7 +62,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           <Button
             theme={ButtonTheme.CLEAR}
             className={cls.NavbarItem}
-            onClick={onToggleAccountPopup}>
+            onClick={onToggleAccountPopup}
+          >
             <div className={cls.AccountBtn}>
               <AccountPhoto src={authData.avatar} />
             </div>
@@ -71,7 +72,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           <Button
             theme={ButtonTheme.APPLE}
             className={cls.NavbarSignin}
-            onClick={onShowModal}>
+            onClick={onShowModal}
+          >
             <SingInIcon className={cls.SingInIcon} />
             <span>{t('Sign in')}</span>
           </Button>
@@ -79,7 +81,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         <Button
           theme={ButtonTheme.CLEAR}
           className={cls.NavbarItem}
-          onClick={onToggleSettings}>
+          onClick={onToggleSettings}
+        >
           <SettingsIcon className={cls.ItemIcon} />
         </Button>
       </div>
@@ -92,7 +95,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           isOpen={isAccountPopupOpen}
           onClose={onToggleAccountPopup}
           theme={SubmenuTheme.ACCOUNT}
-          passedIsClosing={isAccountPopupClosing}>
+          passedIsClosing={isAccountPopupClosing}
+        >
           <AccountPopup
             username={authData.username}
             onClosePopup={closeAccountPopupHandler}
