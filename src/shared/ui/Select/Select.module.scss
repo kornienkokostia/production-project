@@ -23,7 +23,7 @@
   padding: 7px 12px 7px 26px;
   cursor: pointer;
   position: relative;
-  &:hover {
+  &:not(.blockHover):hover {
     background-color: var(--selection-bg-color);
   }
   &:not(:first-child)::after {
@@ -59,4 +59,7 @@
 }
 .asc {
   transform: rotate(180deg);
+}
+.hovered {
+  background-color: var(--selection-bg-color);
 }

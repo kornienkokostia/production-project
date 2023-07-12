@@ -84,6 +84,8 @@ export const AccountCard = (props: AccountCardProps) => {
     );
   }
 
+  console.log(__API__);
+
   return (
     <div className={classNames(cls.AccountCard, {}, [className])}>
       <div className={cls.data}>

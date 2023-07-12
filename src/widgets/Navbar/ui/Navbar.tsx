@@ -1,4 +1,10 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, {
+  MutableRefObject,
+  memo,
+  useCallback,
+  useRef,
+  useState,
+} from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
@@ -8,7 +14,6 @@ import SettingsIcon from 'shared/assets/icons/settings.svg';
 import { Submenu, SubmenuTheme } from 'shared/ui/Submenu/Submenu';
 import { getUserAuthData } from 'entities/User';
 import { useSelector } from 'react-redux';
-import AccountPlaceholderIcon from 'shared/assets/icons/account-pic-placeholder.svg';
 import { Settings } from 'widgets/Settings';
 import { AccountPopup } from 'widgets/AccountPopup';
 import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
@@ -24,6 +29,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const [isAccountPopupOpen, setAccountPopupOpen] = useState(false);
   const authData = useSelector(getUserAuthData);
+  const [isAccountPopupClosing, setIsAccountPopupClosing] = useState(false);
+  const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   const onCloseModal = useCallback(() => {
     setIsAuthOpen(false);
@@ -38,9 +45,14 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const onToggleAccountPopup = useCallback(() => {
     setAccountPopupOpen(prev => !prev);
   }, []);
-  const onCloseAccountPopup = useCallback(() => {
-    setAccountPopupOpen(false);
-  }, []);
+
+  const closeAccountPopupHandler = useCallback(() => {
+    setIsAccountPopupClosing(true);
+    timeRef.current = setTimeout(() => {
+      setIsAccountPopupClosing(false);
+      setAccountPopupOpen(false);
+    }, 200);
+  }, [setAccountPopupOpen]);
 
   return (
     <header className={classNames(cls.Navbar, {}, [className])}>
@@ -50,8 +62,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           <Button
             theme={ButtonTheme.CLEAR}
             className={cls.NavbarItem}
-            onClick={onToggleAccountPopup}
-          >
+            onClick={onToggleAccountPopup}>
             <div className={cls.AccountBtn}>
               <AccountPhoto src={authData.avatar} />
             </div>
@@ -60,8 +71,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           <Button
             theme={ButtonTheme.APPLE}
             className={cls.NavbarSignin}
-            onClick={onShowModal}
-          >
+            onClick={onShowModal}>
             <SingInIcon className={cls.SingInIcon} />
             <span>{t('Sign in')}</span>
           </Button>
@@ -69,8 +79,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         <Button
           theme={ButtonTheme.CLEAR}
           className={cls.NavbarItem}
-          onClick={onToggleSettings}
-        >
+          onClick={onToggleSettings}>
           <SettingsIcon className={cls.ItemIcon} />
         </Button>
       </div>
@@ -83,10 +92,12 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           isOpen={isAccountPopupOpen}
           onClose={onToggleAccountPopup}
           theme={SubmenuTheme.ACCOUNT}
-        >
+          passedIsClosing={isAccountPopupClosing}>
           <AccountPopup
             username={authData.username}
-            onSignOutClosePopup={onCloseAccountPopup}
+            onClosePopup={closeAccountPopupHandler}
+            userId={authData.id}
+            popupOpen={isAccountPopupOpen}
           />
         </Submenu>
       )}

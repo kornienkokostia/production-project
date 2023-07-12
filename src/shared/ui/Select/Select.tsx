@@ -49,6 +49,10 @@ export const Select = <T extends string, K extends string>(
   const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
   const delayRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
+  const [currentSelected, setCurrentSelected] = useState<T>(value);
+  const [showHoverOnKeyPress, setShowHoverOnKeyPress] = useState(false);
+  const [blockHover, setBlockHover] = useState(false);
+
   const closeHandler = useCallback(() => {
     setIsClosing(true);
     timeRef.current = setTimeout(() => {
@@ -65,9 +69,49 @@ export const Select = <T extends string, K extends string>(
     [],
   );
 
+  const onKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      e.preventDefault();
+      if (isOpen) {
+        if (e.key === 'ArrowUp') {
+          options.forEach((el, i) => {
+            if (el.value === currentSelected && i > 0) {
+              setCurrentSelected(options[i - 1].value);
+            }
+          });
+          setShowHoverOnKeyPress(true);
+          setBlockHover(true);
+        }
+        if (e.key === 'ArrowDown') {
+          options.forEach((el, i) => {
+            if (el.value === currentSelected && i < options.length - 1) {
+              setCurrentSelected(options[i + 1].value);
+            }
+          });
+          setShowHoverOnKeyPress(true);
+          setBlockHover(true);
+        }
+        if (e.key === 'Enter') {
+          if (showHoverOnKeyPress) {
+            onOptionClick(currentSelected);
+          }
+        }
+      }
+    },
+    [isOpen, currentSelected, options, showHoverOnKeyPress],
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', onKeyDown);
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [onKeyDown]);
+
   const onToggleBtn = useCallback(() => {
     setIsOpen(prev => !prev);
-  }, []);
+    setShowHoverOnKeyPress(false);
+  }, [setShowHoverOnKeyPress]);
 
   const onOptionClick = useCallback(
     (val: string) => {
@@ -109,10 +153,23 @@ export const Select = <T extends string, K extends string>(
               key={el.value}
               className={classNames(
                 cls.option,
-                { [cls.selected]: el.value === value },
+                {
+                  [cls.selected]: el.value === value,
+                  [cls.hovered]:
+                    el.value === currentSelected && showHoverOnKeyPress,
+                  [cls.blockHover]: blockHover,
+                },
                 [],
               )}
-              onClick={() => onOptionClick(el.value)}>
+              onClick={() => onOptionClick(el.value)}
+              onMouseEnter={() => {
+                setShowHoverOnKeyPress(true);
+                setCurrentSelected(el.value);
+              }}
+              onMouseMove={() => {
+                setBlockHover(false);
+              }}
+              onMouseLeave={() => setShowHoverOnKeyPress(false)}>
               {el.value === value && (
                 <SelectedOptionIcon className={cls.selectedIcon} />
               )}

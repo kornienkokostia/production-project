@@ -16,5 +16,6 @@
   "UsernameSignInError": "Имя пользователя или пароль были введены неправильно.",
   "Sign Out": "Выйти",
   "Account page": "Аккаунт",
-  "Articles page": "Статьи"
+  "Articles page": "Статьи",
+  "Manage Account": "Управлять Аккаунтом"
 }

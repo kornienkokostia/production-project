@@ -8,6 +8,8 @@
   overflow: hidden;
 }
 .items {
+  display: flex;
+  flex-direction: column;
   padding: 5px;
 }
 .item {
@@ -19,11 +21,20 @@
   line-height: 20px;
   width: 100%;
   color: var(--main-text-color);
-  &:hover {
+  &:not(.showSelected):hover {
     background-color: rgba(170, 170, 174, 0.2);
   }
 }
 .icon {
   margin-left: 3px;
   fill: var(--main-text-color);
+}
+.divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 5px;
+}
+.selected {
+  background-color: rgba(170, 170, 174, 0.2);
+  box-shadow: 0 0 0 2px var(--focus-color);
 }
