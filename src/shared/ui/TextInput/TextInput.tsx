@@ -102,8 +102,7 @@ export const TextInput = memo(
               'input-field-title',
               { hiddenTitle: hidden },
               [isFocused ? 'active' : undefined, isError ? 'error' : undefined],
-            )}
-          >
+            )}>
             {fieldTitle}
           </span>
 

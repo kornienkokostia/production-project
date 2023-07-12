@@ -12,11 +12,13 @@ import { addCommentFormSchema } from 'features/addCommentForm';
 import { ArticleDetailsCommentsSchema, ArticleDetailsPageSchema, articleDetailsPageRecommendationsSchema } from 'pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from 'pages/ArticlesPage';
 import { NavigateOptions, To } from 'react-router-dom';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
   appState: AppStateSchema
-  user: UserSchema;
+  user: UserSchema
   ui: UISchema
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 
   // Async redusers
   loginForm?: LoginSchema
@@ -25,6 +27,7 @@ export interface StateSchema {
   addCommentForm?: addCommentFormSchema
   articlesPage?: ArticlesPageSchema
   articleDetailsPage?: ArticleDetailsPageSchema
+
 }
 
 export type StateSchemaKey = keyof StateSchema

@@ -23,5 +23,6 @@ export { getAccountError } from './model/selectors/getAccountError/getAccountErr
 export { getAccountIsLoading } from './model/selectors/getAccountIsLoading/getAccountIsLoading';
 export { getAccountReadonly } from './model/selectors/getAccountReadonly/getAccountReadonly';
 export { getAccountForm } from './model/selectors/getAccountForm/getAccountForm';
+export { getAccountFormErrors } from './model/selectors/getAccountFormErrors/getAccountFormErrors';
 
 export { validateAccountData } from './model/services/validateAccountData/validateAccountData';

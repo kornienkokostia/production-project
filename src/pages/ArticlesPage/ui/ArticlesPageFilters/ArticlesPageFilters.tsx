@@ -81,6 +81,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
 
   const onChangeSearch = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log(articlesPageActions);
       dispatch(articlesPageActions.setSearch(e.target.value));
       dispatch(articlesPageActions.setPage(1));
       debouncedFetchData();
@@ -110,8 +111,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
           cls.articlesPageHeader,
           { [cls.navbarCollapsed]: navbarCollapsed },
           [],
-        )}
-      >
+        )}>
         <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
         <div className={cls.search}>
           <SearchIcon className={cls.searchIcon} />
@@ -126,8 +126,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
             theme={ButtonTheme.CLEAR}
             className={cls.clearBtn}
             disabled={!(search.length > 0)}
-            onClick={onClearSearch}
-          >
+            onClick={onClearSearch}>
             <ClearInputIcon className={cls.clearBtnIcon} />
           </Button>
         </div>

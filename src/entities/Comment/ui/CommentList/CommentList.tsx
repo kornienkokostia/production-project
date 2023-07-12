@@ -13,30 +13,15 @@ interface CommentListProps {
   onSendComment: (text: string) => void;
 }
 
-export const CommentList = ({
-  className,
-  comments,
-  onSendComment,
-}: CommentListProps) => {
+export const CommentList = ({ className, comments }: CommentListProps) => {
   const { t } = useTranslation('article-details');
-  const article = useSelector(getArticleDetailsData);
 
   return (
-    <div className={classNames(cls.CommentListWrapper, {}, [className])}>
-      {article && (
-        <>
-          <h1 className={cls.title}>{t('Comments')}</h1>
-          <AddCommentForm onSendComment={onSendComment} />
-          {comments && (
-            <div className={cls.CommentList}>
-              {comments?.length ? (
-                comments.map(el => <CommentCard commnet={el} key={el.id} />)
-              ) : (
-                <p>{t('No comments')}</p>
-              )}
-            </div>
-          )}
-        </>
+    <div className={classNames(cls.CommentList, {}, [className])}>
+      {comments?.length ? (
+        comments.map(el => <CommentCard commnet={el} key={el.id} />)
+      ) : (
+        <p>{t('No comments')}</p>
       )}
     </div>
   );

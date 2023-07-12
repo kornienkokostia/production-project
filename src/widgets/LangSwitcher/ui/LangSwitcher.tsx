@@ -1,13 +1,13 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 import cls from './LangSwitcher.module.scss';
 
 interface LangSwitcherProps {
   className?: string;
 }
 
-export const LangSwitcher = ({ className }: LangSwitcherProps) => {
+export const LangSwitcher = memo(({ className }: LangSwitcherProps) => {
   const { i18n } = useTranslation();
   const onSwitcherChange = (e: ChangeEvent<HTMLSelectElement>) => {
     i18n.changeLanguage(e.target.value);
@@ -15,7 +15,7 @@ export const LangSwitcher = ({ className }: LangSwitcherProps) => {
 
   return (
     <select
-      className={cls.LangSwitcher}
+      className={classNames(cls.LangSwitcher, {}, [className])}
       onChange={onSwitcherChange}
       value={
         localStorage.getItem('i18nextLng')
@@ -34,4 +34,4 @@ export const LangSwitcher = ({ className }: LangSwitcherProps) => {
       </option>
     </select>
   );
-};
+});

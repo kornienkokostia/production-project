@@ -3,24 +3,18 @@ import { Theme, useTheme } from 'app/providers/ThemeProvider';
 
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { memo } from 'react';
 import cls from './ThemeSwitcher.module.scss';
 
 interface ThemeSwitcherProps {
   className?: string;
 }
 
-export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
+export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
   const { theme, toggleLightTheme, toggleDarkTheme } = useTheme();
   const { t } = useTranslation();
 
   return (
-    // <Button
-    //   theme={ButtonTheme.CLEAR}
-    //   className={classNames(cls.ThemeSwitcher, {}, [className])}
-    //   onClick={toggleTheme}
-    // >
-    //   {theme === Theme.DARK ? <DarkIcon /> : <LightIcon />}
-    // </Button>
     <div className={classNames(cls.ThemeSwitcher, {}, [className])}>
       <Button
         className={classNames(cls.item, {}, [
@@ -42,4 +36,4 @@ export const ThemeSwitcher = ({ className }: ThemeSwitcherProps) => {
       </Button>
     </div>
   );
-};
+});

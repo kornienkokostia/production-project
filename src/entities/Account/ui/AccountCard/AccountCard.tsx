@@ -67,11 +67,10 @@ export const AccountCard = (props: AccountCardProps) => {
     }
   }, [data, readonly]);
 
-  if (isLoading || isLoading === undefined) {
+  if (!data) {
     return (
       <div
-        className={classNames(cls.AccountCard, {}, [className, cls.loading])}
-      >
+        className={classNames(cls.AccountCard, {}, [className, cls.loading])}>
         <Loader />
       </div>
     );

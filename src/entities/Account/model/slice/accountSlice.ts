@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { AccountSchema, Account } from '../types/account';
+import { AccountSchema, Account, AccountErrors } from '../types/account';
 import { fetchAccountData } from '../services/fetchAccountData/fetchAccountData';
 import { updateAccountData } from '../services/updateAccountData/updateAccountData';
 
@@ -10,6 +10,7 @@ const initialState: AccountSchema = {
   isLoading: false,
   data: undefined,
   error: undefined,
+  formErrors: {},
 };
 
 export const accountSlice = createSlice({
@@ -28,6 +29,9 @@ export const accountSlice = createSlice({
         ...state.form,
         ...action.payload,
       };
+    },
+    updateAccountErrors: (state, action: PayloadAction<AccountErrors>) => {
+      state.formErrors = action.payload;
     },
   },
   extraReducers: (builder) => {

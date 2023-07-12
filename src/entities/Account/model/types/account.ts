@@ -19,6 +19,7 @@ export interface AccountSchema {
   isLoading: boolean;
   error?: string
   readonly: boolean
+  formErrors?: AccountErrors
 }
 
 export interface AccountErrors {

@@ -25,6 +25,7 @@ import { useParams } from 'react-router-dom';
 import { Page } from 'widgets/Page/Page';
 import cls from './AccountPage.module.scss';
 import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
+import { EditableAccountCard } from 'features/editableAccountCard';
 
 const initialReducers: ReducersList = {
   account: accountReducer,
@@ -35,103 +36,13 @@ interface AccountPageProps {
 }
 
 const AccountPage = ({ className }: AccountPageProps) => {
-  const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchAccountData(id));
-    }
-  }, [dispatch, id]);
-
-  const formData = useSelector(getAccountForm);
-  const isLoading = useSelector(getAccountIsLoading);
-  const error = useSelector(getAccountError);
-  const readonly = useSelector(getAccountReadonly);
-  const [accountErrors, setAccountErrors] = useState<AccountErrors>();
-
-  useEffect(() => {
-    if (formData) {
-      const fromErrors = validateAccountData(formData);
-      setAccountErrors(fromErrors);
-    }
-  }, [formData]);
-
-  const onChangeFirstName = useCallback(
-    (val?: string) => {
-      dispatch(accountActions.updateAccount({ firstname: val || '' }));
-    },
-    [dispatch],
-  );
-
-  const onChangeLastName = useCallback(
-    (val?: string) => {
-      dispatch(accountActions.updateAccount({ lastname: val || '' }));
-    },
-    [dispatch],
-  );
-
-  const onChangeAge = useCallback(
-    (val?: string) => {
-      const newValue = val!.replace(/[^\d]/, '');
-      dispatch(accountActions.updateAccount({ age: Number(newValue || 0) }));
-    },
-    [dispatch],
-  );
-
-  const onChangeCity = useCallback(
-    (val?: string) => {
-      dispatch(accountActions.updateAccount({ city: val || '' }));
-    },
-    [dispatch],
-  );
-
-  const onChangePhoto = useCallback(
-    (val?: string) => {
-      dispatch(accountActions.updateAccount({ avatar: val || '' }));
-    },
-    [dispatch],
-  );
-
-  const onChangeUsername = useCallback(
-    (val?: string) => {
-      dispatch(accountActions.updateAccount({ username: val || '' }));
-    },
-    [dispatch],
-  );
-
-  const onChangeCurrency = useCallback(
-    (val?: Currancy) => {
-      dispatch(accountActions.updateAccount({ currency: val }));
-    },
-    [dispatch],
-  );
-
-  const onChangeCountry = useCallback(
-    (val?: Country) => {
-      dispatch(accountActions.updateAccount({ country: val }));
-    },
-    [dispatch],
-  );
 
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
       <div className={classNames(cls.AccountPage, {}, [className])}>
-        <AccountPageHeader formErrors={accountErrors} id={id} />
-        <AccountCard
-          data={formData}
-          isLoading={isLoading}
-          error={error}
-          onChangeFirstName={onChangeFirstName}
-          onChangeLastName={onChangeLastName}
-          onChangeAge={onChangeAge}
-          onChangeCity={onChangeCity}
-          onChangePhoto={onChangePhoto}
-          onChangeUsername={onChangeUsername}
-          onChangeCurrency={onChangeCurrency}
-          onChangeCountry={onChangeCountry}
-          readonly={readonly}
-          formErrors={accountErrors}
-        />
+        <AccountPageHeader id={id} />
+        <EditableAccountCard />
       </div>
     </DynamicModuleLoader>
   );

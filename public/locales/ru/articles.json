@@ -12,5 +12,6 @@
   "Economics": "Экономика",
   "IT": "ИТ",
   "Science": "Наука",
-  "Create": "Создавать"
+  "Create": "Создавать",
+  "Error while loading articles": "Ошибка при загрузке статей"
 }

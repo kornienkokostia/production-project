@@ -6,6 +6,7 @@ import {
   AccountErrors,
   accountActions,
   getAccountData,
+  getAccountFormErrors,
   getAccountIsLoading,
   getAccountReadonly,
   updateAccountData,
@@ -17,13 +18,11 @@ import cls from './AccountPageHeader.module.scss';
 
 interface AccountPageHeaderProps {
   className?: string;
-  formErrors?: AccountErrors;
   id?: string;
 }
 
 export const AccountPageHeader = ({
   className,
-  formErrors,
   id,
 }: AccountPageHeaderProps) => {
   const { t } = useTranslation('account');
@@ -33,6 +32,7 @@ export const AccountPageHeader = ({
   const authData = useSelector(getUserAuthData);
   const accountData = useSelector(getAccountData);
   const canEdit = authData?.id === accountData?.id;
+  const formErrors = useSelector(getAccountFormErrors);
 
   const onEdit = useCallback(() => {
     dispatch(accountActions.setReadOnly(false));
@@ -58,8 +58,7 @@ export const AccountPageHeader = ({
             <Button
               theme={ButtonTheme.APPLE_CLEAR}
               className={cls.btn}
-              onClick={onEdit}
-            >
+              onClick={onEdit}>
               {t('Edit')}
             </Button>
           ) : (
@@ -67,16 +66,14 @@ export const AccountPageHeader = ({
               <Button
                 theme={ButtonTheme.APPLE_CLEAR}
                 className={cls.btn}
-                onClick={onCancelEdit}
-              >
+                onClick={onCancelEdit}>
                 {t('Cancel')}
               </Button>
               <div className={cls.separator} />
               <Button
                 theme={ButtonTheme.APPLE_CLEAR}
                 className={cls.btn}
-                onClick={onSave}
-              >
+                onClick={onSave}>
                 {t('Save')}
               </Button>
             </>
