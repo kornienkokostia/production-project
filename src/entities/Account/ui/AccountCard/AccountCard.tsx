@@ -55,7 +55,7 @@ export const AccountCard = (props: AccountCardProps) => {
   const [isUsernameFocused, setIsUsernameFocused] = useState(true);
 
   useEffect(() => {
-    if (!data?.avatar) {
+    if (data && !data.avatar) {
       setIsPhotoFocused(false);
     }
     if (readonly) {
@@ -83,8 +83,6 @@ export const AccountCard = (props: AccountCardProps) => {
       </div>
     );
   }
-
-  console.log(__API__);
 
   return (
     <div className={classNames(cls.AccountCard, {}, [className])}>
