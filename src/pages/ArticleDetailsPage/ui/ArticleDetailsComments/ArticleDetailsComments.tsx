@@ -12,6 +12,7 @@ import { addCommentToArticle } from 'pages/ArticleDetailsPage/model/services/add
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
 import cls from './ArticleDetailsComments.module.scss';
+import { getArticleComments } from 'pages/ArticleDetailsPage/model/slice/articleDetailsCommentsSlice';
 
 interface ArticleDetailsCommentsProps {
   className?: string;
@@ -21,6 +22,7 @@ interface ArticleDetailsCommentsProps {
 export const ArticleDetailsComments = memo(
   ({ className, id }: ArticleDetailsCommentsProps) => {
     const isLoading = useSelector(getArticleDetailsIsLoading);
+    const comments = useSelector(getArticleComments.selectAll);
     const { t } = useTranslation('article-details');
     const dispatch = useAppDispatch();
 
@@ -43,7 +45,7 @@ export const ArticleDetailsComments = memo(
       <div className={classNames(cls.ArticleDetailsComments, {}, [className])}>
         <h1 className={cls.title}>{t('Comments')}</h1>
         <AddCommentForm onSendComment={onSendComment} />
-        <CommentList comments={[]} onSendComment={onSendComment} />
+        <CommentList comments={comments} onSendComment={onSendComment} />
       </div>
     );
   },

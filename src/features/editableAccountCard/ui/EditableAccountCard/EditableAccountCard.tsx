@@ -1,28 +1,34 @@
 import { memo, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  AccountCard,
-  accountActions,
-  fetchAccountData,
-  getAccountError,
-  getAccountForm,
-  getAccountFormErrors,
-  getAccountIsLoading,
-  getAccountReadonly,
-  validateAccountData,
-} from 'entities/Account';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Currancy } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { fetchAccountData } from '../../model/services/fetchAccountData/fetchAccountData';
+import { getAccountForm } from '../../model/selectors/getAccountForm/getAccountForm';
+import { getAccountIsLoading } from '../../model/selectors/getAccountIsLoading/getAccountIsLoading';
+import { getAccountError } from '../../model/selectors/getAccountError/getAccountError';
+import { getAccountReadonly } from '../../model/selectors/getAccountReadonly/getAccountReadonly';
+import { getAccountFormErrors } from '../../model/selectors/getAccountFormErrors/getAccountFormErrors';
+import { validateAccountData } from '../../model/services/validateAccountData/validateAccountData';
+import { accountActions, accountReducer } from '../../model/slice/accountSlice';
+import { AccountCard } from 'entities/Account';
+import {
+  DynamicModuleLoader,
+  ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 interface AditableAccountCardProps {
   className?: string;
+  id: string;
 }
 
+const initialReducers: ReducersList = {
+  account: accountReducer,
+};
+
 export const EditableAccountCard = memo((props: AditableAccountCardProps) => {
-  const { className } = props;
-  const { id } = useParams<{ id: string }>();
+  const { className, id } = props;
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -102,20 +108,22 @@ export const EditableAccountCard = memo((props: AditableAccountCardProps) => {
   );
 
   return (
-    <AccountCard
-      data={formData}
-      isLoading={isLoading}
-      error={error}
-      onChangeFirstName={onChangeFirstName}
-      onChangeLastName={onChangeLastName}
-      onChangeAge={onChangeAge}
-      onChangeCity={onChangeCity}
-      onChangePhoto={onChangePhoto}
-      onChangeUsername={onChangeUsername}
-      onChangeCurrency={onChangeCurrency}
-      onChangeCountry={onChangeCountry}
-      readonly={readonly}
-      formErrors={formErrors}
-    />
+    <DynamicModuleLoader reducers={initialReducers}>
+      <AccountCard
+        data={formData}
+        isLoading={isLoading}
+        error={error}
+        onChangeFirstName={onChangeFirstName}
+        onChangeLastName={onChangeLastName}
+        onChangeAge={onChangeAge}
+        onChangeCity={onChangeCity}
+        onChangePhoto={onChangePhoto}
+        onChangeUsername={onChangeUsername}
+        onChangeCurrency={onChangeCurrency}
+        onChangeCountry={onChangeCountry}
+        readonly={readonly}
+        formErrors={formErrors}
+      />
+    </DynamicModuleLoader>
   );
 });

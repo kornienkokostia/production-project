@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { Account } from '../../types/account';
+import { Account } from 'entities/Account';
 import { getAccountForm } from '../../selectors/getAccountForm/getAccountForm';
 
 export const updateAccountData = createAsyncThunk<Account, string, ThunkConfig<string>>(

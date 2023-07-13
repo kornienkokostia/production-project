@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localStorage';
-import { AccountSchema, Account, AccountErrors } from '../types/account';
+import { AccountErrors, AccountSchema } from '../types/EditableAccountCardSchema';
 import { fetchAccountData } from '../services/fetchAccountData/fetchAccountData';
 import { updateAccountData } from '../services/updateAccountData/updateAccountData';
+import { Account } from 'entities/Account';
 
 const initialState: AccountSchema = {
   readonly: true,

@@ -7,9 +7,9 @@ import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
 import { Currancy, CurrencySelect } from 'entities/Currency';
 import { Country } from 'entities/Country/model/types/country';
 import { CountrySelect } from 'entities/Country';
-import { validateAccountData } from 'entities/Account/model/services/validateAccountData/validateAccountData';
-import { Account, AccountErrors } from '../../model/types/account';
+import { Account } from '../../model/types/account';
 import cls from './AccountCard.module.scss';
+import { AccountErrors } from 'features/editableAccountCard';
 
 interface AccountCardProps {
   className?: string;
