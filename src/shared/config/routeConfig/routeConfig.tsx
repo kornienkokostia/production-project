@@ -1,4 +1,4 @@
-import { UserRole } from 'entities/User/model/types/user';
+import { UserRole } from 'entities/User/model/consts/userConsts';
 import { AboutPage } from 'pages/AboutPage';
 import { AccountPage } from 'pages/AccountPage';
 import { AdminPanelPage } from 'pages/AdminPanelPage';

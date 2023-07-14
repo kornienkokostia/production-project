@@ -83,7 +83,7 @@ export const AccountPopup = memo(
           hasDivider: false,
         },
       ],
-      [onManageAccount, onSignOut, t],
+      [onManageAccount, onSignOut, t, isAdminPanelAvaliable, onAdminPanel],
     );
 
     useEffect(() => {
@@ -151,6 +151,8 @@ export const AccountPopup = memo(
         canPressEnter,
         onSignOut,
         onManageAccount,
+        isAdminPanelAvaliable,
+        onAdminPanel,
       ],
     );
 

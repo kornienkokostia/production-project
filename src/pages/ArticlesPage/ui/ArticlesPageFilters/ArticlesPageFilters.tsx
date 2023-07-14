@@ -4,10 +4,10 @@ import SearchIcon from 'shared/assets/icons/search.svg';
 import ClearInputIcon from 'shared/assets/icons/clear-input.svg';
 import { memo, useCallback, useMemo } from 'react';
 import {
-  ArticleSortField,
   ArticleType,
   ArticleView,
-} from 'entities/Article/model/types/article';
+  ArticleSortField,
+} from 'entities/Article/model/consts/articleConsts';
 import { useTranslation } from 'react-i18next';
 import { SortOrder } from 'shared/types';
 import { useSelector } from 'react-redux';

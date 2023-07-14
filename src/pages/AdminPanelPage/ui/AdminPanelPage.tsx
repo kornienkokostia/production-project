@@ -5,12 +5,10 @@ interface AdminPanelPageProps {
   className?: string;
 }
 
-const AdminPanelPage = ({ className }: AdminPanelPageProps) => {
-  return (
-    <div className={classNames(cls.AdminPanelPage, {}, [className])}>
-      Admin Panel
-    </div>
-  );
-};
+const AdminPanelPage = ({ className }: AdminPanelPageProps) => (
+  <div className={classNames(cls.AdminPanelPage, {}, [className])}>
+    Admin Panel
+  </div>
+);
 
 export default AdminPanelPage;

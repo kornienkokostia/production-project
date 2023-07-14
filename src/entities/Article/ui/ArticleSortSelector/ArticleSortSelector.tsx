@@ -1,6 +1,6 @@
 import { Select, SelectOption } from 'shared/ui/Select/Select';
 import { SubmenuTheme } from 'shared/ui/Submenu/Submenu';
-import { ArticleSortField } from 'entities/Article/model/types/article';
+import { ArticleSortField } from 'entities/Article/model/consts/articleConsts';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SortOrder } from 'shared/types';

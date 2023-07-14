@@ -1,4 +1,4 @@
-export {
+export type {
   Account,
 } from './model/types/account';
 

@@ -1,8 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Loader } from 'shared/ui/Loader/Loader';
 import { useTranslation } from 'react-i18next';
+import { ArticleView } from 'entities/Article/model/consts/articleConsts';
 import cls from './ArticleList.module.scss';
-import { Article, ArticleView } from '../../model/types/article';
+import { Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
 
 interface ArticleListProps {
@@ -22,7 +23,7 @@ export const ArticleList = (props: ArticleListProps) => {
     <ArticleListItem article={article} view={view} key={article.id} />
   );
 
-  if (isLoading && !articles.length) {
+  if ((isLoading && !articles.length) || isLoading === undefined) {
     return (
       <div className={cls.loadingFull}>
         <Loader />
@@ -30,7 +31,7 @@ export const ArticleList = (props: ArticleListProps) => {
     );
   }
 
-  if (!isLoading && !articles.length && isLoading !== undefined) {
+  if (!isLoading && !articles.length) {
     return (
       <div className={cls.noItems}>
         <span>{t('No articles were found')}</span>
