@@ -4,6 +4,11 @@ import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Currancy } from 'entities/Currency';
 import { Country } from 'entities/Country';
+import { AccountCard } from 'entities/Account';
+import {
+  DynamicModuleLoader,
+  ReducersList,
+} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { fetchAccountData } from '../../model/services/fetchAccountData/fetchAccountData';
 import { getAccountForm } from '../../model/selectors/getAccountForm/getAccountForm';
 import { getAccountIsLoading } from '../../model/selectors/getAccountIsLoading/getAccountIsLoading';
@@ -12,11 +17,6 @@ import { getAccountReadonly } from '../../model/selectors/getAccountReadonly/get
 import { getAccountFormErrors } from '../../model/selectors/getAccountFormErrors/getAccountFormErrors';
 import { validateAccountData } from '../../model/services/validateAccountData/validateAccountData';
 import { accountActions, accountReducer } from '../../model/slice/accountSlice';
-import { AccountCard } from 'entities/Account';
-import {
-  DynamicModuleLoader,
-  ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 
 interface AditableAccountCardProps {
   className?: string;

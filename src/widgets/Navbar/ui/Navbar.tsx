@@ -12,7 +12,7 @@ import SingInIcon from 'shared/assets/icons/singin-btn.svg';
 import { LoginModal } from 'features/AuthByUserName';
 import SettingsIcon from 'shared/assets/icons/settings.svg';
 import { Submenu, SubmenuTheme } from 'shared/ui/Submenu/Submenu';
-import { getUserAuthData } from 'entities/User';
+import { getUserAuthData, isUserAdmin, isUserManager } from 'entities/User';
 import { useSelector } from 'react-redux';
 import { Settings } from 'widgets/Settings';
 import { AccountPopup } from 'widgets/AccountPopup';
@@ -31,6 +31,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const authData = useSelector(getUserAuthData);
   const [isAccountPopupClosing, setIsAccountPopupClosing] = useState(false);
   const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
+  const isAdmin = useSelector(isUserAdmin);
+  const isManager = useSelector(isUserManager);
+  const isAdminPanelAvaliable = isAdmin || isManager;
 
   const onCloseModal = useCallback(() => {
     setIsAuthOpen(false);
@@ -62,8 +65,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           <Button
             theme={ButtonTheme.CLEAR}
             className={cls.NavbarItem}
-            onClick={onToggleAccountPopup}
-          >
+            onClick={onToggleAccountPopup}>
             <div className={cls.AccountBtn}>
               <AccountPhoto src={authData.avatar} />
             </div>
@@ -72,8 +74,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           <Button
             theme={ButtonTheme.APPLE}
             className={cls.NavbarSignin}
-            onClick={onShowModal}
-          >
+            onClick={onShowModal}>
             <SingInIcon className={cls.SingInIcon} />
             <span>{t('Sign in')}</span>
           </Button>
@@ -81,8 +82,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         <Button
           theme={ButtonTheme.CLEAR}
           className={cls.NavbarItem}
-          onClick={onToggleSettings}
-        >
+          onClick={onToggleSettings}>
           <SettingsIcon className={cls.ItemIcon} />
         </Button>
       </div>
@@ -95,13 +95,13 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           isOpen={isAccountPopupOpen}
           onClose={onToggleAccountPopup}
           theme={SubmenuTheme.ACCOUNT}
-          passedIsClosing={isAccountPopupClosing}
-        >
+          passedIsClosing={isAccountPopupClosing}>
           <AccountPopup
             username={authData.username}
             onClosePopup={closeAccountPopupHandler}
             userId={authData.id}
             popupOpen={isAccountPopupOpen}
+            isAdminPanelAvaliable={isAdminPanelAvaliable}
           />
         </Submenu>
       )}

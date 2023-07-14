@@ -1,9 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useParams } from 'react-router-dom';
-import cls from './AccountPage.module.scss';
-import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
 import { EditableAccountCard } from 'features/editableAccountCard';
 import { useTranslation } from 'react-i18next';
+import cls from './AccountPage.module.scss';
+import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
 
 interface AccountPageProps {
   className?: string;

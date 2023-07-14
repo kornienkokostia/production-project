@@ -5,4 +5,3 @@ export {
 export {
   AccountCard,
 } from './ui/AccountCard/AccountCard';
-

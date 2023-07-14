@@ -1,4 +1,12 @@
-import { Account } from "entities/Account";
+import { Account } from 'entities/Account';
+
+export interface AccountErrors {
+  firstname?: boolean,
+  lastname?: boolean,
+  age?: boolean,
+  city?: boolean,
+  username?: boolean,
+}
 
 export interface AccountSchema {
   data?: Account;
@@ -7,12 +15,4 @@ export interface AccountSchema {
   error?: string
   readonly: boolean
   formErrors?: AccountErrors
-}
-
-export interface AccountErrors {
-  firstname?: boolean,
-  lastname?: boolean,
-  age?: boolean,
-  city?: boolean,
-  username?: boolean,
 }

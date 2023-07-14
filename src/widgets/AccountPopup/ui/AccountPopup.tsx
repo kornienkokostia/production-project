@@ -2,6 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import AccountPopupSignOutIcon from 'shared/assets/icons/account-popup-sign-out.svg';
 import AccountPopupManageAccountIcon from 'shared/assets/icons/account-popup-manage-account.svg';
+import AccountPopupAdminPanelIcon from 'shared/assets/icons/account-popup-admin-panel.svg';
 import { useDispatch } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
@@ -16,6 +17,7 @@ interface AccountPopupProps {
   onClosePopup: () => void;
   userId: string;
   popupOpen: boolean;
+  isAdminPanelAvaliable: boolean;
 }
 
 interface AccountPopupItem {
@@ -32,6 +34,7 @@ export const AccountPopup = memo(
     onClosePopup,
     userId,
     popupOpen,
+    isAdminPanelAvaliable,
   }: AccountPopupProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -50,8 +53,23 @@ export const AccountPopup = memo(
       onClosePopup();
     }, [navigate, onClosePopup, userId]);
 
+    const onAdminPanel = useCallback(() => {
+      navigate(RoutePath.admin_panel);
+      onClosePopup();
+    }, [navigate, onClosePopup]);
+
     const accountPopupItems: AccountPopupItem[] = useMemo(
       () => [
+        ...(isAdminPanelAvaliable
+          ? [
+              {
+                title: t('Admin Panel'),
+                Icon: AccountPopupAdminPanelIcon,
+                onClick: onAdminPanel,
+                hasDivider: true,
+              },
+            ]
+          : []),
         {
           title: t('Manage Account'),
           Icon: AccountPopupManageAccountIcon,

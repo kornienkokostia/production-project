@@ -7,10 +7,10 @@ function MainPage() {
     <div>
       <h3>Accounts:</h3>
       <br />
-      <p>username: g-eazy</p>
+      <p>username: user</p>
       <p>password: 123</p>
       <br />
-      <p>username: cap</p>
+      <p>username: admin</p>
       <p>password: 123</p>
     </div>
   );

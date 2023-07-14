@@ -7,9 +7,9 @@ import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
 import { Currancy, CurrencySelect } from 'entities/Currency';
 import { Country } from 'entities/Country/model/types/country';
 import { CountrySelect } from 'entities/Country';
+import { AccountErrors } from 'features/editableAccountCard';
 import { Account } from '../../model/types/account';
 import cls from './AccountCard.module.scss';
-import { AccountErrors } from 'features/editableAccountCard';
 
 interface AccountCardProps {
   className?: string;
@@ -70,7 +70,8 @@ export const AccountCard = (props: AccountCardProps) => {
   if (!data) {
     return (
       <div
-        className={classNames(cls.AccountCard, {}, [className, cls.loading])}>
+        className={classNames(cls.AccountCard, {}, [className, cls.loading])}
+      >
         <Loader />
       </div>
     );

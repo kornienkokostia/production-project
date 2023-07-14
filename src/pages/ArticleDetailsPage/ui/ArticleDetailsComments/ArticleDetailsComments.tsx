@@ -1,18 +1,15 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { CommentList } from 'entities/Comment';
 import { useSelector } from 'react-redux';
-import {
-  getArticleDetailsData,
-  getArticleDetailsIsLoading,
-} from 'entities/Article';
+import { getArticleDetailsIsLoading } from 'entities/Article';
 import { useTranslation } from 'react-i18next';
 import { AddCommentForm } from 'features/addCommentForm';
 import { memo, useCallback, useEffect } from 'react';
-import { addCommentToArticle } from 'pages/ArticleDetailsPage/model/services/addCommentToArticle/addCommentToArticle';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { fetchCommentsByArticleId } from 'pages/ArticleDetailsPage/model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { addCommentToArticle } from '../../model/services/addCommentToArticle/addCommentToArticle';
+import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId';
+import { getArticleComments } from '../../model/slice/articleDetailsCommentsSlice';
 import cls from './ArticleDetailsComments.module.scss';
-import { getArticleComments } from 'pages/ArticleDetailsPage/model/slice/articleDetailsCommentsSlice';
 
 interface ArticleDetailsCommentsProps {
   className?: string;
