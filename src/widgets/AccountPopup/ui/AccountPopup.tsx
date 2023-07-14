@@ -121,10 +121,24 @@ export const AccountPopup = memo(
             setShowSelected(true);
           }
           if (e.key === 'Enter' && (canPressEnter || showSelected)) {
-            if (selected === accountPopupItems[0].title) {
+            if (
+              isAdminPanelAvaliable &&
+              selected === accountPopupItems[0].title
+            ) {
+              onAdminPanel();
+            }
+            if (
+              isAdminPanelAvaliable
+                ? selected === accountPopupItems[1].title
+                : selected === accountPopupItems[0].title
+            ) {
               onManageAccount();
             }
-            if (selected === accountPopupItems[1].title) {
+            if (
+              isAdminPanelAvaliable
+                ? selected === accountPopupItems[2].title
+                : selected === accountPopupItems[1].title
+            ) {
               onSignOut();
             }
           }
