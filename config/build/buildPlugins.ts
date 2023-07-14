@@ -5,6 +5,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 import { BuildOptions } from './types/config';
+import CircularDependencyPlugin from 'circular-dependency-plugin'
 
 export function buildPlugins({
   paths, isDev, apiUrl,
@@ -29,6 +30,10 @@ export function buildPlugins({
         { from: paths.favIcon, to: paths.buildFavIcon },
       ],
     }),
+    new CircularDependencyPlugin({
+      exclude: /node-modules/,
+      failOnError: true
+    })
   ];
 
   if (isDev) {
