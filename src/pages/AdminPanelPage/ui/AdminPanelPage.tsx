@@ -7,7 +7,9 @@ interface AdminPanelPageProps {
 
 const AdminPanelPage = ({ className }: AdminPanelPageProps) => {
   return (
-    <div className={classNames(cls.AdminPanelPage, {}, [className])}></div>
+    <div className={classNames(cls.AdminPanelPage, {}, [className])}>
+      Admin Panel
+    </div>
   );
 };
 

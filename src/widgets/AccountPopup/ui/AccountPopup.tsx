@@ -93,7 +93,6 @@ export const AccountPopup = memo(
     const onKeyDown = useCallback(
       (e: KeyboardEvent) => {
         if (popupOpen) {
-          e.preventDefault();
           if (e.key === 'ArrowUp') {
             if (!selected) {
               setSelected(

@@ -60,6 +60,9 @@ export const Submenu = (props: SubmenuProps) => {
       if (e.key === 'Escape') {
         closeHandler();
       }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+      }
     },
     [closeHandler],
   );
@@ -92,8 +95,7 @@ export const Submenu = (props: SubmenuProps) => {
               { [cls.showTriangle]: showTriangle },
               [],
             )}
-            onClick={onContentClick}
-          >
+            onClick={onContentClick}>
             <Button className={cls.closeBtn}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>

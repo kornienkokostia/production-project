@@ -88,7 +88,6 @@ export const Select = <T extends string, K extends string>(
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (isOpen) {
-        e.preventDefault();
         if (e.key === 'ArrowUp') {
           options.forEach((el, i) => {
             if (el.value === currentSelected && i > 0) {
@@ -134,8 +133,7 @@ export const Select = <T extends string, K extends string>(
       <Button
         theme={ButtonTheme.APPLE_CLEAR}
         onClick={onToggleBtn}
-        className={cls.selectBtn}
-      >
+        className={cls.selectBtn}>
         <span>
           {`${title} ${options.find(el => el.value === value)?.content}`}
         </span>
@@ -147,8 +145,7 @@ export const Select = <T extends string, K extends string>(
         theme={submenuTheme}
         showTriangle
         passedIsClosing={isClosing}
-        sidebarPadding={sidebarPadding}
-      >
+        sidebarPadding={sidebarPadding}>
         <div className={cls.options}>
           {options.map(el => (
             <div
@@ -171,8 +168,7 @@ export const Select = <T extends string, K extends string>(
               onMouseMove={() => {
                 setBlockHover(false);
               }}
-              onMouseLeave={() => setShowHoverOnKeyPress(false)}
-            >
+              onMouseLeave={() => setShowHoverOnKeyPress(false)}>
               {el.value === value && (
                 <SelectedOptionIcon className={cls.selectedIcon} />
               )}
