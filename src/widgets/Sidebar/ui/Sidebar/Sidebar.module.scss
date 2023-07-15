@@ -18,7 +18,20 @@
     filter: var(--on-elem-active-filter);
   }
 }
-
+.divider {
+  position: absolute;
+  height: 23px;
+  width: 1px;
+  background-color: var(--border-color);
+  left: 50px;
+  top: 13px;
+  opacity: 0;
+  transition: opacity 0.18s 30ms;
+  z-index: 5;
+  &.collapsed {
+    opacity: 1;
+  }
+}
 .items {
   display: flex;
   flex-direction: column;

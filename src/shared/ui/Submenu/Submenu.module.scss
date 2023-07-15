@@ -18,13 +18,13 @@
 .content {
   position: absolute;
   top: 47px;
-  right: 11px;
-  width: 269px;
+  right: 10px;
+  width: 277px;
   height: fit-content;
   background: var(--submenu-bg);
   border-radius: 16px;
   box-shadow: 0 0 15px var(--submenu-shadow), 0 0 0 1px var(--submenu-border);
-  transform-origin: 249px 0px;
+  transform-origin: 257px 0px;
   transform: scale(0.5);
   opacity: 0;
   overflow: hidden;
@@ -71,7 +71,15 @@
   .content {
     width: 245px;
     transform-origin: 223px 0px;
-    right: 56px;
+    right: 53px;
+  }
+}
+
+.notifications {
+  .content {
+    // width: 245px;
+    // transform-origin: 223px 0px;
+    right: 100px;
   }
 }
 

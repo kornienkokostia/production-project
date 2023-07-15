@@ -50,6 +50,13 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       >
         <ToggleIcon className={cls.icon} />
       </Button>
+      <div
+        className={classNames(
+          cls.divider,
+          { [cls.collapsed]: navbarCollapsed },
+          [],
+        )}
+      />
       <div className={cls.items}>
         {sidebarItemsList.map(el => (
           <SidebarItem

@@ -11,12 +11,14 @@ import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import SingInIcon from 'shared/assets/icons/singin-btn.svg';
 import { LoginModal } from 'features/AuthByUserName';
 import SettingsIcon from 'shared/assets/icons/settings.svg';
+import NotificationsIcon from 'shared/assets/icons/notifications.svg';
 import { Submenu, SubmenuTheme } from 'shared/ui/Submenu/Submenu';
 import { getUserAuthData, isUserAdmin, isUserManager } from 'entities/User';
 import { useSelector } from 'react-redux';
 import { Settings } from 'widgets/Settings';
 import { AccountPopup } from 'widgets/AccountPopup';
 import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
+import { NotificationList } from 'entities/Notification';
 import cls from './Navbar.module.scss';
 
 interface NavbarProps {
@@ -28,6 +30,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isSettingsOpen, setSettingsOpen] = useState(false);
   const [isAccountPopupOpen, setAccountPopupOpen] = useState(false);
+  const [isNotifPopupOpen, setNotifPopupOpen] = useState(false);
   const authData = useSelector(getUserAuthData);
   const [isAccountPopupClosing, setIsAccountPopupClosing] = useState(false);
   const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
@@ -48,6 +51,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const onToggleAccountPopup = useCallback(() => {
     setAccountPopupOpen(prev => !prev);
   }, []);
+  const onToggleNotifPopup = useCallback(() => {
+    setNotifPopupOpen(prev => !prev);
+  }, []);
 
   const closeAccountPopupHandler = useCallback(() => {
     setIsAccountPopupClosing(true);
@@ -62,15 +68,24 @@ export const Navbar = memo(({ className }: NavbarProps) => {
       <div className={cls.NavbarLeft}>iBlog</div>
       <div className={cls.NavbarRight}>
         {authData ? (
-          <Button
-            theme={ButtonTheme.CLEAR}
-            className={cls.NavbarItem}
-            onClick={onToggleAccountPopup}
-          >
-            <div className={cls.AccountBtn}>
-              <AccountPhoto src={authData.avatar} />
-            </div>
-          </Button>
+          <>
+            <Button
+              theme={ButtonTheme.CLEAR}
+              className={cls.NavbarItem}
+              onClick={onToggleNotifPopup}
+            >
+              <NotificationsIcon className={cls.ItemIcon} />
+            </Button>
+            <Button
+              theme={ButtonTheme.CLEAR}
+              className={cls.NavbarItem}
+              onClick={onToggleAccountPopup}
+            >
+              <div className={cls.AccountBtn}>
+                <AccountPhoto src={authData.avatar} />
+              </div>
+            </Button>
+          </>
         ) : (
           <Button
             theme={ButtonTheme.APPLE}
@@ -94,20 +109,29 @@ export const Navbar = memo(({ className }: NavbarProps) => {
         <Settings />
       </Submenu>
       {authData && (
-        <Submenu
-          isOpen={isAccountPopupOpen}
-          onClose={onToggleAccountPopup}
-          theme={SubmenuTheme.ACCOUNT}
-          passedIsClosing={isAccountPopupClosing}
-        >
-          <AccountPopup
-            username={authData.username}
-            onClosePopup={closeAccountPopupHandler}
-            userId={authData.id}
-            popupOpen={isAccountPopupOpen}
-            isAdminPanelAvaliable={isAdminPanelAvaliable}
-          />
-        </Submenu>
+        <>
+          <Submenu
+            isOpen={isNotifPopupOpen}
+            onClose={onToggleNotifPopup}
+            theme={SubmenuTheme.NOTIFICATIONS}
+          >
+            <NotificationList />
+          </Submenu>
+          <Submenu
+            isOpen={isAccountPopupOpen}
+            onClose={onToggleAccountPopup}
+            theme={SubmenuTheme.ACCOUNT}
+            passedIsClosing={isAccountPopupClosing}
+          >
+            <AccountPopup
+              username={authData.username}
+              onClosePopup={closeAccountPopupHandler}
+              userId={authData.id}
+              popupOpen={isAccountPopupOpen}
+              isAdminPanelAvaliable={isAdminPanelAvaliable}
+            />
+          </Submenu>
+        </>
       )}
     </header>
   );

@@ -5,11 +5,15 @@ import AccountPopupManageAccountIcon from 'shared/assets/icons/account-popup-man
 import AccountPopupAdminPanelIcon from 'shared/assets/icons/account-popup-admin-panel.svg';
 import { useDispatch } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { userActions } from 'entities/User';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './AccountPopup.module.scss';
+import { AccountPopupElem } from '../model/types/accountPopup';
+import { AccountPopupItem } from './AccountPopupItem';
 
 interface AccountPopupProps {
   className?: string;
@@ -18,13 +22,6 @@ interface AccountPopupProps {
   userId: string;
   popupOpen: boolean;
   isAdminPanelAvaliable: boolean;
-}
-
-interface AccountPopupItem {
-  title: string;
-  Icon: React.VFC<React.SVGProps<SVGElement>>;
-  onClick: () => void;
-  hasDivider: boolean;
 }
 
 export const AccountPopup = memo(
@@ -58,17 +55,17 @@ export const AccountPopup = memo(
       onClosePopup();
     }, [navigate, onClosePopup]);
 
-    const accountPopupItems: AccountPopupItem[] = useMemo(
+    const accountPopupItems: AccountPopupElem[] = useMemo(
       () => [
         ...(isAdminPanelAvaliable
           ? [
-              {
-                title: t('Admin Panel'),
-                Icon: AccountPopupAdminPanelIcon,
-                onClick: onAdminPanel,
-                hasDivider: true,
-              },
-            ]
+            {
+              title: t('Admin Panel'),
+              Icon: AccountPopupAdminPanelIcon,
+              onClick: onAdminPanel,
+              hasDivider: true,
+            },
+          ]
           : []),
         {
           title: t('Manage Account'),
@@ -170,33 +167,19 @@ export const AccountPopup = memo(
           setShowSelected(false);
         }}
         onMouseEnter={() => setCanPressEnter(true)}
-        onMouseLeave={() => setCanPressEnter(false)}>
+        onMouseLeave={() => setCanPressEnter(false)}
+      >
         <div className={cls.header}>
           <h2>{username}</h2>
         </div>
         <div className={cls.items}>
           {accountPopupItems.map(el => (
-            <div key={el.title}>
-              <Button
-                className={classNames(
-                  cls.item,
-                  {
-                    [cls.selected]: selected === el.title && showSelected,
-                    [cls.showSelected]: showSelected,
-                  },
-                  [],
-                )}
-                theme={ButtonTheme.CLEAR}
-                onClick={el.onClick}
-                onMouseEnter={() => {
-                  setSelected(el.title);
-                }}
-                onMouseMove={() => {}}>
-                <el.Icon className={cls.icon} />
-                <p>{el.title}</p>
-              </Button>
-              {el.hasDivider && <div className={cls.divider} />}
-            </div>
+            <AccountPopupItem
+              item={el}
+              selected={selected}
+              setSelected={setSelected}
+              showSelected={showSelected}
+            />
           ))}
         </div>
       </div>

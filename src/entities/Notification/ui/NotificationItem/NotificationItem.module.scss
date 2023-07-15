@@ -1,0 +1,20 @@
+.NotificationItem {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px 5px 8px;
+}
+.divider {
+  min-height: 1px;
+  background-color: var(--border-color);
+  margin: 5px;
+}
+.title {
+  font-weight: 500;
+}
+.NotifBtn {
+  width: 100%;
+  border-radius: 10px;
+  &:hover {
+    background-color: rgba(170, 170, 174, 0.2);
+  }
+}

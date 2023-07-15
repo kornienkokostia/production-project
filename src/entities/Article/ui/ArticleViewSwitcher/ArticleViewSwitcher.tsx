@@ -44,7 +44,8 @@ export const ArticleViewSwitcher = ({
             { [cls.selected]: el.view !== view },
             [],
           )}
-          key={el.view}>
+          key={el.view}
+        >
           <el.Icon className={cls.viewBtnIcon} />
         </Button>
       ))}

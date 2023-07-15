@@ -17,6 +17,7 @@ import { Button } from '../Button/Button';
 export enum SubmenuTheme {
   SETTINGS = 'settings',
   ACCOUNT = 'account',
+  NOTIFICATIONS = 'notifications',
   SORTBY = 'sort-by',
   CATEGORY = 'category',
 }
