@@ -28,7 +28,9 @@ export const ArticleViewSwitcher = ({
   onViewClick,
 }: ArticleViewSwitcherProps) => {
   const onClick = (newView: ArticleView) => () => {
-    onViewClick(newView);
+    if (newView !== view) {
+      onViewClick(newView);
+    }
   };
 
   return (
@@ -42,8 +44,7 @@ export const ArticleViewSwitcher = ({
             { [cls.selected]: el.view !== view },
             [],
           )}
-          key={el.view}
-        >
+          key={el.view}>
           <el.Icon className={cls.viewBtnIcon} />
         </Button>
       ))}
