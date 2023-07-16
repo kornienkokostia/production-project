@@ -16,9 +16,7 @@ interface SidebarItemProps {
 
 export const SidebarItem = memo(
   ({ item, currentSelected, setCurrentSelected }: SidebarItemProps) => {
-    const {
-      route, path, Icon, text,
-    } = item;
+    const { route, path, Icon, text } = item;
     const { t } = useTranslation();
     const isAuth = useSelector(getUserAuthData);
 
@@ -32,8 +30,7 @@ export const SidebarItem = memo(
         className={classNames(cls.item, {}, [
           currentSelected === route ? cls.selected : undefined,
         ])}
-        onClick={() => setCurrentSelected(route)}
-      >
+        onClick={() => setCurrentSelected(route)}>
         <Icon className={cls.icon} />
         <span className={classNames(cls.link, {}, [])}>{t(text)}</span>
       </AppLink>
