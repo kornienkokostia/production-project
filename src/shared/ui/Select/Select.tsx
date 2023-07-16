@@ -44,11 +44,9 @@ export const Select = <T extends string, K extends string>(
     sidebarPadding = false,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
-
   const [isClosing, setIsClosing] = useState(false);
   const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
   const delayRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
-
   const [currentSelected, setCurrentSelected] = useState<T>(value);
   const [showHoverOnKeyPress, setShowHoverOnKeyPress] = useState(false);
   const [blockHover, setBlockHover] = useState(false);
@@ -133,8 +131,7 @@ export const Select = <T extends string, K extends string>(
       <Button
         theme={ButtonTheme.APPLE_CLEAR}
         onClick={onToggleBtn}
-        className={cls.selectBtn}
-      >
+        className={cls.selectBtn}>
         <span>
           {`${title} ${options.find(el => el.value === value)?.content}`}
         </span>
@@ -142,12 +139,11 @@ export const Select = <T extends string, K extends string>(
       </Button>
       <Submenu
         isOpen={isOpen}
-        onClose={onToggleBtn}
+        closeHandler={closeHandler}
         theme={submenuTheme}
         showTriangle
-        passedIsClosing={isClosing}
-        sidebarPadding={sidebarPadding}
-      >
+        isClosing={isClosing}
+        sidebarPadding={sidebarPadding}>
         <div className={cls.options}>
           {options.map(el => (
             <div
@@ -170,8 +166,7 @@ export const Select = <T extends string, K extends string>(
               onMouseMove={() => {
                 setBlockHover(false);
               }}
-              onMouseLeave={() => setShowHoverOnKeyPress(false)}
-            >
+              onMouseLeave={() => setShowHoverOnKeyPress(false)}>
               {el.value === value && (
                 <SelectedOptionIcon className={cls.selectedIcon} />
               )}

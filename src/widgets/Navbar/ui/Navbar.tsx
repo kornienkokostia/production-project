@@ -1,28 +1,16 @@
-import React, {
-  MutableRefObject,
-  memo,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import SingInIcon from 'shared/assets/icons/singin-btn.svg';
 import { LoginModal } from 'features/AuthByUserName';
-import SettingsIcon from 'shared/assets/icons/settings.svg';
-import NotificationsIcon from 'shared/assets/icons/notifications.svg';
-import { Submenu, SubmenuTheme } from 'shared/ui/Submenu/Submenu';
-import { getUserAuthData, isUserAdmin, isUserManager } from 'entities/User';
+import { getUserAuthData } from 'entities/User';
 import { useSelector } from 'react-redux';
-import { Settings } from 'widgets/Settings';
-import { AccountPopup } from 'widgets/AccountPopup';
-import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
-import { NotificationList } from 'entities/Notification';
 import cls from './Navbar.module.scss';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
-import { isBrowser, isDesktop, isMobile } from 'react-device-detect';
+import { isMobileOnly } from 'react-device-detect';
+import { NavbarSettings } from './NavbarSettings';
+import { NavbarAccount } from './NavbarAccount';
+import { NavbarNotifications } from './NavbarNotifications';
 
 interface NavbarProps {
   className?: string;
@@ -31,21 +19,7 @@ interface NavbarProps {
 export const Navbar = memo(({ className }: NavbarProps) => {
   const { t } = useTranslation();
   const [isAuthOpen, setIsAuthOpen] = useState(false);
-  const [isSettingsOpen, setSettingsOpen] = useState(false);
-  const [isAccountPopupOpen, setAccountPopupOpen] = useState(false);
-  const [isNotifPopupOpen, setNotifPopupOpen] = useState(false);
   const authData = useSelector(getUserAuthData);
-  const [isAccountPopupClosing, setIsAccountPopupClosing] = useState(false);
-  const [isNotifPopupClosing, setIsNotifPopupClosing] = useState(false);
-  const accountTimeRef = useRef() as MutableRefObject<
-    ReturnType<typeof setTimeout>
-  >;
-  const notifTimeRef = useRef() as MutableRefObject<
-    ReturnType<typeof setTimeout>
-  >;
-  const isAdmin = useSelector(isUserAdmin);
-  const isManager = useSelector(isUserManager);
-  const isAdminPanelAvaliable = isAdmin || isManager;
 
   const onCloseModal = useCallback(() => {
     setIsAuthOpen(false);
@@ -54,59 +28,23 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     setIsAuthOpen(true);
   }, []);
 
-  const onToggleSettings = useCallback(() => {
-    setSettingsOpen(prev => !prev);
-  }, []);
-  const onToggleAccountPopup = useCallback(() => {
-    setAccountPopupOpen(prev => !prev);
-  }, []);
-  const onToggleNotifPopup = useCallback(() => {
-    setNotifPopupOpen(prev => !prev);
-  }, []);
-
-  const closeAccountPopupHandler = useCallback(() => {
-    setIsAccountPopupClosing(true);
-    accountTimeRef.current = setTimeout(() => {
-      setIsAccountPopupClosing(false);
-      setAccountPopupOpen(false);
-    }, 200);
-  }, [setAccountPopupOpen]);
-
-  const closeNotifPopupHandler = useCallback(() => {
-    setIsNotifPopupClosing(true);
-    notifTimeRef.current = setTimeout(() => {
-      setIsNotifPopupClosing(false);
-      setNotifPopupOpen(false);
-    }, 200);
-  }, [setNotifPopupOpen]);
-
-  useEffect(() => {
-    return () => {
-      clearTimeout(accountTimeRef.current);
-      clearTimeout(notifTimeRef.current);
-    };
-  }, []);
-
   return (
     <header className={classNames(cls.Navbar, {}, [className])}>
       <div className={cls.NavbarLeft}>iBlog</div>
       <div className={cls.NavbarRight}>
         {authData ? (
           <>
-            <Button
-              theme={ButtonTheme.CLEAR}
-              className={cls.NavbarItem}
-              onClick={onToggleNotifPopup}>
-              <NotificationsIcon className={cls.ItemIcon} />
-            </Button>
-            <Button
-              theme={ButtonTheme.CLEAR}
-              className={cls.NavbarItem}
-              onClick={onToggleAccountPopup}>
-              <div className={cls.AccountBtn}>
-                <AccountPhoto src={authData.avatar} />
-              </div>
-            </Button>
+            <NavbarNotifications
+              isMobile={isMobileOnly}
+              btnClassName={cls.NavbarItem}
+              btnIconClassName={cls.ItemIcon}
+            />
+            <NavbarAccount
+              isMobile={isMobileOnly}
+              authData={authData}
+              btnClassName={cls.NavbarItem}
+              accountBtnClassName={cls.AccountBtn}
+            />
           </>
         ) : (
           <Button
@@ -117,78 +55,13 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             <span>{t('Sign in')}</span>
           </Button>
         )}
-        <Button
-          theme={ButtonTheme.CLEAR}
-          className={cls.NavbarItem}
-          onClick={onToggleSettings}>
-          <SettingsIcon className={cls.ItemIcon} />
-        </Button>
+        <NavbarSettings
+          isMobile={isMobileOnly}
+          btnClassName={cls.NavbarItem}
+          btnIconClassName={cls.ItemIcon}
+        />
       </div>
       {isAuthOpen && <LoginModal isOpen={isAuthOpen} onClose={onCloseModal} />}
-      {isBrowser && (
-        <Submenu isOpen={isSettingsOpen} onClose={onToggleSettings}>
-          <Settings />
-        </Submenu>
-      )}
-      {isMobile && (
-        <Drawer isOpen={isSettingsOpen} onClose={onToggleSettings}>
-          <Settings isMobile />
-        </Drawer>
-      )}
-      {authData && (
-        <>
-          {isBrowser && (
-            <Submenu
-              isOpen={isNotifPopupOpen}
-              onClose={onToggleNotifPopup}
-              theme={SubmenuTheme.NOTIFICATIONS}
-              passedIsClosing={isNotifPopupClosing}>
-              <NotificationList onClosePopup={closeNotifPopupHandler} />
-            </Submenu>
-          )}
-          {isMobile && (
-            <Drawer
-              isOpen={isNotifPopupOpen}
-              onClose={onToggleNotifPopup}
-              passedIsClosing={isNotifPopupClosing}>
-              <NotificationList
-                isMobile
-                onClosePopup={closeNotifPopupHandler}
-              />
-            </Drawer>
-          )}
-          {isDesktop && (
-            <Submenu
-              isOpen={isAccountPopupOpen}
-              onClose={onToggleAccountPopup}
-              theme={SubmenuTheme.ACCOUNT}
-              passedIsClosing={isAccountPopupClosing}>
-              <AccountPopup
-                username={authData.username}
-                onClosePopup={closeAccountPopupHandler}
-                userId={authData.id}
-                popupOpen={isAccountPopupOpen}
-                isAdminPanelAvaliable={isAdminPanelAvaliable}
-              />
-            </Submenu>
-          )}
-          {isMobile && (
-            <Drawer
-              isOpen={isAccountPopupOpen}
-              onClose={onToggleAccountPopup}
-              passedIsClosing={isAccountPopupClosing}>
-              <AccountPopup
-                username={authData.username}
-                onClosePopup={closeAccountPopupHandler}
-                userId={authData.id}
-                popupOpen={isAccountPopupOpen}
-                isAdminPanelAvaliable={isAdminPanelAvaliable}
-                isMobile
-              />
-            </Drawer>
-          )}
-        </>
-      )}
     </header>
   );
 });

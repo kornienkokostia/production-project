@@ -24,9 +24,8 @@
   background: var(--submenu-bg);
   border-radius: 10.5px 10.5px 0 0;
   box-shadow: 0 0 15px var(--submenu-shadow), 0 0 0 1px var(--submenu-border);
-  transform-origin: 257px 0px;
   transform: translateY(102%);
-  transition: transform 0.3s;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   opacity: 0;
   overflow: hidden;
   color: var(--main-text-color);
@@ -38,7 +37,7 @@
   z-index: var(--modal-z-index);
   opacity: 1;
   & .content {
-    transform: scale(1);
+    transform: translateY(0);
     opacity: 1;
   }
 }

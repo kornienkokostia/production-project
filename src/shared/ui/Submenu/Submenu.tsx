@@ -25,11 +25,11 @@ export enum SubmenuTheme {
 interface SubmenuProps {
   className?: string;
   isOpen: boolean;
-  onClose: () => void;
+  closeHandler: () => void;
   children: ReactNode;
   theme?: SubmenuTheme;
   showTriangle?: boolean;
-  passedIsClosing?: boolean;
+  isClosing: boolean;
   sidebarPadding?: boolean;
 }
 
@@ -38,23 +38,14 @@ export const Submenu = (props: SubmenuProps) => {
     className,
     children,
     isOpen,
-    onClose,
+    closeHandler,
     theme = SubmenuTheme.SETTINGS,
     showTriangle = false,
-    passedIsClosing,
+    isClosing,
     sidebarPadding,
   } = props;
-  const [isClosing, setIsClosing] = useState(false);
-  const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
-  const { i18n } = useTranslation();
 
-  const closeHandler = useCallback(() => {
-    setIsClosing(true);
-    timeRef.current = setTimeout(() => {
-      setIsClosing(false);
-      onClose();
-    }, 200);
-  }, [onClose]);
+  const { i18n } = useTranslation();
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -73,7 +64,6 @@ export const Submenu = (props: SubmenuProps) => {
       window.addEventListener('keydown', onKeyDown);
     }
     return () => {
-      clearTimeout(timeRef.current);
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
@@ -82,7 +72,7 @@ export const Submenu = (props: SubmenuProps) => {
 
   const mods: Mods = {
     [cls.opened]: isOpen,
-    [cls.isClosing]: passedIsClosing || isClosing,
+    [cls.isClosing]: isClosing,
     [cls.sidebarPadding]: sidebarPadding,
   };
 
@@ -96,8 +86,7 @@ export const Submenu = (props: SubmenuProps) => {
               { [cls.showTriangle]: showTriangle },
               [],
             )}
-            onClick={onContentClick}
-          >
+            onClick={onContentClick}>
             <Button className={cls.closeBtn}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>

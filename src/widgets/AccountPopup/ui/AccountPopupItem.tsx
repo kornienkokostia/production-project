@@ -13,9 +13,7 @@ interface AccountPopupItemProps {
 }
 
 export const AccountPopupItem = (props: AccountPopupItemProps) => {
-  const {
-    item, selected, showSelected, setSelected,
-  } = props;
+  const { item, selected, showSelected, setSelected } = props;
   return (
     <>
       <Button
@@ -32,7 +30,7 @@ export const AccountPopupItem = (props: AccountPopupItemProps) => {
         onMouseEnter={() => {
           setSelected(item.title);
         }}
-      >
+        onMouseLeave={() => setSelected('')}>
         <item.Icon className={cls.icon} />
         <p>{item.title}</p>
       </Button>

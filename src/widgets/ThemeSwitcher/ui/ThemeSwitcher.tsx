@@ -16,22 +16,20 @@ export const ThemeSwitcher = memo(({ className }: ThemeSwitcherProps) => {
 
   return (
     <div className={classNames(cls.ThemeSwitcher, {}, [className])}>
+      <div
+        className={classNames(cls.active, {}, [
+          theme === Theme.LIGHT ? cls.light : cls.dark,
+        ])}></div>
       <Button
-        className={classNames(cls.item, {}, [
-          theme === Theme.LIGHT ? cls.active : undefined,
-        ])}
+        className={classNames(cls.item, {}, [])}
         theme={ButtonTheme.CLEAR}
-        onClick={toggleLightTheme}
-      >
+        onClick={toggleLightTheme}>
         {t('Light')}
       </Button>
       <Button
-        className={classNames(cls.item, {}, [
-          theme === Theme.DARK ? cls.active : undefined,
-        ])}
+        className={classNames(cls.item, {}, [])}
         theme={ButtonTheme.CLEAR}
-        onClick={toggleDarkTheme}
-      >
+        onClick={toggleDarkTheme}>
         {t('Dark')}
       </Button>
     </div>

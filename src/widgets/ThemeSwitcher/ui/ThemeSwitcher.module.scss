@@ -5,6 +5,7 @@
   border-radius: 7px;
   background-color: var(--border-color);
   line-height: 24px;
+  position: relative;
 }
 .item {
   padding: 0 7px;
@@ -17,14 +18,16 @@
 }
 .active {
   background-color: var(--appearence-switcher-grey);
-  // &::before {
-  //   content: '';
-  //   position: absolute;
-  //   width: calc(100% - 2px);
-  //   height: 21px;
-  //   background-color: var(--border-color);
-  //   // left: 1px;
-  //   border-radius: 6px;
-  //   z-index: -1;
-  // }
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  border-radius: 7px;
+  transition: transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.light {
+  transform: translateX(0);
+}
+.dark {
+  transform: translateX(100%);
 }

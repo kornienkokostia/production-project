@@ -17,24 +17,13 @@ import { Button, ButtonTheme } from '../Button/Button';
 interface DrawerProps {
   className?: string;
   isOpen: boolean;
-  onClose: () => void;
+  closeHandler: () => void;
   children: ReactNode;
-  passedIsClosing?: boolean;
+  isClosing?: boolean;
 }
 
 export const Drawer = (props: DrawerProps) => {
-  const { className, children, isOpen, onClose, passedIsClosing } = props;
-  const [isClosing, setIsClosing] = useState(false);
-  const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
-  const { i18n } = useTranslation();
-
-  const closeHandler = useCallback(() => {
-    setIsClosing(true);
-    timeRef.current = setTimeout(() => {
-      setIsClosing(false);
-      onClose();
-    }, 300);
-  }, [onClose]);
+  const { className, children, isOpen, closeHandler, isClosing } = props;
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -53,7 +42,6 @@ export const Drawer = (props: DrawerProps) => {
       window.addEventListener('keydown', onKeyDown);
     }
     return () => {
-      clearTimeout(timeRef.current);
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
@@ -62,7 +50,7 @@ export const Drawer = (props: DrawerProps) => {
 
   const mods: Mods = {
     [cls.opened]: isOpen,
-    [cls.isClosing]: passedIsClosing || isClosing,
+    [cls.isClosing]: isClosing,
   };
 
   return (
