@@ -58,6 +58,10 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
   }, []);
 
   const showPasswordField = useCallback(() => {
+    if (secondInputRef.current.value) {
+      changePasswordFocused(true);
+      dispatch(loginActions.setPassword(secondInputRef.current.value));
+    }
     setPasswordFieldVisible(true);
     setHideSingInBtn(false);
     setHideUsernameBtn(true);
@@ -170,8 +174,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
               hideUsernameBtn ? cls.hidden : undefined,
             ])}
             onClick={showPasswordField}
-            disabled={username.length === 0}
-          >
+            disabled={username.length === 0}>
             <SingInFormBtnIcon className={cls.btnIcon} />
           </Button>
           <TextInput
@@ -193,8 +196,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
               hideSingInBtn ? cls.hidden : undefined,
             ])}
             disabled={password.length === 0 || isLoading}
-            onClick={onSigninBtnClick}
-          >
+            onClick={onSigninBtnClick}>
             {isLoading ? (
               <Loader theme={LoaderTheme.SMALL} />
             ) : (

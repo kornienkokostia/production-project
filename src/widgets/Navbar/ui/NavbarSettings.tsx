@@ -1,5 +1,6 @@
 import {
   MutableRefObject,
+  memo,
   useCallback,
   useEffect,
   useRef,
@@ -17,66 +18,61 @@ interface NavbarSettingsProps {
   isMobile: boolean;
 }
 
-export const NavbarSettings = ({
-  isMobile,
-  btnClassName,
-  btnIconClassName,
-}: NavbarSettingsProps) => {
-  const [isSettingsPopupClosing, setIsSettingsPopupClosing] = useState(false);
-  const [isSettingsPopupOpen, setSettingsPopupOpen] = useState(false);
+export const NavbarSettings = memo(
+  ({ isMobile, btnClassName, btnIconClassName }: NavbarSettingsProps) => {
+    const [isSettingsPopupClosing, setIsSettingsPopupClosing] = useState(false);
+    const [isSettingsPopupOpen, setSettingsPopupOpen] = useState(false);
 
-  const settingsTimeRef = useRef() as MutableRefObject<
-    ReturnType<typeof setTimeout>
-  >;
+    const settingsTimeRef = useRef() as MutableRefObject<
+      ReturnType<typeof setTimeout>
+    >;
 
-  const onToggleSettings = useCallback(() => {
-    setSettingsPopupOpen(prev => !prev);
-  }, []);
+    const onToggleSettings = useCallback(() => {
+      setSettingsPopupOpen(prev => !prev);
+    }, []);
 
-  const closeSettingsPopupHandler = useCallback(() => {
-    setIsSettingsPopupClosing(true);
-    settingsTimeRef.current = setTimeout(
-      () => {
-        setIsSettingsPopupClosing(false);
-        setSettingsPopupOpen(false);
+    const closeSettingsPopupHandler = useCallback(() => {
+      setIsSettingsPopupClosing(true);
+      settingsTimeRef.current = setTimeout(
+        () => {
+          setIsSettingsPopupClosing(false);
+          setSettingsPopupOpen(false);
+        },
+        isMobile ? 400 : 200,
+      );
+    }, [setSettingsPopupOpen, isMobile]);
+
+    useEffect(
+      () => () => {
+        clearTimeout(settingsTimeRef.current);
       },
-      isMobile ? 400 : 200,
+      [],
     );
-  }, [setSettingsPopupOpen, isMobile]);
 
-  useEffect(
-    () => () => {
-      clearTimeout(settingsTimeRef.current);
-    },
-    [],
-  );
-
-  return (
-    <>
-      <Button
-        theme={ButtonTheme.CLEAR}
-        className={btnClassName}
-        onClick={onToggleSettings}
-      >
-        <SettingsIcon className={btnIconClassName} />
-      </Button>
-      {isMobile ? (
-        <Drawer
-          isOpen={isSettingsPopupOpen}
-          isClosing={isSettingsPopupClosing}
-          closeHandler={closeSettingsPopupHandler}
-        >
-          <Settings isMobile />
-        </Drawer>
-      ) : (
-        <Submenu
-          isOpen={isSettingsPopupOpen}
-          isClosing={isSettingsPopupClosing}
-          closeHandler={closeSettingsPopupHandler}
-        >
-          <Settings />
-        </Submenu>
-      )}
-    </>
-  );
-};
+    return (
+      <>
+        <Button
+          theme={ButtonTheme.CLEAR}
+          className={btnClassName}
+          onClick={onToggleSettings}>
+          <SettingsIcon className={btnIconClassName} />
+        </Button>
+        {isMobile ? (
+          <Drawer
+            isOpen={isSettingsPopupOpen}
+            isClosing={isSettingsPopupClosing}
+            closeHandler={closeSettingsPopupHandler}>
+            <Settings isMobile />
+          </Drawer>
+        ) : (
+          <Submenu
+            isOpen={isSettingsPopupOpen}
+            isClosing={isSettingsPopupClosing}
+            closeHandler={closeSettingsPopupHandler}>
+            <Settings />
+          </Submenu>
+        )}
+      </>
+    );
+  },
+);

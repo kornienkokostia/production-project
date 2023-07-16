@@ -56,11 +56,12 @@
       }
     }
     &:-webkit-autofill {
-      box-shadow: inset 0 0 0 100px #fffef2;
-      border-color: #ffe045;
+      box-shadow: inset 0 0 0 100px var(--autocomplete-bg);
+      border-color: var(--autocomplete-border);
       &:focus {
         border-color: #0071e3;
-        box-shadow: 0 0 0 4px rgb(0 125 250 / 60%), inset 0 0 0 100px #fffef2;
+        box-shadow: 0 0 0 4px rgb(0 125 250 / 60%),
+          inset 0 0 0 100px var(--autocomplete-bg);
       }
     }
   }
@@ -130,6 +131,7 @@
   & .input-field-input {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    margin-top: -0.5px;
   }
 }
 .paddingRight {

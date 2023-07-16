@@ -1,0 +1,11 @@
+.StarRating {
+  display: flex;
+  gap: 10px;
+}
+.star {
+  stroke: var(--main-text-color);
+  &:hover {
+    fill: var(--main-text-color);
+    cursor: pointer;
+  }
+}

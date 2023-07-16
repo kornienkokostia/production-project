@@ -1,6 +1,7 @@
 import {
   MutableRefObject,
   ReactNode,
+  memo,
   useCallback,
   useEffect,
   useRef,
@@ -33,7 +34,7 @@ interface SubmenuProps {
   sidebarPadding?: boolean;
 }
 
-export const Submenu = (props: SubmenuProps) => {
+export const Submenu = memo((props: SubmenuProps) => {
   const {
     className,
     children,
@@ -86,8 +87,7 @@ export const Submenu = (props: SubmenuProps) => {
               { [cls.showTriangle]: showTriangle },
               [],
             )}
-            onClick={onContentClick}
-          >
+            onClick={onContentClick}>
             <Button className={cls.closeBtn}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>
@@ -102,4 +102,4 @@ export const Submenu = (props: SubmenuProps) => {
       </div>
     </Portal>
   );
-};
+});

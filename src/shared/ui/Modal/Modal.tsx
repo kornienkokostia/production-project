@@ -1,6 +1,4 @@
-import {
-  ReactNode, useCallback, useEffect, useRef, useState,
-} from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import { useTheme } from '@/app/providers/ThemeProvider';
 import CloseModalIcon from '@/shared/assets/icons/close-modal.svg';
@@ -17,11 +15,7 @@ interface ModalProps {
 }
 
 export const Modal = (props: ModalProps) => {
-  const {
-    className, children, isOpen, onClose, lazy,
-  } = props;
-  // const [isClosing, setIsClosing] = useState(false);
-  // const timeRef = useRef<ReturnType<typeof setTimeout>>();
+  const { className, children, isOpen, onClose, lazy } = props;
   const { theme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -33,13 +27,6 @@ export const Modal = (props: ModalProps) => {
 
   const closeHandler = useCallback(() => {
     onClose();
-    // if (onClose) {
-    //   setIsClosing(true);
-    //   timeRef.current = setTimeout(() => {
-    //     setIsClosing(false);
-    //     onClose();
-    //   }, 200);
-    // }
   }, [onClose]);
 
   const onKeyDown = useCallback(
@@ -56,7 +43,6 @@ export const Modal = (props: ModalProps) => {
       window.addEventListener('keydown', onKeyDown);
     }
     return () => {
-      // clearTimeout(timeRef.current);
       window.removeEventListener('keydown', onKeyDown);
     };
   }, [isOpen, onKeyDown]);
@@ -65,7 +51,6 @@ export const Modal = (props: ModalProps) => {
 
   const mods: Mods = {
     [cls.opened]: isOpen,
-    // [cls.isClosing]: isClosing,
   };
 
   if (lazy && !isMounted) {
@@ -75,15 +60,17 @@ export const Modal = (props: ModalProps) => {
   return (
     <Portal>
       <div
-        className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}
-      >
+        className={classNames(cls.Modal, mods, [
+          className,
+          theme,
+          'app_modal',
+        ])}>
         <div className={cls.overlay} onClick={closeHandler}>
           <div className={cls.content} onClick={onContentClick}>
             <Button
               className={cls.closeBtn}
               theme={ButtonTheme.CLEAR}
-              onClick={closeHandler}
-            >
+              onClick={closeHandler}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>
             {children}

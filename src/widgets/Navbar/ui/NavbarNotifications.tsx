@@ -1,5 +1,6 @@
 import {
   MutableRefObject,
+  memo,
   useCallback,
   useEffect,
   useRef,
@@ -17,67 +18,62 @@ interface NavbarNotificationsProps {
   isMobile: boolean;
 }
 
-export const NavbarNotifications = ({
-  isMobile,
-  btnClassName,
-  btnIconClassName,
-}: NavbarNotificationsProps) => {
-  const [isNotifPopupOpen, setNotifPopupOpen] = useState(false);
-  const [isNotifPopupClosing, setIsNotifPopupClosing] = useState(false);
+export const NavbarNotifications = memo(
+  ({ isMobile, btnClassName, btnIconClassName }: NavbarNotificationsProps) => {
+    const [isNotifPopupOpen, setNotifPopupOpen] = useState(false);
+    const [isNotifPopupClosing, setIsNotifPopupClosing] = useState(false);
 
-  const notifTimeRef = useRef() as MutableRefObject<
-    ReturnType<typeof setTimeout>
-  >;
+    const notifTimeRef = useRef() as MutableRefObject<
+      ReturnType<typeof setTimeout>
+    >;
 
-  const onToggleNotifPopup = useCallback(() => {
-    setNotifPopupOpen(prev => !prev);
-  }, []);
+    const onToggleNotifPopup = useCallback(() => {
+      setNotifPopupOpen(prev => !prev);
+    }, []);
 
-  const closeNotifPopupHandler = useCallback(() => {
-    setIsNotifPopupClosing(true);
-    notifTimeRef.current = setTimeout(
-      () => {
-        setIsNotifPopupClosing(false);
-        setNotifPopupOpen(false);
+    const closeNotifPopupHandler = useCallback(() => {
+      setIsNotifPopupClosing(true);
+      notifTimeRef.current = setTimeout(
+        () => {
+          setIsNotifPopupClosing(false);
+          setNotifPopupOpen(false);
+        },
+        isMobile ? 400 : 200,
+      );
+    }, [setNotifPopupOpen, isMobile]);
+
+    useEffect(
+      () => () => {
+        clearTimeout(notifTimeRef.current);
       },
-      isMobile ? 400 : 200,
+      [],
     );
-  }, [setNotifPopupOpen, isMobile]);
 
-  useEffect(
-    () => () => {
-      clearTimeout(notifTimeRef.current);
-    },
-    [],
-  );
-
-  return (
-    <>
-      <Button
-        theme={ButtonTheme.CLEAR}
-        className={btnClassName}
-        onClick={onToggleNotifPopup}
-      >
-        <NotificationsIcon className={btnIconClassName} />
-      </Button>
-      {isMobile ? (
-        <Drawer
-          isOpen={isNotifPopupOpen}
-          closeHandler={closeNotifPopupHandler}
-          isClosing={isNotifPopupClosing}
-        >
-          <NotificationList isMobile onClosePopup={closeNotifPopupHandler} />
-        </Drawer>
-      ) : (
-        <Submenu
-          isOpen={isNotifPopupOpen}
-          closeHandler={closeNotifPopupHandler}
-          theme={SubmenuTheme.NOTIFICATIONS}
-          isClosing={isNotifPopupClosing}
-        >
-          <NotificationList onClosePopup={closeNotifPopupHandler} />
-        </Submenu>
-      )}
-    </>
-  );
-};
+    return (
+      <>
+        <Button
+          theme={ButtonTheme.CLEAR}
+          className={btnClassName}
+          onClick={onToggleNotifPopup}>
+          <NotificationsIcon className={btnIconClassName} />
+        </Button>
+        {isMobile ? (
+          <Drawer
+            isOpen={isNotifPopupOpen}
+            closeHandler={closeNotifPopupHandler}
+            isClosing={isNotifPopupClosing}>
+            <NotificationList isMobile onClosePopup={closeNotifPopupHandler} />
+          </Drawer>
+        ) : (
+          <Submenu
+            isOpen={isNotifPopupOpen}
+            closeHandler={closeNotifPopupHandler}
+            theme={SubmenuTheme.NOTIFICATIONS}
+            isClosing={isNotifPopupClosing}>
+            <NotificationList onClosePopup={closeNotifPopupHandler} />
+          </Submenu>
+        )}
+      </>
+    );
+  },
+);
