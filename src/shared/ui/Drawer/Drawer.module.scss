@@ -53,11 +53,9 @@
   padding: 20px;
 }
 .closeBtn {
-  width: 13.13px;
-  height: 13.13px;
+  width: 14px;
+  height: 14px;
 }
 .closeBtnIcon {
-  fill: var(--close-modal-icon-fill);
-  display: flex;
-  scale: 1.01;
+  fill: var(--main-text-color);
 }

@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useEffect } from 'react';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
-import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
+import CloseModalIcon from 'shared/assets/icons/close-drawer.svg';
 import cls from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button, ButtonTheme } from '../Button/Button';
