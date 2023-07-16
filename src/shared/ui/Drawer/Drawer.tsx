@@ -1,15 +1,6 @@
-import {
-  MutableRefObject,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { ReactNode, useCallback, useEffect } from 'react';
 import { Mods, classNames } from 'shared/lib/classNames/classNames';
 import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
-import TriangleIcon from 'shared/assets/icons/select-top-triangle.svg';
-import { useTranslation } from 'react-i18next';
 import cls from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button, ButtonTheme } from '../Button/Button';
