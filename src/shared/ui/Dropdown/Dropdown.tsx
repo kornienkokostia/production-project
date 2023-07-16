@@ -1,7 +1,7 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import './Dropdown.scss';
-import DropdownIcon from 'shared/assets/icons/dropdown-icon.svg';
 import { ChangeEvent, memo, useMemo } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import './Dropdown.scss';
+import DropdownIcon from '@/shared/assets/icons/dropdown-icon.svg';
 
 interface SelectOption {
   value: string;
@@ -21,11 +21,14 @@ export const Dropdown = memo((props: DropdownProps) => {
     fieldTitle, options, value, onChange, readonly,
   } = props;
 
-  const optionList = useMemo(() => options?.map(el => (
-    <option value={el.value} key={el.value}>
-      {el.content}
-    </option>
-  )), [options]);
+  const optionList = useMemo(
+    () => options?.map(el => (
+      <option value={el.value} key={el.value}>
+        {el.content}
+      </option>
+    )),
+    [options],
+  );
 
   const onChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
     onChange?.(e.target.value);

@@ -1,13 +1,13 @@
 import React, { memo, useCallback, useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import SingInIcon from 'shared/assets/icons/singin-btn.svg';
-import { LoginModal } from 'features/AuthByUserName';
-import { getUserAuthData } from 'entities/User';
 import { useSelector } from 'react-redux';
-import cls from './Navbar.module.scss';
 import { isMobileOnly } from 'react-device-detect';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import SingInIcon from '@/shared/assets/icons/singin-btn.svg';
+import { LoginModal } from '@/features/AuthByUserName';
+import { getUserAuthData } from '@/entities/User';
+import cls from './Navbar.module.scss';
 import { NavbarSettings } from './NavbarSettings';
 import { NavbarAccount } from './NavbarAccount';
 import { NavbarNotifications } from './NavbarNotifications';
@@ -50,7 +50,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
           <Button
             theme={ButtonTheme.APPLE}
             className={cls.NavbarSignin}
-            onClick={onShowModal}>
+            onClick={onShowModal}
+          >
             <SingInIcon className={cls.SingInIcon} />
             <span>{t('Sign in')}</span>
           </Button>

@@ -1,11 +1,11 @@
 import { configureStore, Reducer, CombinedState } from '@reduxjs/toolkit';
-import { userReducer } from 'entities/User';
 import { ReducersMapObject } from 'redux';
-import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
-import { appStateReducer } from 'entities/AppState';
-import { uiReducer } from 'features/UI';
-import { rtkApi } from 'shared/api/rtkApi';
+import { userReducer } from '@/entities/User';
+import { $api } from '@/shared/api/api';
+import { appStateReducer } from '@/entities/AppState';
+import { uiReducer } from '@/features/UI';
+import { rtkApi } from '@/shared/api/rtkApi';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 

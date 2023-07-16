@@ -1,13 +1,13 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { TextInput } from 'shared/ui/TextInput/TextInput';
-import { Loader } from 'shared/ui/Loader/Loader';
 import { useEffect, useState } from 'react';
-import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
-import { Currancy, CurrencySelect } from 'entities/Currency';
-import { Country } from 'entities/Country/model/types/country';
-import { CountrySelect } from 'entities/Country';
-import { AccountErrors } from 'features/editableAccountCard';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { TextInput } from '@/shared/ui/TextInput/TextInput';
+import { Loader } from '@/shared/ui/Loader/Loader';
+import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
+import { Currancy, CurrencySelect } from '@/entities/Currency';
+import { Country } from '@/entities/Country/model/types/country';
+import { CountrySelect } from '@/entities/Country';
+import { AccountErrors } from '@/features/editableAccountCard';
 import { Account } from '../../model/types/account';
 import cls from './AccountCard.module.scss';
 

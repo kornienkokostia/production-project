@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { ArticleList } from 'entities/Article';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useTranslation } from 'react-i18next';
+import { ArticleList } from '@/entities/Article';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
 import {
   getArticlesPageError,

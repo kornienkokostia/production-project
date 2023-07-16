@@ -1,8 +1,4 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { InputTheme, TextInput } from 'shared/ui/TextInput/TextInput';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import SingInFormBtnIcon from 'shared/assets/icons/singin-form-btn.svg';
 import {
   MutableRefObject,
   memo,
@@ -12,12 +8,16 @@ import {
   useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { Loader, LoaderTheme } from 'shared/ui/Loader/Loader';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { InputTheme, TextInput } from '@/shared/ui/TextInput/TextInput';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import SingInFormBtnIcon from '@/shared/assets/icons/singin-form-btn.svg';
+import { Loader, LoaderTheme } from '@/shared/ui/Loader/Loader';
 import {
   DynamicModuleLoader,
   ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { loginByUsername } from '../../model/services/LoginByUsername/loginByUsername';

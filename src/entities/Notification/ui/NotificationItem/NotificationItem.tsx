@@ -1,10 +1,10 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { AppLink } from '@/shared/ui/AppLink/AppLink';
 import cls from './NotificationItem.module.scss';
 import { Notification } from '../../model/types/notifications';
-import { AppLink } from 'shared/ui/AppLink/AppLink';
-import { useCallback } from 'react';
 
 interface NotificationItemProps {
   className?: string;

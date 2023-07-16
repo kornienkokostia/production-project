@@ -1,14 +1,14 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { ChangeEvent, memo, useCallback } from 'react';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import SendCommentFormBtnIcon from 'shared/assets/icons/send.svg';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import SendCommentFormBtnIcon from '@/shared/assets/icons/send.svg';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import {
   DynamicModuleLoader,
   ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { useTranslation } from 'react-i18next';
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
   getAddCommentFormError,
   getAddCommentFormText,

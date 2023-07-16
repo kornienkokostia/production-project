@@ -1,14 +1,14 @@
 import { memo, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
-import { Currancy } from 'entities/Currency';
-import { Country } from 'entities/Country';
-import { AccountCard } from 'entities/Account';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Currancy } from '@/entities/Currency';
+import { Country } from '@/entities/Country';
+import { AccountCard } from '@/entities/Account';
 import {
   DynamicModuleLoader,
   ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { fetchAccountData } from '../../model/services/fetchAccountData/fetchAccountData';
 import { getAccountForm } from '../../model/selectors/getAccountForm/getAccountForm';
 import { getAccountIsLoading } from '../../model/selectors/getAccountIsLoading/getAccountIsLoading';

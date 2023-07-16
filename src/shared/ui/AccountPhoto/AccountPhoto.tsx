@@ -1,6 +1,6 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import AccountPlaceholderIcon from 'shared/assets/icons/account-pic-placeholder.svg';
 import { memo, useEffect, useState } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import AccountPlaceholderIcon from '@/shared/assets/icons/account-pic-placeholder.svg';
 import cls from './AccountPhoto.module.scss';
 
 interface AccountPhotoProps {

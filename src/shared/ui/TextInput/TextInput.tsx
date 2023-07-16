@@ -9,8 +9,8 @@ import React, {
   useState,
 } from 'react';
 import './TextInput.scss';
-import { classNames } from 'shared/lib/classNames/classNames';
-import ErrorIcon from 'shared/assets/icons/error.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import ErrorIcon from '@/shared/assets/icons/error.svg';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,

@@ -5,11 +5,11 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
-import { Submenu } from 'shared/ui/Submenu/Submenu';
-import { Settings } from 'widgets/Settings';
-import SettingsIcon from 'shared/assets/icons/settings.svg';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Drawer } from '@/shared/ui/Drawer/Drawer';
+import { Submenu } from '@/shared/ui/Submenu/Submenu';
+import { Settings } from '@/widgets/Settings';
+import SettingsIcon from '@/shared/assets/icons/settings.svg';
 
 interface NavbarSettingsProps {
   btnClassName: string;
@@ -42,7 +42,7 @@ export const NavbarSettings = ({
       },
       isMobile ? 400 : 200,
     );
-  }, [setSettingsPopupOpen]);
+  }, [setSettingsPopupOpen, isMobile]);
 
   useEffect(
     () => () => {
@@ -56,21 +56,24 @@ export const NavbarSettings = ({
       <Button
         theme={ButtonTheme.CLEAR}
         className={btnClassName}
-        onClick={onToggleSettings}>
+        onClick={onToggleSettings}
+      >
         <SettingsIcon className={btnIconClassName} />
       </Button>
       {isMobile ? (
         <Drawer
           isOpen={isSettingsPopupOpen}
           isClosing={isSettingsPopupClosing}
-          closeHandler={closeSettingsPopupHandler}>
+          closeHandler={closeSettingsPopupHandler}
+        >
           <Settings isMobile />
         </Drawer>
       ) : (
         <Submenu
           isOpen={isSettingsPopupOpen}
           isClosing={isSettingsPopupClosing}
-          closeHandler={closeSettingsPopupHandler}>
+          closeHandler={closeSettingsPopupHandler}
+        >
           <Settings />
         </Submenu>
       )}

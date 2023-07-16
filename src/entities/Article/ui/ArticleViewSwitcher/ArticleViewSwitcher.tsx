@@ -1,8 +1,8 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import ListIcon from 'shared/assets/icons/view-list.svg';
-import GridIcon from 'shared/assets/icons/view-grid.svg';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { ArticleView } from 'entities/Article/model/consts/articleConsts';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import ListIcon from '@/shared/assets/icons/view-list.svg';
+import GridIcon from '@/shared/assets/icons/view-grid.svg';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { ArticleView } from '@/entities/Article/model/consts/articleConsts';
 import cls from './ArticleViewSwitcher.module.scss';
 
 interface ArticleViewSwitcherProps {

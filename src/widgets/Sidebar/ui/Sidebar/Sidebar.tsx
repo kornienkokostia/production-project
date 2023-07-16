@@ -1,14 +1,14 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import {
   memo, useCallback, useEffect, useState,
 } from 'react';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { AppRoutes, RoutePath } from 'shared/config/routeConfig/routeConfig';
-import ToggleIcon from 'shared/assets/icons/nav-bar-toggle-btn.svg';
 import { useLocation } from 'react-router-dom';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { appStateActions, getNavbarCollapsed } from 'entities/AppState';
 import { useSelector } from 'react-redux';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { AppRoutes, RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import ToggleIcon from '@/shared/assets/icons/nav-bar-toggle-btn.svg';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { appStateActions, getNavbarCollapsed } from '@/entities/AppState';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
 import { getSidebarItems } from '../../model/selector/getSidebarItems';

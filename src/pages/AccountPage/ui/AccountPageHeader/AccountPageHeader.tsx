@@ -1,16 +1,16 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getUserAuthData } from 'entities/User';
-import { getAccountReadonly } from 'features/editableAccountCard/model/selectors/getAccountReadonly/getAccountReadonly';
-import { getAccountIsLoading } from 'features/editableAccountCard/model/selectors/getAccountIsLoading/getAccountIsLoading';
-import { getAccountData } from 'features/editableAccountCard/model/selectors/getAccountData/getAccountData';
-import { getAccountFormErrors } from 'features/editableAccountCard/model/selectors/getAccountFormErrors/getAccountFormErrors';
-import { accountActions } from 'features/editableAccountCard/model/slice/accountSlice';
-import { updateAccountData } from 'features/editableAccountCard/model/services/updateAccountData/updateAccountData';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getUserAuthData } from '@/entities/User';
+import { getAccountReadonly } from '@/features/editableAccountCard/model/selectors/getAccountReadonly/getAccountReadonly';
+import { getAccountIsLoading } from '@/features/editableAccountCard/model/selectors/getAccountIsLoading/getAccountIsLoading';
+import { getAccountData } from '@/features/editableAccountCard/model/selectors/getAccountData/getAccountData';
+import { getAccountFormErrors } from '@/features/editableAccountCard/model/selectors/getAccountFormErrors/getAccountFormErrors';
+import { accountActions } from '@/features/editableAccountCard/model/slice/accountSlice';
+import { updateAccountData } from '@/features/editableAccountCard/model/services/updateAccountData/updateAccountData';
 import cls from './AccountPageHeader.module.scss';
 
 interface AccountPageHeaderProps {

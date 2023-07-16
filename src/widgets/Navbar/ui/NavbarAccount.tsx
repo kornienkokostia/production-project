@@ -5,13 +5,13 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
-import { Submenu, SubmenuTheme } from 'shared/ui/Submenu/Submenu';
-import { AccountPopup } from 'widgets/AccountPopup';
-import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
 import { useSelector } from 'react-redux';
-import { User, isUserAdmin, isUserManager } from 'entities/User';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Drawer } from '@/shared/ui/Drawer/Drawer';
+import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu/Submenu';
+import { AccountPopup } from '@/widgets/AccountPopup';
+import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
+import { User, isUserAdmin, isUserManager } from '@/entities/User';
 
 interface NavbarAccountProps {
   btnClassName: string;
@@ -21,7 +21,9 @@ interface NavbarAccountProps {
 }
 
 export const NavbarAccount = (props: NavbarAccountProps) => {
-  const { isMobile, btnClassName, accountBtnClassName, authData } = props;
+  const {
+    isMobile, btnClassName, accountBtnClassName, authData,
+  } = props;
   const isAdmin = useSelector(isUserAdmin);
   const isManager = useSelector(isUserManager);
   const isAdminPanelAvaliable = isAdmin || isManager;
@@ -45,7 +47,7 @@ export const NavbarAccount = (props: NavbarAccountProps) => {
       },
       isMobile ? 400 : 200,
     );
-  }, [setAccountPopupOpen]);
+  }, [setAccountPopupOpen, isMobile]);
 
   useEffect(
     () => () => {
@@ -59,7 +61,8 @@ export const NavbarAccount = (props: NavbarAccountProps) => {
       <Button
         theme={ButtonTheme.CLEAR}
         className={btnClassName}
-        onClick={onToggleAccountPopup}>
+        onClick={onToggleAccountPopup}
+      >
         <div className={accountBtnClassName}>
           <AccountPhoto src={authData?.avatar} />
         </div>
@@ -68,7 +71,8 @@ export const NavbarAccount = (props: NavbarAccountProps) => {
         <Drawer
           isOpen={isAccountPopupOpen}
           closeHandler={closeAccountPopupHandler}
-          isClosing={isAccountPopupClosing}>
+          isClosing={isAccountPopupClosing}
+        >
           <AccountPopup
             username={authData.username}
             onClosePopup={closeAccountPopupHandler}
@@ -83,7 +87,8 @@ export const NavbarAccount = (props: NavbarAccountProps) => {
           isOpen={isAccountPopupOpen}
           closeHandler={closeAccountPopupHandler}
           theme={SubmenuTheme.ACCOUNT}
-          isClosing={isAccountPopupClosing}>
+          isClosing={isAccountPopupClosing}
+        >
           <AccountPopup
             username={authData.username}
             onClosePopup={closeAccountPopupHandler}

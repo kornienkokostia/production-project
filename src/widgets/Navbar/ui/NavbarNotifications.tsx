@@ -5,11 +5,11 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { Drawer } from 'shared/ui/Drawer/Drawer';
-import { Submenu, SubmenuTheme } from 'shared/ui/Submenu/Submenu';
-import NotificationsIcon from 'shared/assets/icons/notifications.svg';
-import { NotificationList } from 'entities/Notification';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Drawer } from '@/shared/ui/Drawer/Drawer';
+import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu/Submenu';
+import NotificationsIcon from '@/shared/assets/icons/notifications.svg';
+import { NotificationList } from '@/entities/Notification';
 
 interface NavbarNotificationsProps {
   btnClassName: string;
@@ -42,7 +42,7 @@ export const NavbarNotifications = ({
       },
       isMobile ? 400 : 200,
     );
-  }, [setNotifPopupOpen]);
+  }, [setNotifPopupOpen, isMobile]);
 
   useEffect(
     () => () => {
@@ -56,14 +56,16 @@ export const NavbarNotifications = ({
       <Button
         theme={ButtonTheme.CLEAR}
         className={btnClassName}
-        onClick={onToggleNotifPopup}>
+        onClick={onToggleNotifPopup}
+      >
         <NotificationsIcon className={btnIconClassName} />
       </Button>
       {isMobile ? (
         <Drawer
           isOpen={isNotifPopupOpen}
           closeHandler={closeNotifPopupHandler}
-          isClosing={isNotifPopupClosing}>
+          isClosing={isNotifPopupClosing}
+        >
           <NotificationList isMobile onClosePopup={closeNotifPopupHandler} />
         </Drawer>
       ) : (
@@ -71,7 +73,8 @@ export const NavbarNotifications = ({
           isOpen={isNotifPopupOpen}
           closeHandler={closeNotifPopupHandler}
           theme={SubmenuTheme.NOTIFICATIONS}
-          isClosing={isNotifPopupClosing}>
+          isClosing={isNotifPopupClosing}
+        >
           <NotificationList onClosePopup={closeNotifPopupHandler} />
         </Submenu>
       )}

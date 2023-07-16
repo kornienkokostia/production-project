@@ -6,10 +6,10 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
-import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
-import TriangleIcon from 'shared/assets/icons/select-top-triangle.svg';
 import { useTranslation } from 'react-i18next';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
+import CloseModalIcon from '@/shared/assets/icons/close-modal.svg';
+import TriangleIcon from '@/shared/assets/icons/select-top-triangle.svg';
 import cls from './Submenu.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button } from '../Button/Button';
@@ -86,7 +86,8 @@ export const Submenu = (props: SubmenuProps) => {
               { [cls.showTriangle]: showTriangle },
               [],
             )}
-            onClick={onContentClick}>
+            onClick={onContentClick}
+          >
             <Button className={cls.closeBtn}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>

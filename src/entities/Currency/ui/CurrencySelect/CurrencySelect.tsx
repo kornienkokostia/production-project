@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import { Dropdown } from 'shared/ui/Dropdown/Dropdown';
 import { memo, useCallback } from 'react';
+import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
 import { Currancy } from '../../model/types/currency';
 
 interface CurrencySelectProps {

@@ -1,4 +1,3 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import {
   MutableRefObject,
   ReactNode,
@@ -6,12 +5,13 @@ import {
   useLayoutEffect,
   useRef,
 } from 'react';
-import { useInfiniteScroll } from 'shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getUIScrollByPath, uiActions } from 'features/UI';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { StateSchema } from 'app/providers/StoreProvider';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfiniteScroll';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getUIScrollByPath, uiActions } from '@/features/UI';
+import { StateSchema } from '@/app/providers/StoreProvider';
 import cls from './Page.module.scss';
 
 interface PageProps {

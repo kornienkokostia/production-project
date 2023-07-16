@@ -1,9 +1,9 @@
 import {
   ReactNode, useCallback, useEffect, useRef, useState,
 } from 'react';
-import { Mods, classNames } from 'shared/lib/classNames/classNames';
-import { useTheme } from 'app/providers/ThemeProvider';
-import CloseModalIcon from 'shared/assets/icons/close-modal.svg';
+import { Mods, classNames } from '@/shared/lib/classNames/classNames';
+import { useTheme } from '@/app/providers/ThemeProvider';
+import CloseModalIcon from '@/shared/assets/icons/close-modal.svg';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button, ButtonTheme } from '../Button/Button';

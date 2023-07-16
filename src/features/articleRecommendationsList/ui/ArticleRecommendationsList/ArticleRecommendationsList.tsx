@@ -1,12 +1,12 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
+import { useSelector } from 'react-redux';
 import {
   ArticleList,
   ArticleView,
   getArticleDetailsIsLoading,
-} from 'entities/Article';
-import { useSelector } from 'react-redux';
+} from '@/entities/Article';
+import { classNames } from '@/shared/lib/classNames/classNames';
 import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
 import cls from './ArticleRecommendationsList.module.scss';
 

@@ -5,8 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 import {
   AppRouteProps,
   routeConfig,
-} from 'shared/config/routeConfig/routeConfig';
-import { Loader, LoaderTheme } from 'shared/ui/Loader/Loader';
+} from '@/shared/config/routeConfig/routeConfig';
+import { Loader, LoaderTheme } from '@/shared/ui/Loader/Loader';
 import { RequireAuth } from './RequireAuth';
 
 export const AppRouter = memo(() => {

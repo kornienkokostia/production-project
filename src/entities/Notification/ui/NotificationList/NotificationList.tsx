@@ -1,6 +1,6 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { useNotifications } from 'entities/Notification/api/notificationApi';
 import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { useNotifications } from '@/entities/Notification/api/notificationApi';
 import cls from './NotificationList.module.scss';
 import { NotificationItem } from '../NotificationItem/NotificationItem';
 
@@ -26,7 +26,8 @@ export const NotificationList = ({
         cls.NotificationListWrapper,
         { [cls.mobile]: isMobile },
         [className],
-      )}>
+      )}
+    >
       <div className={cls.NotificationListHeader}>
         <h2>{t('Notifications')}</h2>
       </div>

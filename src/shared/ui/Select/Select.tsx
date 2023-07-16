@@ -1,4 +1,3 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import {
   MutableRefObject,
   useCallback,
@@ -6,8 +5,9 @@ import {
   useRef,
   useState,
 } from 'react';
-import SelectIcon from 'shared/assets/icons/select-btn-icon.svg';
-import SelectedOptionIcon from 'shared/assets/icons/selected-option.svg';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import SelectIcon from '@/shared/assets/icons/select-btn-icon.svg';
+import SelectedOptionIcon from '@/shared/assets/icons/selected-option.svg';
 import cls from './Select.module.scss';
 import { Button, ButtonTheme } from '../Button/Button';
 import { Submenu, SubmenuTheme } from '../Submenu/Submenu';
@@ -131,7 +131,8 @@ export const Select = <T extends string, K extends string>(
       <Button
         theme={ButtonTheme.APPLE_CLEAR}
         onClick={onToggleBtn}
-        className={cls.selectBtn}>
+        className={cls.selectBtn}
+      >
         <span>
           {`${title} ${options.find(el => el.value === value)?.content}`}
         </span>
@@ -143,7 +144,8 @@ export const Select = <T extends string, K extends string>(
         theme={submenuTheme}
         showTriangle
         isClosing={isClosing}
-        sidebarPadding={sidebarPadding}>
+        sidebarPadding={sidebarPadding}
+      >
         <div className={cls.options}>
           {options.map(el => (
             <div
@@ -166,7 +168,8 @@ export const Select = <T extends string, K extends string>(
               onMouseMove={() => {
                 setBlockHover(false);
               }}
-              onMouseLeave={() => setShowHoverOnKeyPress(false)}>
+              onMouseLeave={() => setShowHoverOnKeyPress(false)}
+            >
               {el.value === value && (
                 <SelectedOptionIcon className={cls.selectedIcon} />
               )}

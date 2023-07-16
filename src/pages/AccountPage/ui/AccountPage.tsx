@@ -1,7 +1,7 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useParams } from 'react-router-dom';
-import { EditableAccountCard } from 'features/editableAccountCard';
 import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { EditableAccountCard } from '@/features/editableAccountCard';
 import cls from './AccountPage.module.scss';
 import { AccountPageHeader } from './AccountPageHeader/AccountPageHeader';
 

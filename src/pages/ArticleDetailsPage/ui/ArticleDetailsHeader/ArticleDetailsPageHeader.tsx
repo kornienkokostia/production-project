@@ -1,19 +1,19 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
-import { getNavbarCollapsed } from 'entities/AppState';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import ArrowBackIcon from 'shared/assets/icons/arrow-back.svg';
 import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { getNavbarCollapsed } from '@/entities/AppState';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import ArrowBackIcon from '@/shared/assets/icons/arrow-back.svg';
 import {
   getArticleDetailsData,
   getArticleDetailsIsLoading,
-} from 'entities/Article';
+} from '@/entities/Article';
 import {
   RoutePath,
   locationState,
-} from 'shared/config/routeConfig/routeConfig';
+} from '@/shared/config/routeConfig/routeConfig';
 import { getCanEditArticle } from '../../model/selectors/article';
 import cls from './ArticleDetailsPageHeader.module.scss';
 

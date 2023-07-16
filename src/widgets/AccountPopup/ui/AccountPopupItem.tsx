@@ -1,6 +1,6 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Dispatch, SetStateAction } from 'react';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import cls from './AccountPopupItem.module.scss';
 import { AccountPopupElem } from '../model/types/accountPopup';
 
@@ -13,7 +13,9 @@ interface AccountPopupItemProps {
 }
 
 export const AccountPopupItem = (props: AccountPopupItemProps) => {
-  const { item, selected, showSelected, setSelected } = props;
+  const {
+    item, selected, showSelected, setSelected,
+  } = props;
   return (
     <>
       <Button
@@ -30,7 +32,8 @@ export const AccountPopupItem = (props: AccountPopupItemProps) => {
         onMouseEnter={() => {
           setSelected(item.title);
         }}
-        onMouseLeave={() => setSelected('')}>
+        onMouseLeave={() => setSelected('')}
+      >
         <item.Icon className={cls.icon} />
         <p>{item.title}</p>
       </Button>

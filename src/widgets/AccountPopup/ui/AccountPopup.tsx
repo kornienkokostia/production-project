@@ -1,14 +1,16 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import AccountPopupSignOutIcon from 'shared/assets/icons/account-popup-sign-out.svg';
-import AccountPopupManageAccountIcon from 'shared/assets/icons/account-popup-manage-account.svg';
-import AccountPopupAdminPanelIcon from 'shared/assets/icons/account-popup-admin-panel.svg';
 import { useDispatch } from 'react-redux';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { userActions } from 'entities/User';
+import {
+  memo, useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import AccountPopupSignOutIcon from '@/shared/assets/icons/account-popup-sign-out.svg';
+import AccountPopupManageAccountIcon from '@/shared/assets/icons/account-popup-manage-account.svg';
+import AccountPopupAdminPanelIcon from '@/shared/assets/icons/account-popup-admin-panel.svg';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { userActions } from '@/entities/User';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
 import cls from './AccountPopup.module.scss';
 import { AccountPopupElem } from '../model/types/accountPopup';
 import { AccountPopupItem } from './AccountPopupItem';
@@ -59,13 +61,13 @@ export const AccountPopup = memo(
       () => [
         ...(isAdminPanelAvaliable
           ? [
-              {
-                title: t('Admin Panel'),
-                Icon: AccountPopupAdminPanelIcon,
-                onClick: onAdminPanel,
-                hasDivider: true,
-              },
-            ]
+            {
+              title: t('Admin Panel'),
+              Icon: AccountPopupAdminPanelIcon,
+              onClick: onAdminPanel,
+              hasDivider: true,
+            },
+          ]
           : []),
         {
           title: t('Manage Account'),
@@ -169,7 +171,8 @@ export const AccountPopup = memo(
           setShowSelected(false);
         }}
         onMouseEnter={() => setCanPressEnter(true)}
-        onMouseLeave={() => setCanPressEnter(false)}>
+        onMouseLeave={() => setCanPressEnter(false)}
+      >
         <div className={cls.header}>
           <h2>{username}</h2>
         </div>

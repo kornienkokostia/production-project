@@ -1,11 +1,11 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { AccountPhoto } from 'shared/ui/AccountPhoto/AccountPhoto';
 import { useTranslation } from 'react-i18next';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import ArrowLinkIcon from 'shared/assets/icons/arrow-link.svg';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ArticleView, ArticleBlockType } from 'entities/Article/model/consts/articleConsts';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
+import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
+import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import ArrowLinkIcon from '@/shared/assets/icons/arrow-link.svg';
+import { ArticleView, ArticleBlockType } from '@/entities/Article/model/consts/articleConsts';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { Article, ArticleTextBlock } from '../../model/types/article';
 import cls from './ArticleListItem.module.scss';
