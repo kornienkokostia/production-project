@@ -37,16 +37,8 @@
 
 .opened {
   pointer-events: all;
+  z-index: var(--modal-z-index);
   opacity: 1;
-  z-index: var(--modal-z-index);
-  .content {
-    transform: scale(1);
-  }
-}
-
-.opened {
-  pointer-events: all;
-  z-index: var(--modal-z-index);
   & .content {
     transform: scale(1);
     opacity: 1;

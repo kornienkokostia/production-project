@@ -7,6 +7,13 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.mobile {
+  .header {
+    background: var(--submenu-bg);
+    padding: 0px 3px 12px 3px;
+    margin: 0 10px;
+  }
+}
 .items {
   display: flex;
   flex-direction: column;

@@ -4,19 +4,25 @@ import { useNavigate } from 'react-router-dom';
 import cls from './NotificationItem.module.scss';
 import { Notification } from '../../model/types/notifications';
 import { AppLink } from 'shared/ui/AppLink/AppLink';
+import { useCallback } from 'react';
 
 interface NotificationItemProps {
   className?: string;
   item: Notification;
   hasDivider: boolean;
+  onClosePopup: () => void;
 }
 
 export const NotificationItem = ({
   className,
   item,
   hasDivider,
+  onClosePopup,
 }: NotificationItemProps) => {
-  const navigate = useNavigate();
+  const onItemClick = useCallback(() => {
+    // navigate(RoutePath.admin_panel);
+    onClosePopup();
+  }, [onClosePopup]);
 
   const content = (
     <>
@@ -29,7 +35,7 @@ export const NotificationItem = ({
   if (item.href) {
     return (
       <>
-        <AppLink to={item.href} className={cls.NotifBtn}>
+        <AppLink to={item.href} className={cls.NotifBtn} onClick={onItemClick}>
           {content}
         </AppLink>
         {hasDivider && <div className={cls.divider} />}

@@ -7,12 +7,16 @@ import cls from './Settings.module.scss';
 
 interface SettingsProps {
   className?: string;
+  isMobile?: boolean;
 }
 
-export const Settings = memo(({ className }: SettingsProps) => {
+export const Settings = memo(({ className, isMobile }: SettingsProps) => {
   const { t } = useTranslation();
   return (
-    <div className={classNames(cls.Settings, {}, [className])}>
+    <div
+      className={classNames(cls.Settings, { [cls.mobile]: isMobile }, [
+        className,
+      ])}>
       <div className={cls.header}>
         <h2>{t('Settings')}</h2>
       </div>

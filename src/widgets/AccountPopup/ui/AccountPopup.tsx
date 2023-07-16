@@ -5,9 +5,7 @@ import AccountPopupManageAccountIcon from 'shared/assets/icons/account-popup-man
 import AccountPopupAdminPanelIcon from 'shared/assets/icons/account-popup-admin-panel.svg';
 import { useDispatch } from 'react-redux';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import {
-  memo, useCallback, useEffect, useMemo, useState,
-} from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { userActions } from 'entities/User';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
@@ -22,6 +20,7 @@ interface AccountPopupProps {
   userId: string;
   popupOpen: boolean;
   isAdminPanelAvaliable: boolean;
+  isMobile?: boolean;
 }
 
 export const AccountPopup = memo(
@@ -32,6 +31,7 @@ export const AccountPopup = memo(
     userId,
     popupOpen,
     isAdminPanelAvaliable,
+    isMobile,
   }: AccountPopupProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
@@ -59,13 +59,13 @@ export const AccountPopup = memo(
       () => [
         ...(isAdminPanelAvaliable
           ? [
-            {
-              title: t('Admin Panel'),
-              Icon: AccountPopupAdminPanelIcon,
-              onClick: onAdminPanel,
-              hasDivider: true,
-            },
-          ]
+              {
+                title: t('Admin Panel'),
+                Icon: AccountPopupAdminPanelIcon,
+                onClick: onAdminPanel,
+                hasDivider: true,
+              },
+            ]
           : []),
         {
           title: t('Manage Account'),
@@ -162,13 +162,14 @@ export const AccountPopup = memo(
 
     return (
       <div
-        className={classNames(cls.AccountPopup, {}, [className])}
+        className={classNames(cls.AccountPopup, { [cls.mobile]: isMobile }, [
+          className,
+        ])}
         onMouseMove={() => {
           setShowSelected(false);
         }}
         onMouseEnter={() => setCanPressEnter(true)}
-        onMouseLeave={() => setCanPressEnter(false)}
-      >
+        onMouseLeave={() => setCanPressEnter(false)}>
         <div className={cls.header}>
           <h2>{username}</h2>
         </div>
@@ -179,6 +180,7 @@ export const AccountPopup = memo(
               selected={selected}
               setSelected={setSelected}
               showSelected={showSelected}
+              key={el.title}
             />
           ))}
         </div>

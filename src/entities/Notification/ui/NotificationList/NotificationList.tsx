@@ -6,16 +6,27 @@ import { NotificationItem } from '../NotificationItem/NotificationItem';
 
 interface NotificationListProps {
   className?: string;
+  isMobile?: boolean;
+  onClosePopup: () => void;
 }
 
-export const NotificationList = ({ className }: NotificationListProps) => {
+export const NotificationList = ({
+  className,
+  isMobile,
+  onClosePopup,
+}: NotificationListProps) => {
   const { t } = useTranslation();
-  const { data, isLoading } = useNotifications(null, {
-    pollingInterval: 5000,
+  const { data } = useNotifications(null, {
+    // pollingInterval: 5000,
   });
 
   return (
-    <div className={classNames(cls.NotificationListWrapper, {}, [className])}>
+    <div
+      className={classNames(
+        cls.NotificationListWrapper,
+        { [cls.mobile]: isMobile },
+        [className],
+      )}>
       <div className={cls.NotificationListHeader}>
         <h2>{t('Notifications')}</h2>
       </div>
@@ -26,6 +37,7 @@ export const NotificationList = ({ className }: NotificationListProps) => {
               key={item.id}
               item={item}
               hasDivider={i < data.length - 1}
+              onClosePopup={onClosePopup}
             />
           ))}
       </div>

@@ -14,3 +14,14 @@
   border-bottom: 1px solid var(--border-color);
   background-color: var(--settings-dark-grey);
 }
+.mobile {
+  .NotificationListHeader {
+    background: var(--submenu-bg);
+    padding: 0px 3px 12px 3px;
+    margin: 0 10px;
+  }
+  .NotificationList {
+    height: 100%;
+    max-height: calc(100vh - 120px);
+  }
+}
