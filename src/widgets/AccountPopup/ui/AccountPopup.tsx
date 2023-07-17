@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import AccountPopupSignOutIcon from '@/shared/assets/icons/account-popup-sign-out.svg';
@@ -59,13 +61,13 @@ export const AccountPopup = memo(
       () => [
         ...(isAdminPanelAvaliable
           ? [
-              {
-                title: t('Admin Panel'),
-                Icon: AccountPopupAdminPanelIcon,
-                onClick: onAdminPanel,
-                hasDivider: true,
-              },
-            ]
+            {
+              title: t('Admin Panel'),
+              Icon: AccountPopupAdminPanelIcon,
+              onClick: onAdminPanel,
+              hasDivider: true,
+            },
+          ]
           : []),
         {
           title: t('Manage Account'),
@@ -169,7 +171,8 @@ export const AccountPopup = memo(
           setShowSelected(false);
         }}
         onMouseEnter={() => setCanPressEnter(true)}
-        onMouseLeave={() => setCanPressEnter(false)}>
+        onMouseLeave={() => setCanPressEnter(false)}
+      >
         <div className={cls.header}>
           <h2>{username}</h2>
         </div>
@@ -180,7 +183,7 @@ export const AccountPopup = memo(
               selected={selected}
               setSelected={setSelected}
               showSelected={showSelected}
-              key={'account-popup-item-' + i}
+              key={`account-popup-item-${i}`}
             />
           ))}
         </div>

@@ -1,4 +1,6 @@
-import { ReactNode, memo, useCallback, useEffect } from 'react';
+import {
+  ReactNode, memo, useCallback, useEffect,
+} from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import CloseDrawerIcon from '@/shared/assets/icons/close-drawer.svg';
 import cls from './Drawer.module.scss';
@@ -14,7 +16,9 @@ interface DrawerProps {
 }
 
 export const Drawer = memo((props: DrawerProps) => {
-  const { className, children, isOpen, closeHandler, isClosing } = props;
+  const {
+    className, children, isOpen, closeHandler, isClosing,
+  } = props;
 
   const onKeyDown = useCallback(
     (e: KeyboardEvent) => {
@@ -50,12 +54,14 @@ export const Drawer = memo((props: DrawerProps) => {
         <div className={cls.overlay} onClick={closeHandler}>
           <div
             className={classNames(cls.content, {}, [])}
-            onClick={onContentClick}>
+            onClick={onContentClick}
+          >
             <div className={cls.header}>
               <Button
                 theme={ButtonTheme.CLEAR}
                 className={cls.closeBtn}
-                onClick={closeHandler}>
+                onClick={closeHandler}
+              >
                 <CloseDrawerIcon className={cls.closeBtnIcon} />
               </Button>
             </div>

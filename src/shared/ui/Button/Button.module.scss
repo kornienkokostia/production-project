@@ -3,6 +3,9 @@
   align-items: center;
   cursor: pointer;
   color: var(--main-text-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   &:focus {
     outline: none;
   }

@@ -57,6 +57,20 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     firstInputRef.current.focus();
   }, []);
 
+  const changeUsernameFocused = useCallback(
+    (value: boolean) => {
+      dispatch(loginActions.setUsernameFocused(value));
+    },
+    [dispatch],
+  );
+
+  const changePasswordFocused = useCallback(
+    (value: boolean) => {
+      dispatch(loginActions.setPasswordFocused(value));
+    },
+    [dispatch],
+  );
+
   const showPasswordField = useCallback(() => {
     if (secondInputRef.current.value) {
       changePasswordFocused(true);
@@ -68,7 +82,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     setTimeout(() => {
       secondInputRef.current.focus();
     }, 200);
-  }, []);
+  }, [changePasswordFocused, dispatch]);
 
   const hidePasswordField = useCallback(() => {
     setPasswordFieldVisible(false);
@@ -97,19 +111,6 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
     [dispatch],
   );
 
-  const changeUsernameFocused = useCallback(
-    (value: boolean) => {
-      dispatch(loginActions.setUsernameFocused(value));
-    },
-    [dispatch],
-  );
-
-  const changePasswordFocused = useCallback(
-    (value: boolean) => {
-      dispatch(loginActions.setPasswordFocused(value));
-    },
-    [dispatch],
-  );
   const onSigninBtnClick = useCallback(async () => {
     const result = await dispatch(loginByUsername({ username, password }));
     if (result.meta.requestStatus === 'fulfilled') {

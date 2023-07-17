@@ -54,14 +54,16 @@ export const NavbarNotifications = memo(
         <Button
           theme={ButtonTheme.CLEAR}
           className={btnClassName}
-          onClick={onToggleNotifPopup}>
+          onClick={onToggleNotifPopup}
+        >
           <NotificationsIcon className={btnIconClassName} />
         </Button>
         {isMobile ? (
           <Drawer
             isOpen={isNotifPopupOpen}
             closeHandler={closeNotifPopupHandler}
-            isClosing={isNotifPopupClosing}>
+            isClosing={isNotifPopupClosing}
+          >
             <NotificationList isMobile onClosePopup={closeNotifPopupHandler} />
           </Drawer>
         ) : (
@@ -69,7 +71,8 @@ export const NavbarNotifications = memo(
             isOpen={isNotifPopupOpen}
             closeHandler={closeNotifPopupHandler}
             theme={SubmenuTheme.NOTIFICATIONS}
-            isClosing={isNotifPopupClosing}>
+            isClosing={isNotifPopupClosing}
+          >
             <NotificationList onClosePopup={closeNotifPopupHandler} />
           </Submenu>
         )}

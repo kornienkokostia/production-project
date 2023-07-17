@@ -6,9 +6,9 @@
   cursor: pointer;
   padding: 5px 0px;
 }
-.isHovered {
+.hovered {
   fill: var(--primary-color);
 }
-.isSelected {
+.selected {
   cursor: default;
 }

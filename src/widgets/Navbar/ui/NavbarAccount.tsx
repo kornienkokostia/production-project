@@ -22,7 +22,9 @@ interface NavbarAccountProps {
 }
 
 export const NavbarAccount = memo((props: NavbarAccountProps) => {
-  const { isMobile, btnClassName, accountBtnClassName, authData } = props;
+  const {
+    isMobile, btnClassName, accountBtnClassName, authData,
+  } = props;
   const isAdmin = useSelector(isUserAdmin);
   const isManager = useSelector(isUserManager);
   const isAdminPanelAvaliable = isAdmin || isManager;
@@ -60,7 +62,8 @@ export const NavbarAccount = memo((props: NavbarAccountProps) => {
       <Button
         theme={ButtonTheme.CLEAR}
         className={btnClassName}
-        onClick={onToggleAccountPopup}>
+        onClick={onToggleAccountPopup}
+      >
         <div className={accountBtnClassName}>
           <AccountPhoto src={authData?.avatar} />
         </div>
@@ -69,7 +72,8 @@ export const NavbarAccount = memo((props: NavbarAccountProps) => {
         <Drawer
           isOpen={isAccountPopupOpen}
           closeHandler={closeAccountPopupHandler}
-          isClosing={isAccountPopupClosing}>
+          isClosing={isAccountPopupClosing}
+        >
           <AccountPopup
             username={authData.username}
             onClosePopup={closeAccountPopupHandler}
@@ -84,7 +88,8 @@ export const NavbarAccount = memo((props: NavbarAccountProps) => {
           isOpen={isAccountPopupOpen}
           closeHandler={closeAccountPopupHandler}
           theme={SubmenuTheme.ACCOUNT}
-          isClosing={isAccountPopupClosing}>
+          isClosing={isAccountPopupClosing}
+        >
           <AccountPopup
             username={authData.username}
             onClosePopup={closeAccountPopupHandler}

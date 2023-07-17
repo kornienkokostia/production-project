@@ -87,7 +87,8 @@ export const Submenu = memo((props: SubmenuProps) => {
               { [cls.showTriangle]: showTriangle },
               [],
             )}
-            onClick={onContentClick}>
+            onClick={onContentClick}
+          >
             <Button className={cls.closeBtn}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>

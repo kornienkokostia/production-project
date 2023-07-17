@@ -1,4 +1,6 @@
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import {
+  ReactNode, useCallback, useEffect, useState,
+} from 'react';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import { useTheme } from '@/app/providers/ThemeProvider';
 import CloseModalIcon from '@/shared/assets/icons/close-modal.svg';
@@ -15,7 +17,9 @@ interface ModalProps {
 }
 
 export const Modal = (props: ModalProps) => {
-  const { className, children, isOpen, onClose, lazy } = props;
+  const {
+    className, children, isOpen, onClose, lazy,
+  } = props;
   const { theme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -64,13 +68,15 @@ export const Modal = (props: ModalProps) => {
           className,
           theme,
           'app_modal',
-        ])}>
+        ])}
+      >
         <div className={cls.overlay} onClick={closeHandler}>
           <div className={cls.content} onClick={onContentClick}>
             <Button
               className={cls.closeBtn}
               theme={ButtonTheme.CLEAR}
-              onClick={closeHandler}>
+              onClick={closeHandler}
+            >
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>
             {children}

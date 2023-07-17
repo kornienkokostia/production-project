@@ -14,6 +14,7 @@ import { articleDetailsPageReducer } from '../../model/slice';
 import cls from './ArticleDetailsPage.module.scss';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsHeader/ArticleDetailsPageHeader';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
+import { ArticleRating } from '@/features/articleRating';
 
 interface ArticleDetailesPageProps {
   className?: string;
@@ -47,6 +48,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
         <section className={cls.ArticleDetailesWrapper} ref={wrapperRef}>
           <ArticleDetails id={id} />
           <ArticleRecommendationsList />
+          <ArticleRating articleId={id} />
           <ArticleDetailsComments id={id} />
         </section>
       </div>

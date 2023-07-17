@@ -1,7 +1,7 @@
+import { memo, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './StarRating.module.scss';
-import StarIcon from './../../assets/icons/star.svg';
-import { useState } from 'react';
+import StarIcon from '../../assets/icons/star.svg';
 
 interface StarRatingProps {
   className?: string;
@@ -12,11 +12,15 @@ interface StarRatingProps {
 
 const stars = [1, 2, 3, 4, 5];
 
-export const StarRating = (props: StarRatingProps) => {
+export const StarRating = memo((props: StarRatingProps) => {
   const { className, onSelect, selectedStars = 0 } = props;
 
   const [currentStarCount, setCurrentStarCount] = useState(0);
   const [isSelected, setIsSelected] = useState(Boolean(selectedStars));
+
+  useEffect(() => {
+    setCurrentStarCount(selectedStars);
+  }, [selectedStars]);
 
   const onHover = (starsCount: number) => () => {
     if (!isSelected) {
@@ -45,8 +49,8 @@ export const StarRating = (props: StarRatingProps) => {
           className={classNames(
             cls.star,
             {
-              [cls.isHovered]: currentStarCount >= el,
-              [cls.isSelected]: isSelected,
+              [cls.hovered]: currentStarCount >= el,
+              [cls.selected]: isSelected,
             },
             [],
           )}
@@ -58,4 +62,4 @@ export const StarRating = (props: StarRatingProps) => {
       ))}
     </div>
   );
-};
+});

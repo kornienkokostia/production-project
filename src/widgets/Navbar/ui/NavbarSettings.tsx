@@ -54,21 +54,24 @@ export const NavbarSettings = memo(
         <Button
           theme={ButtonTheme.CLEAR}
           className={btnClassName}
-          onClick={onToggleSettings}>
+          onClick={onToggleSettings}
+        >
           <SettingsIcon className={btnIconClassName} />
         </Button>
         {isMobile ? (
           <Drawer
             isOpen={isSettingsPopupOpen}
             isClosing={isSettingsPopupClosing}
-            closeHandler={closeSettingsPopupHandler}>
+            closeHandler={closeSettingsPopupHandler}
+          >
             <Settings isMobile />
           </Drawer>
         ) : (
           <Submenu
             isOpen={isSettingsPopupOpen}
             isClosing={isSettingsPopupClosing}
-            closeHandler={closeSettingsPopupHandler}>
+            closeHandler={closeSettingsPopupHandler}
+          >
             <Settings />
           </Submenu>
         )}
