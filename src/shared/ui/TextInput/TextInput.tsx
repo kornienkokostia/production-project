@@ -60,7 +60,6 @@ export const TextInput = memo(
       };
 
       const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log('i');
         onChange?.(e.target.value);
       };
 

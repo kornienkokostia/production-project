@@ -1,0 +1,89 @@
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from './Rating.module.scss';
+import { StarRating } from '@/shared/ui/StarRating/StarRating';
+import { ChangeEvent, useCallback, useState } from 'react';
+import { Submenu } from '@/shared/ui/Submenu/Submenu';
+import { Modal } from '@/shared/ui/Modal/Modal';
+import { useTranslation } from 'react-i18next';
+import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+
+interface RatingProps {
+  className?: string;
+  title?: string;
+  paleholder?: string;
+  feedbackTitle?: string;
+  hasFeedback?: boolean;
+  onCancel?: (starsCount: number) => void;
+  onAccept?: (starsCount: number, feedback?: string) => void;
+}
+
+export const Rating = (props: RatingProps) => {
+  const {
+    className,
+    title,
+    feedbackTitle,
+    hasFeedback,
+    onAccept,
+    onCancel,
+    paleholder,
+  } = props;
+  const { t } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [startsCount, setsStartsCount] = useState(0);
+  const [feedback, setFeedback] = useState('');
+
+  const onCloseModal = useCallback(() => {
+    setIsModalOpen(false);
+    cancelHandle();
+  }, []);
+
+  const onSelectStars = useCallback((selectedStarsCount: number) => {
+    setsStartsCount(selectedStarsCount);
+    if (hasFeedback) {
+      setIsModalOpen(true);
+    } else {
+      onAccept?.(selectedStarsCount);
+    }
+  }, []);
+
+  const acceptHandle = useCallback(() => {
+    setIsModalOpen(false);
+    onAccept?.(startsCount, feedback);
+  }, [feedback, onAccept, startsCount]);
+
+  const cancelHandle = useCallback(() => {
+    setIsModalOpen(false);
+    onCancel?.(startsCount);
+  }, [onCancel, startsCount]);
+
+  const onTextChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
+    const el = e.currentTarget;
+    el.scrollTo(0, el.scrollHeight);
+    setFeedback(el.value);
+  }, []);
+
+  return (
+    <div className={classNames(cls.Rating, {}, [className])}>
+      <h2 className={cls.title}>{title}</h2>
+      <StarRating onSelect={onSelectStars} />
+      <Modal isOpen={isModalOpen} onClose={onCloseModal} lazy>
+        <div className={cls.modalFeedback}>
+          <h2 className={cls.modalTitle}>{feedbackTitle}</h2>
+          <div className={cls.modalMsgWrapper}>
+            <textarea
+              placeholder={paleholder}
+              className={cls.modalMsg}
+              onChange={onTextChange}
+            />
+          </div>
+          <Button
+            theme={ButtonTheme.APPLE_CLEAR}
+            className={cls.sendBtn}
+            onClick={acceptHandle}>
+            {t('Submit')}
+          </Button>
+        </div>
+      </Modal>
+    </div>
+  );
+};

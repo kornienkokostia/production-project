@@ -1,6 +1,6 @@
 .form {
   position: relative;
-  width: 328px;
+  width: 100%;
   & input {
     background-color: var(--modal-input-bg);
   }
@@ -9,6 +9,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 328px;
+  width: 100%;
 }
 .SingInBtn {
   position: absolute;
@@ -40,6 +42,7 @@
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 30px;
+  text-align: center;
 }
 .btnIcon {
   fill: var(--modal-icon-fill-btn);
