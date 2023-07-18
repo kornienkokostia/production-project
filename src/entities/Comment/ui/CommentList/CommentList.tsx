@@ -1,8 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { AddCommentForm } from '@/features/addCommentForm';
-import { getArticleDetailsData } from '@/entities/Article/model/selectors/articleDetails';
 import cls from './CommentList.module.scss';
 import { Comment } from '../../model/types/comment';
 import { CommentCard } from '../CommentCard/CommentCard';

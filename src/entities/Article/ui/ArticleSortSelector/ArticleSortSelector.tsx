@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select, SelectOption } from '@/shared/ui/Select/Select';
 import { SubmenuTheme } from '@/shared/ui/Submenu/Submenu';
-import { ArticleSortField } from '@/entities/Article/model/consts/articleConsts';
+import { ArticleSortField } from '../../model/consts/articleConsts';
 import { SortOrder } from '@/shared/types';
 
 interface ArticleSortSelectorProps {

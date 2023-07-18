@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
@@ -8,7 +8,7 @@ import ArrowLinkIcon from '@/shared/assets/icons/arrow-link.svg';
 import {
   ArticleView,
   ArticleBlockType,
-} from '@/entities/Article/model/consts/articleConsts';
+} from '../../model/consts/articleConsts';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { Article, ArticleTextBlock } from '../../model/types/article';
 import cls from './ArticleListItem.module.scss';

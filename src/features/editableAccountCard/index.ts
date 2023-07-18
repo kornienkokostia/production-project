@@ -1,3 +1,10 @@
 export { EditableAccountCard } from './ui/EditableAccountCard/EditableAccountCard';
 export type { AccountSchema, AccountErrors } from './model/types/EditableAccountCardSchema';
 export { validateAccountData } from './model/services/validateAccountData/validateAccountData';
+export { getAccountData } from './model/selectors/getAccountData/getAccountData';
+export { getAccountError } from './model/selectors/getAccountError/getAccountError';
+export { getAccountFormErrors } from './model/selectors/getAccountFormErrors/getAccountFormErrors';
+export { getAccountIsLoading } from './model/selectors/getAccountIsLoading/getAccountIsLoading';
+export { getAccountReadonly } from './model/selectors/getAccountReadonly/getAccountReadonly';
+export { accountActions } from './model/slice/accountSlice';
+export { updateAccountData } from './model/services/updateAccountData/updateAccountData';

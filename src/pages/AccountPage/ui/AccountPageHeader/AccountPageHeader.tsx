@@ -5,12 +5,14 @@ import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData } from '@/entities/User';
-import { getAccountReadonly } from '@/features/editableAccountCard/model/selectors/getAccountReadonly/getAccountReadonly';
-import { getAccountIsLoading } from '@/features/editableAccountCard/model/selectors/getAccountIsLoading/getAccountIsLoading';
-import { getAccountData } from '@/features/editableAccountCard/model/selectors/getAccountData/getAccountData';
-import { getAccountFormErrors } from '@/features/editableAccountCard/model/selectors/getAccountFormErrors/getAccountFormErrors';
-import { accountActions } from '@/features/editableAccountCard/model/slice/accountSlice';
-import { updateAccountData } from '@/features/editableAccountCard/model/services/updateAccountData/updateAccountData';
+import {
+  getAccountReadonly,
+  getAccountIsLoading,
+  getAccountData,
+  getAccountFormErrors,
+  accountActions,
+  updateAccountData,
+} from '@/features/editableAccountCard';
 import cls from './AccountPageHeader.module.scss';
 
 interface AccountPageHeaderProps {
@@ -55,8 +57,7 @@ export const AccountPageHeader = ({
             <Button
               theme={ButtonTheme.APPLE_CLEAR}
               className={cls.btn}
-              onClick={onEdit}
-            >
+              onClick={onEdit}>
               {t('Edit')}
             </Button>
           ) : (
@@ -64,16 +65,14 @@ export const AccountPageHeader = ({
               <Button
                 theme={ButtonTheme.APPLE_CLEAR}
                 className={cls.btn}
-                onClick={onCancelEdit}
-              >
+                onClick={onCancelEdit}>
                 {t('Cancel')}
               </Button>
               <div className={cls.separator} />
               <Button
                 theme={ButtonTheme.APPLE_CLEAR}
                 className={cls.btn}
-                onClick={onSave}
-              >
+                onClick={onSave}>
                 {t('Save')}
               </Button>
             </>

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArticleType } from '@/entities/Article/model/consts/articleConsts';
+import { ArticleType } from '../../model/consts/articleConsts';
 import { Select, SelectOption } from '@/shared/ui/Select/Select';
 import { SubmenuTheme } from '@/shared/ui/Submenu/Submenu';
 

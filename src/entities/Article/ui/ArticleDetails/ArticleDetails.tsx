@@ -8,7 +8,7 @@ import {
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Loader } from '@/shared/ui/Loader/Loader';
-import { ArticleBlockType } from '@/entities/Article/model/consts/articleConsts';
+import { ArticleBlockType } from '../../model/consts/articleConsts';
 import {
   getArticleDetailsData,
   getArticleDetailsError,

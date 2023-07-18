@@ -1,5 +1,5 @@
 import { Location, RouteProps } from 'react-router-dom';
-import { UserRole } from '@/entities/User/model/consts/userConsts';
+import { UserRole } from '@/entities/User';
 import { AboutPage } from '@/pages/AboutPage';
 import { AccountPage } from '@/pages/AccountPage';
 import { AdminPanelPage } from '@/pages/AdminPanelPage';
