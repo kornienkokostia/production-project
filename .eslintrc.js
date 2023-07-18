@@ -72,7 +72,8 @@ module.exports = {
     'react/no-unused-prop-types': 'off',
     'react/prop-types': 'off',
     'iblog-plugin/path-checker': 'error',
-    'react/jsx-no-useless-fragment': 'off'
+    'react/jsx-no-useless-fragment': 'off',
+    'react/no-array-index-key': 'off'
   },
   globals: {
     __IS_DEV__: true,

@@ -28,9 +28,17 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
   const { t } = useTranslation('article-details');
   const { id } = useParams<{ id: string }>();
   const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
+  const timeoutRef = useRef() as MutableRefObject<
+    ReturnType<typeof setTimeout>
+  >;
 
   useEffect(() => {
-    wrapperRef.current.scrollTo(0, 0);
+    timeoutRef.current = setTimeout(() => {
+      wrapperRef.current.scrollTo(0, 0);
+    }, 0);
+    return () => {
+      clearTimeout(timeoutRef.current);
+    };
   }, [id]);
 
   if (!id) {

@@ -1,4 +1,6 @@
-import { ChangeEvent, memo, useCallback, useEffect, useState } from 'react';
+import {
+  ChangeEvent, memo, useCallback, useEffect, useState,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Rating.module.scss';
@@ -88,7 +90,8 @@ export const RatingCard = memo((props: RatingCardProps) => {
               cls.modalMsgWrapper,
               { [cls.isFocused]: isFocused },
               [],
-            )}>
+            )}
+          >
             <textarea
               placeholder={paleholder}
               className={cls.modalMsg}
@@ -100,7 +103,8 @@ export const RatingCard = memo((props: RatingCardProps) => {
           <Button
             theme={ButtonTheme.APPLE_CLEAR}
             className={cls.sendBtn}
-            onClick={acceptHandle}>
+            onClick={acceptHandle}
+          >
             {t('Submit')}
           </Button>
         </div>

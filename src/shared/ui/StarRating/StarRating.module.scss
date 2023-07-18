@@ -1,5 +1,6 @@
 .StarRating {
   display: flex;
+  min-height: 37px;
 }
 .star {
   stroke: var(--primary-color);
