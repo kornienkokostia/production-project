@@ -6,19 +6,16 @@ import { AppLink } from '@/shared/ui/AppLink';
 import { getUserAuthData } from '@/entities/User';
 import { SidebarItemType } from '../../model/types/sidebar';
 import cls from './SidebarItem.module.scss';
-import { AppRoutes } from '@/shared/const/router';
 
 interface SidebarItemProps {
   item: SidebarItemType;
-  currentSelected: AppRoutes;
-  setCurrentSelected: Dispatch<SetStateAction<AppRoutes>>;
+  currentSelected: string;
+  setCurrentSelected: Dispatch<SetStateAction<string>>;
 }
 
 export const SidebarItem = memo(
   ({ item, currentSelected, setCurrentSelected }: SidebarItemProps) => {
-    const {
-      route, path, Icon, text,
-    } = item;
+    const { route, path, Icon, text } = item;
     const { t } = useTranslation();
     const isAuth = useSelector(getUserAuthData);
 
@@ -32,8 +29,7 @@ export const SidebarItem = memo(
         className={classNames(cls.item, {}, [
           currentSelected === route ? cls.selected : undefined,
         ])}
-        onClick={() => setCurrentSelected(route)}
-      >
+        onClick={() => setCurrentSelected(route)}>
         <Icon className={cls.icon} />
         <span className={classNames(cls.link, {}, [])}>{t(text)}</span>
       </AppLink>

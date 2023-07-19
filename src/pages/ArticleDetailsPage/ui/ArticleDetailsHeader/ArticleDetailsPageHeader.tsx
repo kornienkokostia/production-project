@@ -11,7 +11,7 @@ import {
   getArticleDetailsIsLoading,
 } from '@/entities/Article';
 import cls from './ArticleDetailsPageHeader.module.scss';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteArticles } from '@/shared/const/router';
 import { locationState } from '@/shared/types/router';
 
 interface ArticleDetailsPageHeaderProps {
@@ -31,7 +31,7 @@ export const ArticleDetailsPageHeader = ({
 
   const onBackToList = useCallback(() => {
     if (!location.state) {
-      navigate(RoutePath.articles);
+      navigate(getRouteArticles());
     } else {
       navigate(-1);
     }
@@ -47,15 +47,13 @@ export const ArticleDetailsPageHeader = ({
         cls.ArticleHeader,
         { [cls.navbarCollapsed]: navbarCollapsed },
         [className],
-      )}
-    >
+      )}>
       <Button
         theme={ButtonTheme.APPLE_CLEAR}
         className={cls.backBtn}
-        onClick={onBackToList}
-      >
+        onClick={onBackToList}>
         <ArrowBackIcon className={cls.btnIcon} />
-        {!location.state || location.state.prevPath === RoutePath.articles ? (
+        {!location.state || location.state.prevPath === getRouteArticles() ? (
           <span>{t('Articles')}</span>
         ) : (
           <span>{t('Back')}</span>

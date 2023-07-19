@@ -1,11 +1,9 @@
-import {
-  memo, useCallback, useEffect, useState,
-} from 'react';
+import { memo, useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
-import { RoutePath, AppRoutes } from '@/shared/const/router';
+import { AppRoutes } from '@/shared/const/router';
 import ToggleIcon from '@/shared/assets/icons/nav-bar-toggle-btn.svg';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { appStateActions, getNavbarCollapsed } from '@/entities/AppState';
@@ -23,19 +21,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
   const navbarCollapsed = useSelector(getNavbarCollapsed);
   const sidebarItemsList = useSelector(getSidebarItems);
 
-  const [currentSelected, setCurrentSelected] = useState<AppRoutes>(
-    Object.keys(RoutePath).find(
-      key => RoutePath[key as keyof typeof RoutePath] === location.pathname,
-    ) as keyof typeof RoutePath,
-  );
-
-  useEffect(() => {
-    setCurrentSelected(
-      Object.keys(RoutePath).find(
-        key => RoutePath[key as keyof typeof RoutePath] === location.pathname,
-      ) as keyof typeof RoutePath,
-    );
-  }, [location]);
+  const [currentSelected, setCurrentSelected] = useState<string>('');
 
   const onNavbarCollapsedClick = useCallback(() => {
     dispatch(appStateActions.setNavbarCollapsed(!navbarCollapsed));
@@ -46,8 +32,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       <Button
         onClick={onNavbarCollapsedClick}
         theme={ButtonTheme.CLEAR}
-        className={cls.collapseBtn}
-      >
+        className={cls.collapseBtn}>
         <ToggleIcon className={cls.icon} />
       </Button>
       <div

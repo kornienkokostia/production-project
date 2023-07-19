@@ -1,15 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import {
-  memo, useCallback, useEffect, useMemo, useState,
-} from 'react';
+import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import AccountMenuSignOutIcon from '@/shared/assets/icons/account-popup-sign-out.svg';
 import AccountMenuManageAccountIcon from '@/shared/assets/icons/account-popup-manage-account.svg';
 import AccountMenuAdminPanelIcon from '@/shared/assets/icons/account-popup-admin-panel.svg';
 import { userActions } from '@/entities/User';
-import { RoutePath } from '@/shared/const/router';
+import { getRouteAccount, getRouteAdmin } from '@/shared/const/router';
 import cls from './AccountMenu.module.scss';
 import { AccountMenuElem } from '../model/types/accountMenu';
 import { AccountMenuItem } from './AccountMenuItem';
@@ -47,12 +45,12 @@ export const AccountMenu = memo(
     }, [dispatch, onClosePopup]);
 
     const onManageAccount = useCallback(() => {
-      navigate(`${RoutePath.account}${userId}`);
+      navigate(getRouteAccount(userId));
       onClosePopup();
     }, [navigate, onClosePopup, userId]);
 
     const onAdminPanel = useCallback(() => {
-      navigate(RoutePath.admin_panel);
+      navigate(getRouteAdmin());
       onClosePopup();
     }, [navigate, onClosePopup]);
 
@@ -60,13 +58,13 @@ export const AccountMenu = memo(
       () => [
         ...(isAdminPanelAvaliable
           ? [
-            {
-              title: t('Admin Panel'),
-              Icon: AccountMenuAdminPanelIcon,
-              onClick: onAdminPanel,
-              hasDivider: true,
-            },
-          ]
+              {
+                title: t('Admin Panel'),
+                Icon: AccountMenuAdminPanelIcon,
+                onClick: onAdminPanel,
+                hasDivider: true,
+              },
+            ]
           : []),
         {
           title: t('Manage Account'),
@@ -168,8 +166,7 @@ export const AccountMenu = memo(
           setShowSelected(false);
         }}
         onMouseEnter={() => setCanPressEnter(true)}
-        onMouseLeave={() => setCanPressEnter(false)}
-      >
+        onMouseLeave={() => setCanPressEnter(false)}>
         <div className={cls.header}>
           <h2>{username}</h2>
         </div>
