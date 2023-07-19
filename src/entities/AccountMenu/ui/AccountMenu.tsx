@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import AccountMenuSignOutIcon from '@/shared/assets/icons/account-popup-sign-out.svg';
@@ -58,13 +60,13 @@ export const AccountMenu = memo(
       () => [
         ...(isAdminPanelAvaliable
           ? [
-              {
-                title: t('Admin Panel'),
-                Icon: AccountMenuAdminPanelIcon,
-                onClick: onAdminPanel,
-                hasDivider: true,
-              },
-            ]
+            {
+              title: t('Admin Panel'),
+              Icon: AccountMenuAdminPanelIcon,
+              onClick: onAdminPanel,
+              hasDivider: true,
+            },
+          ]
           : []),
         {
           title: t('Manage Account'),
@@ -166,7 +168,8 @@ export const AccountMenu = memo(
           setShowSelected(false);
         }}
         onMouseEnter={() => setCanPressEnter(true)}
-        onMouseLeave={() => setCanPressEnter(false)}>
+        onMouseLeave={() => setCanPressEnter(false)}
+      >
         <div className={cls.header}>
           <h2>{username}</h2>
         </div>

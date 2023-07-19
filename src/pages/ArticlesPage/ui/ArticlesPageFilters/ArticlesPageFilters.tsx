@@ -4,12 +4,7 @@ import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import SearchIcon from '@/shared/assets/icons/search.svg';
 import ClearInputIcon from '@/shared/assets/icons/clear-input.svg';
-import {
-  ArticleType, ArticleView, ArticleSortField,
-  ArticleCategorySelector,
-  ArticleSortSelector,
-  ArticleViewSwitcher,
-} from '@/entities/Article';
+import { ArticleType, ArticleView, ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types';
 import { getNavbarCollapsed } from '@/entities/AppState';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -25,6 +20,9 @@ import {
 import { articlesPageActions } from '../../model/slice/articlesPageSlice';
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList';
 import cls from './ArticlesPageFilters.module.scss';
+import { ArticleSortSelector } from '@/features/ArticleSortSelector';
+import { ArticleCategorySelector } from '@/features/ArticleCategorySelector';
+import { ArticleViewSwitcher } from '@/features/ArticleViewSwitcher';
 
 interface ArticlesPageFiltersProps {
   className?: string;

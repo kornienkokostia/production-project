@@ -47,11 +47,13 @@ export const ArticleDetailsPageHeader = ({
         cls.ArticleHeader,
         { [cls.navbarCollapsed]: navbarCollapsed },
         [className],
-      )}>
+      )}
+    >
       <Button
         theme={ButtonTheme.APPLE_CLEAR}
         className={cls.backBtn}
-        onClick={onBackToList}>
+        onClick={onBackToList}
+      >
         <ArrowBackIcon className={cls.btnIcon} />
         {!location.state || location.state.prevPath === getRouteArticles() ? (
           <span>{t('Articles')}</span>

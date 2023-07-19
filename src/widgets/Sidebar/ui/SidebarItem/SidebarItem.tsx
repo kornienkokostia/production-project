@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, memo } from 'react';
+import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -10,12 +10,13 @@ import cls from './SidebarItem.module.scss';
 interface SidebarItemProps {
   item: SidebarItemType;
   currentSelected: string;
-  setCurrentSelected: Dispatch<SetStateAction<string>>;
 }
 
 export const SidebarItem = memo(
-  ({ item, currentSelected, setCurrentSelected }: SidebarItemProps) => {
-    const { route, path, Icon, text } = item;
+  ({ item, currentSelected }: SidebarItemProps) => {
+    const {
+      route, path, Icon, text,
+    } = item;
     const { t } = useTranslation();
     const isAuth = useSelector(getUserAuthData);
 
@@ -27,9 +28,11 @@ export const SidebarItem = memo(
       <AppLink
         to={path}
         className={classNames(cls.item, {}, [
-          currentSelected === route ? cls.selected : undefined,
+          currentSelected === (route === 'home' ? '' : route)
+            ? cls.selected
+            : undefined,
         ])}
-        onClick={() => setCurrentSelected(route)}>
+      >
         <Icon className={cls.icon} />
         <span className={classNames(cls.link, {}, [])}>{t(text)}</span>
       </AppLink>
