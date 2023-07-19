@@ -1,16 +1,14 @@
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
-import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleList } from '@/entities/Article';
-import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { initArticlesPage } from '../../../model/services/initArticlesPage/initArticlesPage';
 import {
   getArticlesPageError,
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from '../../../model/selectors/articlesPageSelectors';
-import { getArticles } from '../../../model/slice/articlesPageSlice';
+import {
+  getArticles,
+} from '../../../model/slice/articlesPageSlice';
 
 interface ArticlesInfiniteListProps {
   className?: string;
@@ -19,17 +17,12 @@ interface ArticlesInfiniteListProps {
 export const ArticlesInfiniteList = ({
   className,
 }: ArticlesInfiniteListProps) => {
-  const dispatch = useAppDispatch();
   const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageIsLoading);
   const error = useSelector(getArticlesPageError);
   const view = useSelector(getArticlesPageView);
-  const [searchParams] = useSearchParams();
-  const { t } = useTranslation('articles');
 
-  useEffect(() => {
-    dispatch(initArticlesPage(searchParams));
-  }, [dispatch, searchParams]);
+  const { t } = useTranslation('articles');
 
   if (error) {
     return <div>{t('Error while loading articles')}</div>;

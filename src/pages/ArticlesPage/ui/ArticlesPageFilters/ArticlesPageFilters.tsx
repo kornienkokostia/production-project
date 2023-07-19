@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -23,6 +23,7 @@ import cls from './ArticlesPageFilters.module.scss';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleCategorySelector } from '@/features/ArticleCategorySelector';
 import { ArticleViewSwitcher } from '@/features/ArticleViewSwitcher';
+import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
 
 interface ArticlesPageFiltersProps {
   className?: string;
@@ -38,6 +39,15 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
   const order = useSelector(getArticlesPageOrder);
   const search = useSelector(getArticlesPageSearch);
   const type = useSelector(getArticlesPageType);
+
+  useEffect(() => {
+    addQueryParams({
+      sort,
+      order,
+      search,
+      type,
+    });
+  }, []);
 
   const fetchData = useCallback(() => {
     dispatch(fetchArticlesList({ replace: true }));
@@ -104,8 +114,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
           cls.articlesPageHeader,
           { [cls.navbarCollapsed]: navbarCollapsed },
           [],
-        )}
-      >
+        )}>
         <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
         <div className={cls.search}>
           <SearchIcon className={cls.searchIcon} />
@@ -120,8 +129,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
             theme={ButtonTheme.CLEAR}
             className={cls.clearBtn}
             disabled={!(search.length > 0)}
-            onClick={onClearSearch}
-          >
+            onClick={onClearSearch}>
             <ClearInputIcon className={cls.clearBtnIcon} />
           </Button>
         </div>

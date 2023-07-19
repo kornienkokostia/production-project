@@ -1,4 +1,5 @@
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
   DynamicModuleLoader,
@@ -11,6 +12,7 @@ import cls from './ArticlesPage.module.scss';
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage';
 import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters';
 import { ArticlesInfiniteList } from './ArticlesInfiniteList/ArticlesInfiniteList';
+import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 
 interface ArticlesPageProps {
   className?: string;
@@ -22,10 +24,15 @@ const reducers: ReducersList = {
 
 const ArticlesPage = ({ className }: ArticlesPageProps) => {
   const dispatch = useAppDispatch();
+  const [searchParams] = useSearchParams();
 
   const onLoadNextPart = useCallback(() => {
     dispatch(fetchNextArticlesPage());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(initArticlesPage(searchParams));
+  }, [dispatch, searchParams]);
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>

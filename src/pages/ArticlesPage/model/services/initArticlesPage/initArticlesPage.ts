@@ -22,24 +22,30 @@ export const initArticlesPage = createAsyncThunk<
       const orderFromUrl = searchParams.get('order') as SortOrder;
       const sortFromUrl = searchParams.get('sort') as ArticleSortField;
       const seearchFromUrl = searchParams.get('search');
-      const type = searchParams.get('type') as ArticleType;
+      const typeFromUrl = searchParams.get('type') as ArticleType;
 
       if (orderFromUrl) {
-        dispatch(articlesPageActions.setOrder(orderFromUrl));
+        dispatch(articlesPageActions.setOrder(
+          orderFromUrl === 'asc' || orderFromUrl === 'desc' ? orderFromUrl : 'asc',
+        ));
       }
       if (sortFromUrl) {
-        dispatch(articlesPageActions.setSort(sortFromUrl));
+        dispatch(articlesPageActions.setSort(
+          Object.values(ArticleSortField).includes(sortFromUrl) ? sortFromUrl : ArticleSortField.CREATED,
+        ));
       }
       if (seearchFromUrl) {
         dispatch(articlesPageActions.setSearch(seearchFromUrl));
       }
-      if (type) {
-        dispatch(articlesPageActions.setType(type));
+      if (typeFromUrl) {
+        dispatch(articlesPageActions.setType(
+          Object.values(ArticleType).includes(typeFromUrl) ? typeFromUrl : ArticleType.ALL,
+        ));
       }
 
       dispatch(articlesPageActions.initState());
       dispatch(
-        fetchArticlesList({ replace: false }),
+        fetchArticlesList({}),
       );
     }
   },
