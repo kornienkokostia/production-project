@@ -74,7 +74,11 @@ module.exports = {
     'iblog-plugin/path-checker': ['error', { alias: '@' }],
     'react/jsx-no-useless-fragment': 'off',
     'react/no-array-index-key': 'off',
-    'iblog-plugin/public-api-imports': ['error', { alias: '@' }]
+    'iblog-plugin/public-api-imports': ['error', { alias: '@' }],
+    'iblog-plugin/layer-imports': [
+      'error',
+      { alias: '@', 'ignoreImportPatterns': ['**/StoreProvider'] }
+    ]
   },
   globals: {
     __IS_DEV__: true,

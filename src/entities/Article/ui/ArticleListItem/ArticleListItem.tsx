@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
 import { AppLink, AppLinkTheme } from '@/shared/ui/AppLink/AppLink';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 import ArrowLinkIcon from '@/shared/assets/icons/arrow-link.svg';
 import {
   ArticleView,

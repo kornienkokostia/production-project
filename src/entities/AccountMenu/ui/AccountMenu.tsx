@@ -5,17 +5,16 @@ import {
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import AccountPopupSignOutIcon from '@/shared/assets/icons/account-popup-sign-out.svg';
-import AccountPopupManageAccountIcon from '@/shared/assets/icons/account-popup-manage-account.svg';
-import AccountPopupAdminPanelIcon from '@/shared/assets/icons/account-popup-admin-panel.svg';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import AccountMenuSignOutIcon from '@/shared/assets/icons/account-popup-sign-out.svg';
+import AccountMenuManageAccountIcon from '@/shared/assets/icons/account-popup-manage-account.svg';
+import AccountMenuAdminPanelIcon from '@/shared/assets/icons/account-popup-admin-panel.svg';
 import { userActions } from '@/entities/User';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
-import cls from './AccountPopup.module.scss';
-import { AccountPopupElem } from '../model/types/accountPopup';
-import { AccountPopupItem } from './AccountPopupItem';
+import { RoutePath } from '@/shared/const/router';
+import cls from './AccountMenu.module.scss';
+import { AccountMenuElem } from '../model/types/accountMenu';
+import { AccountMenuItem } from './AccountMenuItem';
 
-interface AccountPopupProps {
+interface AccountMenuProps {
   className?: string;
   username: string;
   onClosePopup: () => void;
@@ -25,7 +24,7 @@ interface AccountPopupProps {
   isMobile?: boolean;
 }
 
-export const AccountPopup = memo(
+export const AccountMenu = memo(
   ({
     className,
     username,
@@ -34,7 +33,7 @@ export const AccountPopup = memo(
     popupOpen,
     isAdminPanelAvaliable,
     isMobile,
-  }: AccountPopupProps) => {
+  }: AccountMenuProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -57,13 +56,13 @@ export const AccountPopup = memo(
       onClosePopup();
     }, [navigate, onClosePopup]);
 
-    const accountPopupItems: AccountPopupElem[] = useMemo(
+    const AccountMenuItems: AccountMenuElem[] = useMemo(
       () => [
         ...(isAdminPanelAvaliable
           ? [
             {
               title: t('Admin Panel'),
-              Icon: AccountPopupAdminPanelIcon,
+              Icon: AccountMenuAdminPanelIcon,
               onClick: onAdminPanel,
               hasDivider: true,
             },
@@ -71,13 +70,13 @@ export const AccountPopup = memo(
           : []),
         {
           title: t('Manage Account'),
-          Icon: AccountPopupManageAccountIcon,
+          Icon: AccountMenuManageAccountIcon,
           onClick: onManageAccount,
           hasDivider: true,
         },
         {
           title: t('Sign Out'),
-          Icon: AccountPopupSignOutIcon,
+          Icon: AccountMenuSignOutIcon,
           onClick: onSignOut,
           hasDivider: false,
         },
@@ -94,13 +93,11 @@ export const AccountPopup = memo(
         if (popupOpen) {
           if (e.key === 'ArrowUp') {
             if (!selected) {
-              setSelected(
-                accountPopupItems[accountPopupItems.length - 1].title,
-              );
+              setSelected(AccountMenuItems[AccountMenuItems.length - 1].title);
             } else {
-              accountPopupItems.forEach((el, i) => {
+              AccountMenuItems.forEach((el, i) => {
                 if (el.title === selected && i > 0) {
-                  setSelected(accountPopupItems[i - 1].title);
+                  setSelected(AccountMenuItems[i - 1].title);
                 }
               });
             }
@@ -108,11 +105,11 @@ export const AccountPopup = memo(
           }
           if (e.key === 'ArrowDown') {
             if (!selected) {
-              setSelected(accountPopupItems[0].title);
+              setSelected(AccountMenuItems[0].title);
             } else {
-              accountPopupItems.forEach((el, i) => {
-                if (el.title === selected && i < accountPopupItems.length - 1) {
-                  setSelected(accountPopupItems[i + 1].title);
+              AccountMenuItems.forEach((el, i) => {
+                if (el.title === selected && i < AccountMenuItems.length - 1) {
+                  setSelected(AccountMenuItems[i + 1].title);
                 }
               });
             }
@@ -121,21 +118,21 @@ export const AccountPopup = memo(
           if (e.key === 'Enter' && (canPressEnter || showSelected)) {
             if (
               isAdminPanelAvaliable &&
-              selected === accountPopupItems[0].title
+              selected === AccountMenuItems[0].title
             ) {
               onAdminPanel();
             }
             if (
               isAdminPanelAvaliable
-                ? selected === accountPopupItems[1].title
-                : selected === accountPopupItems[0].title
+                ? selected === AccountMenuItems[1].title
+                : selected === AccountMenuItems[0].title
             ) {
               onManageAccount();
             }
             if (
               isAdminPanelAvaliable
-                ? selected === accountPopupItems[2].title
-                : selected === accountPopupItems[1].title
+                ? selected === AccountMenuItems[2].title
+                : selected === AccountMenuItems[1].title
             ) {
               onSignOut();
             }
@@ -146,7 +143,7 @@ export const AccountPopup = memo(
         popupOpen,
         selected,
         showSelected,
-        accountPopupItems,
+        AccountMenuItems,
         canPressEnter,
         onSignOut,
         onManageAccount,
@@ -164,7 +161,7 @@ export const AccountPopup = memo(
 
     return (
       <div
-        className={classNames(cls.AccountPopup, { [cls.mobile]: isMobile }, [
+        className={classNames(cls.AccountMenu, { [cls.mobile]: isMobile }, [
           className,
         ])}
         onMouseMove={() => {
@@ -177,8 +174,8 @@ export const AccountPopup = memo(
           <h2>{username}</h2>
         </div>
         <div className={cls.items}>
-          {accountPopupItems.map((el, i) => (
-            <AccountPopupItem
+          {AccountMenuItems.map((el, i) => (
+            <AccountMenuItem
               item={el}
               selected={selected}
               setSelected={setSelected}

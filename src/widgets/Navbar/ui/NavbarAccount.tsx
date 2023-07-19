@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { Drawer } from '@/shared/ui/Drawer/Drawer';
 import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu/Submenu';
-import { AccountPopup } from '@/widgets/AccountPopup';
+import { AccountMenu } from '@/entities/AccountMenu';
 import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
 import { User, isUserAdmin, isUserManager } from '@/entities/User';
 
@@ -74,7 +74,7 @@ export const NavbarAccount = memo((props: NavbarAccountProps) => {
           closeHandler={closeAccountPopupHandler}
           isClosing={isAccountPopupClosing}
         >
-          <AccountPopup
+          <AccountMenu
             username={authData.username}
             onClosePopup={closeAccountPopupHandler}
             userId={authData.id}
@@ -90,7 +90,7 @@ export const NavbarAccount = memo((props: NavbarAccountProps) => {
           theme={SubmenuTheme.ACCOUNT}
           isClosing={isAccountPopupClosing}
         >
-          <AccountPopup
+          <AccountMenu
             username={authData.username}
             onClosePopup={closeAccountPopupHandler}
             userId={authData.id}

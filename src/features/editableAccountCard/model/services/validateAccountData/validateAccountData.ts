@@ -1,5 +1,5 @@
 import { Account } from '@/entities/Account';
-import { AccountErrors } from '../../types/EditableAccountCardSchema';
+import { AccountErrors } from '@/shared/types/account';
 
 export const validateAccountData = (account: Account) => {
   const {

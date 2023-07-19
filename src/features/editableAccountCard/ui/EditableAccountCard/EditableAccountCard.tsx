@@ -1,5 +1,4 @@
 import { memo, useCallback, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Currancy } from '@/entities/Currency';

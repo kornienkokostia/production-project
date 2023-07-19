@@ -1,12 +1,5 @@
 import { Account } from '@/entities/Account';
-
-export interface AccountErrors {
-  firstname?: boolean,
-  lastname?: boolean,
-  age?: boolean,
-  city?: boolean,
-  username?: boolean,
-}
+import { AccountErrors } from '@/shared/types/account';
 
 export interface AccountSchema {
   data?: Account;

@@ -1,18 +1,18 @@
 import { Dispatch, SetStateAction } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import cls from './AccountPopupItem.module.scss';
-import { AccountPopupElem } from '../model/types/accountPopup';
+import cls from './AccountMenuItem.module.scss';
+import { AccountMenuElem } from '../model/types/accountMenu';
 
-interface AccountPopupItemProps {
+interface AccountMenuItemProps {
   className?: string;
-  item: AccountPopupElem;
+  item: AccountMenuElem;
   selected: string;
   showSelected: boolean;
   setSelected: Dispatch<SetStateAction<string>>;
 }
 
-export const AccountPopupItem = (props: AccountPopupItemProps) => {
+export const AccountMenuItem = (props: AccountMenuItemProps) => {
   const {
     item, selected, showSelected, setSelected,
   } = props;

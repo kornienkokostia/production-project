@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
 import { AppLink } from '@/shared/ui/AppLink/AppLink';
-import { RoutePath } from '@/shared/config/routeConfig/routeConfig';
+import { RoutePath } from '@/shared/const/router';
 import { Comment } from '../../model/types/comment';
 import cls from './CommentCard.module.scss';
 

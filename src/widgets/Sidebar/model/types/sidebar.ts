@@ -1,4 +1,4 @@
-import { AppRoutes } from '@/shared/config/routeConfig/routeConfig';
+import { AppRoutes } from '@/shared/const/router';
 
 export interface SidebarItemType {
   path: string;

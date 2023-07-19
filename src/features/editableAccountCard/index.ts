@@ -1,5 +1,5 @@
 export { EditableAccountCard } from './ui/EditableAccountCard/EditableAccountCard';
-export type { AccountSchema, AccountErrors } from './model/types/EditableAccountCardSchema';
+export type { AccountSchema } from './model/types/EditableAccountCardSchema';
 export { validateAccountData } from './model/services/validateAccountData/validateAccountData';
 export { getAccountData } from './model/selectors/getAccountData/getAccountData';
 export { getAccountError } from './model/selectors/getAccountError/getAccountError';

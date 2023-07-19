@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Loader } from '@/shared/ui/Loader/Loader';
-import { ArticleView } from '@/entities/Article';
+import { ArticleView } from '../../model/consts/articleConsts';
 import cls from './ArticleList.module.scss';
 import { Article } from '../../model/types/article';
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem';
@@ -14,7 +14,9 @@ interface ArticleListProps {
 }
 
 export const ArticleList = (props: ArticleListProps) => {
-  const { className, articles, isLoading, view = ArticleView.SMALL } = props;
+  const {
+    className, articles, isLoading, view = ArticleView.SMALL,
+  } = props;
   const { t } = useTranslation('articles');
 
   const renderArticle = (article: Article) => (

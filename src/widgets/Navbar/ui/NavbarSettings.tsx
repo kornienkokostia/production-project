@@ -9,7 +9,7 @@ import {
 import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
 import { Drawer } from '@/shared/ui/Drawer/Drawer';
 import { Submenu } from '@/shared/ui/Submenu/Submenu';
-import { Settings } from '@/widgets/Settings';
+import { SettingsMenu } from '@/entities/SettingsMenu';
 import SettingsIcon from '@/shared/assets/icons/settings.svg';
 
 interface NavbarSettingsProps {
@@ -64,7 +64,7 @@ export const NavbarSettings = memo(
             isClosing={isSettingsPopupClosing}
             closeHandler={closeSettingsPopupHandler}
           >
-            <Settings isMobile />
+            <SettingsMenu isMobile />
           </Drawer>
         ) : (
           <Submenu
@@ -72,7 +72,7 @@ export const NavbarSettings = memo(
             isClosing={isSettingsPopupClosing}
             closeHandler={closeSettingsPopupHandler}
           >
-            <Settings />
+            <SettingsMenu />
           </Submenu>
         )}
       </>

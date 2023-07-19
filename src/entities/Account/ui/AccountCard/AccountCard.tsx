@@ -6,7 +6,7 @@ import { Loader } from '@/shared/ui/Loader/Loader';
 import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
 import { Currancy, CurrencySelect } from '@/entities/Currency';
 import { Country, CountrySelect } from '@/entities/Country';
-import { AccountErrors } from '@/features/editableAccountCard';
+import { AccountErrors } from '@/shared/types/account';
 import { Account } from '../../model/types/account';
 import cls from './AccountCard.module.scss';
 

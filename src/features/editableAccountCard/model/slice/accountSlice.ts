@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage';
 import { Account } from '@/entities/Account';
-import { AccountErrors, AccountSchema } from '../types/EditableAccountCardSchema';
+import { AccountSchema } from '../types/EditableAccountCardSchema';
+import { AccountErrors } from '@/shared/types/account';
 import { fetchAccountData } from '../services/fetchAccountData/fetchAccountData';
 import { updateAccountData } from '../services/updateAccountData/updateAccountData';
 

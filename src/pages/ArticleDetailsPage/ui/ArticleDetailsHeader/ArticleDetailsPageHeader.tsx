@@ -10,12 +10,10 @@ import {
   getArticleDetailsData,
   getArticleDetailsIsLoading,
 } from '@/entities/Article';
-import {
-  RoutePath,
-  locationState,
-} from '@/shared/config/routeConfig/routeConfig';
 import { getCanEditArticle } from '../../model/selectors/article';
 import cls from './ArticleDetailsPageHeader.module.scss';
+import { RoutePath } from '@/shared/const/router';
+import { locationState } from '@/shared/types/router';
 
 interface ArticleDetailsPageHeaderProps {
   className?: string;
