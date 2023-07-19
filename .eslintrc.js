@@ -23,7 +23,6 @@ module.exports = {
     'i18next',
     'react-hooks',
     'iblog-plugin',
-    'unused-imports'
   ],
   rules: {
 
@@ -47,12 +46,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     'react/button-has-type': 'off',
     'i18next/no-literal-string': 'off',
-    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-    ],
+    "no-unused-vars": "off",
     'no-undef': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-console': 'off',
