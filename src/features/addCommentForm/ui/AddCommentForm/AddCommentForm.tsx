@@ -10,7 +10,6 @@ import {
   ReducersList,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import {
-  getAddCommentFormError,
   getAddCommentFormText,
 } from '../../model/selectors/addCommentFormSelectors';
 import {
@@ -31,7 +30,6 @@ const reducers: ReducersList = {
 export const AddCommentForm = memo(
   ({ className, onSendComment }: addCommentFormProps) => {
     const text = useSelector(getAddCommentFormText);
-    const error = useSelector(getAddCommentFormError);
     const dispatch = useAppDispatch();
     const { t } = useTranslation('article-details');
 

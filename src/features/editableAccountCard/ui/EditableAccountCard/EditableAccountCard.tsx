@@ -27,7 +27,7 @@ const initialReducers: ReducersList = {
 };
 
 export const EditableAccountCard = memo((props: AditableAccountCardProps) => {
-  const { className, id } = props;
+  const { id } = props;
   const dispatch = useAppDispatch();
 
   useEffect(() => {

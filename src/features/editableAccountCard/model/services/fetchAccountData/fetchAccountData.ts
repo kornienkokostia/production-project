@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkConfig, ThunkExtraArg } from '@/app/providers/StoreProvider';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
 import { Account } from '@/entities/Account';
 
 export const fetchAccountData = createAsyncThunk<Account, string, ThunkConfig<string>>(

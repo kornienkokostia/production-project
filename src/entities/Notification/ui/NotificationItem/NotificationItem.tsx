@@ -1,7 +1,5 @@
-import { useNavigate } from 'react-router-dom';
 import { useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { AppLink } from '@/shared/ui/AppLink';
 import cls from './NotificationItem.module.scss';
 import { Notification } from '../../model/types/notifications';

@@ -1,8 +1,6 @@
-import { useSelector } from 'react-redux';
-import { Suspense, useEffect } from 'react';
+import { Suspense } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Modal } from '@/shared/ui/Modal';
-import { getUserAuthData } from '@/entities/User';
 import { Loader, LoaderTheme } from '@/shared/ui/Loader';
 import { LoginFormAsync } from '../LoginForm/LoginForm.async';
 import cls from './LoginModal.module.scss';

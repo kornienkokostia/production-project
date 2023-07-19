@@ -22,7 +22,8 @@ module.exports = {
     '@typescript-eslint',
     'i18next',
     'react-hooks',
-    'iblog-plugin'
+    'iblog-plugin',
+    'unused-imports'
   ],
   rules: {
 
@@ -32,7 +33,6 @@ module.exports = {
     ],
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
-    'no-unused-vars': 'warn',
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'warn',
@@ -47,7 +47,12 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     'react/button-has-type': 'off',
     'i18next/no-literal-string': 'off',
-    'no-unused-vars': 'off',
+    "no-unused-vars": "off", // or "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+    ],
     'no-undef': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-console': 'off',

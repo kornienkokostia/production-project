@@ -32,7 +32,6 @@ export const AccountCard = (props: AccountCardProps) => {
   const {
     className,
     data,
-    isLoading,
     error,
     readonly,
     onChangeFirstName,

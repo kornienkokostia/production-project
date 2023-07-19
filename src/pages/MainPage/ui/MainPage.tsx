@@ -1,7 +1,4 @@
-import { useTranslation } from 'react-i18next';
-
 function MainPage() {
-  const { t } = useTranslation();
   return (
     <div>
       <h3>Accounts:</h3>

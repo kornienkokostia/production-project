@@ -6,9 +6,9 @@ import {
   ArticleView,
   getArticleDetailsIsLoading,
 } from '@/entities/Article';
-import { classNames } from '@/shared/lib/classNames/classNames';
 import { useArticleRecommendationsList } from '../../api/articleRecommendationsApi';
 import cls from './ArticleRecommendationsList.module.scss';
+import { classNames } from '@/shared/lib/classNames/classNames';
 
 interface ArticleRecommendationsListProps {
   className?: string;
@@ -26,7 +26,9 @@ export const ArticleRecommendationsList = memo(
     }
 
     return (
-      <div className={cls.ArticleRecommendationsList}>
+      <div
+        className={classNames(cls.ArticleRecommendationsList, {}, [className])}
+      >
         <h1 className={cls.title}>{t('Recommendations')}</h1>
         <ArticleList
           articles={articles}

@@ -10,7 +10,6 @@ import {
   getArticleDetailsData,
   getArticleDetailsIsLoading,
 } from '@/entities/Article';
-import { getCanEditArticle } from '../../model/selectors/article';
 import cls from './ArticleDetailsPageHeader.module.scss';
 import { RoutePath } from '@/shared/const/router';
 import { locationState } from '@/shared/types/router';
@@ -28,7 +27,7 @@ export const ArticleDetailsPageHeader = ({
   const article = useSelector(getArticleDetailsData);
   const isLoading = useSelector(getArticleDetailsIsLoading);
   const location = useLocation() as locationState;
-  const canEdit = useSelector(getCanEditArticle);
+  // const canEdit = useSelector(getCanEditArticle);
 
   const onBackToList = useCallback(() => {
     if (!location.state) {
@@ -38,9 +37,9 @@ export const ArticleDetailsPageHeader = ({
     }
   }, [navigate, location.state]);
 
-  const onEditArticle = useCallback(() => {
-    navigate(`${RoutePath.articles}/${article?.id}/edit`);
-  }, [navigate, article?.id]);
+  // const onEditArticle = useCallback(() => {
+  //   navigate(`${RoutePath.articles}/${article?.id}/edit`);
+  // }, [navigate, article?.id]);
 
   return (
     <div

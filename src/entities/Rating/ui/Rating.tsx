@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Rating.module.scss';
 import { StarRating } from '@/shared/ui/StarRating';
-import { Submenu } from '@/shared/ui/Submenu';
 import { Modal } from '@/shared/ui/Modal';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 
