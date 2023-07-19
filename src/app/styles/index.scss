@@ -43,14 +43,11 @@
   src: url('./../../shared/assets/fonts//SF-Mono.ttf');
   font-weight: 400;
 }
-html {
-  overflow: hidden;
-}
+
 body {
   font-size: 16px;
   font-family: var(--font-family-main);
   overflow-anchor: none;
-  overflow: hidden;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
