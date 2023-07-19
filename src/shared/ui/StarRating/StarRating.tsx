@@ -1,7 +1,8 @@
 import { memo, useEffect, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './StarRating.module.scss';
-import StarIcon from '../../assets/icons/star.svg';
+import StarOutlineIcon from '../../assets/icons/star-outline.svg';
+import StarFillIcon from '../../assets/icons/star-fill.svg';
 
 interface StarRatingProps {
   className?: string;
@@ -45,22 +46,25 @@ export const StarRating = memo((props: StarRatingProps) => {
 
   return (
     <div className={classNames(cls.StarRating, {}, [className])}>
-      {stars.map(el => (
-        <StarIcon
-          className={classNames(
-            cls.star,
-            {
-              [cls.hovered]: currentStarCount >= el,
-              [cls.selected]: isSelected,
-            },
-            [],
-          )}
-          onMouseEnter={onHover(el)}
-          onMouseLeave={onLeave}
-          onClick={onClick(el)}
-          key={el}
-        />
-      ))}
+      {stars.map(el =>
+        currentStarCount >= el || isSelected ? (
+          <StarFillIcon
+            className={classNames(cls.star, { [cls.selected]: isSelected }, [])}
+            onMouseEnter={onHover(el)}
+            onMouseLeave={onLeave}
+            onClick={onClick(el)}
+            key={el}
+          />
+        ) : (
+          <StarOutlineIcon
+            className={classNames(cls.star, {}, [])}
+            onMouseEnter={onHover(el)}
+            onMouseLeave={onLeave}
+            onClick={onClick(el)}
+            key={el}
+          />
+        ),
+      )}
     </div>
   );
 });

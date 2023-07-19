@@ -2,13 +2,10 @@
   display: flex;
 }
 .star {
-  stroke: var(--primary-color);
+  fill: var(--primary-color);
   cursor: pointer;
   padding: 0px 5px;
   box-sizing: content-box;
-  & path {
-    stroke-width: 2;
-  }
 }
 .hovered {
   fill: var(--primary-color);
