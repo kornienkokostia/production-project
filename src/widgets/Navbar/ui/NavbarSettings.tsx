@@ -6,9 +6,9 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Drawer } from '@/shared/ui/Drawer/Drawer';
-import { Submenu } from '@/shared/ui/Submenu/Submenu';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Submenu } from '@/shared/ui/Submenu';
 import { SettingsMenu } from '@/entities/SettingsMenu';
 import SettingsIcon from '@/shared/assets/icons/settings.svg';
 

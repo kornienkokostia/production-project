@@ -6,9 +6,9 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Drawer } from '@/shared/ui/Drawer/Drawer';
-import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu/Submenu';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu';
 import NotificationsIcon from '@/shared/assets/icons/notifications.svg';
 import { NotificationList } from '@/entities/Notification';
 

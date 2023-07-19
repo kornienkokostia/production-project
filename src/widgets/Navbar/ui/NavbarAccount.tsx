@@ -7,11 +7,11 @@ import {
   useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
-import { Drawer } from '@/shared/ui/Drawer/Drawer';
-import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu/Submenu';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Drawer } from '@/shared/ui/Drawer';
+import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu';
 import { AccountMenu } from '@/entities/AccountMenu';
-import { AccountPhoto } from '@/shared/ui/AccountPhoto/AccountPhoto';
+import { AccountPhoto } from '@/shared/ui/AccountPhoto';
 import { User, isUserAdmin, isUserManager } from '@/entities/User';
 
 interface NavbarAccountProps {

@@ -4,7 +4,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { RoutePath, AppRoutes } from '@/shared/const/router';
 import ToggleIcon from '@/shared/assets/icons/nav-bar-toggle-btn.svg';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';

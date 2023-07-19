@@ -13,7 +13,7 @@ import {
 import { SortOrder } from '@/shared/types';
 import { getNavbarCollapsed } from '@/entities/AppState';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import {
   getArticlesPageOrder,

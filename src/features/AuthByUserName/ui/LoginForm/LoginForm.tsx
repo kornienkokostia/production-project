@@ -9,10 +9,10 @@ import {
 } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { InputTheme, TextInput } from '@/shared/ui/TextInput/TextInput';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { InputTheme, TextInput } from '@/shared/ui/TextInput';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
 import SingInFormBtnIcon from '@/shared/assets/icons/singin-form-btn.svg';
-import { Loader, LoaderTheme } from '@/shared/ui/Loader/Loader';
+import { Loader, LoaderTheme } from '@/shared/ui/Loader';
 import {
   DynamicModuleLoader,
   ReducersList,

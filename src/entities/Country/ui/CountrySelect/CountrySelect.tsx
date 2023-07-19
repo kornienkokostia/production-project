@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
-import { Dropdown } from '@/shared/ui/Dropdown/Dropdown';
+import { Dropdown } from '@/shared/ui/Dropdown';
 import { Country } from '../../model/types/country';
 
 interface CountrySelectProps {

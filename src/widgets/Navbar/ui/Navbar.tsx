@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { isMobileOnly } from 'react-device-detect';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
 import SingInIcon from '@/shared/assets/icons/singin-btn.svg';
 import { LoginModal } from '@/features/AuthByUserName';
 import { getUserAuthData } from '@/entities/User';

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button/Button';
+import { Button, ButtonTheme } from '@/shared/ui/Button';
 import cls from './AccountMenuItem.module.scss';
 import { AccountMenuElem } from '../model/types/accountMenu';
 

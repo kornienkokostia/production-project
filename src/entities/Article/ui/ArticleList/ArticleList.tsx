@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Loader } from '@/shared/ui/Loader/Loader';
+import { Loader } from '@/shared/ui/Loader';
 import { ArticleView } from '../../model/consts/articleConsts';
 import cls from './ArticleList.module.scss';
 import { Article } from '../../model/types/article';
