@@ -6,6 +6,9 @@
   cursor: pointer;
   padding: 0px 5px;
   box-sizing: content-box;
+  & path {
+    stroke-width: 2;
+  }
 }
 .hovered {
   fill: var(--primary-color);
