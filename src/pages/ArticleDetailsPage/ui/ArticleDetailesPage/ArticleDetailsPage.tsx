@@ -13,7 +13,6 @@ import cls from './ArticleDetailsPage.module.scss';
 import { ArticleDetailsPageHeader } from '../ArticleDetailsHeader/ArticleDetailsPageHeader';
 import { ArticleDetailsComments } from '../ArticleDetailsComments/ArticleDetailsComments';
 import { ArticleRating } from '@/features/articleRating';
-import { getFeatureFlags } from '@/shared/lib/features';
 
 interface ArticleDetailesPageProps {
   className?: string;
@@ -30,7 +29,6 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
   const timeoutRef = useRef() as MutableRefObject<
     ReturnType<typeof setTimeout>
   >;
-  const isArticleRatingEnabled = getFeatureFlags('isArticleRatingEnabled');
 
   useEffect(() => {
     timeoutRef.current = setTimeout(() => {
@@ -56,7 +54,7 @@ const ArticleDetailsPage = ({ className }: ArticleDetailesPageProps) => {
         <section className={cls.ArticleDetailesWrapper} ref={wrapperRef}>
           <ArticleDetails id={id} />
           <ArticleRecommendationsList />
-          {isArticleRatingEnabled && <ArticleRating articleId={id} />}
+          <ArticleRating articleId={id} />
           <ArticleDetailsComments id={id} />
         </section>
       </div>
