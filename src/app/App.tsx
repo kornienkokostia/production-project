@@ -29,7 +29,7 @@ function App() {
             navbarCollapsed ? 'full' : '',
           ])}>
           <Sidebar />
-          {inited && <AppRouter />}
+          {/* {inited && <AppRouter />} */}
         </div>
       </Suspense>
     </div>

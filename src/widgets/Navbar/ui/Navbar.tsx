@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { Button, ButtonTheme } from '@/shared/ui/Button';
 import SingInIcon from '@/shared/assets/icons/singin-btn.svg';
 import { LoginModal } from '@/features/AuthByUserName';
-import { getUserAuthData } from '@/entities/User';
+import { getUserAuthData, getUserInited } from '@/entities/User';
 import cls from './Navbar.module.scss';
 import { NavbarSettings } from './NavbarSettings';
 import { NavbarAccount } from './NavbarAccount';
@@ -20,6 +20,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
   const { t } = useTranslation();
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const authData = useSelector(getUserAuthData);
+  const inited = useSelector(getUserInited);
 
   const onCloseModal = useCallback(() => {
     setIsAuthOpen(false);
@@ -32,29 +33,32 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     <header className={classNames(cls.Navbar, {}, [className])}>
       <div className={cls.NavbarLeft}>iBlog</div>
       <div className={cls.NavbarRight}>
-        {authData ? (
+        {inited && (
           <>
-            <NavbarNotifications
-              isMobile={isMobileOnly}
-              btnClassName={cls.NavbarItem}
-              btnIconClassName={cls.ItemIcon}
-            />
-            <NavbarAccount
-              isMobile={isMobileOnly}
-              authData={authData}
-              btnClassName={cls.NavbarItem}
-              accountBtnClassName={cls.AccountBtn}
-            />
+            {authData ? (
+              <>
+                <NavbarNotifications
+                  isMobile={isMobileOnly}
+                  btnClassName={cls.NavbarItem}
+                  btnIconClassName={cls.ItemIcon}
+                />
+                <NavbarAccount
+                  isMobile={isMobileOnly}
+                  authData={authData}
+                  btnClassName={cls.NavbarItem}
+                  accountBtnClassName={cls.AccountBtn}
+                />
+              </>
+            ) : (
+              <Button
+                theme={ButtonTheme.APPLE}
+                className={cls.NavbarSignin}
+                onClick={onShowModal}>
+                <SingInIcon className={cls.SingInIcon} />
+                <span>{t('Sign in')}</span>
+              </Button>
+            )}
           </>
-        ) : (
-          <Button
-            theme={ButtonTheme.APPLE}
-            className={cls.NavbarSignin}
-            onClick={onShowModal}
-          >
-            <SingInIcon className={cls.SingInIcon} />
-            <span>{t('Sign in')}</span>
-          </Button>
         )}
         <NavbarSettings
           isMobile={isMobileOnly}
