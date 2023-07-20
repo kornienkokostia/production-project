@@ -19,7 +19,7 @@ export default (env: BuildEnv) => {
 
   const mode = env.mode || 'development';
   const PORT = env.port || 3000;
-  const apiUrl = env.apiUrl || mode === 'development' ? 'http://localhost:8000' : 'https://iblog-server.vercel.app/';
+  const apiUrl = env.apiUrl || mode === 'development' ? 'http://localhost:8000' : 'https://iblog-server.onrender.com/';
 
   const isDev = mode === 'development';
 

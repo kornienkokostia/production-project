@@ -1,35 +1,32 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
-import { LOCAL_STORAGE_THEME_KEY } from '../../../const/localStorage';
 import { Theme } from '../../../const/theme';
 
 interface UseThemeResult {
-  toggleLightTheme: () => void;
-  toggleDarkTheme: () => void;
+  toggleLightTheme: (saveAction?: (theme: Theme) => void) => void;
+  toggleDarkTheme: (saveAction?: (theme: Theme) => void) => void;
   theme: Theme;
 }
 
-export function useTheme(): UseThemeResult {
+export const useTheme = (): UseThemeResult => {
   const { theme, setTheme } = useContext(ThemeContext);
 
-  const toggleLightTheme = () => {
+  const toggleLightTheme = (saveAction?: (theme: Theme) => void) => {
     if (theme !== Theme.LIGHT) {
       setTheme?.(Theme.LIGHT);
-      document.body.className = Theme.LIGHT;
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, Theme.LIGHT);
+      saveAction?.(Theme.LIGHT)
     }
-  };
-  const toggleDarkTheme = () => {
+  }
+  const toggleDarkTheme = (saveAction?: (theme: Theme) => void) => {
     if (theme !== Theme.DARK) {
       setTheme?.(Theme.DARK);
-      document.body.className = Theme.DARK;
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, Theme.DARK);
+      saveAction?.(Theme.DARK)
     }
   };
 
   return {
-    theme: theme || Theme.DARK,
+    theme: theme || Theme.LIGHT,
     toggleLightTheme,
-    toggleDarkTheme,
+    toggleDarkTheme
   };
 }

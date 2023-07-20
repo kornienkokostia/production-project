@@ -570,7 +570,10 @@
       "password": "123",
       "roles": ["ADMIN"],
       "features": {
-        "isArticleRatingEnabled": "true"
+        "isArticleRatingEnabled": true
+      },
+      "jsonSettings": {
+        "theme": "app_dark_theme"
       },
       "avatar": "https://lastfm.freetls.fastly.net/i/u/ar0/87da4c5ba4fb07d6876b53ac496d7ebf.jpg"
     },
@@ -580,7 +583,10 @@
       "password": "123",
       "roles": ["USER"],
       "features": {
-        "isArticleRatingEnabled": "true"
+        "isArticleRatingEnabled": false
+      },
+      "jsonSettings": {
+        "theme": "app_light_theme"
       },
       "avatar": "https://images.news18.com/ibnlive/uploads/2022/07/chris-evans-16574444474x3.jpg"
     }

@@ -112,8 +112,11 @@ npm run start:dev или npm run start:dev:vite - запуск сервера + 
 ## Фичи (features)
 
 - [addCommentForm](/src/features/addCommentForm)
+- [ArticleCategorySelector](/src/features/ArticleCategorySelector)
 - [articleRating](/src/features/articleRating)
 - [articleRecommendationsList](/src/features/articleRecommendationsList)
+- [ArticleSortSelector](/src/features/ArticleSortSelector)
+- [ArticleViewSwitcher](/src/features/ArticleViewSwitcher)
 - [AuthByUsername](/src/features/AuthByUsername)
 - [editableAccountCard](/src/features/editableAccountCard)
 - [UI](/src/features/UI)

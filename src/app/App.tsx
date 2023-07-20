@@ -4,18 +4,20 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
-import { getUserInited, userActions } from '@/entities/User';
+import { getUserInited, initAuthData } from '@/entities/User';
 import { getNavbarCollapsed } from '@/entities/AppState';
 import { AppRouter } from './providers/router';
+import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { Loader } from '@/shared/ui/Loader';
 
 function App() {
   const { theme } = useTheme();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const inited = useSelector(getUserInited);
   const navbarCollapsed = useSelector(getNavbarCollapsed);
 
   useEffect(() => {
-    dispatch(userActions.initAuthData());
+    dispatch(initAuthData());
   }, [dispatch]);
 
   return (
@@ -25,8 +27,7 @@ function App() {
         <div
           className={classNames('content-page', {}, [
             navbarCollapsed ? 'full' : '',
-          ])}
-        >
+          ])}>
           <Sidebar />
           {inited && <AppRouter />}
         </div>
