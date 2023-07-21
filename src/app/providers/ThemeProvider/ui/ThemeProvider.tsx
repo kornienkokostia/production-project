@@ -10,8 +10,11 @@ interface ThemeProviderProps {
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const { theme: defaultTheme } = useJsonSettings();
+  const presavedTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme;
   const [isThemeInited, setIsThemeInited] = useState(false);
-  const [theme, setTheme] = useState<Theme>(defaultTheme || Theme.LIGHT);
+  const [theme, setTheme] = useState<Theme>(
+    presavedTheme || defaultTheme || Theme.LIGHT,
+  );
 
   useEffect(() => {
     if (!isThemeInited && defaultTheme) {

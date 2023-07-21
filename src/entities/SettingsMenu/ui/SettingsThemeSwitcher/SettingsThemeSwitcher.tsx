@@ -7,6 +7,7 @@ import { Theme } from '@/shared/const/theme';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { saveJsonSettings } from '@/entities/User';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localStorage';
 
 interface SettingsThemeSwitcherProps {
   className?: string;
@@ -19,14 +20,18 @@ export const SettingsThemeSwitcher = memo(
     const dispatch = useAppDispatch();
 
     const onToggleLightHandler = useCallback(() => {
+      const curTheme = Theme.LIGHT;
       toggleLightTheme(() => {
-        dispatch(saveJsonSettings({ theme: Theme.LIGHT }));
+        dispatch(saveJsonSettings({ theme: curTheme }));
+        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, curTheme);
       });
     }, [toggleLightTheme, dispatch]);
 
     const onToggleDarkHandler = useCallback(() => {
+      const curTheme = Theme.DARK;
       toggleDarkTheme(() => {
-        dispatch(saveJsonSettings({ theme: Theme.DARK }));
+        dispatch(saveJsonSettings({ theme: curTheme }));
+        localStorage.setItem(LOCAL_STORAGE_THEME_KEY, curTheme);
       });
     }, [toggleDarkTheme, dispatch]);
 
