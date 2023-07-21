@@ -9,6 +9,7 @@ import { getNavbarCollapsed } from '@/entities/AppState';
 import { AppRouter } from './providers/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Loader } from '@/shared/ui/Loader';
+import { Preview } from '@/shared/ui/Preview';
 
 function App() {
   const { theme } = useTheme();
@@ -29,7 +30,7 @@ function App() {
             navbarCollapsed ? 'full' : '',
           ])}>
           <Sidebar />
-          {inited && <AppRouter />}
+          {inited ? <AppRouter /> : <Preview />}
         </div>
       </Suspense>
     </div>

@@ -9,12 +9,11 @@ export const AppRouter = memo(() => {
   const renderWithWrapper = useCallback((route: AppRouteProps) => {
     const element = (
       <Suspense
-        fallback={(
+        fallback={
           <main className="page-wrapper">
             <Loader theme={LoaderTheme.BIG} />
           </main>
-        )}
-      >
+        }>
         <main className="page-wrapper">{route.element}</main>
       </Suspense>
     );
