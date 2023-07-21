@@ -1,4 +1,10 @@
-import React, { Suspense, useEffect } from 'react';
+import React, {
+  MutableRefObject,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
@@ -16,10 +22,21 @@ function App() {
   const dispatch = useAppDispatch();
   const inited = useSelector(getUserInited);
   const navbarCollapsed = useSelector(getNavbarCollapsed);
+  const [previewHidden, setPreviewHidden] = useState(false);
+  const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   useEffect(() => {
     dispatch(initAuthData());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (inited) {
+      timeRef.current = setTimeout(() => {
+        setPreviewHidden(true);
+      }, 300);
+    }
+    return () => clearTimeout(timeRef.current);
+  }, [inited]);
 
   return (
     <div className={classNames('app', {}, [theme])}>
@@ -30,7 +47,8 @@ function App() {
             navbarCollapsed ? 'full' : '',
           ])}>
           <Sidebar />
-          {inited ? <AppRouter /> : <Preview />}
+          {inited && <AppRouter />}
+          {!previewHidden && <Preview hidden={inited} />}
         </div>
       </Suspense>
     </div>

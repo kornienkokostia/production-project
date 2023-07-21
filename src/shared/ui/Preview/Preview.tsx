@@ -4,11 +4,15 @@ import PreviewIcon from './../../assets/icons/preview-logo.svg';
 
 interface PreviewProps {
   className?: string;
+  hidden?: boolean;
 }
 
-export const Preview = ({ className }: PreviewProps) => {
+export const Preview = ({ className, hidden }: PreviewProps) => {
   return (
-    <div className={classNames(cls.Preview, {}, [className])}>
+    <div
+      className={classNames(cls.Preview, { [cls.hidden]: hidden }, [
+        className,
+      ])}>
       <div className={cls.content}>
         <div className={cls.logo}>
           <PreviewIcon />
