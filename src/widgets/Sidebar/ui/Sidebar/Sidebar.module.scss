@@ -4,6 +4,7 @@
   background-color: var(--secondary-bg-color);
   position: absolute;
   font-family: var(--font-family-secondary);
+  user-select: none;
 }
 
 .collapseBtn {
