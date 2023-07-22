@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArticleType } from '@/entities/Article';
 import { Select, SelectOption } from '@/shared/ui/Select';
-import { SubmenuTheme } from '@/shared/ui/Submenu';
 
 interface ArticleCategorySelectorProps {
   value: ArticleType;
@@ -28,7 +27,7 @@ export const ArticleCategorySelector = (
 
   return (
     <Select
-      submenuTheme={SubmenuTheme.CATEGORY}
+      submenuTheme="category"
       title={t('Category')}
       options={categoryOptions}
       value={value}

@@ -8,7 +8,7 @@ import { ArticleType, ArticleView, ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types';
 import { getNavbarCollapsed } from '@/entities/AppState';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import {
   getArticlesPageOrder,
@@ -84,7 +84,6 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
 
   const onChangeSearch = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      console.log(articlesPageActions);
       dispatch(articlesPageActions.setSearch(e.target.value));
       dispatch(articlesPageActions.setPage(1));
       debouncedFetchData();
@@ -127,7 +126,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
             onChange={onChangeSearch}
           />
           <Button
-            theme={ButtonTheme.CLEAR}
+            theme="clear"
             className={cls.clearBtn}
             disabled={!(search.length > 0)}
             onClick={onClearSearch}

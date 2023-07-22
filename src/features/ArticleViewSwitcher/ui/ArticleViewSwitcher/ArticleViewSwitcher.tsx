@@ -1,7 +1,7 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
 import ListIcon from '@/shared/assets/icons/view-list.svg';
 import GridIcon from '@/shared/assets/icons/view-grid.svg';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import cls from './ArticleViewSwitcher.module.scss';
 import { ArticleView } from '@/entities/Article';
 
@@ -37,11 +37,11 @@ export const ArticleViewSwitcher = ({
     <div className={classNames(cls.ArticleViewSwitcher, {}, [className])}>
       {viewTypes.map(el => (
         <Button
-          theme={ButtonTheme.CLEAR}
+          theme="clear"
           onClick={onClick(el.view)}
           className={classNames(
             cls.viewBtn,
-            { [cls.selected]: el.view !== view },
+            { [cls.selected]: el.view === view },
             [],
           )}
           key={el.view}

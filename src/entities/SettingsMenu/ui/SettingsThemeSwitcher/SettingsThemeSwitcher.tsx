@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import cls from './SettingsThemeSwitcher.module.scss';
 import { Theme } from '@/shared/const/theme';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
@@ -44,14 +44,14 @@ export const SettingsThemeSwitcher = memo(
         />
         <Button
           className={classNames(cls.item, {}, [])}
-          theme={ButtonTheme.CLEAR}
+          theme="clear"
           onClick={onToggleLightHandler}
         >
           {t('Light')}
         </Button>
         <Button
           className={classNames(cls.item, {}, [])}
-          theme={ButtonTheme.CLEAR}
+          theme="clear"
           onClick={onToggleDarkHandler}
         >
           {t('Dark')}

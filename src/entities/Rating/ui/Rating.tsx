@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './Rating.module.scss';
 import { StarRating } from '@/shared/ui/StarRating';
 import { Modal } from '@/shared/ui/Modal';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 
 interface RatingCardProps {
   className?: string;
@@ -100,7 +100,7 @@ export const RatingCard = memo((props: RatingCardProps) => {
             />
           </div>
           <Button
-            theme={ButtonTheme.APPLE_CLEAR}
+            theme="apple-clear"
             className={cls.sendBtn}
             onClick={acceptHandle}
           >

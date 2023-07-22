@@ -1,6 +1,6 @@
 import React, { Suspense, memo, useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Loader, LoaderTheme } from '@/shared/ui/Loader';
+import { Loader } from '@/shared/ui/Loader';
 import { RequireAuth } from './RequireAuth';
 import { AppRouteProps } from '@/shared/types/router';
 import { routeConfig } from '../config/routeConfig';
@@ -11,7 +11,7 @@ export const AppRouter = memo(() => {
       <Suspense
         fallback={(
           <main className="page-wrapper">
-            <Loader theme={LoaderTheme.BIG} />
+            <Loader />
           </main>
         )}
       >

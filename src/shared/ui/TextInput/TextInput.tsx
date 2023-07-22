@@ -15,10 +15,7 @@ type HTMLInputProps = Omit<
   'value' | 'onChange' | 'readonly'
 >;
 
-export enum InputTheme {
-  WITHOUT_BOTTOM_CORNERS = 'without-bottom-corners',
-  WITHOUT_TOP_CORNERS = 'without-top-corners',
-}
+export type InputTheme = 'without-bottom-corners' | 'without-top-corners';
 
 interface PassedProps extends HTMLInputProps {
   fieldTitle: string;

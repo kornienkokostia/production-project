@@ -6,6 +6,8 @@
   margin-bottom: 1px;
   column-gap: 10px;
   font-size: 15px;
+  text-decoration: none;
+  color: var(--main-text-color);
   cursor: pointer;
   border-radius: 6px;
   &.selected {

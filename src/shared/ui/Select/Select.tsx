@@ -9,7 +9,7 @@ import { classNames } from '@/shared/lib/classNames/classNames';
 import SelectIcon from '@/shared/assets/icons/select-btn-icon.svg';
 import SelectedOptionIcon from '@/shared/assets/icons/selected-option.svg';
 import cls from './Select.module.scss';
-import { Button, ButtonTheme } from '../Button/Button';
+import { Button } from '../Button/Button';
 import { Submenu, SubmenuTheme } from '../Submenu/Submenu';
 
 export interface SelectOption<T extends string> {
@@ -129,7 +129,7 @@ export const Select = <T extends string, K extends string>(
   return (
     <div className={classNames(cls.Select, {}, [className])}>
       <Button
-        theme={ButtonTheme.APPLE_CLEAR}
+        theme="apple-clear"
         onClick={onToggleBtn}
         className={cls.selectBtn}
       >

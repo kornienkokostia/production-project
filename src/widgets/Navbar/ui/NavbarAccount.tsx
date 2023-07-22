@@ -7,9 +7,9 @@ import {
   useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { Drawer } from '@/shared/ui/Drawer';
-import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu';
+import { Submenu } from '@/shared/ui/Submenu';
 import { AccountMenu } from '@/entities/AccountMenu';
 import { AccountPhoto } from '@/shared/ui/AccountPhoto';
 import { User, isUserAdmin, isUserManager } from '@/entities/User';
@@ -60,7 +60,7 @@ export const NavbarAccount = memo((props: NavbarAccountProps) => {
   return (
     <>
       <Button
-        theme={ButtonTheme.CLEAR}
+        theme="clear"
         className={btnClassName}
         onClick={onToggleAccountPopup}
       >
@@ -87,7 +87,7 @@ export const NavbarAccount = memo((props: NavbarAccountProps) => {
         <Submenu
           isOpen={isAccountPopupOpen}
           closeHandler={closeAccountPopupHandler}
-          theme={SubmenuTheme.ACCOUNT}
+          theme="account"
           isClosing={isAccountPopupClosing}
         >
           <AccountMenu

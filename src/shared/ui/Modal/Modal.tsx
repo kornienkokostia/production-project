@@ -6,7 +6,7 @@ import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import CloseModalIcon from '@/shared/assets/icons/close-modal.svg';
 import cls from './Modal.module.scss';
 import { Portal } from '../Portal/Portal';
-import { Button, ButtonTheme } from '../Button/Button';
+import { Button } from '../Button/Button';
 
 interface ModalProps {
   className?: string;
@@ -74,7 +74,7 @@ export const Modal = (props: ModalProps) => {
           <div className={cls.content} onClick={onContentClick}>
             <Button
               className={cls.closeBtn}
-              theme={ButtonTheme.CLEAR}
+              theme="clear"
               onClick={closeHandler}
             >
               <CloseModalIcon className={cls.closeBtnIcon} />

@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import cls from './AccountMenuItem.module.scss';
 import { AccountMenuElem } from '../model/types/accountMenu';
 
@@ -27,7 +27,7 @@ export const AccountMenuItem = (props: AccountMenuItemProps) => {
           },
           [],
         )}
-        theme={ButtonTheme.CLEAR}
+        theme="clear"
         onClick={item.onClick}
         onMouseEnter={() => {
           setSelected(item.title);

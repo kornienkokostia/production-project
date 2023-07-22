@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { getNavbarCollapsed } from '@/entities/AppState';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import ArrowBackIcon from '@/shared/assets/icons/arrow-back.svg';
 import {
   getArticleDetailsData,
@@ -50,7 +50,7 @@ export const ArticleDetailsPageHeader = ({
       )}
     >
       <Button
-        theme={ButtonTheme.APPLE_CLEAR}
+        theme="apple-clear"
         className={cls.backBtn}
         onClick={onBackToList}
       >

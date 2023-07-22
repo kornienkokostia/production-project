@@ -18,7 +18,6 @@ export const NotificationItem = ({
   onClosePopup,
 }: NotificationItemProps) => {
   const onItemClick = useCallback(() => {
-    // navigate(RoutePath.admin_panel);
     onClosePopup();
   }, [onClosePopup]);
 

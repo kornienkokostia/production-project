@@ -5,7 +5,7 @@ import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import CloseDrawerIcon from '@/shared/assets/icons/close-drawer.svg';
 import cls from './Drawer.module.scss';
 import { Portal } from '../Portal/Portal';
-import { Button, ButtonTheme } from '../Button/Button';
+import { Button } from '../Button/Button';
 
 interface DrawerProps {
   className?: string;
@@ -58,7 +58,7 @@ export const Drawer = memo((props: DrawerProps) => {
           >
             <div className={cls.header}>
               <Button
-                theme={ButtonTheme.CLEAR}
+                theme="clear"
                 className={cls.closeBtn}
                 onClick={closeHandler}
               >

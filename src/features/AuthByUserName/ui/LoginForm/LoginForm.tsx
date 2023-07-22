@@ -9,10 +9,10 @@ import {
 } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { InputTheme, TextInput } from '@/shared/ui/TextInput';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { TextInput } from '@/shared/ui/TextInput';
+import { Button } from '@/shared/ui/Button';
 import SingInFormBtnIcon from '@/shared/assets/icons/singin-form-btn.svg';
-import { Loader, LoaderTheme } from '@/shared/ui/Loader';
+import { Loader } from '@/shared/ui/Loader';
 import {
   DynamicModuleLoader,
   ReducersList,
@@ -158,18 +158,14 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             fieldTitle={t('Username')}
             isFocused={usernameFocused}
             setIsFocused={changeUsernameFocused}
-            theme={
-              passwordFieldVisible
-                ? InputTheme.WITHOUT_BOTTOM_CORNERS
-                : undefined
-            }
+            theme={passwordFieldVisible ? 'without-bottom-corners' : undefined}
             paddingRight={!passwordFieldVisible}
             onChange={onChangeUsername}
             value={username}
             ref={firstInputRef}
           />
           <Button
-            theme={ButtonTheme.CLEAR}
+            theme="clear"
             className={classNames(cls.SingInBtn, {}, [
               cls.UserNameBtn,
               hideUsernameBtn ? cls.hidden : undefined,
@@ -183,7 +179,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             fieldTitle={t('Password')}
             isFocused={passwordFocused}
             setIsFocused={changePasswordFocused}
-            theme={InputTheme.WITHOUT_TOP_CORNERS}
+            theme="without-top-corners"
             paddingRight={passwordFieldVisible}
             hidden={!passwordFieldVisible}
             onChange={onChangePassword}
@@ -192,7 +188,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             ref={secondInputRef}
           />
           <Button
-            theme={ButtonTheme.CLEAR}
+            theme="clear"
             className={classNames(cls.SingInBtn, {}, [
               cls.PasswordBtn,
               hideSingInBtn ? cls.hidden : undefined,
@@ -201,7 +197,7 @@ const LoginForm = memo(({ className, onSuccess }: LoginFormProps) => {
             onClick={onSigninBtnClick}
           >
             {isLoading ? (
-              <Loader theme={LoaderTheme.SMALL} />
+              <Loader theme="small" />
             ) : (
               <SingInFormBtnIcon className={cls.btnIcon} />
             )}

@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { Drawer } from '@/shared/ui/Drawer';
 import { Submenu } from '@/shared/ui/Submenu';
 import { SettingsMenu } from '@/entities/SettingsMenu';
@@ -52,7 +52,7 @@ export const NavbarSettings = memo(
     return (
       <>
         <Button
-          theme={ButtonTheme.CLEAR}
+          theme="clear"
           className={btnClassName}
           onClick={onToggleSettings}
         >

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useCallback } from 'react';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { getUserAuthData } from '@/entities/User';
@@ -54,28 +54,20 @@ export const AccountPageHeader = ({
       {!isLoading && readonly !== undefined && canEdit && (
         <div className={cls.btns}>
           {readonly ? (
-            <Button
-              theme={ButtonTheme.APPLE_CLEAR}
-              className={cls.btn}
-              onClick={onEdit}
-            >
+            <Button theme="apple-clear" className={cls.btn} onClick={onEdit}>
               {t('Edit')}
             </Button>
           ) : (
             <>
               <Button
-                theme={ButtonTheme.APPLE_CLEAR}
+                theme="apple-clear"
                 className={cls.btn}
                 onClick={onCancelEdit}
               >
                 {t('Cancel')}
               </Button>
               <div className={cls.separator} />
-              <Button
-                theme={ButtonTheme.APPLE_CLEAR}
-                className={cls.btn}
-                onClick={onSave}
-              >
+              <Button theme="apple-clear" className={cls.btn} onClick={onSave}>
                 {t('Save')}
               </Button>
             </>

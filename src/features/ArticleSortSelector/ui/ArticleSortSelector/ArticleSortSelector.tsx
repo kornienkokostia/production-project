@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Select, SelectOption } from '@/shared/ui/Select';
-import { SubmenuTheme } from '@/shared/ui/Submenu';
 import { ArticleSortField } from '@/entities/Article';
 import { SortOrder } from '@/shared/types';
 
@@ -29,7 +28,7 @@ export const ArticleSortSelector = (props: ArticleSortSelectorProps) => {
 
   return (
     <Select
-      submenuTheme={SubmenuTheme.SORTBY}
+      submenuTheme="sort-by"
       title={t('Sort by')}
       options={sortFiledOptions}
       value={value}

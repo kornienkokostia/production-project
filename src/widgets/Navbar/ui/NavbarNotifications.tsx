@@ -6,9 +6,9 @@ import {
   useRef,
   useState,
 } from 'react';
-import { Button, ButtonTheme } from '@/shared/ui/Button';
+import { Button } from '@/shared/ui/Button';
 import { Drawer } from '@/shared/ui/Drawer';
-import { Submenu, SubmenuTheme } from '@/shared/ui/Submenu';
+import { Submenu } from '@/shared/ui/Submenu';
 import NotificationsIcon from '@/shared/assets/icons/notifications.svg';
 import { NotificationList } from '@/entities/Notification';
 
@@ -52,7 +52,7 @@ export const NavbarNotifications = memo(
     return (
       <>
         <Button
-          theme={ButtonTheme.CLEAR}
+          theme="clear"
           className={btnClassName}
           onClick={onToggleNotifPopup}
         >
@@ -70,7 +70,7 @@ export const NavbarNotifications = memo(
           <Submenu
             isOpen={isNotifPopupOpen}
             closeHandler={closeNotifPopupHandler}
-            theme={SubmenuTheme.NOTIFICATIONS}
+            theme="notifications"
             isClosing={isNotifPopupClosing}
           >
             <NotificationList onClosePopup={closeNotifPopupHandler} />

@@ -1,8 +1,5 @@
 import {
-  ReactNode,
-  memo,
-  useCallback,
-  useEffect,
+  ReactNode, memo, useCallback, useEffect,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
@@ -12,13 +9,12 @@ import cls from './Submenu.module.scss';
 import { Portal } from '../Portal/Portal';
 import { Button } from '../Button/Button';
 
-export enum SubmenuTheme {
-  SETTINGS = 'settings',
-  ACCOUNT = 'account',
-  NOTIFICATIONS = 'notifications',
-  SORTBY = 'sort-by',
-  CATEGORY = 'category',
-}
+export type SubmenuTheme =
+  | 'settings'
+  | 'account'
+  | 'notifications'
+  | 'sort-by'
+  | 'category';
 
 interface SubmenuProps {
   className?: string;
@@ -37,7 +33,7 @@ export const Submenu = memo((props: SubmenuProps) => {
     children,
     isOpen,
     closeHandler,
-    theme = SubmenuTheme.SETTINGS,
+    theme = 'settings',
     showTriangle = false,
     isClosing,
     sidebarPadding,
