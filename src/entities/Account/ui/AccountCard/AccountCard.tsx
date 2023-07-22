@@ -67,7 +67,8 @@ export const AccountCard = (props: AccountCardProps) => {
   if (!data) {
     return (
       <div
-        className={classNames(cls.AccountCard, {}, [className, cls.loading])}>
+        className={classNames(cls.AccountCard, {}, [className, cls.loading])}
+      >
         <Loader />
       </div>
     );

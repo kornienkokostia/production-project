@@ -4,7 +4,6 @@ import { JsonSettings } from '../types/jsonSettings';
 import { getUserAuthData } from '../selectors/getUserAuthData/getUserAuthData';
 import { getJsonSettings } from '../selectors/jsonSettings';
 import { setJsonSettingsMutation } from '../../api/userApi';
-import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localStorage';
 
 export const saveJsonSettings = createAsyncThunk<JsonSettings, JsonSettings, ThunkConfig<string>>(
   'user/saveJsonSettings',

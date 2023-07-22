@@ -7,6 +7,7 @@ import CopyPlugin from 'copy-webpack-plugin';
 import CircularDependencyPlugin from 'circular-dependency-plugin';
 import { BuildOptions } from './types/config';
 
+
 export function buildPlugins({
   paths, isDev, apiUrl,
 }: BuildOptions): webpack.WebpackPluginInstance[] {
@@ -34,6 +35,7 @@ export function buildPlugins({
       exclude: /node-modules/,
       failOnError: true,
     }),
+
   ];
 
   if (isDev) {

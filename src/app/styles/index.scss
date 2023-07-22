@@ -5,43 +5,46 @@
 
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('./../../shared/assets/fonts/SF-Pro-Display-Thin.ttf');
   font-weight: 200;
+  src: url('./../../shared/assets/fonts/sf-pro-display-thin.woff2')
+    format('woff2');
 }
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('./../../shared/assets/fonts/SF-Pro-Display-Light.ttf');
   font-weight: 300;
+  src: url('./../../shared/assets/fonts/sf-pro-display-light.woff2')
+    format('woff2');
 }
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('./../../shared/assets/fonts/SF-Pro-Display-Regular.ttf');
   font-weight: 400;
+  src: url('./../../shared/assets/fonts/sf-pro-display-regular.woff2');
 }
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('./../../shared/assets/fonts/SF-Pro-Display-Medium.ttf');
   font-weight: 500;
+  src: url('./../../shared/assets/fonts/sf-pro-display-medium.woff2');
 }
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('./../../shared/assets/fonts/SF-Pro-Display-Semibold.ttf');
   font-weight: 600;
+  src: url('./../../shared/assets/fonts/sf-pro-display-semibold.woff2');
 }
 @font-face {
   font-family: 'SF Pro Display';
-  src: url('./../../shared/assets/fonts/SF-Pro-Display-Bold.ttf');
   font-weight: 700;
+  src: url('./../../shared/assets/fonts/sf-pro-display-bold.woff2');
 }
 @font-face {
   font-family: 'SF UI Text';
-  src: url('./../../shared/assets/fonts/SF-UI-Text-Regular.ttf');
   font-weight: 400;
+
+  src: url('./../../shared/assets/fonts/sf-ui-text-regular.woff2');
 }
 @font-face {
   font-family: 'SF Mono';
-  src: url('./../../shared/assets/fonts//SF-Mono.ttf');
   font-weight: 400;
+  src: url('./../../shared/assets/fonts/sf-mono-regular.woff2');
 }
 
 body {
@@ -58,10 +61,6 @@ body {
   min-height: 100vh;
   overflow-y: hidden;
 }
-
-// * {
-//   transition: background-color 0.3s linear;
-// }
 
 .content-page {
   position: relative;
@@ -84,9 +83,4 @@ body {
   background: var(--bg-color);
   position: absolute;
   right: 0;
-}
-
-h1,
-h2 {
-  all: unset;
 }

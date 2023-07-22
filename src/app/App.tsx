@@ -45,8 +45,7 @@ function App() {
         <div
           className={classNames('content-page', {}, [
             navbarCollapsed ? 'full' : '',
-          ])}
-        >
+          ])}>
           <Sidebar />
           {inited && <AppRouter />}
           {!previewHidden && <Preview hidden={contentLoaded} />}

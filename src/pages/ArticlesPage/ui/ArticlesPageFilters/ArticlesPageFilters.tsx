@@ -114,7 +114,8 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
           cls.articlesPageHeader,
           { [cls.navbarCollapsed]: navbarCollapsed },
           [],
-        )}>
+        )}
+      >
         <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
         <div className={cls.search}>
           <SearchIcon className={cls.searchIcon} />
@@ -129,7 +130,8 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
             theme={ButtonTheme.CLEAR}
             className={cls.clearBtn}
             disabled={!(search.length > 0)}
-            onClick={onClearSearch}>
+            onClick={onClearSearch}
+          >
             <ClearInputIcon className={cls.clearBtnIcon} />
           </Button>
         </div>

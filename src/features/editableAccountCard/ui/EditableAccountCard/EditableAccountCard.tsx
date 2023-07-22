@@ -1,4 +1,6 @@
-import { MutableRefObject, memo, useCallback, useEffect, useRef } from 'react';
+import {
+  MutableRefObject, memo, useCallback, useEffect, useRef,
+} from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Currancy } from '@/entities/Currency';
