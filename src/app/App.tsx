@@ -33,7 +33,7 @@ function App() {
     if (inited) {
       timeRef.current = setTimeout(() => {
         setPreviewHidden(true);
-      }, 300);
+      }, 250);
     }
     return () => clearTimeout(timeRef.current);
   }, [inited]);

@@ -9,32 +9,43 @@
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 0.3s;
+  transition: opacity 0.25s;
 }
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 30px;
+  animation: fade-in 0.25s ease-in-out;
+  animation-fill-mode: forwards;
 }
 .title {
   font-size: 120px;
   font-weight: 600;
 }
 .subtitle {
-  color: var(--icon-main-color);
+  color: var(--subtitle-color);
   font-size: 20px;
 }
 .logo {
   width: 90px;
   height: 90px;
-  background-color: #ffffff;
+  background-color: var(--logo-bg);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  box-shadow: 0 0 0 1px #e2e2e2;
+  box-shadow: 0 0 0 1px var(--logo-border);
 }
 .hidden {
   opacity: 0;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
