@@ -85,7 +85,7 @@ const replaceToggleFunction = (node: Node) => {
 const getAttributeNodeByName = (
   jsxAttributes: JsxAttribute[],
   name: string,
-) => jsxAttributes.find((node) => node.getName() === name);
+) => jsxAttributes.find((node) => node.getNameNode().getText() === name);
 
 const getReplacedComponent = (attribute?: JsxAttribute) => {
   const value = attribute

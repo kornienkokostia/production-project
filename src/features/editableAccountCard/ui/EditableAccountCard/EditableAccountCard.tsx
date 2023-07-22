@@ -1,11 +1,4 @@
-import {
-  MutableRefObject,
-  memo,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { MutableRefObject, memo, useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Currancy } from '@/entities/Currency';
@@ -49,12 +42,16 @@ export const EditableAccountCard = memo((props: AditableAccountCardProps) => {
   const error = useSelector(getAccountError);
   const readonly = useSelector(getAccountReadonly);
   const formErrors = useSelector(getAccountFormErrors);
+  const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   useEffect(() => {
-    if (!formData) {
-      dispatch(appStateActions.setContentLoaded(true));
+    if (!isLoading) {
+      timeRef.current = setTimeout(() => {
+        dispatch(appStateActions.setContentLoaded(true));
+      }, 100);
     }
-  }, [formData, dispatch]);
+    return () => clearTimeout(timeRef.current);
+  }, [isLoading, dispatch]);
 
   useEffect(() => {
     if (formData) {

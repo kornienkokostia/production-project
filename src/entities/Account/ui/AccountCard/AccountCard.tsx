@@ -9,8 +9,6 @@ import { Country, CountrySelect } from '@/entities/Country';
 import { AccountErrors } from '@/shared/types/account';
 import { Account } from '../../model/types/account';
 import cls from './AccountCard.module.scss';
-import { getContentLoaded } from '@/entities/AppState';
-import { useSelector } from 'react-redux';
 
 interface AccountCardProps {
   className?: string;
@@ -26,7 +24,6 @@ interface AccountCardProps {
   onChangeCurrency: (val?: Currancy) => void;
   onChangeCountry: (val?: Country) => void;
   formErrors?: AccountErrors;
-  firstLoad?: boolean;
 }
 
 export const AccountCard = (props: AccountCardProps) => {
@@ -53,7 +50,6 @@ export const AccountCard = (props: AccountCardProps) => {
   const [isCityFocused, setIsCityFocused] = useState(true);
   const [isPhotoFocused, setIsPhotoFocused] = useState(true);
   const [isUsernameFocused, setIsUsernameFocused] = useState(true);
-  const contentLoaded = useSelector(getContentLoaded);
 
   useEffect(() => {
     if (data && !data.avatar) {
@@ -68,11 +64,7 @@ export const AccountCard = (props: AccountCardProps) => {
     }
   }, [data, readonly]);
 
-  if (!contentLoaded && !data) {
-    return null;
-  }
-
-  if (!data && contentLoaded) {
+  if (!data) {
     return (
       <div
         className={classNames(cls.AccountCard, {}, [className, cls.loading])}>
