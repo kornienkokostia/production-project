@@ -1,5 +1,10 @@
 import {
-  MutableRefObject, memo, useCallback, useEffect, useRef,
+  MutableRefObject,
+  memo,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
 } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
@@ -44,16 +49,12 @@ export const EditableAccountCard = memo((props: AditableAccountCardProps) => {
   const error = useSelector(getAccountError);
   const readonly = useSelector(getAccountReadonly);
   const formErrors = useSelector(getAccountFormErrors);
-  const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
 
   useEffect(() => {
-    if (!isLoading) {
-      timeRef.current = setTimeout(() => {
-        dispatch(appStateActions.setContentLoaded(true));
-      }, 100);
+    if (!formData) {
+      dispatch(appStateActions.setContentLoaded(true));
     }
-    return () => clearTimeout(timeRef.current);
-  }, [isLoading, dispatch]);
+  }, [formData, dispatch]);
 
   useEffect(() => {
     if (formData) {
@@ -123,7 +124,6 @@ export const EditableAccountCard = memo((props: AditableAccountCardProps) => {
     <DynamicModuleLoader reducers={initialReducers}>
       <AccountCard
         data={formData}
-        isLoading={isLoading}
         error={error}
         onChangeFirstName={onChangeFirstName}
         onChangeLastName={onChangeLastName}
