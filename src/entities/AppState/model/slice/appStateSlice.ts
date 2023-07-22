@@ -4,6 +4,7 @@ import { AppStateSchema } from '../types/appState';
 
 const initialState: AppStateSchema = {
   navbarCollapsed: false,
+  conentLoaded: false,
 };
 
 export const appStateSlice = createSlice({
@@ -13,7 +14,9 @@ export const appStateSlice = createSlice({
     setNavbarCollapsed: (state, action: PayloadAction<boolean>) => {
       state.navbarCollapsed = action.payload;
     },
-
+    setContentLoaded: (state, action: PayloadAction<boolean>) => {
+      state.conentLoaded = action.payload;
+    },
   },
 });
 

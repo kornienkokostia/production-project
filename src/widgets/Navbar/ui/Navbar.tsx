@@ -53,7 +53,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
               <Button
                 theme={ButtonTheme.APPLE}
                 className={cls.NavbarSignin}
-                onClick={onShowModal}>
+                onClick={onShowModal}
+              >
                 <SingInIcon className={cls.SingInIcon} />
                 <span>{t('Sign in')}</span>
               </Button>

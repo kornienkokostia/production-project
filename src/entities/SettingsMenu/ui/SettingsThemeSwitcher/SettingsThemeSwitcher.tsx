@@ -45,13 +45,15 @@ export const SettingsThemeSwitcher = memo(
         <Button
           className={classNames(cls.item, {}, [])}
           theme={ButtonTheme.CLEAR}
-          onClick={onToggleLightHandler}>
+          onClick={onToggleLightHandler}
+        >
           {t('Light')}
         </Button>
         <Button
           className={classNames(cls.item, {}, [])}
           theme={ButtonTheme.CLEAR}
-          onClick={onToggleDarkHandler}>
+          onClick={onToggleDarkHandler}
+        >
           {t('Dark')}
         </Button>
       </div>

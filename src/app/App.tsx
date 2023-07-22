@@ -11,10 +11,9 @@ import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Navbar } from '@/widgets/Navbar';
 import { Sidebar } from '@/widgets/Sidebar';
 import { getUserInited, initAuthData } from '@/entities/User';
-import { getNavbarCollapsed } from '@/entities/AppState';
+import { getNavbarCollapsed, getContentLoaded } from '@/entities/AppState';
 import { AppRouter } from './providers/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Loader } from '@/shared/ui/Loader';
 import { Preview } from '@/shared/ui/Preview';
 
 function App() {
@@ -24,19 +23,20 @@ function App() {
   const navbarCollapsed = useSelector(getNavbarCollapsed);
   const [previewHidden, setPreviewHidden] = useState(false);
   const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
+  const contentLoaded = useSelector(getContentLoaded);
 
   useEffect(() => {
     dispatch(initAuthData());
   }, [dispatch]);
 
   useEffect(() => {
-    if (inited) {
+    if (contentLoaded) {
       timeRef.current = setTimeout(() => {
         setPreviewHidden(true);
       }, 250);
     }
     return () => clearTimeout(timeRef.current);
-  }, [inited]);
+  }, [contentLoaded]);
 
   return (
     <div className={classNames('app', {}, [theme])}>
@@ -45,10 +45,11 @@ function App() {
         <div
           className={classNames('content-page', {}, [
             navbarCollapsed ? 'full' : '',
-          ])}>
+          ])}
+        >
           <Sidebar />
           {inited && <AppRouter />}
-          {!previewHidden && <Preview hidden={inited} />}
+          {!previewHidden && <Preview hidden={contentLoaded} />}
         </div>
       </Suspense>
     </div>

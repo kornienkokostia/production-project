@@ -11,6 +11,7 @@ interface ArticleListProps {
   articles: Article[];
   isLoading?: boolean;
   view?: ArticleView;
+  firstLoad?: boolean;
 }
 
 export const ArticleList = (props: ArticleListProps) => {

@@ -18,9 +18,9 @@ export const userSlice = createSlice({
   reducers: {
     setAuthData: (state, action: PayloadAction<User>) => {
       state.authData = action.payload;
-      setFeatureFlags(action.payload.features)
-      localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id)
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, action.payload.jsonSettings?.theme || Theme.LIGHT)
+      setFeatureFlags(action.payload.features);
+      localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id);
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, action.payload.jsonSettings?.theme || Theme.LIGHT);
     },
     signOut: (state) => {
       state.authData = undefined;
@@ -30,18 +30,18 @@ export const userSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(saveJsonSettings.fulfilled, (state, { payload }: PayloadAction<JsonSettings>) => {
       if (state.authData) {
-        state.authData.jsonSettings = payload
+        state.authData.jsonSettings = payload;
       }
-    })
+    });
     builder.addCase(initAuthData.fulfilled, (state, { payload }: PayloadAction<User>) => {
-      state.authData = payload
-      setFeatureFlags(payload.features)
-      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, payload.jsonSettings?.theme || Theme.LIGHT)
+      state.authData = payload;
+      setFeatureFlags(payload.features);
+      localStorage.setItem(LOCAL_STORAGE_THEME_KEY, payload.jsonSettings?.theme || Theme.LIGHT);
       state._inited = true;
-    })
+    });
     builder.addCase(initAuthData.rejected, (state) => {
-      state._inited = true
-    })
+      state._inited = true;
+    });
   },
 });
 

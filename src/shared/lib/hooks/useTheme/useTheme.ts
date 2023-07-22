@@ -14,19 +14,19 @@ export const useTheme = (): UseThemeResult => {
   const toggleLightTheme = (saveAction?: (theme: Theme) => void) => {
     if (theme !== Theme.LIGHT) {
       setTheme?.(Theme.LIGHT);
-      saveAction?.(Theme.LIGHT)
+      saveAction?.(Theme.LIGHT);
     }
-  }
+  };
   const toggleDarkTheme = (saveAction?: (theme: Theme) => void) => {
     if (theme !== Theme.DARK) {
       setTheme?.(Theme.DARK);
-      saveAction?.(Theme.DARK)
+      saveAction?.(Theme.DARK);
     }
   };
 
   return {
     theme: theme || Theme.LIGHT,
     toggleLightTheme,
-    toggleDarkTheme
+    toggleDarkTheme,
   };
-}
+};

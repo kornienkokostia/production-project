@@ -7,18 +7,17 @@ import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localStorage';
 export const initAuthData = createAsyncThunk<User, void, ThunkConfig<string>>(
   'user/initAuthData',
   async (_, { rejectWithValue, dispatch }) => {
-    const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY)
+    const userId = localStorage.getItem(USER_LOCALSTORAGE_KEY);
 
     if (!userId) {
       return rejectWithValue('error');
     }
     try {
       const response = await dispatch(getUserDataByIdQuery(
-        userId
-      )).unwrap()
+        userId,
+      )).unwrap();
 
-      return response
-
+      return response;
     } catch (error) {
       return rejectWithValue('error');
     }

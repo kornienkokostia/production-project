@@ -9,8 +9,8 @@ import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localStorage';
 export const saveJsonSettings = createAsyncThunk<JsonSettings, JsonSettings, ThunkConfig<string>>(
   'user/saveJsonSettings',
   async (newJsonSettings, { rejectWithValue, getState, dispatch }) => {
-    const userData = getUserAuthData(getState())
-    const currentSettings = getJsonSettings(getState())
+    const userData = getUserAuthData(getState());
+    const currentSettings = getJsonSettings(getState());
 
     if (!userData) {
       return rejectWithValue('error');
@@ -20,15 +20,14 @@ export const saveJsonSettings = createAsyncThunk<JsonSettings, JsonSettings, Thu
         userId: userData.id,
         jsonSettings: {
           ...currentSettings,
-          ...newJsonSettings
-        }
-      })).unwrap()
+          ...newJsonSettings,
+        },
+      })).unwrap();
 
       if (!response.jsonSettings) {
         return rejectWithValue('error');
       }
-      return response.jsonSettings
-
+      return response.jsonSettings;
     } catch (error) {
       return rejectWithValue('error');
     }

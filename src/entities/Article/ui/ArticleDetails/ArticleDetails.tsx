@@ -1,4 +1,6 @@
-import { memo, useCallback, useEffect } from 'react';
+import {
+  MutableRefObject, memo, useCallback, useEffect, useRef,
+} from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -21,6 +23,7 @@ import { ArticleBlock } from '../../model/types/article';
 import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent';
 import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent';
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
+import { appStateActions } from '@/entities/AppState';
 
 interface ArticleDetailsProps {
   className?: string;
@@ -37,6 +40,16 @@ export const ArticleDetails = memo(({ className, id }: ArticleDetailsProps) => {
   const isLoading = useSelector(getArticleDetailsIsLoading);
   const article = useSelector(getArticleDetailsData);
   const error = useSelector(getArticleDetailsError);
+  const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
+
+  useEffect(() => {
+    if (!isLoading) {
+      timeRef.current = setTimeout(() => {
+        dispatch(appStateActions.setContentLoaded(true));
+      }, 100);
+    }
+    return () => clearTimeout(timeRef.current);
+  }, [isLoading, dispatch]);
 
   const renderBlock = useCallback((block: ArticleBlock) => {
     switch (block.type) {

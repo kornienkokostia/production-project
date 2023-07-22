@@ -1,13 +1,11 @@
-import { FeatureFlags } from "@/shared/types/featureFlags";
+import { FeatureFlags } from '@/shared/types/featureFlags';
 
 let featureFlags: FeatureFlags;
 
 export const setFeatureFlags = (newFeatureFlag?: FeatureFlags) => {
   if (newFeatureFlag) {
-    featureFlags = newFeatureFlag
+    featureFlags = newFeatureFlag;
   }
-}
+};
 
-export const getFeatureFlags = (flag: keyof FeatureFlags) => {
-  return featureFlags[flag]
-}
+export const getFeatureFlags = (flag: keyof FeatureFlags) => featureFlags[flag];
