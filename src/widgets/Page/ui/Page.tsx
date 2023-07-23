@@ -26,7 +26,9 @@ export const Page = (props: PageProps) => {
   const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
-  const scrollPosition = useSelector((state: StateSchema) => getUIScrollByPath(state, pathname));
+  const scrollPosition = useSelector((state: StateSchema) =>
+    getUIScrollByPath(state, pathname),
+  );
 
   useInfiniteScroll({
     triggerRef,
@@ -34,24 +36,24 @@ export const Page = (props: PageProps) => {
     callback: onScrollEnd,
   });
 
-  useLayoutEffect(() => {
-    wrapperRef.current.scrollTop = scrollPosition;
-  }, [scrollPosition]);
+  // useLayoutEffect(() => {
+  //   wrapperRef.current.scrollTop = scrollPosition;
+  // }, [scrollPosition]);
 
-  const onScroll = (e: UIEvent<HTMLDivElement>) => {
-    dispatch(
-      uiActions.setScrollPosition({
-        position: e.currentTarget.scrollTop,
-        path: pathname,
-      }),
-    );
-  };
+  // const onScroll = (e: UIEvent<HTMLDivElement>) => {
+  //   dispatch(
+  //     uiActions.setScrollPosition({
+  //       position: e.currentTarget.scrollTop,
+  //       path: pathname,
+  //     }),
+  //   );
+  // };
 
   return (
     <div
       ref={wrapperRef}
       className={classNames(cls.Page, {}, [className])}
-      onScroll={onScroll}
+      // onScroll={onScroll}
     >
       {children}
 
