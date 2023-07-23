@@ -16,6 +16,7 @@ import { AppRouter } from './providers/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Preview } from '@/shared/ui/Preview';
 import { isDesktop } from 'react-device-detect';
+import { TabletTabs } from '@/widgets/TabletTabs';
 
 function App() {
   const { theme } = useTheme();
@@ -44,12 +45,15 @@ function App() {
       <Suspense fallback="">
         <Navbar />
         <div
-          className={classNames('content-page', {}, [
-            navbarCollapsed || !isDesktop ? 'full' : '',
-          ])}>
+          className={classNames(
+            'content-page',
+            { full: navbarCollapsed, notDesktop: !isDesktop },
+            [],
+          )}>
           {isDesktop && <Sidebar />}
           {inited && <AppRouter />}
           {!previewHidden && <Preview hidden={contentLoaded} />}
+          <TabletTabs />
         </div>
       </Suspense>
     </div>

@@ -1,0 +1,9 @@
+.Tablettabs {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: var(--secondary-bg-color);
+  border-top: 1px solid var(--border-color);
+  padding-left: 8%;
+  padding-right: 8%;
+}

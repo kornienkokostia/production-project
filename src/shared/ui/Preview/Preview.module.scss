@@ -2,7 +2,7 @@
   position: absolute;
   top: -1px;
   width: 100%;
-  height: calc(100% + 1px);
+  height: calc(100vh - var(--nav-height) + 1px);
   background-color: var(--secondary-bg-color);
   z-index: 6;
   display: flex;
