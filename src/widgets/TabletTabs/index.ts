@@ -1,0 +1,1 @@
+export { TabletTabs } from './ui/Tablettabs'

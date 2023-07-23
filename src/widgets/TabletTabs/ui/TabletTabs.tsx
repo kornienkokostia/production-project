@@ -1,10 +1,10 @@
 import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './Tablettabs.module.scss';
+import cls from './TabletTabs.module.scss';
 
-interface TablettabsProps {
+interface TabletTabsProps {
   className?: string;
 }
 
-export const Tablettabs = ({ className }: TablettabsProps) => {
+export const TabletTabs = ({ className }: TabletTabsProps) => {
   return <div className={classNames(cls.Tablettabs, {}, [className])}></div>;
 };
