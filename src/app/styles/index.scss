@@ -117,3 +117,11 @@ body {
   position: absolute;
   right: 0;
 }
+
+@media screen and (max-width: 666px) {
+  .content-page {
+    &.notDesktop {
+      height: calc(100vh - 44px);
+    }
+  }
+}

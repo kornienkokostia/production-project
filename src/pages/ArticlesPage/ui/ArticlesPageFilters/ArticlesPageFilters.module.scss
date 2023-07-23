@@ -66,7 +66,6 @@
   margin-right: 7px;
   opacity: 1;
   transition: opacity 0.15s;
-
   &:disabled {
     opacity: 0;
     cursor: default;
@@ -77,4 +76,13 @@
 }
 .createBtn {
   margin-left: auto;
+}
+
+@media screen and (max-width: 666px) {
+  .articlesPageHeader {
+    justify-content: flex-end;
+  }
+  .searchInput {
+    min-width: 200px;
+  }
 }

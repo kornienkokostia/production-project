@@ -7,7 +7,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { appStateActions, getNavbarCollapsed } from '@/entities/AppState';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
-import { getSidebarItems } from '../../model/selector/getSidebarItems';
+import { getSidebarItems } from '@/shared/lib/sidebar/selector/getSidebarItems';
 
 interface SidebarProps {
   className?: string;
@@ -27,8 +27,7 @@ export const Sidebar = memo(({ className }: SidebarProps) => {
       <Button
         onClick={onNavbarCollapsedClick}
         theme="clear"
-        className={cls.collapseBtn}
-      >
+        className={cls.collapseBtn}>
         <ToggleIcon className={cls.icon} />
       </Button>
       <div

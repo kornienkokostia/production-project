@@ -69,8 +69,6 @@
 
 .notifications {
   .content {
-    // width: 245px;
-    // transform-origin: 223px 0px;
     right: 100px;
   }
 }
@@ -114,5 +112,17 @@
 .sidebarPadding {
   & .content {
     left: 262px;
+  }
+}
+.page-switcher {
+  .content {
+    width: 200px;
+    transform-origin: 0px 0px;
+    left: 11px;
+    top: 102px;
+    border-radius: 6px;
+  }
+  .triangle {
+    right: 120px;
   }
 }

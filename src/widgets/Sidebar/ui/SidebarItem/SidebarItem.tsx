@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { getUserAuthData } from '@/entities/User';
-import { SidebarItemType } from '../../model/types/sidebar';
+import { SidebarItemType } from '@/shared/lib/sidebar/types/sidebar';
 import cls from './SidebarItem.module.scss';
 
 interface SidebarItemProps {
@@ -23,8 +23,9 @@ export const SidebarItem = memo(({ item }: SidebarItemProps) => {
   return (
     <NavLink
       to={path}
-      className={({ isActive }) => classNames(cls.item, { [cls.selected]: isActive }, [])}
-    >
+      className={({ isActive }) =>
+        classNames(cls.item, { [cls.selected]: isActive }, [])
+      }>
       <Icon className={cls.icon} />
       <span className={classNames(cls.link, {}, [])}>{t(text)}</span>
     </NavLink>

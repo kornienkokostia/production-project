@@ -6,6 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { isDesktop } from 'react-device-detect';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Navbar } from '@/widgets/Navbar';
@@ -15,8 +16,8 @@ import { getNavbarCollapsed, getContentLoaded } from '@/entities/AppState';
 import { AppRouter } from './providers/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Preview } from '@/shared/ui/Preview';
-import { isDesktop } from 'react-device-detect';
 import { TabletTabs } from '@/widgets/TabletTabs';
+import { MobilePageSelect } from '@/features/MobilePageSelect/ui/MobilePageSelect';
 
 function App() {
   const { theme } = useTheme();
@@ -53,7 +54,8 @@ function App() {
           {isDesktop && <Sidebar />}
           {inited && <AppRouter />}
           {!previewHidden && <Preview hidden={contentLoaded} />}
-          <TabletTabs />
+          {!isDesktop && <TabletTabs />}
+          <MobilePageSelect />
         </div>
       </Suspense>
     </div>

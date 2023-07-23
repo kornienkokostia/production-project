@@ -1,7 +1,6 @@
-import {
-  ReactNode, memo, useCallback, useEffect,
-} from 'react';
+import { ReactNode, memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { isDesktop } from 'react-device-detect';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
 import CloseModalIcon from '@/shared/assets/icons/close-modal.svg';
 import TriangleIcon from '@/shared/assets/icons/select-top-triangle.svg';
@@ -14,7 +13,8 @@ export type SubmenuTheme =
   | 'account'
   | 'notifications'
   | 'sort-by'
-  | 'category';
+  | 'category'
+  | 'page-switcher';
 
 interface SubmenuProps {
   className?: string;
@@ -67,7 +67,7 @@ export const Submenu = memo((props: SubmenuProps) => {
   const mods: Mods = {
     [cls.opened]: isOpen,
     [cls.isClosing]: isClosing,
-    [cls.sidebarPadding]: sidebarPadding,
+    [cls.sidebarPadding]: isDesktop && sidebarPadding,
   };
 
   return (
@@ -80,8 +80,7 @@ export const Submenu = memo((props: SubmenuProps) => {
               { [cls.showTriangle]: showTriangle },
               [],
             )}
-            onClick={onContentClick}
-          >
+            onClick={onContentClick}>
             <Button className={cls.closeBtn}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>

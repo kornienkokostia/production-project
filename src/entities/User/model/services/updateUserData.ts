@@ -14,9 +14,8 @@ export const updateAuthData = createAsyncThunk<User, string, ThunkConfig<string>
     }
     try {
       const response = await dispatch(setUserDataByIdQuery({
-        userId, avatar
-      }
-      )).unwrap();
+        userId, avatar,
+      })).unwrap();
 
       return response;
     } catch (error) {

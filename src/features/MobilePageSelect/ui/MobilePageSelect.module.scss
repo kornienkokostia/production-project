@@ -1,0 +1,12 @@
+.MobilePageSelectWrapper {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  display: none;
+}
+
+@media screen and (max-width: 666px) {
+  .MobilePageSelectWrapper {
+    display: flex;
+  }
+}

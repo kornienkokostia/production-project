@@ -1,0 +1,18 @@
+.MainPageHeader {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  box-sizing: content-box;
+  min-height: 49.333px;
+  transition: padding 0.25s;
+}
+.title {
+  width: fit-content;
+  font-size: 24px;
+  font-weight: 500;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}

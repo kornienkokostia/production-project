@@ -1,24 +1,26 @@
+import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './TabletTabs.module.scss';
-import { useSelector } from 'react-redux';
-import { getSidebarItems } from '@/widgets/Sidebar/model/selector/getSidebarItems';
+import { getSidebarItems } from '@/shared/lib/sidebar/selector/getSidebarItems';
 import { TabletTabsItem } from '../TabletTabsItem/TabletTabsItem';
+import { memo } from 'react';
 
 interface TabletTabsProps {
   className?: string;
 }
 
-export const TabletTabs = ({ className }: TabletTabsProps) => {
+export const TabletTabs = memo(({ className }: TabletTabsProps) => {
   const sidebarItemsList = useSelector(getSidebarItems);
 
   return (
-    <div className={classNames(cls.Tablettabs, {}, [className])}>
+    <div className={classNames(cls.TabletTabs, {}, [className])}>
       {sidebarItemsList.map((el, i) => (
         <TabletTabsItem
           item={el}
           hasDivider={i < sidebarItemsList.length - 1}
+          key={`tab number ${i}`}
         />
       ))}
     </div>
   );
-};
+});

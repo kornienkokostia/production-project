@@ -38,9 +38,12 @@ const ArticlesPage = ({ className }: ArticlesPageProps) => {
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <div className={classNames(cls.ArticlesPageWrapper, {}, [className])}>
         <ArticlesPageFilters />
-        <Page className={cls.ArticlesPage} onScrollEnd={onLoadNextPart}>
+        {/* <Page className={cls.ArticlesPage} onScrollEnd={onLoadNextPart}> */}
+        <div className={cls.ArticlesPage}>
           <ArticlesInfiniteList />
-        </Page>
+        </div>
+
+        {/* </Page> */}
       </div>
     </DynamicModuleLoader>
   );

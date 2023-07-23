@@ -1,10 +1,10 @@
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './TabletTabsItem.module.scss';
-import { SidebarItemType } from '@/widgets/Sidebar/model/types/sidebar';
-import { getUserAuthData } from '@/entities/User';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from './TabletTabsItem.module.scss';
+import { SidebarItemType } from '@/shared/lib/sidebar/types/sidebar';
+import { getUserAuthData } from '@/entities/User';
 
 interface TabletTabsItemProps {
   item: SidebarItemType;
@@ -30,7 +30,7 @@ export const TabletTabsItem = ({ item, hasDivider }: TabletTabsItemProps) => {
         <Icon className={cls.icon} />
         <span className={classNames(cls.link, {}, [])}>{t(text)}</span>
       </NavLink>
-      {hasDivider && <div className={cls.divider}></div>}
+      {hasDivider && <div className={cls.divider} />}
     </>
   );
 };

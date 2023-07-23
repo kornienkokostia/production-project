@@ -29,7 +29,7 @@ const userApi = rtkApi.injectEndpoints({
         url: `/users/${userId}`,
         method: 'PATCH',
         body: {
-          avatar: avatar
+          avatar,
         },
       }),
     }),

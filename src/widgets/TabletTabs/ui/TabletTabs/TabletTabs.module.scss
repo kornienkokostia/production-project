@@ -1,4 +1,4 @@
-.Tablettabs {
+.TabletTabs {
   display: flex;
   align-items: center;
   height: 50px;
@@ -6,4 +6,9 @@
   border-top: 1px solid var(--border-color);
   padding-left: 8%;
   padding-right: 8%;
+}
+@media screen and (max-width: 666px) {
+  .TabletTabs {
+    display: none;
+  }
 }
