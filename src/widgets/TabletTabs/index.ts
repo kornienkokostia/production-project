@@ -1,1 +1,1 @@
-export { TabletTabs } from './ui/Tablettabs'
+export { TabletTabs } from './ui/TabletTabs'
