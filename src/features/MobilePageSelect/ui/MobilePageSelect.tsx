@@ -40,6 +40,10 @@ export const MobilePageSelect = ({ className }: MobilePageSelectProps) => {
     [setCurrent, navigate],
   );
 
+  if (pagesOptions.filter(el => el.value === location.pathname).length === 0) {
+    return null;
+  }
+
   return (
     <div className={cls.MobilePageSelectWrapper}>
       <Select
