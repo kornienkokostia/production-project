@@ -17,7 +17,7 @@ import { AppRouter } from './providers/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Preview } from '@/shared/ui/Preview';
 import { TabletTabs } from '@/widgets/TabletTabs';
-import { MobilePageSelect } from '@/features/MobilePageSelect/ui/MobilePageSelect';
+import { MobilePageSelect } from '@/features/MobilePageSelect';
 
 function App() {
   const { theme } = useTheme();
@@ -55,7 +55,7 @@ function App() {
           {inited && <AppRouter />}
           {!previewHidden && <Preview hidden={contentLoaded} />}
           {!isDesktop && <TabletTabs />}
-          <MobilePageSelect />
+          {!isDesktop && <MobilePageSelect />}
         </div>
       </Suspense>
     </div>
