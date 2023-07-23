@@ -7,6 +7,7 @@ import { saveJsonSettings } from '../services/saveJsonSettings';
 import { JsonSettings } from '../types/jsonSettings';
 import { initAuthData } from '../services/initAuthData';
 import { Theme } from '@/shared/const/theme';
+import { updateAuthData } from '../services/updateUserData';
 
 const initialState: UserSchema = {
   _inited: false,
@@ -41,6 +42,10 @@ export const userSlice = createSlice({
     });
     builder.addCase(initAuthData.rejected, (state) => {
       state._inited = true;
+    });
+    builder.addCase(updateAuthData.fulfilled, (state, { payload }: PayloadAction<User>) => {
+      console.log(payload)
+      state.authData = payload;
     });
   },
 });

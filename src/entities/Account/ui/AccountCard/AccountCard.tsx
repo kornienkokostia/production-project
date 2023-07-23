@@ -52,23 +52,22 @@ export const AccountCard = (props: AccountCardProps) => {
   const [isUsernameFocused, setIsUsernameFocused] = useState(true);
 
   useEffect(() => {
-    if (data && !data.avatar) {
-      setIsPhotoFocused(false);
-    }
     if (readonly) {
       setIsFirstNameFocused(true);
       setIsLastNameFocused(true);
       setIsAgeFocused(true);
       setIsCityFocused(true);
       setIsUsernameFocused(true);
+      if (data && !data.avatar) {
+        setIsPhotoFocused(false);
+      }
     }
   }, [data, readonly]);
 
   if (!data) {
     return (
       <div
-        className={classNames(cls.AccountCard, {}, [className, cls.loading])}
-      >
+        className={classNames(cls.AccountCard, {}, [className, cls.loading])}>
         <Loader />
       </div>
     );

@@ -14,6 +14,8 @@ import {
   updateAccountData,
 } from '@/features/editableAccountCard';
 import cls from './AccountPageHeader.module.scss';
+import { updateAuthData } from '@/entities/User/model/services/updateUserData';
+import { getAccountForm } from '@/features/editableAccountCard/model/selectors/getAccountForm/getAccountForm';
 
 interface AccountPageHeaderProps {
   className?: string;
@@ -32,6 +34,7 @@ export const AccountPageHeader = ({
   const accountData = useSelector(getAccountData);
   const canEdit = authData?.id === accountData?.id;
   const formErrors = useSelector(getAccountFormErrors);
+  const formData = useSelector(getAccountForm);
 
   const onEdit = useCallback(() => {
     dispatch(accountActions.setReadOnly(false));
@@ -45,6 +48,7 @@ export const AccountPageHeader = ({
     if (formErrors && Object.values(formErrors).filter(el => el).length === 0) {
       dispatch(updateAccountData(id as string));
       dispatch(accountActions.setReadOnly(true));
+      dispatch(updateAuthData(formData?.avatar || ''));
     }
   }, [dispatch, formErrors, id]);
 
@@ -62,8 +66,7 @@ export const AccountPageHeader = ({
               <Button
                 theme="apple-clear"
                 className={cls.btn}
-                onClick={onCancelEdit}
-              >
+                onClick={onCancelEdit}>
                 {t('Cancel')}
               </Button>
               <div className={cls.separator} />

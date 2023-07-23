@@ -77,8 +77,7 @@ body {
 .app {
   background: var(--bg-color);
   color: var(--main-text-color);
-  min-height: 100vh;
-  overflow-y: hidden;
+  min-height: 100%;
 }
 
 .content-page {
@@ -95,7 +94,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  height: calc(100vh - 44px);
+  height: 100%;
   left: var(--sidebar-with);
   border-left: 1px solid var(--border-color);
   transition: left 0.25s;

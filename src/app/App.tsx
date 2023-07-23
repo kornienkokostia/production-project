@@ -15,6 +15,7 @@ import { getNavbarCollapsed, getContentLoaded } from '@/entities/AppState';
 import { AppRouter } from './providers/router';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { Preview } from '@/shared/ui/Preview';
+import { isDesktop } from 'react-device-detect';
 
 function App() {
   const { theme } = useTheme();
@@ -44,10 +45,9 @@ function App() {
         <Navbar />
         <div
           className={classNames('content-page', {}, [
-            navbarCollapsed ? 'full' : '',
-          ])}
-        >
-          <Sidebar />
+            navbarCollapsed || !isDesktop ? 'full' : '',
+          ])}>
+          {isDesktop && <Sidebar />}
           {inited && <AppRouter />}
           {!previewHidden && <Preview hidden={contentLoaded} />}
         </div>
