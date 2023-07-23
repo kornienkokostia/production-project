@@ -1,12 +1,12 @@
+import { useTranslation } from 'react-i18next';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './MobilePageSelect.module.scss';
-import { useTranslation } from 'react-i18next';
-import { useCallback, useMemo, useState } from 'react';
 import { Select, SelectOption } from '@/shared/ui/Select';
 import { getSidebarItems } from '@/shared/lib/sidebar/selector/getSidebarItems';
-import { useSelector } from 'react-redux';
 import { getRouteMain } from '@/shared/const/router';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 interface MobilePageSelectProps {
   className?: string;
@@ -19,31 +19,33 @@ export const MobilePageSelect = ({ className }: MobilePageSelectProps) => {
   const navigate = useNavigate();
   const [current, setCurrent] = useState(location.pathname);
 
-  const categoryOptions = useMemo<SelectOption<string>[]>(
+  const pagesOptions = useMemo<SelectOption<string>[]>(
     () =>
-      sidebarItemsList.map(el => {
-        return {
-          value: el.path,
-          content: `${t(el.text)}`,
-        };
-      }),
+      sidebarItemsList.map(el => ({
+        value: el.path,
+        content: `${t(el.text)}`,
+      })),
     [t, sidebarItemsList],
   );
+
+  useEffect(() => {
+    setCurrent(location.pathname);
+  }, [location.pathname]);
 
   const onChange = useCallback(
     (newVal: string) => {
       setCurrent(newVal);
       navigate(newVal);
     },
-    [setCurrent, current],
+    [setCurrent, navigate],
   );
 
   return (
     <div className={cls.MobilePageSelectWrapper}>
       <Select
         submenuTheme="page-switcher"
-        title={''}
-        options={categoryOptions}
+        title=""
+        options={pagesOptions}
         value={current}
         onChange={onChange}
       />

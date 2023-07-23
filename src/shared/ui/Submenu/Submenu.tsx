@@ -1,4 +1,6 @@
-import { ReactNode, memo, useCallback, useEffect } from 'react';
+import {
+  ReactNode, memo, useCallback, useEffect,
+} from 'react';
 import { useTranslation } from 'react-i18next';
 import { isDesktop } from 'react-device-detect';
 import { Mods, classNames } from '@/shared/lib/classNames/classNames';
@@ -80,7 +82,8 @@ export const Submenu = memo((props: SubmenuProps) => {
               { [cls.showTriangle]: showTriangle },
               [],
             )}
-            onClick={onContentClick}>
+            onClick={onContentClick}
+          >
             <Button className={cls.closeBtn}>
               <CloseModalIcon className={cls.closeBtnIcon} />
             </Button>

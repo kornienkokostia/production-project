@@ -4,7 +4,7 @@ import { useCallback } from 'react';
 import { Button } from '@/shared/ui/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { getUserAuthData } from '@/entities/User';
+import { getUserAuthData, updateAuthData } from '@/entities/User';
 import {
   getAccountReadonly,
   getAccountIsLoading,
@@ -12,10 +12,9 @@ import {
   getAccountFormErrors,
   accountActions,
   updateAccountData,
+  getAccountForm,
 } from '@/features/editableAccountCard';
 import cls from './AccountPageHeader.module.scss';
-import { updateAuthData } from '@/entities/User/model/services/updateUserData';
-import { getAccountForm } from '@/features/editableAccountCard/model/selectors/getAccountForm/getAccountForm';
 
 interface AccountPageHeaderProps {
   className?: string;
@@ -50,7 +49,7 @@ export const AccountPageHeader = ({
       dispatch(accountActions.setReadOnly(true));
       dispatch(updateAuthData(formData?.avatar || ''));
     }
-  }, [dispatch, formErrors, id]);
+  }, [dispatch, formErrors, id, formData?.avatar]);
 
   return (
     <div className={classNames(cls.AccountPageHeader, {}, [className])}>

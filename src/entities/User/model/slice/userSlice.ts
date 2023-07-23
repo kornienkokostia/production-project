@@ -7,7 +7,7 @@ import { saveJsonSettings } from '../services/saveJsonSettings';
 import { JsonSettings } from '../types/jsonSettings';
 import { initAuthData } from '../services/initAuthData';
 import { Theme } from '@/shared/const/theme';
-import { updateAuthData } from '../services/updateUserData';
+import { updateAuthData } from '../services/updateAuthData';
 
 const initialState: UserSchema = {
   _inited: false,

@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
+import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './TabletTabs.module.scss';
 import { getSidebarItems } from '@/shared/lib/sidebar/selector/getSidebarItems';
 import { TabletTabsItem } from '../TabletTabsItem/TabletTabsItem';
-import { memo } from 'react';
 
 interface TabletTabsProps {
   className?: string;

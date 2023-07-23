@@ -24,9 +24,8 @@ export const TabletTabsItem = ({ item, hasDivider }: TabletTabsItemProps) => {
     <>
       <NavLink
         to={path}
-        className={({ isActive }) =>
-          classNames(cls.item, { [cls.selected]: isActive }, [])
-        }>
+        className={({ isActive }) => classNames(cls.item, { [cls.selected]: isActive }, [])}
+      >
         <Icon className={cls.icon} />
         <span className={classNames(cls.link, {}, [])}>{t(text)}</span>
       </NavLink>

@@ -50,7 +50,8 @@ function App() {
             'content-page',
             { full: navbarCollapsed, notDesktop: !isDesktop },
             [],
-          )}>
+          )}
+        >
           {isDesktop && <Sidebar />}
           {inited && <AppRouter />}
           {!previewHidden && <Preview hidden={contentLoaded} />}

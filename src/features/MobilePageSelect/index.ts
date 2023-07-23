@@ -1,1 +1,1 @@
-export { MobilePageSelect } from './ui/MobilePageSelect'
+export { MobilePageSelect } from './ui/MobilePageSelect';

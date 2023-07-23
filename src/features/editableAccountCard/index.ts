@@ -2,6 +2,7 @@ export { EditableAccountCard } from './ui/EditableAccountCard/EditableAccountCar
 export type { AccountSchema } from './model/types/EditableAccountCardSchema';
 export { validateAccountData } from './model/services/validateAccountData/validateAccountData';
 export { getAccountData } from './model/selectors/getAccountData/getAccountData';
+export { getAccountForm } from './model/selectors/getAccountForm/getAccountForm';
 export { getAccountError } from './model/selectors/getAccountError/getAccountError';
 export { getAccountFormErrors } from './model/selectors/getAccountFormErrors/getAccountFormErrors';
 export { getAccountIsLoading } from './model/selectors/getAccountIsLoading/getAccountIsLoading';
