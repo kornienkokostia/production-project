@@ -1,7 +1,7 @@
 .ArticleHeader {
   display: flex;
   align-items: center;
-  padding: 0px 4px;
+  padding: 0px 14px 0 4px;
   min-height: 49.333px;
   border-bottom: 1px solid var(--border-color);
   box-sizing: content-box;
@@ -17,7 +17,7 @@
   margin-right: 7px;
 }
 .date {
-  margin-left: 11px;
+  margin-left: auto;
 }
 
 .navbarCollapsed {

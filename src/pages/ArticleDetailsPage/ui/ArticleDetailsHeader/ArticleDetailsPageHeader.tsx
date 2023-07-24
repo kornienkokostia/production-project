@@ -47,13 +47,11 @@ export const ArticleDetailsPageHeader = ({
         cls.ArticleHeader,
         { [cls.navbarCollapsed]: navbarCollapsed },
         [className],
-      )}
-    >
+      )}>
       <Button
         theme="apple-clear"
         className={cls.backBtn}
-        onClick={onBackToList}
-      >
+        onClick={onBackToList}>
         <ArrowBackIcon className={cls.btnIcon} />
         {!location.state || location.state.prevPath === getRouteArticles() ? (
           <span>{t('Articles')}</span>
@@ -65,8 +63,8 @@ export const ArticleDetailsPageHeader = ({
         <>
           <p className={cls.date}>{article?.createdAt}</p>
           <p className={cls.views}>{`${article?.views} ${t('views')}`}</p>
-          <div className={cls.editWrapper}>
-            {/* {canEdit && (
+          {/* <div className={cls.editWrapper}>
+            {canEdit && (
               <Button
                 theme={ButtonTheme.APPLE_CLEAR}
                 className={cls.editBtn}
@@ -74,8 +72,8 @@ export const ArticleDetailsPageHeader = ({
               >
                 {t('Edit')}
               </Button>
-            )} */}
-          </div>
+            )}
+          </div> */}
         </>
       )}
     </div>
