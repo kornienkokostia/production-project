@@ -131,7 +131,8 @@ export const Select = <T extends string, K extends string>(
       <Button
         theme="apple-clear"
         onClick={onToggleBtn}
-        className={classNames(cls.selectBtn, {}, [cls[submenuTheme]])}>
+        className={classNames(cls.selectBtn, {}, [cls[submenuTheme]])}
+      >
         <span className={cls.btnText}>
           <span className={cls.btnTitleText}>{`${title} `}</span>
           <span className={cls.btnValueText}>
@@ -147,7 +148,8 @@ export const Select = <T extends string, K extends string>(
         theme={submenuTheme}
         showTriangle
         isClosing={isClosing}
-        sidebarPadding={sidebarPadding}>
+        sidebarPadding={sidebarPadding}
+      >
         <div className={cls.options}>
           {options.map(el => (
             <div
@@ -170,7 +172,8 @@ export const Select = <T extends string, K extends string>(
               onMouseMove={() => {
                 setBlockHover(false);
               }}
-              onMouseLeave={() => setShowHoverOnKeyPress(false)}>
+              onMouseLeave={() => setShowHoverOnKeyPress(false)}
+            >
               {el.value === value && (
                 <SelectedOptionIcon className={cls.selectedIcon} />
               )}

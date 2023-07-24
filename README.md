@@ -119,4 +119,5 @@ npm run start:dev или npm run start:dev:vite - запуск сервера + 
 - [ArticleViewSwitcher](/src/features/ArticleViewSwitcher)
 - [AuthByUsername](/src/features/AuthByUsername)
 - [editableAccountCard](/src/features/editableAccountCard)
+- [MobilePageSelect](/src/features/MobilePageSelect/)
 - [UI](/src/features/UI)

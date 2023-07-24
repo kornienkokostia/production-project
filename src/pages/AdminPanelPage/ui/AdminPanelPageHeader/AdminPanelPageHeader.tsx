@@ -1,9 +1,9 @@
-import { classNames } from '@/shared/lib/classNames/classNames';
-import cls from './AdminPanelPageHeader.module.scss';
 import { useTranslation } from 'react-i18next';
-import { Button } from '@/shared/ui/Button';
 import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import cls from './AdminPanelPageHeader.module.scss';
+import { Button } from '@/shared/ui/Button';
 import ArrowBackIcon from '@/shared/assets/icons/arrow-back.svg';
 
 interface AdminPanelPageHeaderProps {

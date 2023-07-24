@@ -69,7 +69,8 @@ export const AccountPageHeader = ({
               <Button
                 theme="apple-clear"
                 className={cls.btn}
-                onClick={onCancelEdit}>
+                onClick={onCancelEdit}
+              >
                 <span className={cls.desktopTitle}>{t('Cancel')}</span>
                 <CancelIcon className={cls.mobileTitle} />
               </Button>
