@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -20,11 +22,10 @@ export const MobilePageSelect = ({ className }: MobilePageSelectProps) => {
   const [current, setCurrent] = useState(location.pathname);
 
   const pagesOptions = useMemo<SelectOption<string>[]>(
-    () =>
-      sidebarItemsList.map(el => ({
-        value: el.path,
-        content: `${t(el.text)}`,
-      })),
+    () => sidebarItemsList.map(el => ({
+      value: el.path,
+      content: `${t(el.text)}`,
+    })),
     [t, sidebarItemsList],
   );
 
