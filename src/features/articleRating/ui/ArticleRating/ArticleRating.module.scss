@@ -5,3 +5,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+@media screen and (max-width: 1000px) {
+  .ArticleRating {
+    width: calc(100% - 60px);
+  }
+}
