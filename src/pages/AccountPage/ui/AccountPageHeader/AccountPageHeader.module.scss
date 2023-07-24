@@ -29,3 +29,18 @@
   border-left: 1px solid var(--border-color);
   height: 22px;
 }
+
+.mobileTitle {
+  fill: var(--primary-color);
+  display: none;
+}
+
+@media screen and (max-width: 666px) {
+  .mobileTitle {
+    fill: var(--primary-color);
+    display: block;
+  }
+  .desktopTitle {
+    display: none;
+  }
+}

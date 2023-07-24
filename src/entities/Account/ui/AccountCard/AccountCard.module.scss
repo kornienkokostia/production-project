@@ -34,3 +34,11 @@
     width: calc(100% - 60px);
   }
 }
+@media screen and (max-width: 666px) {
+  .data {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .AccountPhoto {
+    grid-column: 1/2;
+  }
+}

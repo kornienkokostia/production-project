@@ -15,6 +15,9 @@ import {
   getAccountForm,
 } from '@/features/editableAccountCard';
 import cls from './AccountPageHeader.module.scss';
+import EditIcon from '@/shared/assets/icons/edit.svg';
+import SaveIcon from '@/shared/assets/icons/save.svg';
+import CancelIcon from '@/shared/assets/icons/cancel.svg';
 
 interface AccountPageHeaderProps {
   className?: string;
@@ -58,20 +61,22 @@ export const AccountPageHeader = ({
         <div className={cls.btns}>
           {readonly ? (
             <Button theme="apple-clear" className={cls.btn} onClick={onEdit}>
-              {t('Edit')}
+              <span className={cls.desktopTitle}>{t('Edit')}</span>
+              <EditIcon className={cls.mobileTitle} />
             </Button>
           ) : (
             <>
               <Button
                 theme="apple-clear"
                 className={cls.btn}
-                onClick={onCancelEdit}
-              >
-                {t('Cancel')}
+                onClick={onCancelEdit}>
+                <span className={cls.desktopTitle}>{t('Cancel')}</span>
+                <CancelIcon className={cls.mobileTitle} />
               </Button>
               <div className={cls.separator} />
               <Button theme="apple-clear" className={cls.btn} onClick={onSave}>
-                {t('Save')}
+                <span className={cls.desktopTitle}>{t('Save')}</span>
+                <SaveIcon className={cls.mobileTitle} />
               </Button>
             </>
           )}

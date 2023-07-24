@@ -44,7 +44,6 @@ export const userSlice = createSlice({
       state._inited = true;
     });
     builder.addCase(updateAuthData.fulfilled, (state, { payload }: PayloadAction<User>) => {
-      console.log(payload);
       state.authData = payload;
     });
   },
