@@ -63,3 +63,23 @@
 .hovered {
   background-color: var(--selection-bg-color);
 }
+
+@media screen and (max-width: 666px) {
+  .btnText {
+    max-width: 32vw;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+@media screen and (max-width: 500px) {
+  .btnText {
+    max-width: 100%;
+  }
+  .sort-by,
+  .category {
+    .btnText .btnValueText {
+      display: none;
+    }
+  }
+}
