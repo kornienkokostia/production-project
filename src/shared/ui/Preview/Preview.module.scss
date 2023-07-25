@@ -11,6 +11,9 @@
   opacity: 1;
   transition: opacity 0.25s;
 }
+.isMobileSafari {
+  height: calc(100vh - 125px - var(--nav-height));
+}
 .content {
   display: flex;
   flex-direction: column;
