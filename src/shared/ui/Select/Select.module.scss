@@ -73,13 +73,13 @@
   }
 }
 @media screen and (max-width: 500px) {
-  .btnText {
-    max-width: 100%;
-  }
   .sort-by,
   .category {
     .btnText .btnValueText {
       display: none;
+    }
+    .btnText {
+      max-width: 24vw;
     }
   }
 }

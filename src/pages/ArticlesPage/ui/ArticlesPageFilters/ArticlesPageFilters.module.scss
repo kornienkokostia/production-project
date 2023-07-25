@@ -88,16 +88,7 @@
     min-width: 200px;
   }
 }
-@media screen and (max-width: 500px) {
-  .ArticlesPageFilters {
-    min-height: 68px;
-    align-items: flex-end;
-    padding-bottom: 2px;
-  }
-  .title {
-    top: 6px;
-  }
-}
+
 @media screen and (max-width: 475px) {
   .search {
     width: calc(100% - 225px);
