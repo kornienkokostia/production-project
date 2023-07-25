@@ -126,3 +126,10 @@ body {
     }
   }
 }
+@media not all and (min-resolution: 0.001dpcm) {
+  .content-page {
+    &.notDesktop {
+      height: calc(100vh - 144px);
+    }
+  }
+}
