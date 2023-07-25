@@ -128,7 +128,7 @@ body {
 }
 @media not all and (min-resolution: 0.001dpcm) {
   .content-page {
-    &.notDesktop {
+    &.isMobileSafari {
       height: calc(100vh - 144px);
     }
   }
