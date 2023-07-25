@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { isDesktop } from 'react-device-detect';
+import { isDesktop, isMobileSafari } from 'react-device-detect';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { Navbar } from '@/widgets/Navbar';
@@ -48,7 +48,11 @@ function App() {
         <div
           className={classNames(
             'content-page',
-            { full: navbarCollapsed, notDesktop: !isDesktop },
+            {
+              full: navbarCollapsed,
+              notDesktop: !isDesktop,
+              isMobileSafari: isMobileSafari,
+            },
             [],
           )}>
           {isDesktop && <Sidebar />}
