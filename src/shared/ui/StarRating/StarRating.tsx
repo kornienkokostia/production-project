@@ -46,23 +46,24 @@ export const StarRating = memo((props: StarRatingProps) => {
 
   return (
     <div className={classNames(cls.StarRating, {}, [className])}>
-      {stars.map(el => (currentStarCount >= el || isSelected ? (
-        <StarFillIcon
-          className={classNames(cls.star, { [cls.selected]: isSelected }, [])}
-          onMouseEnter={onHover(el)}
-          onMouseLeave={onLeave}
-          onClick={onClick(el)}
-          key={el}
-        />
-      ) : (
-        <StarOutlineIcon
-          className={classNames(cls.star, {}, [])}
-          onMouseEnter={onHover(el)}
-          onMouseLeave={onLeave}
-          onClick={onClick(el)}
-          key={el}
-        />
-      )))}
+      {stars.map(el =>
+        currentStarCount >= el || (isSelected && currentStarCount >= el) ? (
+          <StarFillIcon
+            className={classNames(cls.star, { [cls.selected]: isSelected }, [])}
+            onMouseEnter={onHover(el)}
+            onMouseLeave={onLeave}
+            onClick={onClick(el)}
+            key={el}
+          />
+        ) : (
+          <StarOutlineIcon
+            className={classNames(cls.star, { [cls.selected]: isSelected }, [])}
+            onMouseEnter={onHover(el)}
+            onMouseLeave={onLeave}
+            key={el}
+          />
+        ),
+      )}
     </div>
   );
 });
