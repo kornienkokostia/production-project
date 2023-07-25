@@ -12,7 +12,7 @@
   transition: opacity 0.25s;
 }
 .isMobileSafari {
-  height: calc(100vh - 125px - var(--nav-height));
+  height: calc(100vh - 123px);
 }
 .content {
   display: flex;
