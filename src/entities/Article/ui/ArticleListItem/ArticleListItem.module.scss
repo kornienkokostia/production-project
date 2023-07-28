@@ -59,32 +59,22 @@
 
 .SMALL {
   .card {
-    width: 270px;
+    width: 260px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     row-gap: 5px;
     height: fit-content;
     cursor: pointer;
-    &:hover .imageWrapper::after {
-      opacity: 1;
+    transition: transform 0.16s ease-out;
+    &:hover {
+      transform: scale(1.007);
     }
   }
   .imageWrapper {
     width: 100%;
-    height: 160px;
+    height: 146.25px;
     position: relative;
-    &::after {
-      content: '';
-      position: absolute;
-      background-color: var(--image-on-hover-bg);
-      border-radius: var(--article-item-border-radius);
-      width: 100%;
-      height: 100%;
-      left: 0;
-      opacity: 0;
-      transition: opacity 0.1s;
-    }
   }
   .image {
     width: 100%;

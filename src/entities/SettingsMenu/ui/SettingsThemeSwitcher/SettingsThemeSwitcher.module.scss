@@ -1,9 +1,9 @@
 .SettingsThemeSwitcher {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  box-shadow: 0 0 0 1px var(--border-color);
+  box-shadow: 0 0 0 1px var(--settings-dark-grey);
   border-radius: 7px;
-  background-color: var(--border-color);
+  background-color: var(--settings-dark-grey);
   line-height: 24px;
   position: relative;
 }
@@ -14,7 +14,6 @@
   position: relative;
   display: flex;
   justify-content: center;
-  // font-size: 13px;
 }
 .active {
   background-color: var(--appearence-switcher-grey);
