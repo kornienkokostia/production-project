@@ -1,9 +1,9 @@
 .SettingsThemeSwitcher {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  box-shadow: 0 0 0 1px var(--settings-dark-grey);
+  box-shadow: 0 0 0 1px var(--border-color);
   border-radius: 7px;
-  background-color: var(--settings-dark-grey);
+  background-color: var(--border-color);
   line-height: 24px;
   position: relative;
 }
