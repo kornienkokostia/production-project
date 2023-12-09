@@ -1,6 +1,4 @@
-import {
-  MutableRefObject, memo, useCallback, useEffect, useRef,
-} from 'react';
+import { MutableRefObject, memo, useCallback, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';

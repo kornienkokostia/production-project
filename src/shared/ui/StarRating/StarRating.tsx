@@ -52,6 +52,7 @@ export const StarRating = memo((props: StarRatingProps) => {
             className={classNames(cls.star, { [cls.selected]: isSelected }, [])}
             onMouseEnter={onHover(el)}
             onMouseLeave={onLeave}
+            onTouchEnd={onClick(el)}
             onClick={onClick(el)}
             key={el}
           />
@@ -60,6 +61,7 @@ export const StarRating = memo((props: StarRatingProps) => {
             className={classNames(cls.star, { [cls.selected]: isSelected }, [])}
             onMouseEnter={onHover(el)}
             onMouseLeave={onLeave}
+            onTouchEnd={onClick(el)}
             key={el}
           />
         ),
