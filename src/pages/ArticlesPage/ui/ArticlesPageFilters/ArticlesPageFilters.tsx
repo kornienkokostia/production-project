@@ -118,7 +118,11 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
           { [cls.navbarCollapsed]: navbarCollapsed },
           [],
         )}>
-        <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
+        <ArticleViewSwitcher
+          view={view}
+          onViewClick={onChangeView}
+          className={cls.ArticleViewSwitcher}
+        />
         <div className={cls.search}>
           <SearchIcon className={cls.searchIcon} />
           <input

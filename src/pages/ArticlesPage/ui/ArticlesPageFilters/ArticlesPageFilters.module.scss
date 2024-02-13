@@ -88,6 +88,11 @@
   .searchInput {
     min-width: 200px;
   }
+  .ArticleViewSwitcher {
+    position: absolute;
+    top: 95px;
+    right: 4px;
+  }
 }
 
 @media screen and (max-width: 475px) {

@@ -45,3 +45,9 @@
     margin: 30px;
   }
 }
+
+@media screen and (max-width: 666px) {
+  .ArticleListWrapper {
+    margin-top: 0px;
+  }
+}
