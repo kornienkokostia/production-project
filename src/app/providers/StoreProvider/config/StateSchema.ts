@@ -12,11 +12,13 @@ import { AccountSchema } from '@/features/editableAccountCard';
 import { ArticleDetailsPageSchema } from '@/pages/ArticleDetailsPage';
 import { ArticlesPageSchema } from '@/pages/ArticlesPage';
 import { rtkApi } from '@/shared/api/rtkApi';
+import { ArticleEditSchema } from '@/pages/ArticleEditPage/model/types/ArticleEditSchema';
 
 export interface StateSchema {
   appState: AppStateSchema
   user: UserSchema
   ui: UISchema
+  articleEditPage: ArticleEditSchema
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 
   // Async redusers

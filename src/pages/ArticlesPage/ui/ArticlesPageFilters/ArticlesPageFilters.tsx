@@ -24,6 +24,9 @@ import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleCategorySelector } from '@/features/ArticleCategorySelector';
 import { ArticleViewSwitcher } from '@/features/ArticleViewSwitcher';
 import { addQueryParams } from '@/shared/lib/url/addQueryParams/addQueryParams';
+import { AppLink } from '@/shared/ui/AppLink';
+import { getRouteArticlesNew } from '@/shared/const/router';
+import { isUserAdmin } from '@/entities/User';
 
 interface ArticlesPageFiltersProps {
   className?: string;
@@ -39,6 +42,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
   const order = useSelector(getArticlesPageOrder);
   const search = useSelector(getArticlesPageSearch);
   const type = useSelector(getArticlesPageType);
+  const isAdmin = useSelector(isUserAdmin);
 
   useEffect(() => {
     addQueryParams({
@@ -113,8 +117,7 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
           cls.articlesPageHeader,
           { [cls.navbarCollapsed]: navbarCollapsed },
           [],
-        )}
-      >
+        )}>
         <ArticleViewSwitcher view={view} onViewClick={onChangeView} />
         <div className={cls.search}>
           <SearchIcon className={cls.searchIcon} />
@@ -129,21 +132,26 @@ export const ArticlesPageFilters = memo((props: ArticlesPageFiltersProps) => {
             theme="clear"
             className={cls.clearBtn}
             disabled={!(search.length > 0)}
-            onClick={onClearSearch}
-          >
+            onClick={onClearSearch}>
             <ClearInputIcon className={cls.clearBtnIcon} />
           </Button>
         </div>
-        {/* <Button theme={ButtonTheme.APPLE_CLEAR} className={cls.createBtn}>
-          <span>{t('Create')}</span>
-        </Button> */}
+        {isAdmin && (
+          <AppLink
+            to={getRouteArticlesNew()}
+            state={{ prevPath: location.pathname }}
+            className={cls.createBtn}
+            theme="apple-link">
+            <span>{t('New')}</span>
+          </AppLink>
+        )}
       </div>
-
       <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
         <ArticleCategorySelector
           value={type}
           onChange={onChangeCategory}
           sidebarPadding={!navbarCollapsed}
+          withoutAll={false}
         />
         <h2 className={cls.title}>{t('Articles')}</h2>
         <ArticleSortSelector

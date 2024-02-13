@@ -1,0 +1,23 @@
+{
+  "Article editing": "Редактирование статьи",
+  "Article creation": "Создание статьи",
+  "Back": "Назад",
+  "Enter text": "Введите текст",
+  "Title": "Заголовок",
+  "Subtitle": "Подзаголовок",
+  "Enter link": "Введите ссылку",
+  "Add Block": "Добавить блок",
+  "Create": "Создать",
+  "Text": "Текст",
+  "Image": "Изображение",
+  "Code": "Код",
+  "Blocks": "Блоки",
+  "Remove": "Удалить",
+  "No blocks have been added yet": "Блоки еще не добалены",
+  "Text block": "Блок текста",
+  "Paragraph": "Параграф",
+  "Add": "Добавить",
+  "Image block": "Блок изображения",
+  "Code block": "Блок кода",
+  "Enter code": "Введите код"
+}

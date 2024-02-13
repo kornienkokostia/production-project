@@ -1,6 +1,4 @@
-import {
-  MutableRefObject, memo, useEffect, useRef,
-} from 'react';
+import { MutableRefObject, memo, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArticleDetails } from '@/entities/Article';

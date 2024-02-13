@@ -12,9 +12,14 @@ export enum ArticleBlockType {
 
 export enum ArticleType {
   ALL = 'ALL',
-  IT = 'IT',
-  SCIENCE = 'SCIENCE',
-  ECONOMICS = 'ECONOMICS'
+  MOBILE_DEV = 'MOBILE_DEV',
+  WEB_DEV = 'WEB_DEV',
+  GAME_DEV = 'GAME_DEV',
+  DATA_SCIENCE = 'DATA_SCIENCE',
+  MACHINE_LEARNING = 'MACHINE_LEARNING',
+  CLOUD_COMPUTING = 'CLOUD_COMPUTING',
+  BLOCKCHAIN = 'BLOCKCHAIN',
+  CAREER = 'CAREER',
 }
 
 export enum ArticleView {

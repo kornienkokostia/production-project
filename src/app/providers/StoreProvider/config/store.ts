@@ -7,12 +7,14 @@ import { uiReducer } from '@/features/UI';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
+import { articleEditReducer } from '@/pages/ArticleEditPage/model/slice/articleEditSlice';
 
 export const createReduxStore = () => {
   const rootReducers: ReducersMapObject<StateSchema> = {
     appState: appStateReducer,
     user: userReducer,
     ui: uiReducer,
+    articleEditPage: articleEditReducer,
     [rtkApi.reducerPath]: rtkApi.reducer,
   };
 

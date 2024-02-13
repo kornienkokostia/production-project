@@ -1,0 +1,16 @@
+.textarea {
+  font-size: 17px;
+  border-radius: 14px;
+  background-color: var(--secondary-bg-color);
+  border: none;
+  font-family: var(--font-family-secondary);
+  color: var(--main-text-color);
+  width: 100%;
+  height: 56px;
+  outline: none;
+  padding: 18px 50px 18px 16px;
+  width: 100%;
+  letter-spacing: -0.022em;
+  resize: none;
+  overflow: hidden;
+}

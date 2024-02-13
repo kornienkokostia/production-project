@@ -13,6 +13,7 @@ import {
 import cls from './ArticleDetailsPageHeader.module.scss';
 import { getRouteArticles } from '@/shared/const/router';
 import { locationState } from '@/shared/types/router';
+import { formatNumber } from '@/shared/lib/helpers/helpers';
 
 interface ArticleDetailsPageHeaderProps {
   className?: string;
@@ -62,7 +63,9 @@ export const ArticleDetailsPageHeader = ({
       {article && !isLoading && (
         <>
           <p className={cls.date}>{article?.createdAt}</p>
-          <p className={cls.views}>{`${article?.views} ${t('views')}`}</p>
+          <p className={cls.views}>{`${formatNumber(article?.views)} ${t(
+            'views',
+          )}`}</p>
           {/* <div className={cls.editWrapper}>
             {canEdit && (
               <Button

@@ -7,23 +7,23 @@ interface ArticleCategorySelectorProps {
   value: ArticleType;
   onChange: (type: ArticleType) => void;
   sidebarPadding: boolean;
+  withoutAll: boolean;
 }
 
 export const ArticleCategorySelector = (
   props: ArticleCategorySelectorProps,
 ) => {
   const { t } = useTranslation('articles');
-  const { value, onChange, sidebarPadding } = props;
-
-  const categoryOptions = useMemo<SelectOption<ArticleType>[]>(
-    () => [
-      { value: ArticleType.ALL, content: `${t('All')}` },
-      { value: ArticleType.ECONOMICS, content: `${t('Economics')}` },
-      { value: ArticleType.IT, content: `${t('IT')}` },
-      { value: ArticleType.SCIENCE, content: `${t('Science')}` },
-    ],
-    [t],
-  );
+  const { value, onChange, sidebarPadding, withoutAll } = props;
+  const categoryOptions = useMemo<SelectOption<ArticleType>[]>(() => {
+    const arr = (Object.keys(ArticleType) as ArticleType[]).map(el => {
+      return { value: el, content: `${t(el)}` };
+    });
+    if (withoutAll) {
+      arr.shift();
+    }
+    return arr;
+  }, [t, withoutAll]);
 
   return (
     <Select

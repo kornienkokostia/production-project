@@ -27,6 +27,7 @@ interface SelectProps<T extends string, K extends string> {
   onChange: (value: T) => void;
   onChangeOrder?: (value: K) => void;
   sidebarPadding?: boolean;
+  showSelected?: boolean;
 }
 
 export const Select = <T extends string, K extends string>(
@@ -42,6 +43,7 @@ export const Select = <T extends string, K extends string>(
     onChange,
     onChangeOrder,
     sidebarPadding = false,
+    showSelected = true,
   } = props;
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -70,11 +72,15 @@ export const Select = <T extends string, K extends string>(
   const onOptionClick = useCallback(
     (val: string) => {
       delayRef.current = setTimeout(() => {
-        if (val !== value) {
-          onChange(val as T);
-          onChangeOrder?.('asc' as K);
+        if (showSelected) {
+          if (val !== value) {
+            onChange(val as T);
+            onChangeOrder?.('asc' as K);
+          } else {
+            onChangeOrder?.(order === 'asc' ? ('desc' as K) : ('asc' as K));
+          }
         } else {
-          onChangeOrder?.(order === 'asc' ? ('desc' as K) : ('asc' as K));
+          onChange(val as T);
         }
       }, 150);
 
@@ -131,13 +137,14 @@ export const Select = <T extends string, K extends string>(
       <Button
         theme="apple-clear"
         onClick={onToggleBtn}
-        className={classNames(cls.selectBtn, {}, [cls[submenuTheme]])}
-      >
+        className={classNames(cls.selectBtn, {}, [cls[submenuTheme]])}>
         <span className={cls.btnText}>
           <span className={cls.btnTitleText}>{`${title} `}</span>
-          <span className={cls.btnValueText}>
-            {options.find(el => el.value === value)?.content}
-          </span>
+          {showSelected && (
+            <span className={cls.btnValueText}>
+              {options.find(el => el.value === value)?.content}
+            </span>
+          )}
         </span>
 
         <SelectIcon className={cls.selectBtnIcon} />
@@ -148,8 +155,7 @@ export const Select = <T extends string, K extends string>(
         theme={submenuTheme}
         showTriangle
         isClosing={isClosing}
-        sidebarPadding={sidebarPadding}
-      >
+        sidebarPadding={sidebarPadding}>
         <div className={cls.options}>
           {options.map(el => (
             <div
@@ -157,7 +163,7 @@ export const Select = <T extends string, K extends string>(
               className={classNames(
                 cls.option,
                 {
-                  [cls.selected]: el.value === value,
+                  [cls.selected]: showSelected && el.value === value,
                   [cls.hovered]:
                     el.value === currentSelected && showHoverOnKeyPress,
                   [cls.blockHover]: blockHover,
@@ -172,9 +178,8 @@ export const Select = <T extends string, K extends string>(
               onMouseMove={() => {
                 setBlockHover(false);
               }}
-              onMouseLeave={() => setShowHoverOnKeyPress(false)}
-            >
-              {el.value === value && (
+              onMouseLeave={() => setShowHoverOnKeyPress(false)}>
+              {showSelected && el.value === value && (
                 <SelectedOptionIcon className={cls.selectedIcon} />
               )}
               <span className={cls.optionText}>{el.content}</span>

@@ -17,7 +17,7 @@ interface ArticleRecommendationsListProps {
 export const ArticleRecommendationsList = memo(
   (props: ArticleRecommendationsListProps) => {
     const { className } = props;
-    const { t } = useTranslation();
+    const { t } = useTranslation('article-details');
     const { data: articles, isLoading } = useArticleRecommendationsList(6);
     const isArticleLoading = useSelector(getArticleDetailsIsLoading);
 
@@ -27,8 +27,7 @@ export const ArticleRecommendationsList = memo(
 
     return (
       <div
-        className={classNames(cls.ArticleRecommendationsList, {}, [className])}
-      >
+        className={classNames(cls.ArticleRecommendationsList, {}, [className])}>
         <h1 className={cls.title}>{t('Recommendations')}</h1>
         <ArticleList
           articles={articles}

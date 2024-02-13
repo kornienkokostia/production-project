@@ -132,3 +132,8 @@ body {
     height: calc(100vh - 124px);
   }
 }
+
+.cm-gutters,
+.cm-content {
+  background-color: var(--secondary-bg-color) !important;
+}

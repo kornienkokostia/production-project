@@ -1,4 +1,10 @@
-import { ChangeEvent, memo, useCallback } from 'react';
+import {
+  ChangeEvent,
+  MutableRefObject,
+  memo,
+  useCallback,
+  useRef,
+} from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { classNames } from '@/shared/lib/classNames/classNames';
@@ -15,6 +21,7 @@ import {
   addCommentFormReducer,
 } from '../../model/slice/addCommentFormSlice';
 import cls from './AddCommentForm.module.scss';
+import { TextArea } from '@/shared/ui/TextArea/TextArea';
 
 interface addCommentFormProps {
   className?: string;
@@ -30,13 +37,11 @@ export const AddCommentForm = memo(
     const text = useSelector(getAddCommentFormText);
     const dispatch = useAppDispatch();
     const { t } = useTranslation('article-details');
+    const commentRef = useRef() as MutableRefObject<HTMLTextAreaElement>;
 
     const onCommentTextChange = useCallback(
-      (e: ChangeEvent<HTMLTextAreaElement>) => {
-        const el = e.currentTarget;
-        el.style.height = '56px';
-        el.style.height = `${el.scrollHeight}px`;
-        dispatch(addCommentFormActions.setText(el.value));
+      (val: string) => {
+        dispatch(addCommentFormActions.setText(val));
       },
       [dispatch],
     );
@@ -44,27 +49,23 @@ export const AddCommentForm = memo(
     const onSendHandler = useCallback(() => {
       onSendComment(text || '');
       dispatch(addCommentFormActions.setText(''));
-      const el = document.querySelector(
-        `.${cls.commentMsg}`,
-      ) as HTMLTextAreaElement;
-      el.style.height = '56px';
+      commentRef.current.style.height = '56px';
     }, [onSendComment, text, dispatch]);
 
     return (
       <DynamicModuleLoader reducers={reducers}>
         <div className={classNames(cls.addCommentForm, {}, [className])}>
-          <textarea
-            className={cls.commentMsg}
+          <TextArea
             placeholder={t('Add a comment')}
-            onChange={e => onCommentTextChange(e)}
             value={text}
+            onChange={val => onCommentTextChange(val)}
+            ref={commentRef}
           />
           <Button
             theme="clear"
             className={cls.sendCommentBtn}
             onClick={onSendHandler}
-            disabled={!text}
-          >
+            disabled={!text}>
             <SendCommentFormBtnIcon className={cls.btnIcon} />
           </Button>
         </div>

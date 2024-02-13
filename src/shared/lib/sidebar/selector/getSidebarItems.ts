@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { getUserAuthData } from '@/entities/User';
 import {
-  AppRoutes, getRouteAbout, getRouteAccount, getRouteArticles, getRouteMain,
+  AppRoutes, getRouteAbout, getRouteAccount, getRouteArticles, getRouteArticlesNew, getRouteMain,
 } from '@/shared/const/router';
 import HomeIcon from '@/shared/assets/icons/home.svg';
 import AboutIcon from '@/shared/assets/icons/about.svg';

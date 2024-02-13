@@ -12,6 +12,7 @@ import {
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent';
 import { Article, ArticleTextBlock } from '../../model/types/article';
 import cls from './ArticleListItem.module.scss';
+import { formatNumber } from '@/shared/lib/helpers/helpers';
 
 interface ArticleListItemProps {
   className?: string;
@@ -21,12 +22,16 @@ interface ArticleListItemProps {
 
 export const ArticleListItem = (props: ArticleListItemProps) => {
   const { className, article, view } = props;
-  const { t } = useTranslation('article-details');
+  const { t } = useTranslation(['articles']);
   const location = useLocation();
 
-  const types = <p className={cls.types}>{article.type.join(', ')}</p>;
+  const types = (
+    <p className={cls.types}>{article.type.map(el => t(el)).join(', ')}</p>
+  );
   const views = (
-    <p className={cls.views}>{`${String(article.views)} ${t('views')}`}</p>
+    <p className={cls.views}>{`${String(formatNumber(article.views))} ${t(
+      'views',
+    )}`}</p>
   );
 
   if (view === ArticleView.BIG) {
@@ -36,8 +41,7 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
 
     return (
       <div
-        className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
-      >
+        className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
         <div className={cls.card}>
           <div className={cls.header}>
             <AccountPhoto
@@ -61,8 +65,7 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
               to={getRouteArticleDetails(article.id)}
               state={{ prevPath: location.pathname }}
               className={cls.link}
-              theme="apple-link"
-            >
+              theme="apple-link">
               <span>{t('Read more')}</span>
               <ArrowLinkIcon className={cls.linkIcon} />
             </AppLink>
@@ -75,13 +78,11 @@ export const ArticleListItem = (props: ArticleListItemProps) => {
 
   return (
     <div
-      className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
-    >
+      className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
       <AppLink
         className={cls.card}
         to={getRouteArticleDetails(article.id)}
-        state={{ prevPath: location.pathname }}
-      >
+        state={{ prevPath: location.pathname }}>
         <div className={cls.imageWrapper}>
           <img src={article.img} className={cls.image} alt={article.title} />
         </div>

@@ -19,7 +19,7 @@ export interface ArticleImageBlock extends ArticleBlockBase {
 
 export interface ArticleTextBlock extends ArticleBlockBase {
   type: ArticleBlockType.TEXT
-  title?: string
+  title: string
   paragraphs: string[]
 }
 
@@ -29,6 +29,17 @@ export interface Article {
   id: string;
   title: string;
   user: User;
+  subtitle: string;
+  img: string;
+  views: number;
+  createdAt: string;
+  type: ArticleType[];
+  blocks: ArticleBlock[]
+}
+
+export interface NewArticle {
+  title: string;
+  userId: string;
   subtitle: string;
   img: string;
   views: number;
