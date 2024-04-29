@@ -70,3 +70,8 @@
 .ArticleEditBlockHeaderBtn {
   padding: 2px 0;
 }
+@media screen and (max-width: 1000px) {
+  .ArticleCreateEdit {
+    width: calc(100% - 60px);
+  }
+}
